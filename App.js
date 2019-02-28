@@ -1,14 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// Import custom modules below npm packages & libraries
+import {
+  Layout,
+  GlobalStyles,
+  Colors,
+} from './src/constants';
 
 
 class App extends React.Component {
@@ -20,10 +18,13 @@ class App extends React.Component {
   }
 
   render() {
+    // Deconstruct the 'state' before render calls
     const { message } = this.state;
     return (
-      <View style={styles.container}>
-        <Text>{message}</Text>
+      <View style={[GlobalStyles.centerChildren, { backgroundColor: Colors.background }]}>
+        <Text style={{ fontSize: Layout.fontSize.xs }}>{message}</Text>
+        <Text style={{ fontSize: Layout.fontSize.s }}>{message}</Text>
+        <Text style={{ fontSize: Layout.fontSize.m }}>{message}</Text>
       </View>
     );
   }
