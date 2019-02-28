@@ -1,30 +1,23 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
 
 // Import custom modules below npm packages & libraries
-import {
-  Layout,
-  GlobalStyles,
-  Colors,
-} from './src/constants';
+import AppNavigator from './src/navigation/AppNavigator';
+import { GlobalStyles } from './src/constants';
 
+const AppContainer = createAppContainer(AppNavigator);
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      message: 'Adaptive Alarm Boiler Plate',
-    };
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
 
   render() {
-    // Deconstruct the 'state' before render calls
-    const { message } = this.state;
     return (
-      <View style={[GlobalStyles.centerChildren, { backgroundColor: Colors.background }]}>
-        <Text style={{ fontSize: Layout.fontSize.xs }}>{message}</Text>
-        <Text style={{ fontSize: Layout.fontSize.s }}>{message}</Text>
-        <Text style={{ fontSize: Layout.fontSize.m }}>{message}</Text>
+      <View style={GlobalStyles.container}>
+        <AppContainer />
       </View>
     );
   }
