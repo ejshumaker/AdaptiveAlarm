@@ -6,7 +6,7 @@
 npm install
 npm start
 ```
-Run on device by using the (Expo Client)[https://expo.io/tools#client] app.
+Run on device by using the [Expo Client](https://expo.io/tools#client) app.
 
 ### Linting
 
