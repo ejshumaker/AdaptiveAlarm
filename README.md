@@ -29,8 +29,9 @@ Custom rules
 
 
 
-
+```js
 const FETCH_TYPE = 'FETCH_LOCATION';
+
 // Dispatch the action
 const fetchActionCreator = () => ({  type: FETCH_TYPE
   payload: Promise.resolve(FETCH_TYPE)
@@ -43,7 +44,7 @@ const fetchReducer = (state = {}, action) => {
       return {
         isFetching: true,
       };
-
+    
     case `${FETCH_TYPE}_FULFILLED`:
       return {
         isFulfilled: true,
@@ -59,4 +60,4 @@ const fetchReducer = (state = {}, action) => {
     default:
       return state;
   }
-}
+}```js
