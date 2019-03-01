@@ -26,3 +26,37 @@ Configurations
 
 Custom rules
 - disabled "react/jsx-filename-extension"
+
+
+
+
+const FETCH_TYPE = 'FETCH_LOCATION';
+// Dispatch the action
+const fetchActionCreator = () => ({  type: FETCH_TYPE
+  payload: Promise.resolve(FETCH_TYPE)
+});
+
+// Handle the action
+const fetchReducer = (state = {}, action) => {
+  switch (action.type) {
+    case `${FETCH_TYPE}_PENDING`:
+      return {
+        isFetching: true,
+      };
+
+    case `${FETCH_TYPE}_FULFILLED`:
+      return {
+        isFulfilled: true,
+        isFetching: false,
+        data: action.payload
+      };
+    case `${FETCH_TYPE}_REJECTED`:
+      return {
+        isRejected: true,
+        isFetching: false,
+        error: action.payload
+      };
+    default:
+      return state;
+  }
+}
