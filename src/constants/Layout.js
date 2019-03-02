@@ -9,14 +9,4 @@ export default {
     height,
   },
   isSmallDevice: width < 375,
-  /* Fonts & Typography */
-  fontSize: {
-    xs: 12,
-    s: 20,
-    m: 30,
-    lg: 40,
-    xl: 50,
-  },
-  /* Spacing */
-  defaultMargin: 4,
 };

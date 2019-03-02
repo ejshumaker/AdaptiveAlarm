@@ -3,34 +3,33 @@ import { View, Text, Button } from 'react-native';
 import PropTypes from 'prop-types';
 
 import {
-// Colors,
-// Layout,
+  Colors,
+  // Layout,
   GlobalStyles,
 } from '../constants';
 
 class HomeScreen extends Component {
-  static navigationOptions = {
-    header: null,
-  }
-
   constructor() {
     super();
     this.state = {
-      message: 'Home Screen',
+      title: 'Home',
+      subtitle: 'React-Native Boilerplate',
     };
   }
 
   render() {
-    const { message } = this.state;
+    const { title, subtitle } = this.state;
     const { navigation } = this.props;
     const { navigate } = navigation;
 
     return (
-      <View style={GlobalStyles.centerChildren}>
-        <Text>{message}</Text>
+      <View style={GlobalStyles.centerChildrenXY}>
+        <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
+        <Text style={[GlobalStyles.subtitle, { marginBottom: 24 }]}>{subtitle}</Text>
         <Button
-          title="Go To Setup"
-          onPress={() => navigate('Setup')}
+          title="Style Demo"
+          color={Colors.darkGray}
+          onPress={() => navigate('StyleDemo')}
         />
       </View>
     );
