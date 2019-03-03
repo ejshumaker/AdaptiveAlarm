@@ -1,7 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
+import { Provider } from 'react-redux';
 
 // Import custom modules below npm packages & libraries
+import store from './src/store';
 import AppContainer from './src/navigation/AppContainer';
 import { GlobalStyles } from './src/constants';
 
@@ -21,7 +23,9 @@ class App extends React.Component {
   render() {
     return (
       <View style={GlobalStyles.container}>
-        <AppContainer />
+        <Provider store={store}>
+          <AppContainer />
+        </Provider>
       </View>
     );
   }

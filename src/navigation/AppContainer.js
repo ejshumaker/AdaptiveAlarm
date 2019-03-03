@@ -23,7 +23,7 @@ const AppNavigator = createStackNavigator(
       screen: StyleDemoScreen,
       // You can override the "header" prop and pass a custom header component
       navigationOptions: () => ({
-        title: 'STYLE DEMO',
+        title: 'Styles',
         headerStyle: {
           backgroundColor: Colors.darkGray,
         },

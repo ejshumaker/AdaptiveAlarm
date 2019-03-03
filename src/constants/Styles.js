@@ -8,6 +8,7 @@ const defaultMargin = 8;
  * This is a global style sheet,
  * only heavily reused styles should live in here. Any styles
  * specific to a component should be local to that component
+ * @eschirtz 03-01-19
  */
 export default StyleSheet.create({
   /**
