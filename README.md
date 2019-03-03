@@ -28,7 +28,8 @@ Running Eslint from the command line
 ./node_modules/.bin/eslint . # Lint on entire directory
 ```
 Configurations
-- "Airbnb" template. 
+- **Airbnb** template. 
+- I believe Eslint also grabs some configurations from React, but I haven't confirmed yet how it does that.
 
 Custom rules
 - disabled "react/jsx-filename-extension"
