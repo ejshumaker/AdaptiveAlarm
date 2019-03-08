@@ -2,6 +2,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import { Colors } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
+import AuthNavigator from '../navigation/AuthNavigator'
 import StyleDemoScreen from '../screens/StyleDemoScreen';
 
 /**
@@ -12,6 +13,7 @@ import StyleDemoScreen from '../screens/StyleDemoScreen';
  */
 const AppNavigator = createStackNavigator(
   {
+    Auth: AuthNavigator,
     Home: {
       screen: HomeScreen,
       navigationOptions: () => ({
@@ -35,9 +37,11 @@ const AppNavigator = createStackNavigator(
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Auth',
     headerMode: 'screen',
-    cardStyle: { backgroundColor: Colors.background },
+    cardStyle: {
+      backgroundColor: Colors.background
+    },
   },
 );
 
