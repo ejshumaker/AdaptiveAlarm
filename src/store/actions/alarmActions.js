@@ -5,7 +5,7 @@ import getRouteTime from '../../custom_modules/getRouteTime';
   * the user. Currently returns the duration between locations in traffic.
   * @tsteiner4 3-9-2019
   */
-export function alarmCalculateTime(time) {
+export function alarmCalculateTime() {
   return {
     type: 'ALARM_CALCULATE_TIME',
     payload: getRouteTime('Los Angeles, CA', 'Los Angelese International Airport, Los Angelese, CA', true),
