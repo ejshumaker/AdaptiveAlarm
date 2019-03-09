@@ -8,24 +8,21 @@
  *
  * @eschirtz 03-03-19
  */
-import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { View, Text, Button, StatusBar } from "react-native";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import { userSetName, userSetAge } from '../store/actions/userActions';
-import { alarmCalculateTime } from '../store/actions/alarmActions';
+import { userSetName, userSetAge } from "../store/actions/userActions";
+import { alarmCalculateTime } from "../store/actions/alarmActions";
 
-import {
-  Colors,
-  GlobalStyles,
-} from '../constants';
+import { Colors, GlobalStyles } from "../constants";
 
 class HomeScreen extends Component {
   constructor() {
     super();
     this.state = {
-      title: 'Home',
+      title: "Home"
     };
   }
 
@@ -36,7 +33,7 @@ class HomeScreen extends Component {
       setName, // Redux actions
       calculateTime,
       userName, // Redux store
-      alarmTime,
+      alarmTime
     } = this.props;
     const { navigate } = navigation;
 
@@ -48,20 +45,25 @@ class HomeScreen extends Component {
      */
     return (
       <View style={GlobalStyles.centerChildrenXY}>
+        <StatusBar barStyle="light-content" />
         <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
-        <View style={{
-          height: 80, margin: 8, width: '50%',
-        }}
-        >
-          <View style={{
-            flex: 1,
-            justifyContent: 'space-around',
+        <View
+          style={{
+            height: 80,
+            margin: 8,
+            width: "50%"
           }}
+        >
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "space-around"
+            }}
           >
             <Button
               title="Sync"
               color={Colors.darkGray}
-              onPress={() => setName('A New Name')}
+              onPress={() => setName("A New Name")}
             />
             <View style={{ height: 8, width: 8 }} />
             <Button
@@ -71,25 +73,34 @@ class HomeScreen extends Component {
             />
           </View>
         </View>
-        <View style={{
-          textAlign: 'left',
-          width: '50%',
-          margin: 16,
-        }}
+        <View
+          style={{
+            textAlign: "left",
+            width: "50%",
+            margin: 16
+          }}
         >
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Username</Text>
-          <Text style={[GlobalStyles.paragraph, {
-            color: Colors.primary,
-            marginBottom: 8,
-          }]}
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              {
+                color: Colors.primary,
+                marginBottom: 8
+              }
+            ]}
           >
             {userName}
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Time</Text>
-          <Text style={[GlobalStyles.paragraph, {
-            color: Colors.primary,
-            marginBottom: 8,
-          }]}
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              {
+                color: Colors.primary,
+                marginBottom: 8
+              }
+            ]}
           >
             {alarmTime}
           </Text>
@@ -97,7 +108,7 @@ class HomeScreen extends Component {
         <Button
           title="Styles"
           color={Colors.darkGray}
-          onPress={() => navigate('StyleDemo')}
+          onPress={() => navigate("StyleDemo")}
         />
       </View>
     );
@@ -106,14 +117,14 @@ class HomeScreen extends Component {
 
 HomeScreen.propTypes = {
   navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired
   }).isRequired,
   // Redux state
   userName: PropTypes.string.isRequired,
   alarmTime: PropTypes.number.isRequired,
   // Redux dispatch
   setName: PropTypes.func.isRequired,
-  calculateTime: PropTypes.func.isRequired,
+  calculateTime: PropTypes.func.isRequired
 };
 
 /**
@@ -123,7 +134,7 @@ HomeScreen.propTypes = {
  */
 const mapStateToProps = state => ({
   userName: state.user.name,
-  alarmTime: state.alarm.time,
+  alarmTime: state.alarm.time
 });
 
 /**
@@ -132,9 +143,18 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
-  setName: (name) => { dispatch(userSetName(name)); },
-  setAge: (age) => { dispatch(userSetAge(age)); },
-  calculateTime: (time) => { dispatch(alarmCalculateTime(time)); },
+  setName: name => {
+    dispatch(userSetName(name));
+  },
+  setAge: age => {
+    dispatch(userSetAge(age));
+  },
+  calculateTime: time => {
+    dispatch(alarmCalculateTime(time));
+  }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeScreen);
