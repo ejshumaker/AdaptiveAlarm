@@ -9,7 +9,11 @@ class ReusableComponentsScreen extends React.Component {
     return (
       <View>
         <Text>Color Palette:</Text>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={{ paddingLeft: 24 }}
+        >
           {colors.map((color, index) => (
             <ColorPalette
               key={index}
@@ -40,7 +44,6 @@ const Wrapper = styled.View`
 
 const View = styled.View`
   margin-top: 24px;
-  margin-left: 24px;
 `;
 
 const View2 = styled.View`
@@ -52,6 +55,7 @@ const Text = styled.Text`
   color: white;
   font-size: 30px;
   margin-bottom: 13px;
+  margin-left: 24px;
 `;
 
 const colors = [
