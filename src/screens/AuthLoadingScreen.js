@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { auth } from 'firebase';
 import PropTypes from 'prop-types';
 
-import { userSet } from '../store/actions/userActions';
+import { userFetch } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
 
 class AuthLoadingScreen extends React.Component {
@@ -18,19 +18,14 @@ class AuthLoadingScreen extends React.Component {
 
   // Fetch the token from storage then navigate to our appropriate place
   bootstrapAsync = async () => {
-    const { navigation, setUser } = this.props;
+    const { navigation, fetchUser } = this.props;
 
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
-        setUser({
-          firstName: 'Eric',
-          lastName: 'Schirtzinger',
-          userName: 'eschirtz',
-          email: 'eschirtzinger@gmail.com',
-        });
+        fetchUser(user.uid);
         navigation.navigate('App');
       } else {
         // User is signed out.
@@ -55,13 +50,13 @@ AuthLoadingScreen.propTypes = {
     navigate: PropTypes.func.isRequired,
   }).isRequired,
   // Redux dispatch
-  setUser: PropTypes.func.isRequired,
+  fetchUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  setUser: (user) => { dispatch(userSet(user)); },
+  fetchUser: (user) => { dispatch(userFetch(user)); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthLoadingScreen);

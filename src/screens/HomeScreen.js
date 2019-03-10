@@ -9,7 +9,9 @@
  * @eschirtz 03-03-19
  */
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import {
+  View, Text, Button, ActivityIndicator,
+} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -27,6 +29,13 @@ class HomeScreen extends Component {
     this.state = {
       title: 'Home',
     };
+  }
+
+  loader() {
+    const { loading } = this.props;
+    if (loading) {
+      return <ActivityIndicator color={Colors.primary} size="large" />;
+    } return null;
   }
 
   render() {
@@ -53,6 +62,7 @@ class HomeScreen extends Component {
     return (
       <View style={GlobalStyles.centerChildrenXY}>
         <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
+        { this.loader() }
         <View style={{
           height: 80, margin: 8, width: '60%',
         }}
@@ -122,15 +132,24 @@ HomeScreen.propTypes = {
     navigate: PropTypes.func.isRequired,
   }).isRequired,
   // Redux state
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  userName: PropTypes.string,
+  email: PropTypes.string,
   errorMessage: PropTypes.string,
+  loading: PropTypes.bool.isRequired,
   alarmTime: PropTypes.number.isRequired,
   // Redux dispatch
   calculateTime: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
+};
+
+HomeScreen.defaultProps = {
+  firstName: '',
+  lastName: '',
+  userName: '',
+  email: '',
+  errorMessage: '',
 };
 
 /**
@@ -144,6 +163,7 @@ const mapStateToProps = state => ({
   userName: state.user.userName,
   email: state.user.email,
   errorMessage: state.user.errorMessage,
+  loading: state.user.loadingFetch,
   alarmTime: state.alarm.time,
 });
 

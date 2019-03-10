@@ -5,17 +5,11 @@
  */
 import User from '../../custom_modules/User';
 
-export function userSet(name) {
-  return {
-    type: 'USER_SET',
-    payload: name,
-  };
-}
 
-export function userSetAge(age) {
+export function userFetch(uid) {
   return {
-    type: 'USER_SET_AGE',
-    payload: age,
+    type: 'USER_FETCH',
+    payload: User.fetch(uid),
   };
 }
 
@@ -24,12 +18,8 @@ export function userCreateAccount(payload) {
     type: 'USER_CREATE_ACCOUNT',
     payload: User.createAccount(payload),
   })
-    .catch((error) => {
-      /* eslint-disable */
-      console.log(error);
-      // may additional chose to dispatch another action to handle error
-      /* eslint-enable */
-    });
+    // may chose to also dispatch another action to handle errors
+    .catch(error => console.log(error)); // eslint-disable-line
 }
 
 
@@ -38,12 +28,7 @@ export function userSignIn(payload) {
     type: 'USER_SIGN_IN',
     payload: User.signIn(payload),
   })
-    .catch((error) => {
-      /* eslint-disable */
-      console.log(error);
-      // may additional chose to dispatch another action to handle error
-      /* eslint-enable */
-    });
+    .catch(error => console.log(error)); // eslint-disable-line
 }
 
 export function userSignOut() {

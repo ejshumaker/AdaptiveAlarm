@@ -28,7 +28,6 @@ class SignInScreen extends React.Component {
     } return null;
   }
 
-
   render() {
     const { signIn, navigation, errorMessage } = this.props;
     const { email, password } = this.state;

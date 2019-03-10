@@ -14,7 +14,8 @@ const initialUserState = {
   email: undefined,
   error: false,
   errorMessage: undefined, // overwrite with a message
-  loading: false,
+  loading: false, // global loading flag
+  loadingFetch: false, // can have a more specific loading flag
 };
 
 const userReducer = (state = initialUserState, action) => {
@@ -74,6 +75,41 @@ const userReducer = (state = initialUserState, action) => {
         loading: false,
       };
       break;
+    // FETCH USER DATA //
+    case 'USER_FETCH_PENDING':
+      state = {
+        ...state,
+        loading: true,
+        loadingFetch: true,
+      };
+      break;
+    case 'USER_FETCH_REJECTED':
+      state = {
+        ...state,
+        loading: false,
+        loadingFetch: false,
+      };
+      break;
+    case 'USER_FETCH_FULFILLED': {
+      const {
+        firstName,
+        lastName,
+        userName,
+        email,
+        uid,
+      } = action.payload;
+      state = {
+        ...state,
+        firstName,
+        lastName,
+        userName,
+        email,
+        uid,
+        loading: false,
+        loadingFetch: false,
+      };
+      break;
+    }
     // SIGN OUT //
     case 'USER_SIGN_OUT_PENDING':
       state = { ...state };
