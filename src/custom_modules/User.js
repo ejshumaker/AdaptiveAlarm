@@ -6,7 +6,8 @@ import { auth } from 'firebase';
  * @param  password
  * @return {[Promise]} wraps the Promise from Firebase
  */
-function signIn(email, password) {
+function signIn(credentials) {
+  const { email, password } = credentials;
   return new Promise((resolve, reject) => {
     auth().signInWithEmailAndPassword(email, password)
       .then((resp) => {
@@ -14,18 +15,18 @@ function signIn(email, password) {
       })
       .catch((error) => {
         // Handle Errors here.
-        reject(error.message);
+        reject(error);
       });
   });
 }
 
-function signUp(credentials) {
+function createAccount(credentials) {
   const {
     email,
     password,
-    // firstName,
-    // lastName,
-    // userName,
+    firstName,
+    lastName,
+    userName,
   } = credentials;
   return new Promise((resolve, reject) => {
     auth().createUserWithEmailAndPassword(email, password)
@@ -48,4 +49,4 @@ function signOut() {
   });
 }
 
-export default { signIn, signUp, signOut };
+export default { signIn, createAccount, signOut };

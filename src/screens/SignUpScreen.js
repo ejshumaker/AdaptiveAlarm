@@ -1,17 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  TextInput, Button, StyleSheet, Text, View,
+  TextInput, Button, View,
 } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { userCreateAccount } from '../store/actions/userActions';
 import { Colors, GlobalStyles } from '../constants';
 
-
-export default class SignUp extends React.Component {
+class SignUpScreen extends React.Component {
   state = {
-    username: '',
+    firstName: '',
+    lastName: '',
+    userName: '',
     password: '',
-    phone_number: '',
     email: '',
-    confirmationCode: '',
   }
 
   onChangeText(key, value) {
@@ -20,61 +23,22 @@ export default class SignUp extends React.Component {
     });
   }
 
-  signUp() {
-    this._printlog('SIGN UP BUTTON PRESSED', ':)');
-    // FIREBASE PLUGIN FOR signUp
-    /*
-    Auth.signUp({
-      username: this.state.username,
-      password: this.state.password,
-      attributes: {
-        email: this.state.email,
-      // first_name: this.state.first_name,
-      // last_name: this.state.last_name
-      },
-      response: {
-        userConfirmed: true
-      },
-    })
-      .then((event, context, callback) => {
-        console.log('---------------------------------');
-        alert('Successful Sign Up!');
-        console.log('successful sign up!');
-        // console.log(JSON.stringify(event.username));
-        console.log('---------------------------------');
-        this.props.navigation.navigate('SignIn');
-      })
-      .catch(err => {
-        console.log('error signing up!: ', err);
-        alert('Something went wrong with signing you up. Check your information and try again!');
-      });
-      */
-  }
-
-  _printlog(headerInput, object) {
-    console.log('------------------------------------');
-    console.log(headerInput);
-    console.log('------------------------------------');
-    console.log(object);
-    console.log('------------------------------------');
-    console.log('\n\n');
-  }
-
   render() {
+    const { createAccount } = this.props;
     return (
       <View style={GlobalStyles.container}>
         <TextInput
-          onChangeText={value => this.onChangeText('first_name', value)}
+          onChangeText={value => this.onChangeText('firstName', value)}
           style={GlobalStyles.input}
           placeholder="First Name"
         />
         <TextInput
-          onChangeText={value => this.onChangeText('last_name', value)}
+          onChangeText={value => this.onChangeText('lastName', value)}
           style={GlobalStyles.input}
           placeholder="Last Name"
         />
         <TextInput
-          onChangeText={value => this.onChangeText('username', value)}
+          onChangeText={value => this.onChangeText('userName', value)}
           style={GlobalStyles.input}
           placeholder="Username"
         />
@@ -92,9 +56,43 @@ export default class SignUp extends React.Component {
         <Button
           title="Sign Up"
           color={Colors.white}
-          onPress={this.signUp.bind(this)}
+          onPress={() => {
+            const {
+              firstName,
+              lastName,
+              email,
+              userName,
+              password,
+            } = this.state;
+            createAccount({
+              firstName,
+              lastName,
+              email,
+              userName,
+              password,
+            });
+          }}
         />
       </View>
     );
   }
 }
+
+SignUpScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  // Redux state
+  // errorMessage: PropTypes.string,
+  // Redux dispatch
+  createAccount: PropTypes.func.isRequired,
+};
+const mapStateToProps = state => ({
+  errorMessage: state.user.errorMessage,
+});
+
+const mapDispatchToProps = dispatch => ({
+  createAccount: (credentials) => { dispatch(userCreateAccount(credentials)); },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen);

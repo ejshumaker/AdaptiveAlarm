@@ -40,7 +40,7 @@ class HomeScreen extends Component {
       userName,
       email,
       alarmTime,
-      error,
+      errorMessage,
     } = this.props;
     const { navigate } = navigation;
 
@@ -91,7 +91,7 @@ class HomeScreen extends Component {
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Error Message</Text>
           <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
-            {error}
+            {errorMessage}
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Time</Text>
           <Text style={[GlobalStyles.paragraph, {
@@ -126,7 +126,7 @@ HomeScreen.propTypes = {
   lastName: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  error: PropTypes.string,
+  errorMessage: PropTypes.string,
   alarmTime: PropTypes.number.isRequired,
   // Redux dispatch
   calculateTime: PropTypes.func.isRequired,
@@ -143,7 +143,7 @@ const mapStateToProps = state => ({
   lastName: state.user.lastName,
   userName: state.user.userName,
   email: state.user.email,
-  error: state.user.error,
+  errorMessage: state.user.errorMessage,
   alarmTime: state.alarm.time,
 });
 

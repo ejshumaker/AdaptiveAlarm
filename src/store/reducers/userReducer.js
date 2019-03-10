@@ -12,20 +12,54 @@ const initialUserState = {
   lastName: undefined,
   userName: undefined,
   email: undefined,
+  error: false,
   errorMessage: undefined, // overwrite with a message
+  loading: false,
 };
 
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
+    // CREATE ACCOUNT //
+    case 'USER_CREATE_ACCOUNT_PENDING':
+      state = { ...state, loading: true };
+      break;
+    case 'USER_CREATE_ACCOUNT_REJECTED':
+      state = {
+        ...state,
+        errorMessage:
+        action.payload.message,
+        error: action.error,
+        loading: false,
+      };
+      break;
+    case 'USER_CREATE_ACCOUNT_FULFILLED':
+      state = {
+        ...state,
+        errorMessage: undefined,
+        error: action.error,
+        loading: false,
+      };
+      break;
     // SIGN IN //
     case 'USER_SIGN_IN_PENDING':
-      state = { ...state };
+      state = { ...state, loading: true };
       break;
     case 'USER_SIGN_IN_REJECTED':
-      state = { ...state, errorMessage: action.errorMessage };
+      state = {
+        ...state,
+        errorMessage:
+        action.payload.message,
+        error: action.error,
+        loading: false,
+      };
       break;
     case 'USER_SIGN_IN_FULFILLED':
-      state = { ...state, error: undefined };
+      state = {
+        ...state,
+        errorMessage: undefined,
+        error: action.error,
+        loading: false,
+      };
       break;
     // SIGN OUT //
     case 'USER_SIGN_OUT_PENDING':

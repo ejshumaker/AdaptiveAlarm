@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  TextInput, Button, Text, View,
+  TextInput, Button, Text, View, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -21,6 +21,13 @@ class SignInScreen extends React.Component {
     });
   }
 
+  loader() {
+    const { loading } = this.props;
+    if (loading) {
+      return <ActivityIndicator color={Colors.primary} size="large" />;
+    } return null;
+  }
+
 
   render() {
     const { signIn, navigation, errorMessage } = this.props;
@@ -28,6 +35,7 @@ class SignInScreen extends React.Component {
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
         <Text style={GlobalStyles.h2}>Sign In</Text>
+        { this.loader() }
         <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
           {errorMessage}
         </Text>
@@ -70,14 +78,19 @@ SignInScreen.propTypes = {
   }).isRequired,
   // Redux state
   errorMessage: PropTypes.string,
+  loading: PropTypes.bool.isRequired,
   // Redux dispatch
   signIn: PropTypes.func.isRequired,
 };
 
+SignInScreen.defaultProps = {
+  errorMessage: '',
+};
+
 const mapStateToProps = state => ({
   errorMessage: state.user.errorMessage,
+  loading: state.user.loading,
 });
-
 
 const mapDispatchToProps = dispatch => ({
   signIn: (credentials) => { dispatch(userSignIn(credentials)); },
