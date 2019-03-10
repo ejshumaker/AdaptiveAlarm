@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { TextInput, Button, StyleSheet, Text, View } from 'react-native';
+import {
+  TextInput, Button, StyleSheet, Text, View,
+} from 'react-native';
 import { Colors, GlobalStyles } from '../constants';
 
 
@@ -9,15 +11,17 @@ export default class SignUp extends React.Component {
     password: '',
     phone_number: '',
     email: '',
-    confirmationCode: ''
+    confirmationCode: '',
   }
+
   onChangeText(key, value) {
     this.setState({
-      [key]: value
-    })
+      [key]: value,
+    });
   }
+
   signUp() {
-    this._printlog("SIGN UP BUTTON PRESSED", ":)");
+    this._printlog('SIGN UP BUTTON PRESSED', ':)');
     // FIREBASE PLUGIN FOR signUp
     /*
     Auth.signUp({
@@ -45,42 +49,6 @@ export default class SignUp extends React.Component {
         alert('Something went wrong with signing you up. Check your information and try again!');
       });
       */
-
-  }
-  render() {
-    return (
-      <View style={GlobalStyles.container}>
-      <TextInput
-      onChangeText={value => this.onChangeText('first_name', value)}
-      style={GlobalStyles.input}
-      placeholder='First Name'
-      />
-    <TextInput
-      onChangeText={value => this.onChangeText('last_name', value)}
-      style={GlobalStyles.input}
-      placeholder='Last Name'
-      />
-        <TextInput
-      onChangeText={value => this.onChangeText('username', value)}
-      style={GlobalStyles.input}
-      placeholder='Username'
-      />
-        <TextInput
-      onChangeText={value => this.onChangeText('password', value)}
-      style={GlobalStyles.input}
-      secureTextEntry={true}
-      placeholder='Password'
-      />
-        <TextInput
-      onChangeText={value => this.onChangeText('email', value)}
-      style={GlobalStyles.input}
-      placeholder='Email'
-      />
-      <Button title="Sign Up"
-      color={Colors.white}
-      onPress={this.signUp.bind(this)} />
-      </View>
-      );
   }
 
   _printlog(headerInput, object) {
@@ -89,6 +57,44 @@ export default class SignUp extends React.Component {
     console.log('------------------------------------');
     console.log(object);
     console.log('------------------------------------');
-    console.log('\n\n')
+    console.log('\n\n');
+  }
+
+  render() {
+    return (
+      <View style={GlobalStyles.container}>
+        <TextInput
+          onChangeText={value => this.onChangeText('first_name', value)}
+          style={GlobalStyles.input}
+          placeholder="First Name"
+        />
+        <TextInput
+          onChangeText={value => this.onChangeText('last_name', value)}
+          style={GlobalStyles.input}
+          placeholder="Last Name"
+        />
+        <TextInput
+          onChangeText={value => this.onChangeText('username', value)}
+          style={GlobalStyles.input}
+          placeholder="Username"
+        />
+        <TextInput
+          onChangeText={value => this.onChangeText('password', value)}
+          style={GlobalStyles.input}
+          secureTextEntry
+          placeholder="Password"
+        />
+        <TextInput
+          onChangeText={value => this.onChangeText('email', value)}
+          style={GlobalStyles.input}
+          placeholder="Email"
+        />
+        <Button
+          title="Sign Up"
+          color={Colors.white}
+          onPress={this.signUp.bind(this)}
+        />
+      </View>
+    );
   }
 }

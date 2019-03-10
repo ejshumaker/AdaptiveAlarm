@@ -74,6 +74,6 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: Colors.primary,
     color: Colors.white,
-    margin: 10
+    marginVertical: 10,
   },
 });
