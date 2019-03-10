@@ -1,4 +1,4 @@
-import { auth } from 'firebase';
+import { auth, database } from 'firebase';
 
 /**
  * Signs user in through firebase authentication
@@ -29,11 +29,22 @@ function createAccount(credentials) {
     userName,
   } = credentials;
   return new Promise((resolve, reject) => {
+    let userData;
     auth().createUserWithEmailAndPassword(email, password)
-      .then((user) => {
-        resolve({
+      .then((response) => {
+        const { user } = response;
+        userData = {
+          userName,
+          firstName,
+          lastName,
+          email: user.email,
           uid: user.uid,
-        });
+        };
+        database().ref(`users/${user.uid}`)
+          .set(userData);
+      })
+      .then(() => {
+        resolve(userData);
       })
       .catch((error) => {
         reject(error);

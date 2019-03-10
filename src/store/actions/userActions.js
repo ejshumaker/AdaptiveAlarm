@@ -25,11 +25,10 @@ export function userCreateAccount(payload) {
     payload: User.createAccount(payload),
   })
     .catch((error) => {
+      /* eslint-disable */
       console.log(error);
-      // dispatch({
-      // type: 'USER_CREATE_ACCOUNT_REJECTED',
-      // errorMessage,
-      // });
+      // may additional chose to dispatch another action to handle error
+      /* eslint-enable */
     });
 }
 
@@ -40,12 +39,10 @@ export function userSignIn(payload) {
     payload: User.signIn(payload),
   })
     .catch((error) => {
+      /* eslint-disable */
       console.log(error);
-      // Manually handle the error, chose to dispatch reject suffix
-      // dispatch({
-      //   type: 'USER_SIGN_IN_REJECTED',
-      //   errorMessage,
-      // });
+      // may additional chose to dispatch another action to handle error
+      /* eslint-enable */
     });
 }
 

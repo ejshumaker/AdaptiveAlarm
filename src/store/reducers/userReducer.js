@@ -32,14 +32,27 @@ const userReducer = (state = initialUserState, action) => {
         loading: false,
       };
       break;
-    case 'USER_CREATE_ACCOUNT_FULFILLED':
+    case 'USER_CREATE_ACCOUNT_FULFILLED': {
+      const {
+        userName,
+        firstName,
+        lastName,
+        email,
+        uid,
+      } = action.payload;
       state = {
         ...state,
+        userName,
+        firstName,
+        lastName,
+        email,
+        uid,
         errorMessage: undefined,
         error: action.error,
         loading: false,
       };
       break;
+    }
     // SIGN IN //
     case 'USER_SIGN_IN_PENDING':
       state = { ...state, loading: true };
