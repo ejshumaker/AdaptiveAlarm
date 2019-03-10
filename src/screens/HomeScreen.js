@@ -110,6 +110,11 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate("StyleDemo")}
         />
+        <Button
+          title="Components"
+          color={Colors.darkGray}
+          onPress={() => navigate("ReusableComponents")}
+        />
       </View>
     );
   }

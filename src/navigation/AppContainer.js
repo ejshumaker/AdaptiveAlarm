@@ -1,8 +1,9 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import { Colors } from '../constants';
-import HomeScreen from '../screens/HomeScreen';
-import StyleDemoScreen from '../screens/StyleDemoScreen';
+import { Colors } from "../constants";
+import HomeScreen from "../screens/HomeScreen";
+import StyleDemoScreen from "../screens/StyleDemoScreen";
+import ReusableComponentsScreen from "../screens/ReusableComponentsScreen";
 
 /**
  * The app navigator is where all routes are configured
@@ -15,30 +16,43 @@ const AppNavigator = createStackNavigator(
     Home: {
       screen: HomeScreen,
       navigationOptions: () => ({
-        title: 'Adaptive Alarm',
-        header: null,
-      }),
+        title: "Adaptive Alarm",
+        header: null
+      })
     },
     StyleDemo: {
       screen: StyleDemoScreen,
       // You can override the "header" prop and pass a custom header component
       navigationOptions: () => ({
-        title: 'Styles',
+        title: "Styles",
         headerStyle: {
-          backgroundColor: Colors.darkGray,
+          backgroundColor: Colors.darkGray
         },
         headerTintColor: Colors.white,
         headerTitleStyle: {
-          fontWeight: '100',
-        },
-      }),
+          fontWeight: "100"
+        }
+      })
     },
+    ReusableComponents: {
+      screen: ReusableComponentsScreen,
+      navigationOptions: () => ({
+        title: "Components",
+        headerStyle: {
+          backgroundColor: Colors.darkGray
+        },
+        headerTintColor: Colors.white,
+        headerTitleStyle: {
+          fontWeight: "100"
+        }
+      })
+    }
   },
   {
-    initialRouteName: 'Home',
-    headerMode: 'screen',
-    cardStyle: { backgroundColor: Colors.background },
-  },
+    initialRouteName: "Home",
+    headerMode: "screen",
+    cardStyle: { backgroundColor: Colors.background }
+  }
 );
 
 export default createAppContainer(AppNavigator);
