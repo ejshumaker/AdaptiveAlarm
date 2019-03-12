@@ -1,20 +1,28 @@
 import React from "react";
 import styled from "styled-components";
-import { ScrollView, Alert, TouchableOpacity } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
+import { CloseIcon } from "../icons/close";
+import { LeftIcon } from "../icons/left";
+import { RightIcon } from "../icons/right";
+import { AddIcon } from "../icons/add";
+import { PersonIcon } from "../icons/person";
+import { MenuIcon } from "../icons/menu";
+import { EmailIcon } from "../icons/email";
+import { KeyIcon } from "../icons/key";
+import { LocationIcon } from "../icons/location";
+import { SearchIcon } from "../icons/search";
+import ButtonYellow from "../components/ButtonYellow";
+import ButtonGray from "../components/ButtonGray";
 
 class ReusableComponentsScreen extends React.Component {
-  onPressButton() {
-    Alert.alert("Action made");
-  }
-
   render() {
     return (
       <View>
-        <Text>Color Palette:</Text>
+        <Text>Color Palette</Text>
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          style={{ paddingLeft: 24, paddingRight: 24, paddingBottom: 30 }}
+          style={{ paddingLeft: 24, paddingRight: 24, paddingBottom: 24 }}
         >
           <TouchableOpacity>
             <Container style={{ backgroundColor: "#e4f96a" }}>
@@ -48,18 +56,47 @@ class ReusableComponentsScreen extends React.Component {
           </TouchableOpacity>
         </ScrollView>
         <View2>
-          <Text>Buttons:</Text>
-          <TouchableOpacity onPress={this.onPressButton}>
-            <Button style={{ backgroundColor: "#e4f96a" }}>
-              <Action style={{ color: "#13151a" }}>ACTION1</Action>
-            </Button>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.onPressButton}>
-            <Button style={{ marginTop: 21, backgroundColor: "#505050" }}>
-              <Action style={{ color: "#dddddd" }}>ACTION2</Action>
-            </Button>
-          </TouchableOpacity>
+          <Text>Buttons</Text>
+          <ButtonYellow />
+          <ButtonGray />
         </View2>
+        <Text style={{ paddingTop: 24 }}>Icons</Text>
+        <ScrollView
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          style={{ paddingLeft: 24, paddingRight: 24, paddingBottom: 24 }}
+        >
+          <Circle>
+            <AddIcon />
+          </Circle>
+          <Circle>
+            <LeftIcon />
+          </Circle>
+          <Circle>
+            <RightIcon />
+          </Circle>
+          <Circle>
+            <CloseIcon />
+          </Circle>
+          <Circle>
+            <PersonIcon />
+          </Circle>
+          <Circle>
+            <MenuIcon />
+          </Circle>
+          <Circle>
+            <EmailIcon />
+          </Circle>
+          <Circle>
+            <KeyIcon />
+          </Circle>
+          <Circle>
+            <LocationIcon />
+          </Circle>
+          <Circle>
+            <SearchIcon />
+          </Circle>
+        </ScrollView>
       </View>
     );
   }
@@ -67,17 +104,14 @@ class ReusableComponentsScreen extends React.Component {
 
 export default ReusableComponentsScreen;
 
-const Action = styled.Text`
-  font-size: 14px;
-  font-weight: bold;
-  text-align: center;
-`;
-
-const Button = styled.View`
-  width: 186px;
+const Circle = styled.View`
+  width: 35px;
   height: 40px;
   border-radius: 8px;
+  background-color: #505050;
   justify-content: center;
+  align-items: center;
+  margin: 5px;
 `;
 
 const Name = styled.Text`
@@ -139,7 +173,6 @@ const Text = styled.Text`
   color: white;
   font-size: 24px;
   margin-bottom: 13px;
-  margin-left: 24px;
   font-weight: bold;
   text-align: center;
 `;
