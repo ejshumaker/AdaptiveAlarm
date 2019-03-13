@@ -11,21 +11,21 @@ import { EmailIcon } from "../icons/email";
 import { KeyIcon } from "../icons/key";
 import { LocationIcon } from "../icons/location";
 import { SearchIcon } from "../icons/search";
-import ButtonYellow from "../components/ButtonYellow";
-import ButtonGray from "../components/ButtonGray";
+import Buttons from "../components/Buttons";
+import Colors from "../constants/Colors";
 
 class ReusableComponentsScreen extends React.Component {
   render() {
     return (
       <View>
-        <Text>Color Palette</Text>
+        <Text style={{ paddingTop: 21 }}>Color Palette</Text>
         <ScrollView
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           style={{ paddingLeft: 24, paddingRight: 24, paddingBottom: 24 }}
         >
           <TouchableOpacity>
-            <Container style={{ backgroundColor: "#e4f96a" }}>
+            <Container style={{ backgroundColor: Colors.primary }}>
               <Name>YELLOW</Name>
               <Subtitle>#E4F96A</Subtitle>
             </Container>
@@ -37,28 +37,38 @@ class ReusableComponentsScreen extends React.Component {
             </Container1>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Container style={{ backgroundColor: "#dddddd" }}>
+            <Container style={{ backgroundColor: Colors.white }}>
               <Name>WHITE</Name>
               <Subtitle>#DDDDDD</Subtitle>
             </Container>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Container style={{ backgroundColor: "#505050" }}>
+            <Container style={{ backgroundColor: Colors.darkGray }}>
               <Name1>DARKGRAY</Name1>
               <Subtitle1>#505050</Subtitle1>
             </Container>
           </TouchableOpacity>
           <TouchableOpacity>
-            <Container style={{ backgroundColor: "#aaaaaa" }}>
+            <Container style={{ backgroundColor: Colors.gray }}>
               <Name>GRAY</Name>
               <Subtitle>#AAAAAA</Subtitle>
             </Container>
           </TouchableOpacity>
         </ScrollView>
         <View2>
-          <Text>Buttons</Text>
-          <ButtonYellow />
-          <ButtonGray />
+          <Text style={{ paddingTop: 21 }}>Buttons</Text>
+          <Buttons
+            title="primary"
+            backgroundColor={Colors.primary}
+            textColor={Colors.black}
+            onPress={() => alert("This is an example of the primary button")}
+          />
+          <Buttons
+            title="secondary"
+            backgroundColor={Colors.darkGray}
+            textColor={Colors.white}
+            onPress={() => alert("This is an example of the secondary button")}
+          />
         </View2>
         <Text style={{ paddingTop: 24 }}>Icons</Text>
         <ScrollView
