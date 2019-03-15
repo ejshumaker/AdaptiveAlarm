@@ -1,4 +1,4 @@
-import getRouteTime from '../../custom_modules/getRouteTime';
+import getAlarmTime from '../../custom_modules/getRouteTime';
 
 /**
   * Calculates the alarm time using the google maps api and input from
@@ -6,9 +6,11 @@ import getRouteTime from '../../custom_modules/getRouteTime';
   * @tsteiner4 3-9-2019
   */
 export function alarmCalculateTime() {
+  const date = new Date();
+  date.setHours(date.getHours() + 3);
   return {
     type: 'ALARM_CALCULATE_TIME',
-    payload: getRouteTime('Los Angeles, CA', 'Los Angelese International Airport, Los Angelese, CA', true),
+    payload: getAlarmTime('Los Angeles, CA', 'Anaheim, CA', new Date(2019, 2, 16, 10, 0, 0)),
   };
 }
 

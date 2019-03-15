@@ -46,6 +46,7 @@ class HomeScreen extends Component {
      * All our components will be built custom or have a global style applied
      * @eschirtz 03-03-19
      */
+    const dateFormat = new Date(alarmTime);
     return (
       <View style={GlobalStyles.centerChildrenXY}>
         <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
@@ -91,7 +92,7 @@ class HomeScreen extends Component {
             marginBottom: 8,
           }]}
           >
-            {alarmTime}
+            {dateFormat.toLocaleTimeString()}
           </Text>
         </View>
         <Button
