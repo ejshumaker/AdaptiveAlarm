@@ -69,11 +69,19 @@ export default StyleSheet.create({
   margin: {
     margin: defaultMargin,
   },
+  /* Text input styling */
   input: {
     height: 50,
+    fontSize: 18,
     borderBottomWidth: 2,
     borderBottomColor: Colors.primary,
     color: Colors.white,
     marginVertical: 10,
   },
+  h2_center: {
+    color: Colors.white,
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  }
 });
