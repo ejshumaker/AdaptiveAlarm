@@ -113,9 +113,9 @@ class HomeScreen extends Component {
           </Text>
         </View>
         <Button
-          title="Styles"
+          title="Create New Alarm"
           color={Colors.darkGray}
-          onPress={() => navigate('StyleDemo')}
+          onPress={() => navigate('CreateAlarm')}
         />
         <Button
           title="Sign Out"

@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import { Colors } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
+import CreateAlarmScreen from '../screens/CreateAlarmScreen';
 
 export default createStackNavigator(
   {
@@ -10,6 +11,13 @@ export default createStackNavigator(
       screen: HomeScreen,
       navigationOptions: () => ({
         title: 'Adaptive Alarm',
+        header: null,
+      }),
+    },
+    CreateAlarm: {
+      screen: CreateAlarmScreen,
+      navigationOptions: () => ({
+        title: 'Create Alarm',
         header: null,
       }),
     },
