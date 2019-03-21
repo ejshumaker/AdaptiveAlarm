@@ -10,7 +10,7 @@ export function alarmCalculateTime() {
   date.setHours(date.getHours() + 3);
   return {
     type: 'ALARM_CALCULATE_TIME',
-    payload: getAlarmTime('Los Angeles, CA', 'Anaheim, CA', new Date(2019, 2, 16, 10, 0, 0)),
+    payload: getAlarmTime('Madison, WI', new Date(2019, 2, 26, 10, 0, 0)),
   };
 }
 

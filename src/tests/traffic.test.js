@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 /* import getRouteTime from '../custom_modules/getRouteTime';
 
-test('time to and from the same location', () => expect(getRouteTime('Boston, MA', 'Burlington, WI')).resolves.toEqual({
+test('time to and from the same location', () => expect(getRouteTime('Boston
+, MA', 'Burlington, WI')).resolves.toEqual({
   distance: 1000,
   duration: 60,
 }));
