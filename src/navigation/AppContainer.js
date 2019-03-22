@@ -3,6 +3,7 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import { Colors } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
+import AlarmScreen from '../screens/AlarmScreen';
 
 /**
  * The app navigator is where all routes are configured
@@ -31,6 +32,13 @@ const AppNavigator = createStackNavigator(
         headerTitleStyle: {
           fontWeight: '100',
         },
+      }),
+    },
+    Alarm: {
+      screen: AlarmScreen,
+      navigationOptions: () => ({
+        title: 'Alarm Title',
+        header: null,
       }),
     },
   },
