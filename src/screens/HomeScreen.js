@@ -117,13 +117,14 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate('StyleDemo')}
         />
-        {/* Temporary button to navigate to AlarmScreen */}
+        {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
         <View style={{ height: 8, width: 8 }} />
         <Button
           title="Alarm"
           color={Colors.darkGray}
           onPress={() => navigate('Alarm')}
         />
+        <View style={{ height: 8, width: 8 }} />
         <Button
           title="Sign Out"
           color={Colors.darkGray}
