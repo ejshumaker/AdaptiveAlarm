@@ -1,9 +1,8 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 
-import { Colors } from '../constants';
-import HomeScreen from '../screens/HomeScreen';
-import StyleDemoScreen from '../screens/StyleDemoScreen';
-import AlarmScreen from '../screens/AlarmScreen';
+import AuthLoadingStack from './AuthLoadingStack';
+import AuthStack from './AuthStack';
+import AppStack from './AppStack';
 
 /**
  * The app navigator is where all routes are configured
@@ -11,41 +10,14 @@ import AlarmScreen from '../screens/AlarmScreen';
  * There are more options you can customize such as title, and header
  * @eschirtz 03-01-19
  */
-const AppNavigator = createStackNavigator(
+const AppNavigator = createSwitchNavigator(
   {
-    Home: {
-      screen: HomeScreen,
-      navigationOptions: () => ({
-        title: 'Adaptive Alarm',
-        header: null,
-      }),
-    },
-    StyleDemo: {
-      screen: StyleDemoScreen,
-      // You can override the "header" prop and pass a custom header component
-      navigationOptions: () => ({
-        title: 'Styles',
-        headerStyle: {
-          backgroundColor: Colors.darkGray,
-        },
-        headerTintColor: Colors.white,
-        headerTitleStyle: {
-          fontWeight: '100',
-        },
-      }),
-    },
-    Alarm: {
-      screen: AlarmScreen,
-      navigationOptions: () => ({
-        title: 'Alarm Title',
-        header: null,
-      }),
-    },
+    AuthLoading: AuthLoadingStack,
+    Auth: AuthStack,
+    App: AppStack,
   },
   {
-    initialRouteName: 'Home',
-    headerMode: 'screen',
-    cardStyle: { backgroundColor: Colors.background },
+    initialRouteName: 'AuthLoading',
   },
 );
 
