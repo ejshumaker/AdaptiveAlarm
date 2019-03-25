@@ -65,7 +65,7 @@ class SignUpScreen extends React.Component {
           placeholderTextColor={Colors.darkGray}
         />
         <TextInput
-          onChangeText={value => this.onChangeText('email', value)}
+          onChangeText={value => this.onChangeText('firstName', value)}
           style={GlobalStyles.input}
           placeholder="Email"
           placeholderTextColor={Colors.darkGray}

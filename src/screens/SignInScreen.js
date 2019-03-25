@@ -35,7 +35,7 @@ class SignInScreen extends React.Component {
       <View style={[GlobalStyles.container, { padding: 48 }]}>
         <Text style={GlobalStyles.pageTitle}>Sign In</Text>
         { this.loader() }
-        <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
+        <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 50 }]}>
           {errorMessage}
         </Text>
         <TextInput
