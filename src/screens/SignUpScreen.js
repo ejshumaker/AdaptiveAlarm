@@ -34,7 +34,7 @@ class SignUpScreen extends React.Component {
     const { createAccount, navigation, errorMessage } = this.props;
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
-        <Text style={GlobalStyles.h2}>Sign Up</Text>
+        <Text style={GlobalStyles.pageTitle}>Sign Up</Text>
         { this.loader() }
         <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
           {errorMessage}
@@ -43,31 +43,36 @@ class SignUpScreen extends React.Component {
           onChangeText={value => this.onChangeText('firstName', value)}
           style={GlobalStyles.input}
           placeholder="First Name"
+          placeholderTextColor={Colors.darkGray}
         />
         <TextInput
           onChangeText={value => this.onChangeText('lastName', value)}
           style={GlobalStyles.input}
           placeholder="Last Name"
+          placeholderTextColor={Colors.darkGray}
         />
         <TextInput
           onChangeText={value => this.onChangeText('userName', value)}
           style={GlobalStyles.input}
           placeholder="Username"
+          placeholderTextColor={Colors.darkGray}
         />
         <TextInput
           onChangeText={value => this.onChangeText('password', value)}
           style={GlobalStyles.input}
           secureTextEntry
           placeholder="Password"
+          placeholderTextColor={Colors.darkGray}
         />
         <TextInput
           onChangeText={value => this.onChangeText('email', value)}
           style={GlobalStyles.input}
           placeholder="Email"
+          placeholderTextColor={Colors.darkGray}
         />
         <Button
           title="Sign Up"
-          color={Colors.darkGray}
+          color={Colors.primary}
           onPress={() => {
             const {
               firstName,
@@ -87,7 +92,7 @@ class SignUpScreen extends React.Component {
         />
         <Button
           title="Sign In"
-          color={Colors.darkGray}
+          color={Colors.primary}
           onPress={() => {
             navigation.navigate('SignIn');
           }}

@@ -30,6 +30,12 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   /* Text */
+  pageTitle: {
+    color: Colors.white,
+    fontSize: 42,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   h1: {
     color: Colors.white,
     fontSize: 60,

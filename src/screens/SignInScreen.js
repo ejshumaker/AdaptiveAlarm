@@ -33,7 +33,7 @@ class SignInScreen extends React.Component {
     const { email, password } = this.state;
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
-        <Text style={GlobalStyles.h2}>Sign In</Text>
+        <Text style={GlobalStyles.pageTitle}>Sign In</Text>
         { this.loader() }
         <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
           {errorMessage}
@@ -41,17 +41,19 @@ class SignInScreen extends React.Component {
         <TextInput
           onChangeText={value => this.onChangeText('email', value)}
           style={GlobalStyles.input}
-          placeholder="email"
+          placeholder="Email"
+          placeholderTextColor={Colors.darkGray}
         />
         <TextInput
           onChangeText={value => this.onChangeText('password', value)}
           style={GlobalStyles.input}
           secureTextEntry
-          placeholder="password"
+          placeholder="Password"
+          placeholderTextColor={Colors.darkGray}
         />
         <Button
           title="Sign In"
-          color={Colors.darkGray}
+          color={Colors.primary}
           onPress={() => {
             signIn({
               email,
@@ -61,7 +63,7 @@ class SignInScreen extends React.Component {
         />
         <Button
           title="Sign Up"
-          color={Colors.darkGray}
+          color={Colors.primary}
           onPress={() => {
             navigation.navigate('SignUp');
           }}
