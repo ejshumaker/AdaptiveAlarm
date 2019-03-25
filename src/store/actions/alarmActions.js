@@ -1,4 +1,4 @@
-import getAlarmTime from '../../custom_modules/getRouteTime';
+import getAlarmTime from '../../custom_modules/Alarm';
 
 /**
   * Calculates the alarm time using the google maps api and input from
@@ -10,7 +10,7 @@ export function alarmCalculateTime() {
   date.setHours(date.getHours() + 3);
   return {
     type: 'ALARM_CALCULATE_TIME',
-    payload: getAlarmTime('Madison, WI', new Date(2019, 2, 26, 10, 0, 0)),
+    payload: getAlarmTime('Madison, WI', new Date(2019, 2, 26, 10, 0, 0), 30),
   };
 }
 

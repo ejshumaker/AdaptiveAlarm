@@ -59,7 +59,7 @@ async function getCurrentLocation() {
 
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-export default async function getAlarmTime(destinationLoc, arrivalTime) {
+export default async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
   const loops = 4;
   return new Promise((resolve) => {
     getCurrentLocation()
@@ -82,7 +82,7 @@ export default async function getAlarmTime(destinationLoc, arrivalTime) {
                 });
               i += 1;
             }
-            resolve(departureTime);
+            resolve(departureTime - timeToGetReady*60000);
           });
       });
   });
