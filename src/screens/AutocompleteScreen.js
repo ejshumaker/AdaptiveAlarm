@@ -43,12 +43,15 @@ class AutocompleteScreen extends Component {
     this.setState({
       locationPredictions: jsonResult.predictions
     });
-    // console.log(jsonResult)
   }
 
   async pressedPrediction(prediction) {
     Keyboard.dismiss();
     console.log(prediction.description)
+    this.setState({
+      locationPredictions: [],
+      destination: prediction.description
+    });
     Keyboard;
     const API_KEY = 'AIzaSyBpwrz2oV29sjAAKj2l6BIb6l5luzDIsIw';
     const url = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${prediction.place_id}&key=${API_KEY}`;
@@ -92,6 +95,7 @@ class AutocompleteScreen extends Component {
           onChangeText={destination => {
             this.onChangeDestinationDebounced(destination);
           }}
+          value={this.state.destination}
         />
         {locationPredictions}
         <Image
