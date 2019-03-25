@@ -21,6 +21,8 @@ export default StyleSheet.create({
   /* Layouts */
   container: {
     flex: 1,
+    backgroundColor: Colors.backgroundColor,
+    justifyContent: 'center',
   },
   centerChildrenXY: {
     flex: 1,
@@ -66,5 +68,12 @@ export default StyleSheet.create({
   /* Utility styles */
   margin: {
     margin: defaultMargin,
+  },
+  input: {
+    height: 50,
+    borderBottomWidth: 2,
+    borderBottomColor: Colors.primary,
+    color: Colors.white,
+    marginVertical: 10,
   },
 });

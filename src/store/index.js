@@ -10,6 +10,7 @@ import {
   applyMiddleware,
 } from 'redux';
 import promise from 'redux-promise-middleware';
+import thunk from 'redux-thunk';
 
 import userReducer from './reducers/userReducer';
 import alarmReducer from './reducers/alarmReducer';
@@ -17,5 +18,5 @@ import alarmReducer from './reducers/alarmReducer';
 export default createStore(
   combineReducers({ user: userReducer, alarm: alarmReducer }),
   {}, // initial state overwritten by reducers
-  applyMiddleware(promise),
+  applyMiddleware(promise, thunk),
 );
