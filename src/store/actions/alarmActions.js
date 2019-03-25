@@ -12,7 +12,7 @@ export function alarmCalculateTime() {
 
   return {
     type: 'ALARM_CALCULATE_TIME',
-    payload: getAlarmTime('Madison, WI', new Date(2019, 2, 26, 10, 0, 0), 30),
+    payload: getAlarmTime('Middleton, WI', new Date(2019, 2, 26, 10, 0, 0), 30),
   };
 }
 
