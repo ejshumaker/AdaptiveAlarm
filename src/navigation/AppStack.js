@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation';
 import { Colors } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
+import AlarmScreen from '../screens/AlarmScreen';
 
 export default createStackNavigator(
   {
@@ -25,6 +26,13 @@ export default createStackNavigator(
         headerTitleStyle: {
           fontWeight: '100',
         },
+      }),
+    },
+    Alarm: {
+      screen: AlarmScreen,
+      navigationOptions: () => ({
+        title: 'Alarm',
+        header: null,
       }),
     },
   },

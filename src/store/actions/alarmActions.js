@@ -1,6 +1,6 @@
 /**
  * These are the alarm action creators,
- * they will be what calls the API's and set's up arguments
+ * they will be what calls the APIs and set's up arguments
  * @eschirtz 03-02-19
  */
 export function alarmCalculateTime(time) {
@@ -18,5 +18,13 @@ export function alarmFoo(bar) {
   return {
     type: 'FOO',
     payload: bar,
+  };
+}
+
+// TODO: Turn off the alarm and navigate home
+export function alarmOff(navigate) {
+  return {
+    type: 'FOO',
+    payload: navigate,
   };
 }
