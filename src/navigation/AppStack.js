@@ -4,6 +4,7 @@ import { Colors } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
 import AlarmScreen from '../screens/AlarmScreen';
+import MainScreen from '../screens/MainScreen';
 
 export default createStackNavigator(
   {
@@ -32,6 +33,13 @@ export default createStackNavigator(
       screen: AlarmScreen,
       navigationOptions: () => ({
         title: 'Alarm',
+        header: null,
+      }),
+    },
+    Main: {
+      screen: MainScreen,
+      navigationOptions: () => ({
+        title: 'Main',
         header: null,
       }),
     },
