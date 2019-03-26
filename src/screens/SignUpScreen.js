@@ -34,36 +34,41 @@ class SignUpScreen extends React.Component {
     const { createAccount, navigation, errorMessage } = this.props;
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
-        <Text style={GlobalStyles.h2}>Sign Up</Text>
+        <Text style={GlobalStyles.h2_center}>Sign Up</Text>
         { this.loader() }
         <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
           {errorMessage}
         </Text>
         <TextInput
-          onChangeText={value => this.onChangeText('firstName', value)}
+          onChangeText={value => this.onChangeText('email', value)}
           style={GlobalStyles.input}
-          placeholder="First Name"
-        />
-        <TextInput
-          onChangeText={value => this.onChangeText('lastName', value)}
-          style={GlobalStyles.input}
-          placeholder="Last Name"
+          placeholder="Email"
+          placeholderTextColor={Colors.darkGray}
         />
         <TextInput
           onChangeText={value => this.onChangeText('userName', value)}
           style={GlobalStyles.input}
           placeholder="Username"
+          placeholderTextColor={Colors.darkGray}
         />
         <TextInput
           onChangeText={value => this.onChangeText('password', value)}
           style={GlobalStyles.input}
           secureTextEntry
           placeholder="Password"
+          placeholderTextColor={Colors.darkGray}
         />
         <TextInput
-          onChangeText={value => this.onChangeText('email', value)}
+          onChangeText={value => this.onChangeText('firstName', value)}
           style={GlobalStyles.input}
-          placeholder="Email"
+          placeholder="First Name"
+          placeholderTextColor={Colors.darkGray}
+        />
+        <TextInput
+          onChangeText={value => this.onChangeText('lastName', value)}
+          style={GlobalStyles.input}
+          placeholder="Last Name"
+          placeholderTextColor={Colors.darkGray}
         />
         <Button
           title="Sign Up"
