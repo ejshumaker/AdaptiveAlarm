@@ -53,7 +53,7 @@ class MainScreen extends Component {
           hourHandCurved={false}
           hourHandWidth={4}
           clockBorderColor={Colors.white}
-          clockCenterColor={Colors.white}
+          clockCentreColor={Colors.white}
         />
         <View style={{ height: 32, width: 8 }} />
         <Button
