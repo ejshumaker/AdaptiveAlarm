@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import PropTypes from 'prop-types';
 
 import {
@@ -16,6 +16,11 @@ class StyleDemoScreen extends Component {
   }
 
   render() {
+    const {
+      navigation, // from react-navigation
+    } = this.props;
+    const { navigate } = navigation;
+
     return (
       <View style={GlobalStyles.centerChildrenXY}>
         <View
@@ -36,6 +41,11 @@ class StyleDemoScreen extends Component {
         <Text style={[GlobalStyles.h4, GlobalStyles.margin]}>h4</Text>
         <Text style={[GlobalStyles.subtitle, GlobalStyles.margin]}>subtitle</Text>
         <Text style={[GlobalStyles.paragraph, GlobalStyles.margin]}>paragraph</Text>
+        <Button
+          title="DayPickerTest"
+          color={Colors.darkGray}
+          onPress={() => navigate('DayPickerTest')}
+        />
       </View>
     );
   }

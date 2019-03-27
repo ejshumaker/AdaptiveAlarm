@@ -4,6 +4,7 @@ import { Colors } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
 import AlarmScreen from '../screens/AlarmScreen';
+import DayPickerTestScreen from '../screens/DayPickerTestScreen';
 
 export default createStackNavigator(
   {
@@ -35,10 +36,24 @@ export default createStackNavigator(
         header: null,
       }),
     },
+    DayPickerTest: {
+      screen: DayPickerTestScreen,
+      navigationOptions: () => ({
+        title: 'DayPickerTest',
+        headerStyle: {
+          backgroundColor: Colors.darkGray,
+        },
+        headerTintColor: Colors.white,
+        headerTitleStyle: {
+          fontWeight: '100',
+        },
+      }),
+    }
   },
   {
     cardStyle: {
       backgroundColor: Colors.background,
     },
   },
+
 );
