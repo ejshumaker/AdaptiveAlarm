@@ -49,6 +49,15 @@ class CreateAlarmScreen extends Component {
       <View style={[GlobalStyles.container, { padding: 48 }]}>
         <Text style={GlobalStyles.h2}>{title}</Text>
 
+        <Text style={GlobalStyles.h4}>Work Address</Text>
+        <TextInput
+          style={GlobalStyles.input}
+          returnKeyType="next"
+          ref={input => this.workAddressInput = input}
+          onChangeText={text => this.setState({ workAddress: text })}
+          placeholder={workAddress}
+          placeholderTextColor={Colors.white}
+        />
         <Text style={GlobalStyles.h4}>Estimated Time to Get Ready</Text>
         <TextInput
           style={GlobalStyles.input}
@@ -70,15 +79,7 @@ class CreateAlarmScreen extends Component {
           placeholder={arrivalTime}
           placeholderTextColor={Colors.white}
         />
-        <Text style={GlobalStyles.h4}>Work Address</Text>
-        <TextInput
-          style={GlobalStyles.input}
-          returnKeyType="next"
-          ref={input => this.workAddressInput = input}
-          onChangeText={text => this.setState({ workAddress: text })}
-          placeholder={workAddress}
-          placeholderTextColor={Colors.white}
-        />
+
         {
           Platform.OS === 'ios'
             ? <Text style={GlobalStyles.h4}>Insert day picker for iOS</Text>
@@ -88,7 +89,7 @@ class CreateAlarmScreen extends Component {
         <Button
           title="Create Alarm"
           color={Colors.darkGray}
-          onPress={() => calculateTime()}
+          onPress={() => navigate('Home')}
         />
         <View style={{
           textAlign: 'left',
