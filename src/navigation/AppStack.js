@@ -3,11 +3,8 @@ import { createStackNavigator } from 'react-navigation';
 import { Colors } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
-<<<<<<< Updated upstream
 import AlarmScreen from '../screens/AlarmScreen';
-=======
 import AutocompleteScreen from '../screens/AutocompleteScreen';
->>>>>>> Stashed changes
 
 export default createStackNavigator(
   {
@@ -32,7 +29,6 @@ export default createStackNavigator(
         },
       }),
     },
-<<<<<<< Updated upstream
     Alarm: {
       screen: AlarmScreen,
       navigationOptions: () => ({
@@ -40,7 +36,6 @@ export default createStackNavigator(
         header: null,
       }),
     },
-=======
       Autocomplete: {
         screen: AutocompleteScreen,
         navigationOptions: () => ({
@@ -54,7 +49,6 @@ export default createStackNavigator(
           },
         }),
       }
->>>>>>> Stashed changes
   },
   {
     cardStyle: {
