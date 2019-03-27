@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import MainScreen from '../screens/MainScreen';
+import AutocompleteScreen from '../screens/AutocompleteScreen';
 
 export default createStackNavigator(
   {
@@ -36,11 +37,25 @@ export default createStackNavigator(
         header: null,
       }),
     },
+<<<<<<< HEAD
     Main: {
       screen: MainScreen,
       navigationOptions: () => ({
         title: 'Main',
         header: null,
+=======
+    AutoComplete: {
+      screen: AutocompleteScreen,
+      navigationOptions: () => ({
+        title: 'Autocomplete',
+        headerStyle: {
+          backgroundColor: Colors.darkGray,
+        },
+        headerTintColor: Colors.white,
+        headerTitleStyle: {
+          fontWeight: '100',
+        },
+>>>>>>> dev
       }),
     },
   },
