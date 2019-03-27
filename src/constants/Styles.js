@@ -82,7 +82,7 @@ export default StyleSheet.create({
     borderWidth: 0.5,
     borderColor: Colors.darkGray,
     color: Colors.primary,
-    fontSize: 20,
+    fontSize: 18,
     height: 40,
     marginLeft: 5,
     marginRight: 5,
