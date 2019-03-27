@@ -87,7 +87,7 @@ export default StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     padding: 10,
-    backgroundColor: Colors.darkGray
+    backgroundColor: Colors.darkGray,
   },
   searchSuggestions: {
     backgroundColor: Colors.gray,
