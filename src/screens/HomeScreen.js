@@ -124,6 +124,13 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate('Alarm')}
         />
+        {/* Temporary button to navigate to AutoComplete, TODO: Remove */}
+        <View style={{ height: 8, width: 8 }} />
+        <Button
+          title="AutoComplete"
+          color={Colors.darkGray}
+          onPress={() => navigate('AutoComplete')}
+        />
         <View style={{ height: 8, width: 8 }} />
         <Button
           title="Sign Out"
