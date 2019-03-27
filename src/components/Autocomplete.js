@@ -89,6 +89,7 @@ class Autocomplete extends Component {
       <View style={GlobalStyles.centerChildrenXY}>
         <TextInput
           style={GlobalStyles.destinationInput}
+          placeholderTextColor={Colors.gray}
           placeholder="Enter destination"
           onChangeText={destination => {
             this.onChangeDestinationDebounced(destination);
