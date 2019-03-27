@@ -15,7 +15,7 @@ export default class AnalogClock extends Component {
     let d = new Date();
 
     this.state = {
-      sec: d.getSeconds() * 6,
+      // sec: d.getSeconds() * 6,
       min: d.getMinutes() * 6 + (d.getSeconds() * 6) / 60,
       hour: ((d.getHours() % 12) / 12) * 360 + 90
         + (d.getMinutes() * 6 + (d.getSeconds() * 6) / 60) / 12,
@@ -25,7 +25,7 @@ export default class AnalogClock extends Component {
   componentDidMount() {
     this.timer = setInterval(() => {
       let d = new Date();
-      this.setState({ sec: d.getSeconds() * 6 });
+      // this.setState({ sec: d.getSeconds() * 6 });
       this.setState({ min: d.getMinutes() * 6
         + (d.getSeconds() * 6) / 60 });
       this.setState({ hour: ((d.getHours() % 12) / 12) * 360 + 90

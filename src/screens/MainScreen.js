@@ -25,7 +25,6 @@ class MainScreen extends Component {
 
   render() {
     const { predictedTimeHour, predictedTimeMin, predictedTimeMeridiem } = this.state;
-    const { alarmTime } = this.props;
     return (
       <View style={[GlobalStyles.centerChildrenXY]}>
         <Text style={
@@ -59,6 +58,11 @@ class MainScreen extends Component {
         <View style={{ height: 32, width: 8 }} />
         <Button
           title="Delete Alarm"
+          color={Colors.darkGray}
+        />
+        <View style={{ height: 8, width: 8 }} />
+        <Button
+          title="Create Alarm"
           color={Colors.darkGray}
         />
       </View>
