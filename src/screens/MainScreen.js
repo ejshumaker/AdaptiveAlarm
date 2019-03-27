@@ -21,16 +21,16 @@ class MainScreen extends Component {
   render() {
     const { predictedTime } = this.state;
     return (
-      <View style={[ GlobalStyles.centerChildrenXY ]}>
-        <Text style={[ GlobalStyles.margin, { color: Colors.primary, fontWeight: 'bold', fontSize: 30, alignItems: 'flex-start' }]}>
-          PREDICTED:
+      <View style={[GlobalStyles.centerChildrenXY]}>
+        <Text style={[GlobalStyles.margin, { color: Colors.primary }]}>
+          { 'PREDICTED' }
         </Text>
-        <Text style={[ GlobalStyles.margin, { alignItems: 'center', color: Colors.white, fontSize: 70 }]}>
+        <Text style={[GlobalStyles.margin, { alignItems: 'center', color: Colors.white, fontSize: 70 }]}>
           { predictedTime }
         </Text>
       </View>
     );
   }
-};
+}
 
 export default MainScreen;
