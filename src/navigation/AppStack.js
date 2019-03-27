@@ -4,7 +4,11 @@ import { Colors } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
 import AlarmScreen from '../screens/AlarmScreen';
+<<<<<<< HEAD
 import MainScreen from '../screens/MainScreen';
+=======
+import DayPickerTestScreen from '../screens/DayPickerTestScreen';
+>>>>>>> dev
 import AutocompleteScreen from '../screens/AutocompleteScreen';
 
 export default createStackNavigator(
@@ -37,11 +41,25 @@ export default createStackNavigator(
         header: null,
       }),
     },
+<<<<<<< HEAD
     Main: {
       screen: MainScreen,
       navigationOptions: () => ({
         title: 'Main',
         header: null,
+=======
+    DayPicker: {
+      screen: DayPickerTestScreen,
+      navigationOptions: () => ({
+        title: 'DayPicker',
+        headerStyle: {
+          backgroundColor: Colors.darkGray,
+        },
+        headerTintColor: Colors.white,
+        headerTitleStyle: {
+          fontWeight: '100',
+        },
+>>>>>>> dev
       }),
     },
     AutoComplete: {
@@ -56,11 +74,12 @@ export default createStackNavigator(
           fontWeight: '100',
         },
       }),
-    },
+    }
   },
   {
     cardStyle: {
       backgroundColor: Colors.background,
     },
   },
+
 );
