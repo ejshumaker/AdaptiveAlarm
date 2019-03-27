@@ -70,7 +70,7 @@ export default createStackNavigator(
           fontWeight: '100',
         },
       }),
-    }
+    },
   },
   {
     cardStyle: {
