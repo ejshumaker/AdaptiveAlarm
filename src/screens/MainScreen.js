@@ -59,11 +59,13 @@ class MainScreen extends Component {
         <Button
           title="Delete Alarm"
           color={Colors.darkGray}
+          onPress={() => null}
         />
         <View style={{ height: 8, width: 8 }} />
         <Button
           title="Create Alarm"
           color={Colors.darkGray}
+          onPress={() => null}
         />
       </View>
     );
