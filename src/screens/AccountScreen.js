@@ -1,12 +1,9 @@
 /**
- * This is a template for a 'Smart' component,
- * A.K.A. a 'container', it is connected to the store, and
- * passes values down to it's children (dumb components) via props
- *
- * At the bottom of the document is where most of the Redux integration
- * lives, try to understand how each component is passed/imported
- *
+ * BASED OFF OF HOMESCREEN by:
  * @eschirtz 03-03-19
+ *
+ * Edited / Designed by:
+ * @weinoh 03-28-19
  */
 import React, { Component } from 'react';
 import {
@@ -41,26 +38,53 @@ class AccountScreen extends Component {
   render() {
     const { title } = this.state;
     const {
-      navigation, // from react-navigation
+      // navigation, // from react-navigation
       signOut, // Redux actions
-      calculateTime,
+      // calculateTime,
       firstName, // Redux store
       lastName,
-      userName,
-      email,
-      alarmTime,
-      errorMessage,
+      // userName,
+      // email,
+      // alarmTime,
+      // errorMessage,
     } = this.props;
-    const { navigate } = navigation;
+    // const { navigate } = navigation;
 
-    /**
-     * There are way more 'magic' numbers in the styling
-     * than should be preffered, just tossed them in to make it passable.
-     * All our components will be built custom or have a global style applied
-     * @eschirtz 03-03-19
-     */
-    const dateFormat = new Date(alarmTime);
+
+    // STYLESHEET FOR USER PROFILE
     const styles = StyleSheet.create({
+      titleView: {
+        marginTop: 40,
+        marginBottom: 10,
+      },
+      imageView: {
+        width: '80%',
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      usericon: {
+        width: 150,
+        height: 150,
+        borderRadius: 75,
+        margin: 20,
+      },
+      userinfopane: {
+        width: '95%',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        flexDirection: 'column',
+      },
+      profileRow: {
+        flex: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        borderBottomWidth: 2,
+        borderBottomColor: Colors.white,
+        marginBottom: 10,
+        height: 32,
+        width: '90%',
+      },
       infoColumn: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -69,77 +93,62 @@ class AccountScreen extends Component {
         flexDirection: 'row',
         justifyContent: 'flex-end',
       },
-      profileRow: {
-        flex: 8,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        marginBottom: 8,
+      signOutButton: {
+        width: '80%',
+        justifyContent: 'space-around',
+        height: 80,
+        marginBottom: 50,
       },
     });
 
     return (
-      <View style={[GlobalStyles.centerChildrenXY, { height: '90%', justifyContent: 'space-around' }]}>
+      <View style={[GlobalStyles.centerChildrenXY, { height: '85%', justifyContent: 'space-around' }]}>
 
 
         {/* VIEW FOR TITLE ! "YOUR PROFILE" */}
-        <View style={{ marginTop: 40, marginBottom: 0, flex: 'auto' }}>
+        <View style={[styles.titleView, { flex: 'auto' }]}>
           <Text style={[
             GlobalStyles.h2,
-            { color: Colors.primary, marginTop: 0, marginBottom: 10 },
+            { color: Colors.primary },
           ]}
           >
             {title}
           </Text>
+
+
+          {/* VIEW FOR IMAGE OF USER */}
+          <View style={[styles.imageView, { flex: 'auto' }]}>
+
+
+            {/* TODO: Replace with Icon ! */}
+            <Image
+              source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png' }}
+              style={styles.usericon}
+            />
+            { /* LOADING ICON FUNCTION */ }
+            { this.loader() }
+
+            { /* DISPLAY USER'S NAME BELOW IMAGE */ }
+            <Text style={[GlobalStyles.h3, { color: Colors.primary }]}>
+              {firstName}
+              {' '}
+              {lastName}
+            </Text>
+          </View>
+          {/* END -- VIEW FOR IMAGE OF USER */}
+
         </View>
         { /* END -- VIEW FOR TITLE */ }
 
-
-        {/* VIEW FOR IMAGE OF USER */}
-        <View style={{
-          width: '80%',
-          margin: 10,
-          alignItems: 'center',
-          flex: 'auto',
-          justifyContent: 'flex',
-        }}
-        >
-          {/* TODO: Replace with Icon ! */}
-          <Image
-            source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png' }}
-            style={{
-              width: 150, height: 150, borderRadius: 75, margin: 20,
-            }}
-          />
-          { /* LOADING ICON FUNCTION */ }
-          { this.loader() }
-
-          { /* DISPLAY USER'S NAME BELOW IMAGE */ }
-          <Text style={[GlobalStyles.h3, { color: Colors.primary }]}>
-            {firstName}
-            {' '}
-            {lastName}
-          </Text>
-        </View>
-        {/* END -- VIEW FOR IMAGE OF USER */}
-
         {/* VIEW FOR USER INFO */}
-        <View style={{
-          width: '95%',
-          margin: 0,
-          alignItems: 'center',
-          flex: 'auto',
-          justifyContent: 'space-around',
-          flexDirection: 'column',
-        }}
-        >
+        <View style={[styles.userinfopane, { flex: 'auto' }]}>
+
+
           {/* VIEW FOR USER'S ROUTINE TIME */}
-          <View style={[styles.profileRow, {
-            width: '100%', display: 'flex', flex: 'auto', flexDirection: 'row', borderBottomWidth: 2, borderBottomColor: Colors.white, height: 32,
-          }]}
-          >
+          <View style={[styles.profileRow, { flex: 'auto' }]}>
 
             <View style={styles.infoColumn}>
-              <Text style={[GlobalStyles.paragraph, { fontSize: 16 }]}>Routine Time:</Text>
+              <Text style={[GlobalStyles.paragraph]}>Routine Time</Text>
             </View>
 
             <View style={styles.dataColumn}>
@@ -147,7 +156,6 @@ class AccountScreen extends Component {
                 GlobalStyles.paragraph,
                 {
                   color: Colors.primary,
-                  fontSize: 16,
                 },
               ]}
               >
@@ -158,13 +166,10 @@ class AccountScreen extends Component {
           {/* END --  VIEW FOR USER'S ROUTINE TIME */}
 
           {/* VIEW FOR USER'S HOME ADDRESS */}
-          <View style={[styles.profileRow, {
-            width: '100%', display: 'flex', flex: 'auto', flexDirection: 'row', borderBottomWidth: 2, borderBottomColor: Colors.white, height: 32,
-          }]}
-          >
+          <View style={[styles.profileRow, { flex: 'auto' }]}>
 
             <View style={styles.infoColumn}>
-              <Text style={[GlobalStyles.paragraph, { fontSize: 16 }]}>Current Address:</Text>
+              <Text style={[GlobalStyles.paragraph]}>Home</Text>
             </View>
 
             <View style={styles.dataColumn}>
@@ -172,10 +177,10 @@ class AccountScreen extends Component {
                 GlobalStyles.paragraph,
                 {
                   color: Colors.primary,
-                  fontSize: 16,
                 },
               ]}
               >
+                {/* TODO: REPLACE WITH CURRENT LOCATION (ADDRESS) */}
                 {'210 Lakelawn Place, Madison, WI'}
               </Text>
             </View>
@@ -185,43 +190,46 @@ class AccountScreen extends Component {
 
 
           {/* VIEW FOR USER'S WORK ADDRESS */}
-          <View style={[styles.profileRow, {
-            width: '100%', display: 'flex', flex: 'auto', flexDirection: 'row', borderBottomWidth: 2, borderBottomColor: Colors.white, height: 32,
-          }]}
-          >
+          <View style={[styles.profileRow, { flex: 'auto' }]}>
+
             <View style={styles.infoColumn}>
-              <Text style={[GlobalStyles.paragraph, { fontSize: 16 }]}>Work Address:</Text>
+              <Text style={[GlobalStyles.paragraph]}>Work</Text>
             </View>
+
             <View style={styles.dataColumn}>
               <Text style={[
                 GlobalStyles.paragraph,
                 {
                   color: Colors.primary,
-                  fontSize: 16,
                 },
               ]}
               >
+                {/* TODO: REPLACE WITH ACTUAL DESTINATION INPUT */}
                 {'1308 W Dayton St, Madison, WI'}
               </Text>
             </View>
           </View>
+          {/* END -- VIEW FOR USER'S WORK ADDRESS */}
+
+
         </View>
+        {/* END -- VIEW FOR USER'S INFO */}
 
 
-        <View style={[styles.profileRow, {
-          width: '80%', display: 'flex', flex: 'auto', flexDirection: 'column', justifyContent: 'space-around', height: 80,
-        }]}
-        >
+        {/* VIEW FOR SIGN OUT BUTTON */}
+        <View style={styles.signOutButton}>
           <Button
             title="Sign Out"
             color={Colors.darkGray}
             onPress={signOut}
           />
         </View>
+        {/* END -- VIEW FOR SIGN OUT BUTTON */}
 
 
       </View>
     );
+    // END RENDER, ABOVE IS CLOSING VIEW TAG.
   }
 }
 
@@ -232,22 +240,22 @@ AccountScreen.propTypes = {
   // Redux state
   firstName: PropTypes.string,
   lastName: PropTypes.string,
-  userName: PropTypes.string,
-  email: PropTypes.string,
-  errorMessage: PropTypes.string,
+  // userName: PropTypes.string,
+  // email: PropTypes.string,
+  // errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  alarmTime: PropTypes.number.isRequired,
-  // Redux dispatch
-  calculateTime: PropTypes.func.isRequired,
+  // alarmTime: PropTypes.number.isRequired,
+  // // Redux dispatch
+  // calculateTime: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
 };
 
 AccountScreen.defaultProps = {
   firstName: '',
   lastName: '',
-  userName: '',
-  email: '',
-  errorMessage: '',
+  // userName: '',
+  // email: '',
+  // errorMessage: '',
 };
 
 /**

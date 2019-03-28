@@ -106,5 +106,5 @@ export default StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     textAlign: 'center',
-  }
+  },
 });
