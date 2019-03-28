@@ -20,6 +20,56 @@ import {
   GlobalStyles,
 } from '../constants';
 
+// STYLESHEET FOR USER PROFILE
+const styles = StyleSheet.create({
+  titleView: {
+    marginTop: 40,
+    marginBottom: 10,
+  },
+  imageView: {
+    width: '80%',
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  usericon: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    margin: 20,
+  },
+  userinfopane: {
+    width: '95%',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+  },
+  profileRow: {
+    flex: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 2,
+    borderBottomColor: Colors.white,
+    marginBottom: 10,
+    height: 32,
+    width: '90%',
+  },
+  infoColumn: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  dataColumn: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  signOutButton: {
+    width: '80%',
+    justifyContent: 'space-around',
+    height: 80,
+    marginBottom: 50,
+  },
+});
+
 class AccountScreen extends Component {
   constructor() {
     super();
@@ -50,63 +100,12 @@ class AccountScreen extends Component {
     } = this.props;
     // const { navigate } = navigation;
 
-
-    // STYLESHEET FOR USER PROFILE
-    const styles = StyleSheet.create({
-      titleView: {
-        marginTop: 40,
-        marginBottom: 10,
-      },
-      imageView: {
-        width: '80%',
-        margin: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-      usericon: {
-        width: 150,
-        height: 150,
-        borderRadius: 75,
-        margin: 20,
-      },
-      userinfopane: {
-        width: '95%',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        flexDirection: 'column',
-      },
-      profileRow: {
-        flex: 8,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        borderBottomWidth: 2,
-        borderBottomColor: Colors.white,
-        marginBottom: 10,
-        height: 32,
-        width: '90%',
-      },
-      infoColumn: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-      },
-      dataColumn: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-      },
-      signOutButton: {
-        width: '80%',
-        justifyContent: 'space-around',
-        height: 80,
-        marginBottom: 50,
-      },
-    });
-
     return (
       <View style={[GlobalStyles.centerChildrenXY, { height: '85%', justifyContent: 'space-around' }]}>
 
 
         {/* VIEW FOR TITLE ! "YOUR PROFILE" */}
-        <View style={[styles.titleView, { flex: 'auto' }]}>
+        <View style={[styles.titleView, { flex: 1 }]}>
           <Text style={[
             GlobalStyles.h2,
             { color: Colors.primary },
@@ -117,7 +116,7 @@ class AccountScreen extends Component {
 
 
           {/* VIEW FOR IMAGE OF USER */}
-          <View style={[styles.imageView, { flex: 'auto' }]}>
+          <View style={[styles.imageView, { flex: 1 }]}>
 
 
             {/* TODO: Replace with Icon ! */}
@@ -141,11 +140,11 @@ class AccountScreen extends Component {
         { /* END -- VIEW FOR TITLE */ }
 
         {/* VIEW FOR USER INFO */}
-        <View style={[styles.userinfopane, { flex: 'auto' }]}>
+        <View style={[styles.userinfopane, { flex: 1 }]}>
 
 
           {/* VIEW FOR USER'S ROUTINE TIME */}
-          <View style={[styles.profileRow, { flex: 'auto' }]}>
+          <View style={[styles.profileRow, { flex: 1 }]}>
 
             <View style={styles.infoColumn}>
               <Text style={[GlobalStyles.paragraph]}>Routine Time</Text>
@@ -166,7 +165,7 @@ class AccountScreen extends Component {
           {/* END --  VIEW FOR USER'S ROUTINE TIME */}
 
           {/* VIEW FOR USER'S HOME ADDRESS */}
-          <View style={[styles.profileRow, { flex: 'auto' }]}>
+          <View style={[styles.profileRow, { flex: 1 }]}>
 
             <View style={styles.infoColumn}>
               <Text style={[GlobalStyles.paragraph]}>Home</Text>
@@ -190,7 +189,7 @@ class AccountScreen extends Component {
 
 
           {/* VIEW FOR USER'S WORK ADDRESS */}
-          <View style={[styles.profileRow, { flex: 'auto' }]}>
+          <View style={[styles.profileRow, { flex: 1 }]}>
 
             <View style={styles.infoColumn}>
               <Text style={[GlobalStyles.paragraph]}>Work</Text>
