@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { alarmOff } from '../store/actions/alarmActions';
 
 import { GlobalStyles, Colors } from '../constants';
+import { Audio } from 'expo'
 
 class AlarmScreen extends Component {
   constructor() {
@@ -19,6 +20,36 @@ class AlarmScreen extends Component {
     this.setState({
       time: moment().format('LT'),
     });
+    Expo.Audio.setIsEnabledAsync(true);
+    Expo.Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      interruptionModeIOS: Expo.Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      playsInSilentLockedModeIOS: true,
+      shouldDuckAndroid: true,
+      interruptionModeAndroid: Expo.Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+      playsInSilentModeIOS: true,
+      playThroughEarpieceAndroid: false,
+    });
+
+    this.getSoundLoaded();
+  }
+
+  getSoundLoaded = async () => {
+    try {
+        if(this.sound == null) {
+          this.sound = new Expo.Audio.Sound();
+        }
+        await this.sound.loadAsync(require('../constants/alarm.mp3'));
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+
+  playSound = async(val) => {
+    if(this.sound != null) {
+      await this.sound.playAsync();
+    }
   }
 
   render() {
@@ -31,6 +62,11 @@ class AlarmScreen extends Component {
           { time }
         </Text>
         <View style={{ height: 8, width: 8 }} />
+        <Button
+          title="Sound Alarm"
+          color ={Colors.darkGray}
+          onPress= {() => this.playSound()}
+        />
         <Button
           title="Turn Off Alarm"
           color={Colors.darkGray}
