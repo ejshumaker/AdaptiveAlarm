@@ -1,6 +1,6 @@
-import React from "react";
-import Svg, { Path } from "react-native-svg";
-import Colors from "../constants/Colors";
+import React from 'react';
+import Svg, { Path } from 'react-native-svg';
+import Colors from '../constants/Colors';
 
 export const CloseIcon = props => (
   <Svg width={24} height={24} {...props}>
