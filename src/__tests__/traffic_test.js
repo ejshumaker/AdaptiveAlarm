@@ -1,36 +1,41 @@
 /* eslint-disable no-undef */
+/* eslint-disable import/first */
+jest.mock('expo', () => ({
+  Permissions: {
+    askAsync: jest.fn(),
+  },
+  Location: {
+    getCurrentPositionAsync: jest.fn(),
+  },
+}));
+
 import { getAlarmTimeFromLocation } from '../custom_modules/Alarm';
 
-
+jest.setTimeout(10000);
 describe('Alarm Calculation tests', () => {
   beforeAll(() => {
-    jest.mock('NativeModules', () => ({
-      UIManager: {
-        RCTView: () => ({
-          directEventTypes: {},
-        }),
-      },
-      KeyboardObserver: {},
-      RNGestureHandlerModule: {
-        attachGestureHandler: jest.fn(),
-        createGestureHandler: jest.fn(),
-        dropGestureHandler: jest.fn(),
-        updateGestureHandler: jest.fn(),
-        State: {},
-        Directions: {},
-      },
-      PlatformConstants: {
-        forceTouchAvailable: false,
-      },
-    }));
   });
   test('works', () => {
     expect(1).toBe(1);
   });
 
+  fetch.mockResponse(JSON.stringify({
+    status: 'OK',
+    rows: [{
+      elements: [{
+        duration_in_traffic: {
+          value: 30 * 60,
+        },
+        duration: {
+          value: 25 * 60,
+        },
+      }],
+    }],
+  }));
+  const expectedTime = new Date(2019, 3, 26, 9, 0, 0);
   test('time to Middleton and from Madison', () => expect(
     getAlarmTimeFromLocation('Madison, WI', 'Middleton, WI', new Date(2019, 3, 26, 10, 0, 0), 30),
-  ).resolves.toEqual(1585232127000));
+  ).resolves.toEqual(expectedTime.getTime()));
 
   afterAll(() => {
 

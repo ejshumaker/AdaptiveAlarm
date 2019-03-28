@@ -8,6 +8,10 @@
     "test": "node_modules/.bin/jest"
   },
   "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./jestSetup.js"
+    ],
     "preset": "jest-expo",
     "verbose": true,
     "transformIgnorePatterns": ["node_modules/(?!react-native|react-navigation|native-base|expo)/"]
