@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import PropTypes from 'prop-types';
 
 import {
@@ -16,6 +16,12 @@ class StyleDemoScreen extends Component {
   }
 
   render() {
+      const {
+        navigation, // from react-navigation
+      } = this.props;
+      const { navigate } = navigation;
+
+
     return (
       <View style={GlobalStyles.centerChildrenXY}>
         <View

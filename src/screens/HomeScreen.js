@@ -59,6 +59,7 @@ class HomeScreen extends Component {
      * All our components will be built custom or have a global style applied
      * @eschirtz 03-03-19
      */
+    const dateFormat = new Date(alarmTime);
     return (
       <View style={GlobalStyles.centerChildrenXY}>
         <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
@@ -109,7 +110,7 @@ class HomeScreen extends Component {
             marginBottom: 8,
           }]}
           >
-            {alarmTime}
+            {dateFormat.toLocaleTimeString()}
           </Text>
         </View>
         <Button
@@ -117,6 +118,35 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate('CreateAlarm')}
         />
+        {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
+        <View style={{ height: 8, width: 8 }} />
+        <Button
+          title="Alarm"
+          color={Colors.darkGray}
+          onPress={() => navigate('Alarm')}
+        />
+        {/* Temporary button to navigate to DayPicker, TODO: Remove */}
+        <View style={{ height: 8, width: 8 }} />
+        <Button
+          title="DayPicker"
+          color={Colors.darkGray}
+          onPress={() => navigate('DayPicker')}
+        />
+        {/* Temporary button to navigate to AutoComplete, TODO: Remove */}
+        <View style={{ height: 8, width: 8 }} />
+        <Button
+          title="AutoComplete"
+          color={Colors.darkGray}
+          onPress={() => navigate('AutoComplete')}
+        />
+        <View style={{ height: 8, width: 8 }} />
+        {/* Temporary button to navigate to MainScreen (true home screen) TODO: Remove */}
+        <Button
+          title="True Home Screen"
+          color={Colors.darkGray}
+          onPress={() => navigate('Main')}
+        />
+        <View style={{ height: 8, width: 8 }} />
         <Button
           title="Sign Out"
           color={Colors.darkGray}

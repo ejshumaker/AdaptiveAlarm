@@ -15,6 +15,7 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { DayPicker } from '../components';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
 
 import {
@@ -26,7 +27,6 @@ class CreateAlarmScreen extends Component {
   constructor() {
     super();
     this.state = {
-      title: 'Create Alarm',
       readyTime: '30',
       arrivalTime: '8:00',
       workAddress: 'Unknown',
@@ -35,57 +35,54 @@ class CreateAlarmScreen extends Component {
 
   render() {
     const {
-      title, readyTime, arrivalTime, workAddress,
+      readyTime, arrivalTime, workAddress,
     } = this.state;
     const {
       navigation, // from react-navigation
-      calculateTime,
       alarmTime,
     } = this.props;
     const { navigate } = navigation;
 
     const dateFormat = new Date(alarmTime);
+
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
-        <Text style={GlobalStyles.h2}>{title}</Text>
-
-        <Text style={GlobalStyles.h4}>Work Address</Text>
+        <Text
+          style={[GlobalStyles.h2, { color: Colors.primary, marginBottom: 48 }]}
+        >
+        Create Alarm:
+        </Text>
+        <Text style={GlobalStyles.subtitle}>Destination</Text>
         <TextInput
           style={GlobalStyles.input}
           returnKeyType="next"
-          ref={input => this.workAddressInput = input}
+          ref={(input) => { this.workAddressInput = input; }}
           onChangeText={text => this.setState({ workAddress: text })}
           placeholder={workAddress}
           placeholderTextColor={Colors.white}
         />
-        <Text style={GlobalStyles.h4}>Estimated Time to Get Ready</Text>
+        <Text style={GlobalStyles.subtitle}>Estimated Time to Get Ready</Text>
         <TextInput
           style={GlobalStyles.input}
           returnKeyType="next"
-          ref={input => this.readyTimeInput = input}
+          ref={(input) => { this.readyTimeInput = input; }}
           onSubmitEditing={() => this.arrivalTimeInput.focus()}
           onChangeText={text => this.setState({ readyTime: text })}
           placeholder={readyTime}
           placeholderTextColor={Colors.white}
         />
 
-        <Text style={GlobalStyles.h4}>Desired Work Arrival Time</Text>
+        <Text style={GlobalStyles.subtitle}>Desired Work Arrival Time</Text>
         <TextInput
           style={GlobalStyles.input}
           returnKeyType="next"
-          ref={input => this.arrivalTimeInput = input}
+          ref={(input) => { this.arrivalTimeInput = input; }}
           onSubmitEditing={() => this.workAddressInput.focus()}
           onChangeText={text => this.setState({ arrivalTime: text })}
           placeholder={arrivalTime}
           placeholderTextColor={Colors.white}
         />
-
-        {
-          Platform.OS === 'ios'
-            ? <Text style={GlobalStyles.h4}>Insert day picker for iOS</Text>
-            : <Text style={GlobalStyles.h4}>Insert day picker for Android</Text>
-        }
-        <View style={{ height: 8, width: 8 }} />
+        <DayPicker />
         <Button
           title="Create Alarm"
           color={Colors.darkGray}
@@ -97,7 +94,7 @@ class CreateAlarmScreen extends Component {
           margin: 16,
         }}
         >
-          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Time</Text>
+          <Text style={[GlobalStyles.subtitle, { marginBottom: 4 }]}>Alarm Time</Text>
           <Text style={[GlobalStyles.paragraph, {
             color: Colors.primary,
             marginBottom: 8,
