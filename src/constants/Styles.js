@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import Colors from './Colors';
+import { StyleSheet } from "react-native";
+import Colors from "./Colors";
 
 // Constants
 const defaultMargin = 8;
@@ -22,52 +22,52 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundColor,
-    justifyContent: 'center',
+    justifyContent: "center"
   },
   centerChildrenXY: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center"
   },
   /* Text */
   h1: {
     color: Colors.white,
     fontSize: 60,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   },
   h2: {
     color: Colors.white,
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   },
   h3: {
     color: Colors.white,
     fontSize: 24,
-    fontWeight: '500',
+    fontWeight: "500"
   },
   h4: {
     color: Colors.white,
     fontSize: 14,
-    fontWeight: '500',
+    fontWeight: "500"
   },
   list: {
     color: Colors.white,
     fontSize: 48,
-    fontWeight: 'bold',
+    fontWeight: "bold"
   },
   paragraph: {
     color: Colors.white,
     fontSize: 18,
-    fontWeight: '300',
+    fontWeight: "300"
   },
   subtitle: {
     color: Colors.white,
     fontSize: 14,
-    fontWeight: '200',
+    fontWeight: "200"
   },
   /* Utility styles */
   margin: {
-    margin: defaultMargin,
+    margin: defaultMargin
   },
   /* Text input styling */
   input: {
@@ -76,35 +76,32 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: Colors.primary,
     color: Colors.white,
-    marginVertical: 10,
+    marginVertical: 10
   },
   destinationInput: {
-    borderBottomWidth: 2,
-    borderBottomColor: Colors.primary,
-    borderWidth: 0.5,
+    borderRadius: 8,
     borderColor: Colors.darkGray,
-    color: Colors.primary,
-    fontSize: 18,
+    color: Colors.white,
+    fontSize: 14,
+    width: 222,
     height: 40,
-    marginLeft: 5,
+    marginLeft: 0,
     marginRight: 5,
     padding: 10,
-    backgroundColor: Colors.darkGray,
+    backgroundColor: Colors.darkGray
   },
   searchSuggestions: {
-    backgroundColor: Colors.gray,
-    borderBottomColor: Colors.primary,
+    color: Colors.darkGray,
+    borderBottomColor: Colors.darkGray,
     borderWidth: 0.5,
-    color: Colors.primary,
-    fontSize: 20,
-    marginLeft: 5,
-    marginRight: 5,
-    padding: 10,
+    fontSize: 14,
+    width: 272,
+    padding: 10
   },
   h2_center: {
     color: Colors.white,
     fontSize: 30,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center"
   }
 });

@@ -1,23 +1,23 @@
-import React from 'react';
-import {
-  TextInput, Button, Text, View, ActivityIndicator,
-} from 'react-native';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from "react";
+import { TextInput, Text, View, ActivityIndicator } from "react-native";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import { userSignIn } from '../store/actions/userActions';
-import { Colors, GlobalStyles } from '../constants';
-
+import { userSignIn } from "../store/actions/userActions";
+import { Colors, GlobalStyles } from "../constants";
+import Buttons from "../components/Buttons";
+import { EmailIcon } from "../icons/email";
+import { KeyIcon } from "../icons/key";
 
 class SignInScreen extends React.Component {
   state = {
-    email: '',
-    password: '',
-  }
+    email: "",
+    password: ""
+  };
 
   onChangeText(key, value) {
     this.setState({
-      [key]: value,
+      [key]: value
     });
   }
 
@@ -25,7 +25,8 @@ class SignInScreen extends React.Component {
     const { loading } = this.props;
     if (loading) {
       return <ActivityIndicator color={Colors.primary} size="large" />;
-    } return null;
+    }
+    return null;
   }
 
   render() {
@@ -34,40 +35,70 @@ class SignInScreen extends React.Component {
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
         <Text style={GlobalStyles.h2_center}>Sign In</Text>
-        { this.loader() }
-        <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 50 }]}>
+        {this.loader()}
+        <Text
+          style={[
+            GlobalStyles.paragraph,
+            { color: Colors.error, marginBottom: 50 }
+          ]}
+        >
           {errorMessage}
         </Text>
-        <TextInput
-          onChangeText={value => this.onChangeText('email', value)}
-          style={GlobalStyles.input}
-          placeholder="Email"
-          placeholderTextColor={Colors.darkGray}
-        />
-        <TextInput
-          onChangeText={value => this.onChangeText('password', value)}
-          style={GlobalStyles.input}
-          secureTextEntry
-          placeholder="Password"
-          placeholderTextColor={Colors.darkGray}
-        />
-        <Button
-          title="Sign In"
-          color={Colors.primary}
-          onPress={() => {
-            signIn({
-              email,
-              password,
-            });
+        <View
+          style={{
+            flexDirection: "row",
+            width: 272,
+            height: 40,
+            backgroundColor: Colors.darkGray,
+            borderRadius: 8,
+            marginBottom: 30
           }}
-        />
-        <Button
-          title="Sign Up"
-          color={Colors.primary}
-          onPress={() => {
-            navigation.navigate('SignUp');
+        >
+          <EmailIcon style={{ marginLeft: 13, marginTop: 7 }} />
+          <TextInput
+            onChangeText={value => this.onChangeText("email", value)}
+            style={GlobalStyles.destinationInput}
+            placeholder="Email"
+          />
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            width: 272,
+            height: 40,
+            backgroundColor: Colors.darkGray,
+            borderRadius: 8
           }}
-        />
+        >
+          <KeyIcon style={{ marginLeft: 13, marginTop: 7 }} />
+          <TextInput
+            onChangeText={value => this.onChangeText("password", value)}
+            style={GlobalStyles.destinationInput}
+            secureTextEntry
+            placeholder="Password"
+          />
+        </View>
+        <View style={{ marginTop: 60, alignItems: "center" }}>
+          <Buttons
+            title="Sign In"
+            backgroundColor={Colors.primary}
+            textColor={Colors.black}
+            onPress={() => {
+              signIn({
+                email,
+                password
+              });
+            }}
+          />
+          <Buttons
+            title="Sign Up"
+            backgroundColor={Colors.darkGray}
+            textColor={Colors.white}
+            onPress={() => {
+              navigation.navigate("SignUp");
+            }}
+          />
+        </View>
       </View>
     );
   }
@@ -75,26 +106,31 @@ class SignInScreen extends React.Component {
 
 SignInScreen.propTypes = {
   navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
+    navigate: PropTypes.func.isRequired
   }).isRequired,
   // Redux state
   errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   // Redux dispatch
-  signIn: PropTypes.func.isRequired,
+  signIn: PropTypes.func.isRequired
 };
 
 SignInScreen.defaultProps = {
-  errorMessage: '',
+  errorMessage: ""
 };
 
 const mapStateToProps = state => ({
   errorMessage: state.user.errorMessage,
-  loading: state.user.loading,
+  loading: state.user.loading
 });
 
 const mapDispatchToProps = dispatch => ({
-  signIn: (credentials) => { dispatch(userSignIn(credentials)); },
+  signIn: credentials => {
+    dispatch(userSignIn(credentials));
+  }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignInScreen);
