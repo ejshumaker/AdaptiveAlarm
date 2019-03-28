@@ -41,7 +41,7 @@ const Autocomplete = () => (
               borderRadius: 8
             }}
           >
-            <SearchIcon style={{ marginLeft: 13, marginTop: 7 }} />
+            <SearchIcon style={{ marginLeft: 13, marginTop: 8 }} />
             <TextInput
               style={GlobalStyles.destinationInput}
               value={inputValue}
@@ -72,7 +72,7 @@ const Autocomplete = () => (
             ))}
           </View>
           <Image
-            style={{ marginTop: 5 }}
+            style={{ marginTop: 20 }}
             source={require("../assets/powered_by_google_on_non_white.png")}
           />
         </View>

@@ -92,11 +92,11 @@ export default StyleSheet.create({
   },
   searchSuggestions: {
     color: Colors.darkGray,
-    borderBottomColor: Colors.darkGray,
-    borderWidth: 0.5,
     fontSize: 14,
-    width: 272,
-    padding: 10
+    width: 235,
+    height: 55,
+    padding: 10,
+    paddingRight: 15
   },
   h2_center: {
     color: Colors.white,

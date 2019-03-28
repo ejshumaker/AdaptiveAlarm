@@ -9,7 +9,7 @@
  * @eschirtz 03-03-19
  */
 import React, { Component } from "react";
-import { View, Text, Button, ActivityIndicator } from "react-native";
+import { View, Text, Button, ActivityIndicator, StatusBar } from "react-native";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -58,6 +58,7 @@ class HomeScreen extends Component {
     const dateFormat = new Date(alarmTime);
     return (
       <View style={GlobalStyles.centerChildrenXY}>
+        <StatusBar barStyle="light-content" />
         <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
         {this.loader()}
         <View
