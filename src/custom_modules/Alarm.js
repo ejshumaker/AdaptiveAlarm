@@ -76,7 +76,7 @@ async function getAlarmTimeFromLocation(startLoc, destinationLoc, arrivalTime, t
             });
           i += 1;
         }
-        console.log(departureTime - timeToGetReady * 60000);
+        // console.log(departureTime - timeToGetReady * 60000);
         resolve(departureTime - timeToGetReady * 60000);
       });
   });
