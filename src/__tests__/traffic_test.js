@@ -2,9 +2,41 @@
 import { getAlarmTimeFromLocation } from '../custom_modules/Alarm';
 
 
-test('time to Middleton and from Madison', () => expect(
-  getAlarmTimeFromLocation('Madison, WI', 'Middleton, WI', new Date(2019, 3, 26, 10, 0, 0), 30),
-).resolves.toEqual(1585232127000));
+describe('Alarm Calculation tests', () => {
+  beforeAll(() => {
+    jest.mock('NativeModules', () => ({
+      UIManager: {
+        RCTView: () => ({
+          directEventTypes: {},
+        }),
+      },
+      KeyboardObserver: {},
+      RNGestureHandlerModule: {
+        attachGestureHandler: jest.fn(),
+        createGestureHandler: jest.fn(),
+        dropGestureHandler: jest.fn(),
+        updateGestureHandler: jest.fn(),
+        State: {},
+        Directions: {},
+      },
+      PlatformConstants: {
+        forceTouchAvailable: false,
+      },
+    }));
+  });
+  test('works', () => {
+    expect(1).toBe(1);
+  });
+
+  test('time to Middleton and from Madison', () => expect(
+    getAlarmTimeFromLocation('Madison, WI', 'Middleton, WI', new Date(2019, 3, 26, 10, 0, 0), 30),
+  ).resolves.toEqual(1585232127000));
+
+  afterAll(() => {
+
+  });
+});
+
 
 /* eslint-disable no-undef */
 /* import getRouteTime from '../custom_modules/getRouteTime';
@@ -14,7 +46,7 @@ test('time to and from the same location', () => expect(getRouteTime('Boston
   distance: 1000,
   duration: 60,
 }));
-/*
+
 test('time to and from different locations', () => {
   expect(trafficTime(1,2)).toBe(3);
 });
@@ -23,7 +55,7 @@ test('time to location and from current location', () => {
   expect(trafficTime(1,2)).toBe(3);
 });
 
-/*
+
 let obj;
 let fn;
 describe('Travel Time tests', () => {
