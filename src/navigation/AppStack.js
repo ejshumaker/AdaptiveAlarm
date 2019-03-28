@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
 import AlarmScreen from '../screens/AlarmScreen';
 import AutocompleteScreen from '../screens/AutocompleteScreen';
+import AccountScreen from '../screens/AccountScreen';
 
 export default createStackNavigator(
   {
@@ -33,6 +34,13 @@ export default createStackNavigator(
       screen: AlarmScreen,
       navigationOptions: () => ({
         title: 'Alarm',
+        header: null,
+      }),
+    },
+    Account: {
+      screen: AccountScreen,
+      navigationOptions: () => ({
+        title: 'Account',
         header: null,
       }),
     },

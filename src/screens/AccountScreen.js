@@ -23,11 +23,11 @@ import {
   GlobalStyles,
 } from '../constants';
 
-class HomeScreen extends Component {
+class AccountScreen extends Component {
   constructor() {
     super();
     this.state = {
-      title: 'Home',
+      title: 'Profile',
     };
   }
 
@@ -125,13 +125,6 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate('Alarm')}
         />
-        {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
-        <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="Account"
-          color={Colors.darkGray}
-          onPress={() => navigate('Account')}
-        />
         {/* Temporary button to navigate to AutoComplete, TODO: Remove */}
         <View style={{ height: 8, width: 8 }} />
         <Button
@@ -150,7 +143,7 @@ class HomeScreen extends Component {
   }
 }
 
-HomeScreen.propTypes = {
+AccountScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
@@ -167,7 +160,7 @@ HomeScreen.propTypes = {
   signOut: PropTypes.func.isRequired,
 };
 
-HomeScreen.defaultProps = {
+AccountScreen.defaultProps = {
   firstName: '',
   lastName: '',
   userName: '',
@@ -200,4 +193,4 @@ const mapDispatchToProps = dispatch => ({
   calculateTime: (time) => { dispatch(alarmCalculateTime(time)); },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountScreen);
