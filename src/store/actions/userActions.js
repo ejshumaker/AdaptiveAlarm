@@ -5,7 +5,22 @@
  */
 import User from '../../custom_modules/User';
 
+export function userCreateAlarm(payload) {
+  return dispatch => dispatch({
+    type: 'USER_CREATE_ALARM',
+    payload: User.createAlarm(payload),
+  })
+    .then((resp) => {
+      console.log(resp);
+    })
+    .catch(error => console.log(error));
+}
 
+/**
+ * Fetches the user's data from Firebase
+ * and updates the store to reflect
+ * @param  {Number} uid
+ */
 export function userFetch(uid) {
   return {
     type: 'USER_FETCH',
@@ -13,6 +28,12 @@ export function userFetch(uid) {
   };
 }
 
+/**
+ * Creates an account with firebase &
+ * creates an associated entry for the user in the database
+ * with all their profile information
+ * @param  {Object} payload
+ */
 export function userCreateAccount(payload) {
   return dispatch => dispatch({
     type: 'USER_CREATE_ACCOUNT',
@@ -22,7 +43,10 @@ export function userCreateAccount(payload) {
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
-
+/**
+ * Signs user in
+ * @param payload
+ */
 export function userSignIn(payload) {
   return dispatch => dispatch({
     type: 'USER_SIGN_IN',
@@ -31,6 +55,9 @@ export function userSignIn(payload) {
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
+/**
+ * Signs user out
+ */
 export function userSignOut() {
   return {
     type: 'USER_SIGN_OUT',

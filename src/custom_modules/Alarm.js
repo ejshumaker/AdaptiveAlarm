@@ -59,7 +59,7 @@ async function getCurrentLocation() {
 
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-export default async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
+async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
   const loops = 4;
   return new Promise((resolve) => {
     getCurrentLocation()
@@ -71,22 +71,23 @@ export default async function getAlarmTime(destinationLoc, arrivalTime, timeToGe
             let duration = re;
             let departureTime = arrivalTime.getTime();
             let i = 0;
-            console.log(duration);
             while (Math.abs(departureTime + (duration * 60000)
         - arrivalTime.getTime()) > 6 * 60 * 1000 && i < loops) {
               departureTime = arrivalTime - Math.floor(duration * 60000);
               await getRouteTime(startLoc, destinationLoc, departureTime)
                 .then((resp) => {
                   duration = resp;
-                  console.log(duration);
                 });
               i += 1;
             }
-            resolve(departureTime - timeToGetReady*60000);
+            console.log(departureTime);
+            resolve(departureTime - timeToGetReady * 60000);
           });
       });
   });
 }
+
+export default { getAlarmTime };
 /**
   * Get User's current location from Google Maps API. Better to use Expo.
   */

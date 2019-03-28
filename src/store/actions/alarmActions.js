@@ -18,7 +18,7 @@ export function alarmCalculateTime() {
 
 export function alarmFoo(bar) {
   return {
-    type: 'FOO',
+    type: 'ALARM_FOO',
     payload: bar,
   };
 }

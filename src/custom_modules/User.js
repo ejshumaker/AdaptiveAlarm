@@ -4,6 +4,47 @@
  * state updates.
  */
 import { auth, database } from 'firebase';
+import Alarm from './Alarm';
+/**
+ * Calculates alarm time from user entered information
+ * stores data in firebase and resolves with data to be
+ * kept in local store
+ * @param  {[Object]} payload [description]
+ * @return {[Promise]}         [description]
+ */
+function createAlarm(payload) {
+  const {
+    uid,
+    destinationLoc,
+    arrivalTime,
+    timeToGetReady,
+  } = payload;
+  let alarmTime;
+
+  return new Promise((resolve, reject) => {
+    Alarm.getAlarmTime(
+      destinationLoc,
+      arrivalTime,
+      timeToGetReady,
+    )
+      .then((time) => {
+        alarmTime = time;
+        database().ref(`users/${uid}/alarms`)
+          .push({
+            destinationLoc,
+            arrivalTime,
+            timeToGetReady,
+            alarmTime,
+          });
+      })
+      .then(() => {
+        resolve({
+          destinationLoc, arrivalTime, timeToGetReady, alarmTime,
+        });
+      })
+      .catch(error => reject(error));
+  });
+}
 
 /**
  * Fetches a users data from firebase database
@@ -79,5 +120,5 @@ function signOut() {
 }
 
 export default {
-  signIn, createAccount, signOut, fetch,
+  signIn, createAccount, signOut, fetch, createAlarm,
 };

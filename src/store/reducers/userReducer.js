@@ -20,6 +20,38 @@ const initialUserState = {
 
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
+    // CREATE ALARM //
+    case 'USER_CREATE_ALARM_PENDING':
+      state = { ...state, loading: true };
+      break;
+    case 'USER_CREATE_ALARM_REJECTED':
+      state = {
+        ...state,
+        errorMessage:
+        action.payload.message,
+        error: action.error,
+        loading: false,
+      };
+      break;
+    case 'USER_CREATE_ALARM_FULFILLED': {
+      const {
+        startLoc,
+        destinationLoc,
+        departureTime,
+        alarmTime,
+      } = action.payload;
+      state = {
+        ...state,
+        startLoc,
+        destinationLoc,
+        departureTime,
+        alarmTime,
+        errorMessage: undefined,
+        error: action.error,
+        loading: false,
+      };
+      break;
+    }
     // CREATE ACCOUNT //
     case 'USER_CREATE_ACCOUNT_PENDING':
       state = { ...state, loading: true };
@@ -61,8 +93,7 @@ const userReducer = (state = initialUserState, action) => {
     case 'USER_SIGN_IN_REJECTED':
       state = {
         ...state,
-        errorMessage:
-        action.payload.message,
+        errorMessage: action.payload.message,
         error: action.error,
         loading: false,
       };

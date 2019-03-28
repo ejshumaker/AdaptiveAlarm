@@ -11,16 +11,9 @@ const initialAlarmState = {
 };
 const alarmReducer = (state = initialAlarmState, action) => {
   switch (action.type) {
-    case 'ALARM_CALCULATE_TIME_FULFILLED':
+    case 'ALARM_FOO':
       state = {
         ...state,
-        time: action.payload,
-      };
-      break;
-    case 'ALARM_CALCULATE_TIME_PENDING':
-      state = {
-        ...state,
-        time: -1,
       };
       break;
     default:

@@ -10,13 +10,16 @@
  */
 import React, { Component } from 'react';
 import {
-  Platform, View, Text, Button, TextInput,
+  View, Text, Button, TextInput,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { DayPicker } from '../components';
-import { alarmCalculateTime } from '../store/actions/alarmActions';
+import {
+  DayPicker,
+  Autocomplete,
+} from '../components';
+import { userCreateAlarm } from '../store/actions/userActions';
 
 import {
   Colors,
@@ -27,82 +30,79 @@ class CreateAlarmScreen extends Component {
   constructor() {
     super();
     this.state = {
-      readyTime: '30',
-      arrivalTime: '8:00',
-      workAddress: 'Unknown',
+      readyTime: 30,
+      arrivalTime: new Date(2019, 3, 26, 10, 0, 0),
+      workAddress: 'Middleton, WI',
     };
   }
 
   render() {
     const {
-      readyTime, arrivalTime, workAddress,
-    } = this.state;
-    const {
-      navigation, // from react-navigation
-      alarmTime,
+      uid,
+      createAlarm,
     } = this.props;
-    const { navigate } = navigation;
 
-    const dateFormat = new Date(alarmTime);
+    const {
+      readyTime,
+      arrivalTime,
+      workAddress,
+    } = this.state;
 
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
         <Text
-          style={[GlobalStyles.h2, { color: Colors.primary, marginBottom: 48 }]}
+          style={[
+            GlobalStyles.h2,
+            {
+              color: Colors.primary,
+              marginBottom: 48,
+              marginTop: 96,
+            },
+          ]}
         >
-        Create Alarm:
+        NEW ALARM:
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
         <TextInput
           style={GlobalStyles.input}
           returnKeyType="next"
           ref={(input) => { this.workAddressInput = input; }}
+          onSubmitEditing={() => this.arrivalTimeInput.focus()}
           onChangeText={text => this.setState({ workAddress: text })}
-          placeholder={workAddress}
-          placeholderTextColor={Colors.white}
+          placeholder="Work Address"
+          placeholderTextColor={Colors.darkGray}
         />
-        <Text style={GlobalStyles.subtitle}>Estimated Time to Get Ready</Text>
+        <Text style={GlobalStyles.subtitle}>Routine Time</Text>
         <TextInput
           style={GlobalStyles.input}
           returnKeyType="next"
           ref={(input) => { this.readyTimeInput = input; }}
           onSubmitEditing={() => this.arrivalTimeInput.focus()}
           onChangeText={text => this.setState({ readyTime: text })}
-          placeholder={readyTime}
-          placeholderTextColor={Colors.white}
+          placeholder="30"
+          placeholderTextColor={Colors.darkGray}
         />
-
-        <Text style={GlobalStyles.subtitle}>Desired Work Arrival Time</Text>
+        <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
         <TextInput
           style={GlobalStyles.input}
           returnKeyType="next"
           ref={(input) => { this.arrivalTimeInput = input; }}
           onSubmitEditing={() => this.workAddressInput.focus()}
           onChangeText={text => this.setState({ arrivalTime: text })}
-          placeholder={arrivalTime}
-          placeholderTextColor={Colors.white}
+          placeholder="8:00"
+          placeholderTextColor={Colors.darkGray}
         />
         <DayPicker />
         <Button
           title="Create Alarm"
           color={Colors.darkGray}
-          onPress={() => navigate('Home')}
+          onPress={() => createAlarm({
+            uid,
+            arrivalTime,
+            timeToGetReady: readyTime,
+            destinationLoc: workAddress,
+          })}
         />
-        <View style={{
-          textAlign: 'left',
-          width: '50%',
-          margin: 16,
-        }}
-        >
-          <Text style={[GlobalStyles.subtitle, { marginBottom: 4 }]}>Alarm Time</Text>
-          <Text style={[GlobalStyles.paragraph, {
-            color: Colors.primary,
-            marginBottom: 8,
-          }]}
-          >
-            {dateFormat.toLocaleTimeString()}
-          </Text>
-        </View>
       </View>
     );
   }
@@ -112,10 +112,8 @@ CreateAlarmScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  // Redux state
-  alarmTime: PropTypes.number.isRequired,
   // Redux dispatch
-  calculateTime: PropTypes.func.isRequired,
+  createAlarm: PropTypes.func.isRequired,
 };
 
 /**
@@ -124,7 +122,7 @@ CreateAlarmScreen.propTypes = {
  * @eschirtz 03-03-19
  */
 const mapStateToProps = state => ({
-  alarmTime: state.alarm.time,
+  uid: state.user.uid,
 });
 
 /**
@@ -133,7 +131,7 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
-  calculateTime: (time) => { dispatch(alarmCalculateTime(time)); },
+  createAlarm: (payload) => { dispatch(userCreateAlarm(payload)); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAlarmScreen);
