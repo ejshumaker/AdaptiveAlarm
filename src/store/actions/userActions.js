@@ -38,10 +38,22 @@ export function userCreateAlarm(payload) {
  * @param  {Number} uid
  */
 export function userFetch(uid) {
-  return {
+  return dispatch => dispatch({
     type: 'USER_FETCH',
     payload: User.fetch(uid),
-  };
+  })
+    .then((resp) => {
+      const {
+        destinationLoc,
+        timeToGetReady,
+        arrivalTime,
+      } = resp.value.alarms.alarm1; // alarm1 is temporary!!!
+      dispatch(alarmCalculateTime(
+        destinationLoc,
+        timeToGetReady,
+        arrivalTime,
+      ));
+    });
 }
 
 /**

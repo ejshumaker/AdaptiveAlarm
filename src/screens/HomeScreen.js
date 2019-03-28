@@ -49,6 +49,7 @@ class HomeScreen extends Component {
       email,
       alarms,
       alarmTime,
+      alarmCalculating,
       errorMessage,
     } = this.props;
     const { navigate } = navigation;
@@ -119,7 +120,7 @@ class HomeScreen extends Component {
             marginBottom: 8,
           }]}
           >
-            {dateFormat.toLocaleTimeString()}
+            {alarmCalculating ? 'Calculating...' : dateFormat.toLocaleTimeString()}
           </Text>
         </View>
         <Button
@@ -177,7 +178,8 @@ HomeScreen.propTypes = {
   email: PropTypes.string,
   errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  alarmTime: PropTypes.number.isRequired,
+  alarmTime: PropTypes.number,
+  alarmCalculating: PropTypes.bool.isRequired,
   alarms: PropTypes.object, // eslint-disable-line
   // Redux dispatch
   signOut: PropTypes.func.isRequired,
@@ -190,6 +192,7 @@ HomeScreen.defaultProps = {
   email: '',
   errorMessage: '',
   alarms: {},
+  alarmTime: -1,
 };
 
 /**
@@ -205,6 +208,7 @@ const mapStateToProps = state => ({
   errorMessage: state.user.errorMessage,
   loading: state.user.loadingFetch,
   alarmTime: state.alarm.time,
+  alarmCalculating: state.alarm.loading,
   alarms: state.user.alarms,
 });
 

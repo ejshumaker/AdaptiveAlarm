@@ -7,25 +7,28 @@
 /* eslint-disable no-param-reassign */
 
 const initialAlarmState = {
-  time: 0,
+  time: undefined,
+  loading: false,
 };
 const alarmReducer = (state = initialAlarmState, action) => {
   switch (action.type) {
     case 'ALARM_SET_TIME_PENDING':
       state = {
         ...state,
+        loading: true,
       };
       break;
     case 'ALARM_SET_TIME_REJECTED':
       state = {
         ...state,
+        loading: false,
       };
       break;
     case 'ALARM_SET_TIME_FULFILLED':
-      console.log(action);
       state = {
         ...state,
         time: action.payload,
+        loading: false,
       };
       break;
     default:
