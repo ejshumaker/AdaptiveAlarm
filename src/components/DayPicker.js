@@ -1,13 +1,39 @@
 import React, { PureComponent } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
-import styled from "styled-components";
-import { GlobalStyles, Colors } from '../constants';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
+import styled from 'styled-components';
+import { Colors } from '../constants';
+
+const Circle = styled.View`
+  width: 45px;
+  height: 50px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+`;
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 22,
+    color: Colors.black,
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+});
 
 class DayPicker extends PureComponent {
   // possibly create getters to return the state of each day button using refs
   constructor() {
-    super()
+    super();
     this.state = {
       sButton: null,
       mButton: null,
@@ -20,134 +46,157 @@ class DayPicker extends PureComponent {
     this.updateOnPress = this.updateOnPress.bind(this);
   }
 
-  static propTypes = {
-    description: PropTypes.string.isRequired
-  }
-
   updateOnPress(type) {
-    switch(type) {
-      case "S":
-        if (this.state.sButton === "S") {
-          this.setState({ sButton: "default"})
+    const {
+      sButton,
+      mButton,
+      tButton,
+      wButton,
+      thButton,
+      fButton,
+      saButton,
+    } = this.state;
+    switch (type) {
+      case 'S':
+        if (sButton === 'S') {
+          this.setState({ sButton: 'default' });
         } else {
-          this.setState({ sButton: type })
+          this.setState({ sButton: type });
         }
         break;
-      case "M":
-        if (this.state.mButton === "M") {
-          this.setState({ mButton: "default"})
+      case 'M':
+        if (mButton === 'M') {
+          this.setState({ mButton: 'default' });
         } else {
-          this.setState({ mButton: type })
+          this.setState({ mButton: type });
         }
         break;
-      case "T":
-        if (this.state.tButton === "T") {
-          this.setState({ tButton: "default"})
+      case 'T':
+        if (tButton === 'T') {
+          this.setState({ tButton: 'default' });
         } else {
-          this.setState({ tButton: type })
+          this.setState({ tButton: type });
         }
         break;
-      case "W":
-        if (this.state.wButton === "W") {
-          this.setState({ wButton: "default"})
+      case 'W':
+        if (wButton === 'W') {
+          this.setState({ wButton: 'default' });
         } else {
-          this.setState({ wButton: type })
+          this.setState({ wButton: type });
         }
         break;
-        case "Th":
-          if (this.state.thButton === "Th") {
-            this.setState({ thButton: "default"})
-          } else {
-            this.setState({ thButton: type })
-          }
-          break;
-        case "F":
-          if (this.state.fButton === "F") {
-            this.setState({ fButton: "default"})
-          } else {
-            this.setState({ fButton: type })
-          }
-          break;
-        case "Sa":
-          if (this.state.saButton === "Sa") {
-            this.setState({ saButton: "default"})
-          } else {
-            this.setState({ saButton: type })
-          }
-          break;
+      case 'Th':
+        if (thButton === 'Th') {
+          this.setState({ thButton: 'default' });
+        } else {
+          this.setState({ thButton: type });
+        }
+        break;
+      case 'F':
+        if (fButton === 'F') {
+          this.setState({ fButton: 'default' });
+        } else {
+          this.setState({ fButton: type });
+        }
+        break;
+      case 'Sa':
+        if (saButton === 'Sa') {
+          this.setState({ saButton: 'default' });
+        } else {
+          this.setState({ saButton: type });
+        }
+        break;
+      default:
+        break;
     }
   }
 
   render() {
+    const {
+      sButton,
+      mButton,
+      tButton,
+      wButton,
+      thButton,
+      fButton,
+      saButton,
+    } = this.state;
     return (
       <View style={styles.container}>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("S")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('S')}>
           <Circle style={{
-            backgroundColor: this.state.sButton === "S"
+            backgroundColor: sButton === 'S'
               ? Colors.primary
-              : Colors.gray
-          }}>
+              : Colors.gray,
+          }}
+          >
             <Text style={styles.text}>S</Text>
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("M")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('M')}>
           <Circle style={{
-            backgroundColor: this.state.mButton === "M"
+            backgroundColor: mButton === 'M'
               ? Colors.primary
-              : Colors.gray
-          }}>
+              : Colors.gray,
+          }}
+          >
             <Text style={styles.text}>M</Text>
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("T")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('T')}>
           <Circle style={{
-            backgroundColor: this.state.tButton === "T"
+            backgroundColor: tButton === 'T'
               ? Colors.primary
-              : Colors.gray
-          }}>
+              : Colors.gray,
+          }}
+          >
             <Text style={styles.text}>T</Text>
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("W")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('W')}>
           <Circle style={{
-            backgroundColor: this.state.wButton === "W"
+            backgroundColor: wButton === 'W'
               ? Colors.primary
-              : Colors.gray
-          }}>
+              : Colors.gray,
+          }}
+          >
             <Text style={styles.text}>W</Text>
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("Th")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('Th')}>
           <Circle style={{
-            backgroundColor: this.state.thButton === "Th"
+            backgroundColor: thButton === 'Th'
               ? Colors.primary
-              : Colors.gray
-          }}>
+              : Colors.gray,
+          }}
+          >
             <Text style={styles.text}>Th</Text>
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("F")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('F')}>
           <Circle style={{
-            backgroundColor: this.state.fButton === "F"
+            backgroundColor: fButton === 'F'
               ? Colors.primary
-              : Colors.gray
-          }}>
+              : Colors.gray,
+          }}
+          >
             <Text style={styles.text}>F</Text>
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("Sa")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('Sa')}>
           <Circle style={{
-            backgroundColor: this.state.saButton === "Sa"
+            backgroundColor: saButton === 'Sa'
               ? Colors.primary
-              : Colors.gray
-          }}>
+              : Colors.gray,
+          }}
+          >
             <Text style={styles.text}>Sa</Text>
           </Circle>
         </TouchableOpacity>
@@ -156,27 +205,5 @@ class DayPicker extends PureComponent {
     );
   }
 }
-
-const Circle = styled.View`
-  width: 45px;
-  height: 50px;
-  border-radius: 8px;
-  justify-content: center;
-  align-items: center;
-  margin: 5px;
-`;
-
-const styles=StyleSheet.create({
-  text: {
-    fontSize: 22,
-    color: Colors.black
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: "row"
-  },
-});
 
 export default DayPicker;
