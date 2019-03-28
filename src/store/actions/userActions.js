@@ -4,16 +4,32 @@
  * @eschirtz 03-02-19
  */
 import User from '../../custom_modules/User';
+import { alarmCalculateTime } from './alarmActions';
 
+/**
+ * Stores alarm data in firebase and
+ * returns a new alarm with associated key
+ * @param  {[Object]} payload
+ */
 export function userCreateAlarm(payload) {
   return dispatch => dispatch({
     type: 'USER_CREATE_ALARM',
     payload: User.createAlarm(payload),
   })
     .then((resp) => {
-      console.log(resp);
+      // pull out the new alarm TEMP
+      const {
+        destinationLoc,
+        timeToGetReady,
+        arrivalTime,
+      } = resp.value;
+      dispatch(alarmCalculateTime(
+        destinationLoc,
+        timeToGetReady,
+        arrivalTime,
+      ));
     })
-    .catch(error => console.log(error));
+    .catch(error => console.log(error)); // eslint-disable-line
 }
 
 /**

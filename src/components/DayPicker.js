@@ -9,17 +9,18 @@ import styled from 'styled-components';
 import { Colors } from '../constants';
 
 const Circle = styled.View`
-  width: 45px;
-  height: 50px;
+  width: 42px;
+  height: 48px;
   border-radius: 8px;
   justify-content: center;
   align-items: center;
-  margin: 5px;
+  margin: 2px;
 `;
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 22,
+    fontSize: 18,
+    fontWeight: 'bold',
   },
   container: {
     flex: 1,
@@ -121,8 +122,7 @@ class DayPicker extends PureComponent {
       saButton,
     } = this.state;
     return (
-      <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-
+      <View style={styles.container}>
         <TouchableOpacity onPress={() => this.updateOnPress('S')}>
           <Circle style={{
             backgroundColor: sButton === 'S'

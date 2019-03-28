@@ -10,14 +10,13 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Button, TextInput,
+  View, Text, Button, TextInput, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {
   DayPicker,
-  Autocomplete,
 } from '../components';
 import { userCreateAlarm } from '../store/actions/userActions';
 
@@ -30,10 +29,17 @@ class CreateAlarmScreen extends Component {
   constructor() {
     super();
     this.state = {
-      readyTime: 30,
-      arrivalTime: new Date(2019, 3, 26, 10, 0, 0),
+      readyTime: 31,
+      arrivalTime: new Date(2019, 3, 26, 10, 6, 16),
       workAddress: 'Middleton, WI',
     };
+  }
+
+  loader() {
+    const { loading } = this.props;
+    if (loading) {
+      return <ActivityIndicator color={Colors.primary} size="large" />;
+    } return null;
   }
 
   render() {
@@ -93,12 +99,13 @@ class CreateAlarmScreen extends Component {
           placeholderTextColor={Colors.darkGray}
         />
         <DayPicker />
+        {this.loader()}
         <Button
           title="Create Alarm"
           color={Colors.darkGray}
           onPress={() => createAlarm({
             uid,
-            arrivalTime,
+            arrivalTime: arrivalTime.getTime(),
             timeToGetReady: readyTime,
             destinationLoc: workAddress,
           })}
@@ -114,6 +121,9 @@ CreateAlarmScreen.propTypes = {
   }).isRequired,
   // Redux dispatch
   createAlarm: PropTypes.func.isRequired,
+  // Redux state
+  uid: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 /**
@@ -123,6 +133,7 @@ CreateAlarmScreen.propTypes = {
  */
 const mapStateToProps = state => ({
   uid: state.user.uid,
+  loading: state.user.loading,
 });
 
 /**

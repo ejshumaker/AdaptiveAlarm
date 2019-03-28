@@ -43,16 +43,31 @@ class HomeScreen extends Component {
     const {
       navigation, // from react-navigation
       signOut, // Redux actions
-      calculateTime,
       firstName, // Redux store
       lastName,
       userName,
       email,
+      alarms,
       alarmTime,
       errorMessage,
     } = this.props;
     const { navigate } = navigation;
 
+    // destructure alarms
+    const alarm = alarms.alarm1 || {};
+    const {
+      destinationLoc,
+      arrivalTime,
+      timeToGetReady,
+    } = alarm;
+
+    let arrivalTimeString;
+    if (arrivalTime) {
+      const date = new Date(arrivalTime);
+      arrivalTimeString = date.toLocaleTimeString();
+    } else {
+      arrivalTimeString = 'n/a';
+    }
     /**
      * There are way more 'magic' numbers in the styling
      * than should be preffered, just tossed them in to make it passable.
@@ -64,22 +79,6 @@ class HomeScreen extends Component {
       <View style={GlobalStyles.centerChildrenXY}>
         <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
         { this.loader() }
-        <View style={{
-          height: 80, margin: 8, width: '60%',
-        }}
-        >
-          <View style={{
-            flex: 1,
-            justifyContent: 'space-around',
-          }}
-          >
-            <Button
-              title="Async"
-              color={Colors.darkGray}
-              onPress={() => calculateTime(Date.now())}
-            />
-          </View>
-        </View>
         <View style={{
           textAlign: 'left',
           width: '60%',
@@ -99,6 +98,16 @@ class HomeScreen extends Component {
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Email Address</Text>
           <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
             {email}
+          </Text>
+          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Info</Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+            {destinationLoc}
+          </Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+            {arrivalTimeString}
+          </Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+            {timeToGetReady}
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Error Message</Text>
           <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
@@ -169,8 +178,8 @@ HomeScreen.propTypes = {
   errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   alarmTime: PropTypes.number.isRequired,
+  alarms: PropTypes.object, // eslint-disable-line
   // Redux dispatch
-  calculateTime: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
 };
 
@@ -180,6 +189,7 @@ HomeScreen.defaultProps = {
   userName: '',
   email: '',
   errorMessage: '',
+  alarms: {},
 };
 
 /**
@@ -195,6 +205,7 @@ const mapStateToProps = state => ({
   errorMessage: state.user.errorMessage,
   loading: state.user.loadingFetch,
   alarmTime: state.alarm.time,
+  alarms: state.user.alarms,
 });
 
 /**

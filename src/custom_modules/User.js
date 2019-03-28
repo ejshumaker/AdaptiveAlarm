@@ -4,7 +4,6 @@
  * state updates.
  */
 import { auth, database } from 'firebase';
-import Alarm from './Alarm';
 /**
  * Calculates alarm time from user entered information
  * stores data in firebase and resolves with data to be
@@ -19,27 +18,22 @@ function createAlarm(payload) {
     arrivalTime,
     timeToGetReady,
   } = payload;
-  let alarmTime;
 
   return new Promise((resolve, reject) => {
-    Alarm.getAlarmTime(
-      destinationLoc,
-      arrivalTime,
-      timeToGetReady,
-    )
-      .then((time) => {
-        alarmTime = time;
-        database().ref(`users/${uid}/alarms`)
-          .push({
-            destinationLoc,
-            arrivalTime,
-            timeToGetReady,
-            alarmTime,
-          });
+    const alarmKey = 'alarm1'; // uncomment below line for multiple alarms
+    // const alarmKey = database().ref(`users/${uid}/alarms`).push().key;
+    database().ref(`users/${uid}/alarms/${alarmKey}`)
+      .set({
+        destinationLoc,
+        arrivalTime,
+        timeToGetReady,
       })
       .then(() => {
         resolve({
-          destinationLoc, arrivalTime, timeToGetReady, alarmTime,
+          destinationLoc,
+          arrivalTime,
+          timeToGetReady,
+          key: alarmKey,
         });
       })
       .catch(error => reject(error));

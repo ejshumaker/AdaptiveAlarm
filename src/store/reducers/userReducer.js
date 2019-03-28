@@ -12,6 +12,9 @@ const initialUserState = {
   lastName: undefined,
   userName: undefined,
   email: undefined,
+  destinationLoc: undefined,
+  timeToGetReady: undefined,
+  arrivalTime: undefined,
   error: false,
   errorMessage: undefined, // overwrite with a message
   loading: false, // global loading flag
@@ -34,18 +37,13 @@ const userReducer = (state = initialUserState, action) => {
       };
       break;
     case 'USER_CREATE_ALARM_FULFILLED': {
-      const {
-        startLoc,
-        destinationLoc,
-        departureTime,
-        alarmTime,
-      } = action.payload;
+      // Push new alarm into alarms array
+      const { alarms } = state;
+      const { key } = action.payload;
+      alarms[key] = action.payload;
       state = {
         ...state,
-        startLoc,
-        destinationLoc,
-        departureTime,
-        alarmTime,
+        alarms,
         errorMessage: undefined,
         error: action.error,
         loading: false,
@@ -128,6 +126,7 @@ const userReducer = (state = initialUserState, action) => {
         userName,
         email,
         uid,
+        alarms,
       } = action.payload;
       state = {
         ...state,
@@ -136,6 +135,7 @@ const userReducer = (state = initialUserState, action) => {
         userName,
         email,
         uid,
+        alarms,
         loading: false,
         loadingFetch: false,
       };
