@@ -7,6 +7,7 @@ import AlarmScreen from '../screens/AlarmScreen';
 import MainScreen from '../screens/MainScreen';
 import DayPickerTestScreen from '../screens/DayPickerTestScreen';
 import AutocompleteScreen from '../screens/AutocompleteScreen';
+import AccountScreen from '../screens/AccountScreen';
 
 export default createStackNavigator(
   {
@@ -49,6 +50,19 @@ export default createStackNavigator(
       screen: DayPickerTestScreen,
       navigationOptions: () => ({
         title: 'DayPicker',
+        headerStyle: {
+          backgroundColor: Colors.darkGray,
+        },
+        headerTintColor: Colors.white,
+        headerTitleStyle: {
+          fontWeight: '100',
+        },
+      }),
+    },
+    Account: {
+      screen: AccountScreen,
+      navigationOptions: () => ({
+        title: 'Account',
         headerStyle: {
           backgroundColor: Colors.darkGray,
         },

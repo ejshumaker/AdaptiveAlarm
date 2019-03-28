@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Button, ActivityIndicator,
+  View, Text, Image, Button, StyleSheet, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -27,7 +27,7 @@ class AccountScreen extends Component {
   constructor() {
     super();
     this.state = {
-      title: 'Profile',
+      title: 'YOUR PROFILE:',
     };
   }
 
@@ -60,84 +60,166 @@ class AccountScreen extends Component {
      * @eschirtz 03-03-19
      */
     const dateFormat = new Date(alarmTime);
+    const styles = StyleSheet.create({
+      infoColumn: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+      },
+      dataColumn: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+      },
+      profileRow: {
+        flex: 8,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        marginBottom: 8,
+      },
+    });
+
     return (
-      <View style={GlobalStyles.centerChildrenXY}>
-        <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
-        { this.loader() }
-        <View style={{
-          height: 80, margin: 8, width: '60%',
-        }}
-        >
-          <View style={{
-            flex: 1,
-            justifyContent: 'space-around',
-          }}
+      <View style={[GlobalStyles.centerChildrenXY, { height: '90%', justifyContent: 'space-around' }]}>
+
+
+        {/* VIEW FOR TITLE ! "YOUR PROFILE" */}
+        <View style={{ marginTop: 40, marginBottom: 0, flex: 'auto' }}>
+          <Text style={[
+            GlobalStyles.h2,
+            { color: Colors.primary, marginTop: 0, marginBottom: 10 },
+          ]}
           >
-            <Button
-              title="Async"
-              color={Colors.darkGray}
-              onPress={() => calculateTime(Date.now())}
-            />
-          </View>
+            {title}
+          </Text>
         </View>
+        { /* END -- VIEW FOR TITLE */ }
+
+
+        {/* VIEW FOR IMAGE OF USER */}
         <View style={{
-          textAlign: 'left',
-          width: '60%',
-          margin: 16,
+          width: '80%',
+          margin: 10,
+          alignItems: 'center',
+          flex: 'auto',
+          justifyContent: 'flex',
         }}
         >
-          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Username</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
-            {userName}
-          </Text>
-          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Full Name</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+          {/* TODO: Replace with Icon ! */}
+          <Image
+            source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png' }}
+            style={{
+              width: 150, height: 150, borderRadius: 75, margin: 20,
+            }}
+          />
+          { /* LOADING ICON FUNCTION */ }
+          { this.loader() }
+
+          { /* DISPLAY USER'S NAME BELOW IMAGE */ }
+          <Text style={[GlobalStyles.h3, { color: Colors.primary }]}>
             {firstName}
             {' '}
             {lastName}
           </Text>
-          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Email Address</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
-            {email}
-          </Text>
-          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Error Message</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
-            {errorMessage}
-          </Text>
-          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Time</Text>
-          <Text style={[GlobalStyles.paragraph, {
-            color: Colors.primary,
-            marginBottom: 8,
+        </View>
+        {/* END -- VIEW FOR IMAGE OF USER */}
+
+        {/* VIEW FOR USER INFO */}
+        <View style={{
+          width: '95%',
+          margin: 0,
+          alignItems: 'center',
+          flex: 'auto',
+          justifyContent: 'space-around',
+          flexDirection: 'column',
+        }}
+        >
+          {/* VIEW FOR USER'S ROUTINE TIME */}
+          <View style={[styles.profileRow, {
+            width: '100%', display: 'flex', flex: 'auto', flexDirection: 'row', borderBottomWidth: 2, borderBottomColor: Colors.white, height: 32,
           }]}
           >
-            {dateFormat.toLocaleTimeString()}
-          </Text>
+
+            <View style={styles.infoColumn}>
+              <Text style={[GlobalStyles.paragraph, { fontSize: 16 }]}>Routine Time:</Text>
+            </View>
+
+            <View style={styles.dataColumn}>
+              <Text style={[
+                GlobalStyles.paragraph,
+                {
+                  color: Colors.primary,
+                  fontSize: 16,
+                },
+              ]}
+              >
+                {'45 minutes'}
+              </Text>
+            </View>
+          </View>
+          {/* END --  VIEW FOR USER'S ROUTINE TIME */}
+
+          {/* VIEW FOR USER'S HOME ADDRESS */}
+          <View style={[styles.profileRow, {
+            width: '100%', display: 'flex', flex: 'auto', flexDirection: 'row', borderBottomWidth: 2, borderBottomColor: Colors.white, height: 32,
+          }]}
+          >
+
+            <View style={styles.infoColumn}>
+              <Text style={[GlobalStyles.paragraph, { fontSize: 16 }]}>Current Address:</Text>
+            </View>
+
+            <View style={styles.dataColumn}>
+              <Text style={[
+                GlobalStyles.paragraph,
+                {
+                  color: Colors.primary,
+                  fontSize: 16,
+                },
+              ]}
+              >
+                {'210 Lakelawn Place, Madison, WI'}
+              </Text>
+            </View>
+
+          </View>
+          {/* END --  VIEW FOR USER'S HOME ADDRESS */}
+
+
+          {/* VIEW FOR USER'S WORK ADDRESS */}
+          <View style={[styles.profileRow, {
+            width: '100%', display: 'flex', flex: 'auto', flexDirection: 'row', borderBottomWidth: 2, borderBottomColor: Colors.white, height: 32,
+          }]}
+          >
+            <View style={styles.infoColumn}>
+              <Text style={[GlobalStyles.paragraph, { fontSize: 16 }]}>Work Address:</Text>
+            </View>
+            <View style={styles.dataColumn}>
+              <Text style={[
+                GlobalStyles.paragraph,
+                {
+                  color: Colors.primary,
+                  fontSize: 16,
+                },
+              ]}
+              >
+                {'1308 W Dayton St, Madison, WI'}
+              </Text>
+            </View>
+          </View>
         </View>
-        <Button
-          title="Styles"
-          color={Colors.darkGray}
-          onPress={() => navigate('StyleDemo')}
-        />
-        {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
-        <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="Alarm"
-          color={Colors.darkGray}
-          onPress={() => navigate('Alarm')}
-        />
-        {/* Temporary button to navigate to AutoComplete, TODO: Remove */}
-        <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="AutoComplete"
-          color={Colors.darkGray}
-          onPress={() => navigate('AutoComplete')}
-        />
-        <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="Sign Out"
-          color={Colors.darkGray}
-          onPress={signOut}
-        />
+
+
+        <View style={[styles.profileRow, {
+          width: '80%', display: 'flex', flex: 'auto', flexDirection: 'column', justifyContent: 'space-around', height: 80,
+        }]}
+        >
+          <Button
+            title="Sign Out"
+            color={Colors.darkGray}
+            onPress={signOut}
+          />
+        </View>
+
+
       </View>
     );
   }
