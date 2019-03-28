@@ -1,4 +1,4 @@
-import getAlarmTime from '../../custom_modules/Alarm';
+import { getAlarmTime } from '../../custom_modules/Alarm';
 
 /**
   * Calculates the alarm time using the google maps api and input from
@@ -12,7 +12,7 @@ export function alarmCalculateTime() {
 
   return {
     type: 'ALARM_CALCULATE_TIME',
-    payload: getAlarmTime('Middleton, WI', new Date(2019, 2, 26, 10, 0, 0), 30),
+    payload: getAlarmTime('Middleton, WI', new Date(2019, 3, 26, 10, 0, 0), 30),
   };
 }
 

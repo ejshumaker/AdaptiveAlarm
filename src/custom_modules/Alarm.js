@@ -49,7 +49,7 @@ async function getCurrentLocation() {
             .then((location) => {
               const lat = location.coords.latitude;
               const lng = location.coords.longitude;
-              console.log(`{lat: ${lat}, lng: ${lng}}`);
+              // console.log(`{lat: ${lat}, lng: ${lng}}`);
               resolve(`${lat}, ${lng}`);
             });
         }
@@ -59,34 +59,46 @@ async function getCurrentLocation() {
 
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-export default async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
+async function getAlarmTimeFromLocation(startLoc, destinationLoc, arrivalTime, timeToGetReady) {
   const loops = 4;
+  return new Promise((resolve) => {
+    getRouteTime(startLoc, destinationLoc, arrivalTime.getTime())
+      .then(async (re) => {
+        let duration = re;
+        let departureTime = arrivalTime.getTime();
+        let i = 0;
+        while (Math.abs(departureTime + (duration * 60000)
+  - arrivalTime.getTime()) > 6 * 60 * 1000 && i < loops) {
+          departureTime = arrivalTime - Math.floor(duration * 60000);
+          await getRouteTime(startLoc, destinationLoc, departureTime)
+            .then((resp) => {
+              duration = resp;
+            });
+          i += 1;
+        }
+        console.log(departureTime - timeToGetReady * 60000);
+        resolve(departureTime - timeToGetReady * 60000);
+      });
+  });
+}
+
+
+async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
   return new Promise((resolve) => {
     getCurrentLocation()
       .then((response) => {
         const startLoc = response;
-
-        getRouteTime(startLoc, destinationLoc, arrivalTime.getTime())
-          .then(async (re) => {
-            let duration = re;
-            let departureTime = arrivalTime.getTime();
-            let i = 0;
-            console.log(duration);
-            while (Math.abs(departureTime + (duration * 60000)
-        - arrivalTime.getTime()) > 6 * 60 * 1000 && i < loops) {
-              departureTime = arrivalTime - Math.floor(duration * 60000);
-              await getRouteTime(startLoc, destinationLoc, departureTime)
-                .then((resp) => {
-                  duration = resp;
-                  console.log(duration);
-                });
-              i += 1;
-            }
-            resolve(departureTime - timeToGetReady*60000);
+        getAlarmTimeFromLocation(startLoc, destinationLoc, arrivalTime, timeToGetReady)
+          .then((resp) => {
+            resolve(resp);
           });
       });
   });
 }
+
+export {
+  getRouteTime, getCurrentLocation, getAlarmTime, getAlarmTimeFromLocation,
+};
 /**
   * Get User's current location from Google Maps API. Better to use Expo.
   */

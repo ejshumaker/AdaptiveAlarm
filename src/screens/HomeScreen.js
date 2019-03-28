@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 
 import { userSignOut } from '../store/actions/userActions';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
+import alarmCalculationTests from '../tests/alarmCalculationTests';
 
 import {
   Colors,
@@ -77,6 +78,11 @@ class HomeScreen extends Component {
               title="Async"
               color={Colors.darkGray}
               onPress={() => calculateTime(Date.now())}
+            />
+            <Button
+              title="Run Alarm Calculation Tests"
+              color={Colors.darkGray}
+              onPress={() => alarmCalculationTests()}
             />
           </View>
         </View>

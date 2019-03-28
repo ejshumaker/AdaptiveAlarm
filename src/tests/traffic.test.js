@@ -1,4 +1,12 @@
 /* eslint-disable no-undef */
+import { getAlarmTimeFromLocation } from '../custom_modules/Alarm';
+
+
+test('time to Middleton and from Madison', () => expect(
+  getAlarmTimeFromLocation('Madison, WI', 'Middleton, WI', new Date(2019, 3, 26, 10, 0, 0), 30),
+).resolves.toEqual(1585232127000));
+
+/* eslint-disable no-undef */
 /* import getRouteTime from '../custom_modules/getRouteTime';
 
 test('time to and from the same location', () => expect(getRouteTime('Boston
@@ -14,10 +22,8 @@ test('time to and from different locations', () => {
 test('time to location and from current location', () => {
   expect(trafficTime(1,2)).toBe(3);
 });
-*/
-import React from 'react';
-import HomeScreen from '../screens/HomeScreen';
 
+/*
 let obj;
 let fn;
 describe('Travel Time tests', () => {
@@ -35,3 +41,4 @@ describe('Travel Time tests', () => {
     expect(fn).toHaveBeenCalledWith([61606]);
   });
 });
+*/
