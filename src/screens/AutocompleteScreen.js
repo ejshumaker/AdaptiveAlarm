@@ -11,6 +11,7 @@ import { GlobalStyles } from '../constants';
 
 import Autocomplete from '../components/Autocomplete';
 
+// eslint-disable-next-line
 export default class AutocompleteScreen extends Component {
 
   render() {
