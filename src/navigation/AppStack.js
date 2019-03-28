@@ -37,13 +37,13 @@ export default createStackNavigator(
         header: null,
       }),
     },
+<<<<<<< HEAD
     Main: {
       screen: MainScreen,
       navigationOptions: () => ({
         title: 'Main',
         header: null,
-      }),
-    },
+=======
     AutoComplete: {
       screen: AutocompleteScreen,
       navigationOptions: () => ({
@@ -55,6 +55,7 @@ export default createStackNavigator(
         headerTitleStyle: {
           fontWeight: '100',
         },
+>>>>>>> dev
       }),
     },
   },
