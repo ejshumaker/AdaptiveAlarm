@@ -84,10 +84,11 @@ class CreateAlarmScreen extends Component {
         <TextInput
           style={GlobalStyles.input}
           returnKeyType="next"
+          keyboardType="numeric"
           ref={(input) => { this.readyTimeInput = input; }}
           onSubmitEditing={() => this.arrivalTimeInput.focus()}
           onChangeText={text => this.setState({ readyTime: text })}
-          placeholder="30"
+          placeholder="(30)"
           placeholderTextColor={Colors.darkGray}
         />
         <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
