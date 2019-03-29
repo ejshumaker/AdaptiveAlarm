@@ -45,7 +45,7 @@ class LocationItem extends PureComponent {
         <View
           style={{
             flexDirection: 'row',
-            width: 272,
+            width: '100%',
             borderTopWidth: 0.5,
             borderTopColor: Colors.darkGray,
           }}

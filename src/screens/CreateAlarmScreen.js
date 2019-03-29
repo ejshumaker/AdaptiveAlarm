@@ -125,7 +125,7 @@ class CreateAlarmScreen extends Component {
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
         <Autocomplete onDestChange={this.onDestChange} />
-        <Text style={GlobalStyles.subtitle}>Routine Time</Text>
+        <Text style={[GlobalStyles.subtitle]}>Routine Time</Text>
         <TextInput
           style={GlobalStyles.input}
           returnKeyType="next"

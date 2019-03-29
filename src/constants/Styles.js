@@ -93,7 +93,7 @@ export default StyleSheet.create({
   searchSuggestions: {
     color: Colors.darkGray,
     fontSize: 14,
-    width: 235,
+    width: '90%',
     height: 55,
     padding: 10,
     paddingRight: 15,

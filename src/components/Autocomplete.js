@@ -73,13 +73,18 @@ class Autocomplete extends Component {
           clearSearchs,
         }) => (
           <Fragment>
-            <View style={GlobalStyles.centerChildrenXY}>
+            <View style={[GlobalStyles.centerChildrenXY, {
+              flex: 1, zIndex: 4, justifyContent: 'flex-start',
+            }]}
+            >
               <View
                 style={{
                   flexDirection: 'row',
+                  justifyContent: 'space-between',
                   width: '100%',
                   backgroundColor: Colors.darkGray,
                   borderRadius: 8,
+                  marginVertical: 8,
                 }}
               >
                 <SearchIcon style={{ marginLeft: 13, marginTop: 8 }} />
@@ -94,7 +99,7 @@ class Autocomplete extends Component {
                   placeholderTextColor={Colors.white}
                 />
                 <CloseIcon
-                  style={{ marginTop: 8 }}
+                  style={{ marginTop: 8, marginRight: 13 }}
                   onPress={() => {
                     this.updateDest('autoCompleteValue', null);
                     handleTextChange('');
@@ -111,6 +116,7 @@ class Autocomplete extends Component {
                   width: '100%',
                   borderBottomLeftRadius: 8,
                   borderBottomRightRadius: 8,
+                  zIndex: 4,
                   marginTop: -4.5,
                 }}
               >
@@ -118,7 +124,7 @@ class Autocomplete extends Component {
 
 
                   <LocationItem
-                    style={GlobalStyles.searchSuggestions}
+                    style={[GlobalStyles.searchSuggestions, { zIndex: 4 }]}
                     {...el}
                     fetchDetails={fetchDetails}
                     updateDest={this.updateDest}
