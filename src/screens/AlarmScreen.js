@@ -52,4 +52,5 @@ AlarmScreen.propTypes = {
   turnAlarmOff: PropTypes.func.isRequired,
 };
 
+export { AlarmScreen };
 export default connect(null, mapDispatchToProps)(AlarmScreen);
