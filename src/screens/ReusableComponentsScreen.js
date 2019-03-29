@@ -118,7 +118,7 @@ const Circle = styled.View`
   width: 35px;
   height: 40px;
   border-radius: 8px;
-  background-color: #505050;
+  background-color: #aaaaaa;
   justify-content: center;
   align-items: center;
   margin: 5px;

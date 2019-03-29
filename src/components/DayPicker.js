@@ -21,7 +21,7 @@ class DayPicker extends PureComponent {
   }
 
   static propTypes = {
-    description: PropTypes.string.isRequired
+    description: PropTypes.string
   };
 
   updateOnPress(type) {
@@ -88,7 +88,17 @@ class DayPicker extends PureComponent {
                 this.state.sButton === "S" ? Colors.primary : Colors.darkGray
             }}
           >
-            <Text style={styles.text}>S</Text>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    this.state.sButton === "S" ? Colors.black : Colors.white
+                }
+              ]}
+            >
+              S
+            </Text>
           </Circle>
         </TouchableOpacity>
 
@@ -99,7 +109,17 @@ class DayPicker extends PureComponent {
                 this.state.mButton === "M" ? Colors.primary : Colors.darkGray
             }}
           >
-            <Text style={styles.text}>M</Text>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    this.state.mButton === "M" ? Colors.black : Colors.white
+                }
+              ]}
+            >
+              M
+            </Text>
           </Circle>
         </TouchableOpacity>
 
@@ -110,7 +130,17 @@ class DayPicker extends PureComponent {
                 this.state.tButton === "T" ? Colors.primary : Colors.darkGray
             }}
           >
-            <Text style={styles.text}>T</Text>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    this.state.tButton === "T" ? Colors.black : Colors.white
+                }
+              ]}
+            >
+              T
+            </Text>
           </Circle>
         </TouchableOpacity>
 
@@ -121,7 +151,17 @@ class DayPicker extends PureComponent {
                 this.state.wButton === "W" ? Colors.primary : Colors.darkGray
             }}
           >
-            <Text style={styles.text}>W</Text>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    this.state.wButton === "W" ? Colors.black : Colors.white
+                }
+              ]}
+            >
+              W
+            </Text>
           </Circle>
         </TouchableOpacity>
 
@@ -132,7 +172,17 @@ class DayPicker extends PureComponent {
                 this.state.thButton === "Th" ? Colors.primary : Colors.darkGray
             }}
           >
-            <Text style={styles.text}>Th</Text>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    this.state.thButton === "Th" ? Colors.black : Colors.white
+                }
+              ]}
+            >
+              Th
+            </Text>
           </Circle>
         </TouchableOpacity>
 
@@ -143,7 +193,17 @@ class DayPicker extends PureComponent {
                 this.state.fButton === "F" ? Colors.primary : Colors.darkGray
             }}
           >
-            <Text style={styles.text}>F</Text>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    this.state.fButton === "F" ? Colors.black : Colors.white
+                }
+              ]}
+            >
+              F
+            </Text>
           </Circle>
         </TouchableOpacity>
 
@@ -154,7 +214,17 @@ class DayPicker extends PureComponent {
                 this.state.saButton === "Sa" ? Colors.primary : Colors.darkGray
             }}
           >
-            <Text style={styles.text}>Sa</Text>
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    this.state.saButton === "Sa" ? Colors.black : Colors.white
+                }
+              ]}
+            >
+              Sa
+            </Text>
           </Circle>
         </TouchableOpacity>
       </View>
@@ -174,7 +244,6 @@ const Circle = styled.View`
 const styles = StyleSheet.create({
   text: {
     fontSize: 14,
-    color: Colors.black,
     fontWeight: "bold"
   },
   container: {
