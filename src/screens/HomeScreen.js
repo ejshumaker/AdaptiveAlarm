@@ -17,7 +17,6 @@ import PropTypes from 'prop-types';
 
 import { userSignOut } from '../store/actions/userActions';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
-import alarmCalculationTests from '../tests/alarmCalculationTests';
 
 import { Colors, GlobalStyles } from '../constants';
 
