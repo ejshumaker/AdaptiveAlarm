@@ -7,7 +7,7 @@ import Alarm from '../../custom_modules/Alarm';
   * then subtracts the time to get ready.
   * @tsteiner4 3-9-2019
   */
-export function alarmCalculateTime(destinationLoc, timeToGetReady, arrivalTime) {
+export function alarmCalculateTime(destinationLoc, timeToGetReady, arrivalTime, navigate) {
   return dispatch => dispatch({
     type: 'ALARM_SET_TIME',
     payload: Alarm.getAlarmTime(
@@ -15,14 +15,14 @@ export function alarmCalculateTime(destinationLoc, timeToGetReady, arrivalTime) 
       timeToGetReady,
       arrivalTime,
     ),
-  });
-}
-
-export function alarmFoo(bar) {
-  return {
-    type: 'ALARM_FOO',
-    payload: bar,
-  };
+  })
+    .then((resp) => {
+      Alarm.armAlarm(resp.value, navigate);
+      dispatch({
+        type: 'ALARM_SET_ACTIVE_STATUS',
+        payload: true,
+      });
+    });
 }
 
 // TODO: Turn off the alarm and navigate home

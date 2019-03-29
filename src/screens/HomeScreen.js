@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 
 import { userSignOut } from '../store/actions/userActions';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
+import Alarm from '../custom_modules/Alarm';
 
 import { Colors, GlobalStyles } from '../constants';
 
@@ -144,51 +145,40 @@ class HomeScreen extends Component {
             {alarmCalculating ? 'Calculating...' : dateFormat.toLocaleTimeString()}
           </Text>
         </View>
-        <Button
-          title="Create New Alarm"
-          color={Colors.darkGray}
-          onPress={() => navigate('CreateAlarm')}
-        />
-        {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
-        <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="Alarm"
-          color={Colors.darkGray}
-          onPress={() => navigate('Alarm')}
-        />
-        {/* Temporary button to navigate to DayPicker, TODO: Remove */}
-        <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="DayPicker"
-          color={Colors.darkGray}
-          onPress={() => navigate('DayPicker')}
-        />
-        {/* Temporary button to navigate to AutoComplete, TODO: Remove */}
-        <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="AutoComplete"
-          color={Colors.darkGray}
-          onPress={() => navigate('AutoComplete')}
-        />
-        {/* Temporary button to navigate to Account Screen, TODO: Remove */}
-        <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="Account"
-          color={Colors.darkGray}
-          onPress={() => navigate('Account')}
-        />
-        <View style={{ height: 8, width: 8 }} />
         {/* Temporary button to navigate to MainScreen (true home screen) TODO: Remove */}
         <Button
           title="True Home Screen"
           color={Colors.darkGray}
           onPress={() => navigate('Main')}
         />
-        <View style={{ height: 8, width: 8 }} />
+        {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
         <Button
-          title="Reusable Components"
+          title="Alarm"
           color={Colors.darkGray}
-          onPress={() => navigate('ReusableComponents')}
+          onPress={() => navigate('Alarm')}
+        />
+        {/* Temporary button to navigate to DayPicker, TODO: Remove */}
+        <Button
+          title="DayPicker"
+          color={Colors.darkGray}
+          onPress={() => navigate('DayPicker')}
+        />
+        {/* Temporary button to navigate to AutoComplete, TODO: Remove */}
+        <Button
+          title="AutoComplete"
+          color={Colors.darkGray}
+          onPress={() => navigate('AutoComplete')}
+        />
+        {/* Temporary button to navigate to Account Screen, TODO: Remove */}
+        <Button
+          title="Account"
+          color={Colors.darkGray}
+          onPress={() => navigate('Account')}
+        />
+        <Button
+          title="Arm Alarm"
+          color={Colors.darkGray}
+          onPress={() => Alarm.armAlarm(this.props.navigation.navigate)}
         />
         <View style={{ height: 8, width: 8 }} />
         <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />

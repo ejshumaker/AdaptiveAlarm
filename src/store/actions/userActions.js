@@ -12,47 +12,79 @@ import { alarmCalculateTime } from './alarmActions';
  * @param  {[Object]} payload
  */
 export function userCreateAlarm(payload) {
+  const {
+    destinationLoc,
+    timeToGetReady,
+    arrivalTime,
+    navigate,
+  } = payload;
   return dispatch => dispatch({
     type: 'USER_CREATE_ALARM',
-    payload: User.createAlarm(payload),
+    payload: User.createAlarm({
+      destinationLoc,
+      timeToGetReady,
+      arrivalTime,
+    }),
   })
-    .then((resp) => {
-      // pull out the new alarm TEMP
-      const {
-        destinationLoc,
-        timeToGetReady,
-        arrivalTime,
-      } = resp.value;
+    .then(() => {
       dispatch(alarmCalculateTime(
         destinationLoc,
         timeToGetReady,
         arrivalTime,
+        navigate, // pass along the navigation
       ));
+      if (navigate) navigate('Main');
     })
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
 /**
+ * Deletes alarm from firebase
+ */
+export function userDeleteAlarm(alarmId, uid) {
+  return (dispatch) => {
+    dispatch({
+      type: 'USER_DELETE_ALARM',
+      payload: User.deleteAlarm(alarmId, uid),
+    })
+      .then(() => {
+        dispatch({
+          type: 'ALARM_SET_ACTIVE_STATUS',
+          payload: false,
+        });
+      });
+  };
+}
+/**
  * Fetches the user's data from Firebase
  * and updates the store to reflect
  * @param  {Number} uid
  */
-export function userFetch(uid) {
+export function userFetch(uid, navigate) {
   return dispatch => dispatch({
     type: 'USER_FETCH',
     payload: User.fetch(uid),
   })
     .then((resp) => {
-      const {
-        destinationLoc,
-        timeToGetReady,
-        arrivalTime,
-      } = resp.value.alarms.alarm1; // alarm1 is temporary!!!
-      dispatch(alarmCalculateTime(
-        destinationLoc,
-        timeToGetReady,
-        arrivalTime,
-      ));
+      const { alarms } = resp.value;
+      if (alarms && alarms.alarm1) {
+        const {
+          destinationLoc,
+          timeToGetReady,
+          arrivalTime,
+        } = resp.value.alarms.alarm1; // "alarm1" is temporary!!!
+        dispatch(alarmCalculateTime(
+          destinationLoc,
+          timeToGetReady,
+          arrivalTime,
+          navigate,
+        ));
+      } else {
+        dispatch({
+          type: 'ALARM_SET_ACTIVE_STATUS',
+          payload: false,
+        });
+      }
     });
 }
 

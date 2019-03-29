@@ -3,7 +3,7 @@
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import MainScreen from '../screens/MainScreen';
+import { MainScreen } from '../screens/MainScreen';
 
 Enzyme.configure({ adapter: new Adapter() });
 

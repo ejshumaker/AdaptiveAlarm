@@ -16,16 +16,26 @@ class LocationItem extends PureComponent {
   static propTypes = {
     description: PropTypes.string.isRequired,
     fetchDetails: PropTypes.func.isRequired,
+    updateDest: PropTypes.func.isRequired,
+    resetSearch: PropTypes.func.isRequired,
     place_id: PropTypes.string.isRequired,
+    onAutoCompleteInput: PropTypes.func.isRequired,
   };
 
   handlePress = async () => {
-    const { fetchDetails, place_id } = this.props;
+    const {
+      fetchDetails, place_id, updateDest, resetSearch, onAutoCompleteInput,
+    } = this.props;
     Keyboard.dismiss();
     const res = await fetchDetails(place_id);
     const { lat } = res.geometry.location;
     const { lng } = res.geometry.location;
-    console.log(`lat: ${lat} lng: ${lng}`);
+    const formattedAddress = res.formatted_address;
+    onAutoCompleteInput(formattedAddress);
+    updateDest('destination', formattedAddress);
+    updateDest('lat', lat);
+    updateDest('lng', lng);
+    resetSearch();
   };
 
   render() {

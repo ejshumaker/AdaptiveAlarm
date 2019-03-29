@@ -12,6 +12,7 @@ const initialUserState = {
   lastName: undefined,
   userName: undefined,
   email: undefined,
+  alarms: undefined,
   destinationLoc: undefined,
   timeToGetReady: undefined,
   arrivalTime: undefined,
@@ -38,7 +39,10 @@ const userReducer = (state = initialUserState, action) => {
       break;
     case 'USER_CREATE_ALARM_FULFILLED': {
       // Push new alarm into alarms array
-      const { alarms } = state;
+      let { alarms } = state;
+      if (alarms === undefined) {
+        alarms = {}; // create an empty object
+      }
       const { key } = action.payload;
       alarms[key] = action.payload;
       state = {
