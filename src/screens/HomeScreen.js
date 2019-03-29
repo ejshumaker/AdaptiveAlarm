@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Button, ActivityIndicator,
+  View, Text, Button, ActivityIndicator, StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -18,10 +18,7 @@ import PropTypes from 'prop-types';
 import { userSignOut } from '../store/actions/userActions';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
 
-import {
-  Colors,
-  GlobalStyles,
-} from '../constants';
+import { Colors, GlobalStyles } from '../constants';
 
 class HomeScreen extends Component {
   constructor() {
@@ -35,7 +32,8 @@ class HomeScreen extends Component {
     const { loading } = this.props;
     if (loading) {
       return <ActivityIndicator color={Colors.primary} size="large" />;
-    } return null;
+    }
+    return null;
   }
 
   render() {
@@ -78,26 +76,45 @@ class HomeScreen extends Component {
     const dateFormat = new Date(alarmTime);
     return (
       <View style={GlobalStyles.centerChildrenXY}>
+        <StatusBar barStyle="light-content" />
         <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
-        { this.loader() }
-        <View style={{
-          textAlign: 'left',
-          width: '60%',
-          margin: 16,
-        }}
+        {this.loader()}
+        <View
+          style={{
+            textAlign: 'left',
+            width: '60%',
+            margin: 16,
+          }}
         >
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Username</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              { color: Colors.primary, marginBottom: 8 },
+            ]}
+          >
             {userName}
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Full Name</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              { color: Colors.primary, marginBottom: 8 },
+            ]}
+          >
             {firstName}
             {' '}
             {lastName}
           </Text>
-          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Email Address</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>
+            Email Address
+          </Text>
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              { color: Colors.primary, marginBottom: 8 },
+            ]}
+          >
             {email}
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Info</Text>
@@ -115,10 +132,14 @@ class HomeScreen extends Component {
             {errorMessage}
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Time</Text>
-          <Text style={[GlobalStyles.paragraph, {
-            color: Colors.primary,
-            marginBottom: 8,
-          }]}
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              {
+                color: Colors.primary,
+                marginBottom: 8,
+              },
+            ]}
           >
             {alarmCalculating ? 'Calculating...' : dateFormat.toLocaleTimeString()}
           </Text>
@@ -165,10 +186,12 @@ class HomeScreen extends Component {
         />
         <View style={{ height: 8, width: 8 }} />
         <Button
-          title="Sign Out"
+          title="Reusable Components"
           color={Colors.darkGray}
-          onPress={signOut}
+          onPress={() => navigate('ReusableComponents')}
         />
+        <View style={{ height: 8, width: 8 }} />
+        <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
       </View>
     );
   }
@@ -225,8 +248,15 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
-  signOut: () => { dispatch(userSignOut()); },
-  calculateTime: (time) => { dispatch(alarmCalculateTime(time)); },
+  signOut: () => {
+    dispatch(userSignOut());
+  },
+  calculateTime: (time) => {
+    dispatch(alarmCalculateTime(time));
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen);

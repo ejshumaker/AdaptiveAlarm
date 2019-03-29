@@ -53,7 +53,6 @@ export default createStackNavigator(
       navigationOptions: () => ({
         title: 'Main',
         header: null,
-
       }),
     },
     DayPicker: {
