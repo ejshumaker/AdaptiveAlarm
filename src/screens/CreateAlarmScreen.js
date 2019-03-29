@@ -10,8 +10,9 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, TextInput, ActivityIndicator,
+  View, Text, TextInput, ActivityIndicator, Alert,
 } from 'react-native';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -32,10 +33,42 @@ class CreateAlarmScreen extends Component {
   constructor() {
     super();
     this.state = {
-      readyTime: 0,
-      arrivalTime: new Date(),
+      readyTime: undefined,
+      arrivalTime: undefined,
       workAddress: '1001 W Dayton Street, Madison WI',
     };
+  }
+
+  onCreate() {
+    const { createAlarm, navigation } = this.props;
+    const { navigate } = navigation;
+    const { arrivalTime, readyTime, workAddress } = this.state;
+    // validate and format
+    if (!readyTime || !arrivalTime || !workAddress) {
+      Alert.alert('Please make sure you have filled out all fields');
+      return;
+    }
+    if (!Number(readyTime)) {
+      Alert.alert('Time to get ready must be a number!');
+      return;
+    }
+    console.log(moment('8:00', 'LT'));
+    try {
+      const momentString = moment(arrivalTime, 'LT');
+      const date = new Date(momentString);
+      if (isNaN(date.getTime())) {
+        Alert.alert('Please double check your time of arrival');
+        return;
+      }
+      createAlarm({
+        arrivalTime: date.getTime(),
+        timeToGetReady: readyTime,
+        destinationLoc: workAddress,
+        navigate,
+      });
+    } catch (error) {
+      Alert.alert(error);
+    }
   }
 
   loader() {
@@ -109,12 +142,7 @@ class CreateAlarmScreen extends Component {
             title="Create Alarm"
             backgroundColor={Colors.primary}
             textColor={Colors.black}
-            onPress={() => createAlarm({
-              arrivalTime: arrivalTime.getTime(),
-              timeToGetReady: readyTime,
-              destinationLoc: workAddress,
-              navigate,
-            })}
+            onPress={() => { this.onCreate(); }}
           />
         </View>
       </View>
