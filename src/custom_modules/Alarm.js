@@ -1,4 +1,8 @@
 import { Location, Permissions } from 'expo';
+import store from '../store';
+import navigation from 'react-navigation';
+
+
 /**
   * Uses Google Maps API to get the duration in traffic from startLoc to
   * destinationLoc.
@@ -59,7 +63,7 @@ async function getCurrentLocation() {
 
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-export default async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
+async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
   const loops = 4;
   return new Promise((resolve) => {
     getCurrentLocation()
@@ -113,3 +117,14 @@ async function getCurrentLocation() {
   });
 }
 */
+
+triggerNavigate = async(navigate) => {
+  navigate('Alarm');
+}
+export async function armAlarm (navigate) {
+  const date = new Date();
+  var current = date.getTime();
+  var dumbAlarm = current + 5000;
+  var difference = dumbAlarm - current;
+  setTimeout(() => triggerNavigate(navigate), difference);
+}

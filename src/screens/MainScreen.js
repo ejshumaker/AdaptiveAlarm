@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import moment from 'moment';
 import AnalogClock from '../components/AnalogClock';
+import {armAlarm} from '../custom_modules/Alarm';
+import PropTypes from 'prop-types';
 
 import { GlobalStyles, Colors } from '../constants';
 
@@ -25,6 +27,8 @@ class MainScreen extends Component {
 
   render() {
     const { predictedTimeHour, predictedTimeMin, predictedTimeMeridiem } = this.state;
+    const { navigation } = this.props;
+    const { navigate } = navigation;
     return (
       <View style={[GlobalStyles.centerChildrenXY]}>
         <Text style={
@@ -65,11 +69,17 @@ class MainScreen extends Component {
         <Button
           title="Create Alarm"
           color={Colors.darkGray}
-          onPress={() => null}
+          onPress={() => armAlarm(navigate)}
         />
       </View>
     );
   }
 }
+
+MainScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default MainScreen;
