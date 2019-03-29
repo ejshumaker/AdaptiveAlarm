@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Audio } from 'expo';
@@ -8,6 +8,7 @@ import { alarmOff } from '../store/actions/alarmActions';
 
 import { GlobalStyles, Colors } from '../constants';
 
+import { Buttons } from '../components';
 import { RightIcon } from '../icons/right';
 
 class AlarmScreen extends Component {
@@ -70,7 +71,6 @@ class AlarmScreen extends Component {
 
   playSound = async () => {
     if (this.sound != null) {
-      console.log(this.sound);
       await this.sound.playAsync();
     }
   }
@@ -78,7 +78,7 @@ class AlarmScreen extends Component {
 
   stopSound = async (navigate) => {
     await this.sound.stopAsync();
-    navigate('Home');
+    navigate('Main');
   }
 
   render() {
@@ -98,9 +98,10 @@ class AlarmScreen extends Component {
             {time}
           </Text>
           <View style={{ height: 8, width: 8 }} />
-          <Button
-            title="Turn Off Alarm"
-            color={Colors.darkGray}
+          <Buttons
+            title="STOP"
+            backgroundColor={Colors.darkGray}
+            textColor={Colors.white}
             onPress={() => this.stopSound(navigate)}
           />
         </View>
@@ -111,7 +112,7 @@ class AlarmScreen extends Component {
 
 const mapDispatchToProps = dispatch => ({
   turnAlarmOff: (navigate) => {
-    dispatch(alarmOff(navigate('Home')));
+    dispatch(alarmOff(navigate('Main')));
   },
 });
 

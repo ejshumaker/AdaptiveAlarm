@@ -1,5 +1,6 @@
 import { Location, Permissions } from 'expo';
 
+const MILS_PER_HOUR = 3600000;
 /**
   * Uses Google Maps API to get the duration in traffic from startLoc to
   * destinationLoc.
@@ -89,32 +90,6 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
       });
   });
 }
-/**
-  * Get User's current location from Google Maps API. Better to use Expo.
-  */
-/* eslint-disable no-unused-vars */
-/*
-async function getCurrentLocation() {
-  const API_KEY = 'AIzaSyDMsg5GK6Bv8UJF8tMkWI81XoYDZ9vy7R8';
-  const url = `https://www.googleapis.com/geolocation/v1/geolocate?key=${API_KEY}`;
-  console.log('here');
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(response => response.json())
-      .then((json) => {
-        if (json.status !== 'OK') {
-          const errorMessage = json.error_message || 'Unknown error';
-          reject(errorMessage);
-        }
-        console.log(json.location);
-        const { lat } = json.location;
-        const { lng } = json.location;
-        console.log(`lat: ${lat} long: ${lng}`);
-        resolve(`{lat: ${lat}, lng: ${lng}}`);
-      });
-  });
-}
-*/
 
 function triggerNavigate(navigate) {
   navigate('Alarm');
@@ -125,7 +100,7 @@ async function armAlarm(alarmTime, navigate) {
   let difference = alarmTime - current;
   console.log(difference);
   if (difference < 0) difference = 0;
-  console.log(`${difference / (3600000)} Hours`);
+  console.log(`${difference / (MILS_PER_HOUR)} Hours`);
   setTimeout(() => triggerNavigate(navigate), difference);
 }
 

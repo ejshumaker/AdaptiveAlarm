@@ -33,6 +33,7 @@ export function userCreateAlarm(payload) {
         arrivalTime,
         navigate, // pass along the navigation
       ));
+      if (navigate) navigate('Main');
     })
     .catch(error => console.log(error)); // eslint-disable-line
 }

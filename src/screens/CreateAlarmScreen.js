@@ -95,11 +95,12 @@ class CreateAlarmScreen extends Component {
           style={GlobalStyles.input}
           returnKeyType="next"
           ref={(input) => { this.arrivalTimeInput = input; }}
-          onSubmitEditing={() => this.workAddressInput.focus()}
+          onSubmitEditing={() => null}
           onChangeText={text => this.setState({ arrivalTime: text })}
-          placeholder="8:00"
+          placeholder="(8:00 AM)"
           placeholderTextColor={Colors.darkGray}
         />
+        <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
         <DayPicker />
         {this.loader()}
         <View style={{ alignItems: 'center' }}>
@@ -108,7 +109,7 @@ class CreateAlarmScreen extends Component {
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => createAlarm({
-              arrivalTime: arrivalTime.getTime() + 60000,
+              arrivalTime: arrivalTime.getTime(),
               timeToGetReady: readyTime,
               destinationLoc: workAddress,
               navigate,

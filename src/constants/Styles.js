@@ -76,7 +76,7 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: Colors.primary,
     color: Colors.white,
-    marginVertical: 10,
+    marginBottom: 24,
   },
   destinationInput: {
     borderRadius: 8,

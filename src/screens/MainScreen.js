@@ -11,7 +11,6 @@ import { GlobalStyles, Colors } from '../constants';
 
 import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
-import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
   hasAlarmView() {
@@ -34,7 +33,6 @@ class MainScreen extends Component {
         </Text>
         <Text
           style={[
-            GlobalStyles.margin,
             { alignItems: 'center', color: Colors.white, fontSize: 70 },
           ]}
         >
@@ -58,7 +56,7 @@ class MainScreen extends Component {
     return (
       <View>
         <Text style={
-          [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary, marginVertical: 40 }]
+          [GlobalStyles.h2, { color: Colors.primary, marginVertical: 48 }]
         }
         >
           {'NO ALARM SET'}
@@ -71,7 +69,7 @@ class MainScreen extends Component {
     // eslint-disable-next-line no-unused-vars
     const self = this;
     return (
-      <View>
+      <View style={{ marginVertical: 48 }}>
         <AnalogClock
           minuteHandLength={105}
           minuteHandColor={Colors.white}
@@ -81,7 +79,6 @@ class MainScreen extends Component {
           hourHandCurved={false}
           hourHandWidth={6}
         />
-        <View style={{ height: 32, width: 8 }} />
       </View>
     );
   }
