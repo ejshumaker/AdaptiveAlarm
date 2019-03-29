@@ -13,6 +13,7 @@ class MainScreen extends Component {
       predictedTimeMin: moment().format('mm'),
       predictedTimeMeridiem: moment().format('a'),
     };
+    this.hasAlarmView = this.hasAlarmView.bind(this);
   }
 
   componentDidMount() {
@@ -23,13 +24,13 @@ class MainScreen extends Component {
     });
   }
 
-  render() {
+  hasAlarmView() {
     const { predictedTimeHour, predictedTimeMin, predictedTimeMeridiem } = this.state;
     return (
-      <View style={[GlobalStyles.centerChildrenXY]}>
+      <View>
         <Text style={
-            [GlobalStyles.h1, GlobalStyles.margin, { color: Colors.primary, fontSize: 30 }]
-          }
+          [GlobalStyles.h1, GlobalStyles.margin, { color: Colors.primary, fontSize: 30 }]
+        }
         >
           { 'PREDICTED:' }
         </Text>
@@ -44,6 +45,30 @@ class MainScreen extends Component {
             { predictedTimeMeridiem.toUpperCase() }
           </Text>
         </Text>
+      </View>
+    );
+  }
+
+  hasNoAlarmView() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
+        <Text style={
+          [GlobalStyles.h1, GlobalStyles.margin, { color: Colors.primary, fontSize: 30 }]
+        }
+        >
+          { 'No Alarm Found!' }
+        </Text>
+      </View>
+    );
+  }
+
+  clockView() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
         <AnalogClock
           minuteHandLength={110}
           minuteHandColor={Colors.white}
@@ -56,6 +81,15 @@ class MainScreen extends Component {
           clockCentreColor={Colors.white}
         />
         <View style={{ height: 32, width: 8 }} />
+      </View>
+    );
+  }
+
+  hasAlarmButtons() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
         <Button
           title="Delete Alarm"
           color={Colors.darkGray}
@@ -69,6 +103,40 @@ class MainScreen extends Component {
         />
       </View>
     );
+  }
+
+  hasNoAlarmButtons() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
+        <Button
+          title="Create Alarm"
+          color={Colors.darkGray}
+          onPress={() => null}
+        />
+      </View>
+    );
+  }
+
+  render() {
+    if (true) {
+      return (
+        <View style={[GlobalStyles.centerChildrenXY]}>
+          { this.hasAlarmView() }
+          { this.clockView() }
+          { this.hasAlarmButtons() }
+        </View>
+      );
+    } else {
+      return (
+        <View style={[GlobalStyles.centerChildrenXY]}>
+          { this.hasNoAlarmView() }
+          { this.clockView() }
+          { this.hasNoAlarmButtons() }
+        </View>
+      );
+    }
   }
 }
 
