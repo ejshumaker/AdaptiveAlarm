@@ -1,26 +1,26 @@
-import React, { Component } from "react";
-import { View, Text } from "react-native";
-import moment from "moment";
-import AnalogClock from "../components/AnalogClock";
-import Buttons from "../components/Buttons";
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+import moment from 'moment';
+import AnalogClock from '../components/AnalogClock';
+import Buttons from '../components/Buttons';
 
-import { GlobalStyles, Colors } from "../constants";
+import { GlobalStyles, Colors } from '../constants';
 
 class MainScreen extends Component {
   constructor() {
     super();
     this.state = {
-      predictedTimeHour: moment().format("hh"),
-      predictedTimeMin: moment().format("mm"),
-      predictedTimeMeridiem: moment().format("a")
+      predictedTimeHour: moment().format('hh'),
+      predictedTimeMin: moment().format('mm'),
+      predictedTimeMeridiem: moment().format('a'),
     };
   }
 
   componentDidMount() {
     this.setState({
-      predictedTimeHour: moment().format("hh"),
-      predictedTimeMin: moment().format("mm"),
-      predictedTimeMeridiem: moment().format("a")
+      predictedTimeHour: moment().format('hh'),
+      predictedTimeMin: moment().format('mm'),
+      predictedTimeMeridiem: moment().format('a'),
     });
   }
 
@@ -28,7 +28,7 @@ class MainScreen extends Component {
     const {
       predictedTimeHour,
       predictedTimeMin,
-      predictedTimeMeridiem
+      predictedTimeMeridiem,
     } = this.state;
     return (
       <View style={[GlobalStyles.centerChildrenXY]}>
@@ -36,24 +36,24 @@ class MainScreen extends Component {
           style={[
             GlobalStyles.h1,
             GlobalStyles.margin,
-            { color: Colors.primary, fontSize: 30 }
+            { color: Colors.primary, fontSize: 30 },
           ]}
         >
-          {"PREDICTED:"}
+          {'PREDICTED:'}
         </Text>
         <Text
           style={[
             GlobalStyles.margin,
-            { alignItems: "center", color: Colors.white, fontSize: 70 }
+            { alignItems: 'center', color: Colors.white, fontSize: 70 },
           ]}
         >
-          <Text style={[{ fontWeight: "bold" }]}>
+          <Text style={[{ fontWeight: 'bold' }]}>
             {predictedTimeHour}
-            {":"}
+            {':'}
             {predictedTimeMin}
           </Text>
           <Text style={[{ fontSize: 40 }]}>
-            {" "}
+            {' '}
             {predictedTimeMeridiem.toUpperCase()}
           </Text>
         </Text>
@@ -65,8 +65,8 @@ class MainScreen extends Component {
           hourHandColor={Colors.primary}
           hourHandCurved={false}
           hourHandWidth={4}
-          //clockBorderColor={Colors.white}
-          //clockCentreColor={Colors.white}
+          // clockBorderColor={Colors.white}
+          // clockCentreColor={Colors.white}
         />
         <View style={{ height: 50, width: 8 }} />
         <Buttons
