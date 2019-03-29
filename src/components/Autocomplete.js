@@ -15,6 +15,7 @@ import { GoogleAutoComplete } from 'react-native-google-autocomplete';
 import LocationItem from './LocationItem';
 import { GlobalStyles, Colors } from '../constants';
 import { SearchIcon } from '../icons/search';
+import { CloseIcon } from '../icons/close';
 
 const googleStamp = require('../assets/powered_by_google_on_non_white.png');
 
@@ -23,14 +24,20 @@ const API_KEY = 'AIzaSyBpwrz2oV29sjAAKj2l6BIb6l5luzDIsIw';
 class Autocomplete extends Component {
   constructor() {
     super();
+    // Below is disabled because state is altered within location item.
     this.state = {
-      destination: '',
-      lat: '',
-      lng: '',
+      destination: '', // eslint-disable-line react/no-unused-state
+      lat: '', // eslint-disable-line react/no-unused-state
+      lng: '', // eslint-disable-line react/no-unused-state
+      autoCompleteValue: '',
     };
     this.updateDest = this.updateDest.bind(this);
   }
 
+
+  onAutoCompleteInput = (autoCompleteValue) => {
+    this.setState({ autoCompleteValue });
+  };
 
   updateDest(key, value) {
     this.setState({
@@ -40,6 +47,7 @@ class Autocomplete extends Component {
 
 
   render() {
+    const { autoCompleteValue } = this.state;
     return (
       <GoogleAutoComplete
         apiKey={API_KEY}
@@ -69,10 +77,22 @@ class Autocomplete extends Component {
                 <SearchIcon style={{ marginLeft: 13, marginTop: 8 }} />
                 <TextInput
                   style={GlobalStyles.destinationInput}
-                  value={this.state.destination || inputValue}
-                  onChangeText={handleTextChange}
+                  value={autoCompleteValue || inputValue}
+                  onChangeText={(text) => {
+                    this.updateDest('autoCompleteValue', text);
+                    handleTextChange(text);
+                  }}
                   placeholder="Enter Destination"
                   placeholderTextColor={Colors.white}
+                />
+                <CloseIcon
+                  style={{ marginRight: 13, marginTop: 8 }}
+                  onPress={() => {
+                    this.updateDest('autoCompleteValue', null);
+                    handleTextChange('');
+                    clearSearchs();
+                  }}
+
                 />
               </View>
               {isSearching && (
@@ -95,6 +115,7 @@ class Autocomplete extends Component {
                     {...el}
                     fetchDetails={fetchDetails}
                     updateDest={this.updateDest}
+                    onAutoCompleteInput={this.onAutoCompleteInput}
                     resetSearch={clearSearchs}
                     key={String(i)}
                   />
