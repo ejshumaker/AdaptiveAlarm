@@ -84,7 +84,6 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
                 });
               i += 1;
             }
-            console.log(departureTime);
             resolve(departureTime - timeToGetReady * 60000);
           });
       });
@@ -117,15 +116,16 @@ async function getCurrentLocation() {
 }
 */
 
-const triggerNavigate = async (navigate) => {
+function triggerNavigate(navigate) {
   navigate('Alarm');
-};
-async function armAlarm(navigate) {
-  console.log(navigate);
+}
+async function armAlarm(alarmTime, navigate) {
   const date = new Date();
-  const current = date.getTime();
-  const dumbAlarm = current + 5000;
-  const difference = dumbAlarm - current;
+  const current = date.getTime(); // get current time
+  let difference = alarmTime - current;
+  console.log(difference);
+  if (difference < 0) difference = 0;
+  console.log(`${difference / (3600000)} Hours`);
   setTimeout(() => triggerNavigate(navigate), difference);
 }
 
