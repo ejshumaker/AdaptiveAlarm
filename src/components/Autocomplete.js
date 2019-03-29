@@ -6,15 +6,19 @@
  * @weinoh 03-26-2019
  */
 
-import React, { Fragment } from "react";
-import { TextInput, ActivityIndicator, View, Image } from "react-native";
+import React, { Fragment } from 'react';
+import {
+  TextInput, ActivityIndicator, View, Image,
+} from 'react-native';
 // import PropTypes from 'prop-types';
-import { GoogleAutoComplete } from "react-native-google-autocomplete";
-import LocationItem from "./LocationItem";
-import { GlobalStyles, Colors } from "../constants";
-import { SearchIcon } from "../icons/search";
+import { GoogleAutoComplete } from 'react-native-google-autocomplete';
+import LocationItem from './LocationItem';
+import { GlobalStyles, Colors } from '../constants';
+import { SearchIcon } from '../icons/search';
 
-const API_KEY = "AIzaSyBpwrz2oV29sjAAKj2l6BIb6l5luzDIsIw";
+const googleStamp = require('../assets/powered_by_google_on_non_white.png');
+
+const API_KEY = 'AIzaSyBpwrz2oV29sjAAKj2l6BIb6l5luzDIsIw';
 
 const Autocomplete = () => (
   <GoogleAutoComplete
@@ -29,16 +33,16 @@ const Autocomplete = () => (
       handleTextChange,
       locationResults,
       fetchDetails,
-      isSearching
+      isSearching,
     }) => (
       <Fragment>
         <View style={GlobalStyles.centerChildrenXY}>
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: 'row',
               width: 272,
               backgroundColor: Colors.darkGray,
-              borderRadius: 8
+              borderRadius: 8,
             }}
           >
             <SearchIcon style={{ marginLeft: 13, marginTop: 8 }} />
@@ -59,7 +63,7 @@ const Autocomplete = () => (
               width: 272,
               borderBottomLeftRadius: 8,
               borderBottomRightRadius: 8,
-              marginTop: -4.5
+              marginTop: -4.5,
             }}
           >
             {locationResults.map((el, i) => (
@@ -73,7 +77,7 @@ const Autocomplete = () => (
           </View>
           <Image
             style={{ marginTop: 20 }}
-            source={require("../assets/powered_by_google_on_non_white.png")}
+            source={googleStamp}
           />
         </View>
       </Fragment>
@@ -82,5 +86,3 @@ const Autocomplete = () => (
 );
 
 export default Autocomplete;
-
-// TODO: Edit prop types???

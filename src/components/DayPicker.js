@@ -1,8 +1,22 @@
-import React, { PureComponent } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { GlobalStyles, Colors } from "../constants";
+import React, { PureComponent } from 'react';
+import {
+  View, Text, TouchableOpacity, StyleSheet,
+} from 'react-native';
+import styled from 'styled-components';
+import { Colors } from '../constants';
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+});
 
 class DayPicker extends PureComponent {
   // possibly create getters to return the state of each day button using refs
@@ -15,77 +29,92 @@ class DayPicker extends PureComponent {
       wButton: null,
       thButton: null,
       fButton: null,
-      saButton: null
+      saButton: null,
     };
     this.updateOnPress = this.updateOnPress.bind(this);
   }
 
-  static propTypes = {
-    description: PropTypes.string
-  };
-
   updateOnPress(type) {
+    const {
+      sButton,
+      mButton,
+      tButton,
+      wButton,
+      thButton,
+      fButton,
+      saButton,
+    } = this.state;
     switch (type) {
-      case "S":
-        if (this.state.sButton === "S") {
-          this.setState({ sButton: "default" });
+      case 'S':
+        if (sButton === 'S') {
+          this.setState({ sButton: 'default' });
         } else {
           this.setState({ sButton: type });
         }
         break;
-      case "M":
-        if (this.state.mButton === "M") {
-          this.setState({ mButton: "default" });
+      case 'M':
+        if (mButton === 'M') {
+          this.setState({ mButton: 'default' });
         } else {
           this.setState({ mButton: type });
         }
         break;
-      case "T":
-        if (this.state.tButton === "T") {
-          this.setState({ tButton: "default" });
+      case 'T':
+        if (tButton === 'T') {
+          this.setState({ tButton: 'default' });
         } else {
           this.setState({ tButton: type });
         }
         break;
-      case "W":
-        if (this.state.wButton === "W") {
-          this.setState({ wButton: "default" });
+      case 'W':
+        if (wButton === 'W') {
+          this.setState({ wButton: 'default' });
         } else {
           this.setState({ wButton: type });
         }
         break;
-      case "Th":
-        if (this.state.thButton === "Th") {
-          this.setState({ thButton: "default" });
+      case 'Th':
+        if (thButton === 'Th') {
+          this.setState({ thButton: 'default' });
         } else {
           this.setState({ thButton: type });
         }
         break;
-      case "F":
-        if (this.state.fButton === "F") {
-          this.setState({ fButton: "default" });
+      case 'F':
+        if (fButton === 'F') {
+          this.setState({ fButton: 'default' });
         } else {
           this.setState({ fButton: type });
         }
         break;
-      case "Sa":
-        if (this.state.saButton === "Sa") {
-          this.setState({ saButton: "default" });
+      case 'Sa':
+        if (saButton === 'Sa') {
+          this.setState({ saButton: 'default' });
         } else {
           this.setState({ saButton: type });
         }
         break;
+      default:
     }
   }
 
   render() {
+    const {
+      sButton,
+      mButton,
+      tButton,
+      wButton,
+      thButton,
+      fButton,
+      saButton,
+    } = this.state;
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => this.updateOnPress("S")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('S')}>
           <Circle
             style={{
               backgroundColor:
-                this.state.sButton === "S" ? Colors.primary : Colors.darkGray
+                sButton === 'S' ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
@@ -93,8 +122,8 @@ class DayPicker extends PureComponent {
                 styles.text,
                 {
                   color:
-                    this.state.sButton === "S" ? Colors.black : Colors.white
-                }
+                    sButton === 'S' ? Colors.black : Colors.white,
+                },
               ]}
             >
               S
@@ -102,11 +131,11 @@ class DayPicker extends PureComponent {
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("M")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('M')}>
           <Circle
             style={{
               backgroundColor:
-                this.state.mButton === "M" ? Colors.primary : Colors.darkGray
+                mButton === 'M' ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
@@ -114,8 +143,8 @@ class DayPicker extends PureComponent {
                 styles.text,
                 {
                   color:
-                    this.state.mButton === "M" ? Colors.black : Colors.white
-                }
+                    mButton === 'M' ? Colors.black : Colors.white,
+                },
               ]}
             >
               M
@@ -123,11 +152,11 @@ class DayPicker extends PureComponent {
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("T")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('T')}>
           <Circle
             style={{
               backgroundColor:
-                this.state.tButton === "T" ? Colors.primary : Colors.darkGray
+                tButton === 'T' ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
@@ -135,8 +164,8 @@ class DayPicker extends PureComponent {
                 styles.text,
                 {
                   color:
-                    this.state.tButton === "T" ? Colors.black : Colors.white
-                }
+                    tButton === 'T' ? Colors.black : Colors.white,
+                },
               ]}
             >
               T
@@ -144,11 +173,11 @@ class DayPicker extends PureComponent {
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("W")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('W')}>
           <Circle
             style={{
               backgroundColor:
-                this.state.wButton === "W" ? Colors.primary : Colors.darkGray
+                wButton === 'W' ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
@@ -156,8 +185,8 @@ class DayPicker extends PureComponent {
                 styles.text,
                 {
                   color:
-                    this.state.wButton === "W" ? Colors.black : Colors.white
-                }
+                    wButton === 'W' ? Colors.black : Colors.white,
+                },
               ]}
             >
               W
@@ -165,11 +194,11 @@ class DayPicker extends PureComponent {
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("Th")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('Th')}>
           <Circle
             style={{
               backgroundColor:
-                this.state.thButton === "Th" ? Colors.primary : Colors.darkGray
+                thButton === 'Th' ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
@@ -177,8 +206,8 @@ class DayPicker extends PureComponent {
                 styles.text,
                 {
                   color:
-                    this.state.thButton === "Th" ? Colors.black : Colors.white
-                }
+                    thButton === 'Th' ? Colors.black : Colors.white,
+                },
               ]}
             >
               Th
@@ -186,11 +215,11 @@ class DayPicker extends PureComponent {
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("F")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('F')}>
           <Circle
             style={{
               backgroundColor:
-                this.state.fButton === "F" ? Colors.primary : Colors.darkGray
+                fButton === 'F' ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
@@ -198,8 +227,8 @@ class DayPicker extends PureComponent {
                 styles.text,
                 {
                   color:
-                    this.state.fButton === "F" ? Colors.black : Colors.white
-                }
+                    fButton === 'F' ? Colors.black : Colors.white,
+                },
               ]}
             >
               F
@@ -207,11 +236,11 @@ class DayPicker extends PureComponent {
           </Circle>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => this.updateOnPress("Sa")}>
+        <TouchableOpacity onPress={() => this.updateOnPress('Sa')}>
           <Circle
             style={{
               backgroundColor:
-                this.state.saButton === "Sa" ? Colors.primary : Colors.darkGray
+                saButton === 'Sa' ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
@@ -219,8 +248,8 @@ class DayPicker extends PureComponent {
                 styles.text,
                 {
                   color:
-                    this.state.saButton === "Sa" ? Colors.black : Colors.white
-                }
+                    saButton === 'Sa' ? Colors.black : Colors.white,
+                },
               ]}
             >
               Sa
@@ -241,17 +270,5 @@ const Circle = styled.View`
   margin: 4px;
 `;
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 14,
-    fontWeight: "bold"
-  },
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row"
-  }
-});
 
 export default DayPicker;
