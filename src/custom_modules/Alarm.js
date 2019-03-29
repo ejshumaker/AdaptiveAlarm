@@ -59,57 +59,32 @@ async function getCurrentLocation() {
 
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-export default async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
+async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
   const loops = 4;
   return new Promise((resolve) => {
     getCurrentLocation()
       .then((response) => {
         const startLoc = response;
 
-        getRouteTime(startLoc, destinationLoc, arrivalTime.getTime())
+        getRouteTime(startLoc, destinationLoc, arrivalTime)
           .then(async (re) => {
             let duration = re;
-            let departureTime = arrivalTime.getTime();
+            let departureTime = arrivalTime;
             let i = 0;
-            console.log(duration);
             while (Math.abs(departureTime + (duration * 60000)
-        - arrivalTime.getTime()) > 6 * 60 * 1000 && i < loops) {
+        - arrivalTime) > 6 * 60 * 1000 && i < loops) {
               departureTime = arrivalTime - Math.floor(duration * 60000);
               await getRouteTime(startLoc, destinationLoc, departureTime)
                 .then((resp) => {
                   duration = resp;
-                  console.log(duration);
                 });
               i += 1;
             }
-            resolve(departureTime - timeToGetReady*60000);
+            console.log(departureTime);
+            resolve(departureTime - timeToGetReady * 60000);
           });
       });
   });
 }
-/**
-  * Get User's current location from Google Maps API. Better to use Expo.
-  */
-/* eslint-disable no-unused-vars */
-/*
-async function getCurrentLocation() {
-  const API_KEY = 'AIzaSyDMsg5GK6Bv8UJF8tMkWI81XoYDZ9vy7R8';
-  const url = `https://www.googleapis.com/geolocation/v1/geolocate?key=${API_KEY}`;
-  console.log('here');
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(response => response.json())
-      .then((json) => {
-        if (json.status !== 'OK') {
-          const errorMessage = json.error_message || 'Unknown error';
-          reject(errorMessage);
-        }
-        console.log(json.location);
-        const { lat } = json.location;
-        const { lng } = json.location;
-        console.log(`lat: ${lat} long: ${lng}`);
-        resolve(`{lat: ${lat}, lng: ${lng}}`);
-      });
-  });
-}
-*/
+
+export default { getAlarmTime };

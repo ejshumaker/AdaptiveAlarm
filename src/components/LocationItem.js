@@ -5,28 +5,36 @@
  */
 
 import React, { PureComponent } from 'react';
-import { View, Text, TouchableOpacity, Keyboard } from 'react-native';
+import {
+  Text,
+  TouchableOpacity,
+  Keyboard,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import { GlobalStyles } from '../constants';
 
 class LocationItem extends PureComponent {
   static propTypes = {
     description: PropTypes.string.isRequired,
+    fetchDetails: PropTypes.func.isRequired,
+    place_id: PropTypes.string.isRequired,
   }
 
   handlePress = async () => {
-    Keyboard.dismiss()
-    const res = await this.props.fetchDetails(this.props.place_id)
+    const { fetchDetails, place_id } = this.props;
+    Keyboard.dismiss();
+    const res = await fetchDetails(place_id);
     const { lat } = res.geometry.location;
     const { lng } = res.geometry.location;
     console.log(`lat: ${lat} lng: ${lng}`);
   };
 
   render() {
+    const { description } = this.props;
     return (
       <TouchableOpacity onPress={this.handlePress}>
         <Text style={GlobalStyles.searchSuggestions}>
-          { this.props.description }
+          { description }
         </Text>
       </TouchableOpacity>
     );
