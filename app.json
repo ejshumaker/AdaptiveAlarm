@@ -24,6 +24,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.eschirtz.adaptive_alarm"
     }
   }
 }
