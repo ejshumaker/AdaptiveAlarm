@@ -17,6 +17,7 @@ const alarmReducer = (state = initialAlarmState, action) => {
       state = {
         ...state,
         loading: true,
+        active: true, // for iteration 1 only!
       };
       break;
     case 'ALARM_SET_TIME_REJECTED':
@@ -31,6 +32,13 @@ const alarmReducer = (state = initialAlarmState, action) => {
         time: action.payload,
         loading: false,
       };
+      break;
+    case 'ALARM_SET_ACTIVE_STATUS':
+      state = {
+        ...state,
+        active: action.payload,
+      };
+      console.log(state);
       break;
     default:
   }

@@ -60,6 +60,9 @@ async function getCurrentLocation() {
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
 async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
+  console.log(destinationLoc);
+  console.log(timeToGetReady);
+  console.log(arrivalTime);
   const loops = 4;
   return new Promise((resolve) => {
     getCurrentLocation()

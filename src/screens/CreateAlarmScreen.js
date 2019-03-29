@@ -33,7 +33,7 @@ class CreateAlarmScreen extends Component {
     super();
     this.state = {
       readyTime: 31,
-      arrivalTime: new Date(2019, 3, 26, 10, 6, 16),
+      arrivalTime: new Date(2019, 3, 26, 11, 6, 16),
       workAddress: 'Middleton, WI',
     };
   }
@@ -49,8 +49,9 @@ class CreateAlarmScreen extends Component {
     const {
       uid,
       createAlarm,
-      navigation
+      navigation,
     } = this.props;
+    const { navigate } = navigation;
 
     const {
       readyTime,
@@ -60,9 +61,12 @@ class CreateAlarmScreen extends Component {
 
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
-        <CloseIcon style={{ marginLeft: -20, marginTop: 27 }} onPress={() => {
-          navigation.navigate("Main");
-        }} />
+        <CloseIcon
+          style={{ marginLeft: -20, marginTop: 27 }}
+          onPress={() => {
+            navigate('Main');
+          }}
+        />
         <Text
           style={[
             GlobalStyles.h2,
@@ -117,6 +121,7 @@ class CreateAlarmScreen extends Component {
               arrivalTime: arrivalTime.getTime(),
               timeToGetReady: readyTime,
               destinationLoc: workAddress,
+              navigate,
             })}
           />
         </View>

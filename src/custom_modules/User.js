@@ -13,11 +13,11 @@ import { auth, database } from 'firebase';
  */
 function createAlarm(payload) {
   const {
-    uid,
     destinationLoc,
     arrivalTime,
     timeToGetReady,
   } = payload;
+  const { uid } = auth().currentUser;
 
   return new Promise((resolve, reject) => {
     const alarmKey = 'alarm1'; // uncomment below line for multiple alarms
@@ -41,11 +41,30 @@ function createAlarm(payload) {
 }
 
 /**
+ * Deletes an alarm from firebase
+ * @param {[alarmId]}
+ */
+function deleteAlarm(alarmId = 'alarm1') {
+  const { uid } = auth().currentUser;
+  return new Promise((resolve, reject) => {
+    database().ref(`users/${uid}/alarms/${alarmId}`)
+      .remove()
+      .then(() => {
+        resolve(true);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
+/**
  * Fetches a users data from firebase database
  * @param  uid unique id as FB key
  * @return {[Promise]} wraps the Promise from Firebase
  */
-function fetch(uid) {
+function fetch() {
+  const { uid } = auth().currentUser;
   return new Promise((resolve, reject) => {
     database().ref(`users/${uid}`).once('value')
       .then(snap => resolve(snap.val()))
@@ -114,5 +133,5 @@ function signOut() {
 }
 
 export default {
-  signIn, createAccount, signOut, fetch, createAlarm,
+  signIn, createAccount, signOut, fetch, createAlarm, deleteAlarm,
 };

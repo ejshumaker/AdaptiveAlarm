@@ -89,7 +89,10 @@ class MainScreen extends Component {
   hasAlarmButtons() {
     // eslint-disable-next-line no-unused-vars
     const self = this;
-    const { deleteAlarm, navigation } = this.props;
+    const {
+      deleteAlarm,
+      navigation,
+    } = this.props;
     const { navigate } = navigation;
     return (
       <View>
@@ -212,7 +215,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteAlarm: () => { dispatch(userDeleteAlarm()); },
+  deleteAlarm: (alarmId) => { dispatch(userDeleteAlarm(alarmId)); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
