@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import AnalogClock from '../components/AnalogClock';
 import Buttons from '../components/Buttons';
-import PropTypes from "prop-types";
 
 import { GlobalStyles, Colors } from '../constants';
 
@@ -39,19 +39,31 @@ class MainScreen extends Component {
     return (
       <View>
         <View style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-        }}>
-          <MenuIcon style={{ marginRight: 130, marginTop: 75 }} onPress={() => {
-            navigation.navigate("Alarm");
-          }} />
-          <PersonIcon style={{ marginTop: 75 }} onPress={() => {
-            navigation.navigate("Account");
-          }} />
-          <AddIcon style={{ marginLeft: 130, marginTop: 75 }} onPress={() => {
-            navigation.navigate("CreateAlarm");
-          }} />
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginTop: 75,
+          paddingHorizontal: 28,
+        }}
+        >
+          <MenuIcon
+            style={{}}
+            onPress={() => {
+              navigation.navigate('Alarm');
+            }}
+          />
+          <PersonIcon
+            style={{ }}
+            onPress={() => {
+              navigation.navigate('Account');
+            }}
+          />
+          <AddIcon
+            style={{ }}
+            onPress={() => {
+              navigation.navigate('CreateAlarm');
+            }}
+          />
 
         </View>
 
@@ -59,7 +71,9 @@ class MainScreen extends Component {
           style={[
             GlobalStyles.h1,
             GlobalStyles.margin,
-            { color: Colors.primary, fontSize: 30, marginLeft: 52, marginTop: 30 },
+            {
+              color: Colors.primary, fontSize: 30, marginLeft: 52, marginTop: 30,
+            },
           ]}
         >
           {'PREDICTED:'}
@@ -105,10 +119,10 @@ class MainScreen extends Component {
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => {
-              navigation.navigate("Home");
+              navigation.navigate('Home');
             }}
           />
-        </View >
+        </View>
       </View>
     );
   }
