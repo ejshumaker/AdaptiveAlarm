@@ -8,7 +8,7 @@ import Buttons from '../components/Buttons';
 import { GlobalStyles, Colors } from '../constants';
 
 import { AddIcon } from '../icons/add';
-import { PersonIcon } from '../icons/person';
+import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
@@ -150,7 +150,7 @@ class MainScreen extends Component {
             navigation.navigate('Alarm');
           }}
         />
-        <PersonIcon
+        <UserIcon
           style={{ }}
           onPress={() => {
             navigation.navigate('Account');

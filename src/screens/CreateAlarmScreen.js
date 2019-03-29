@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Button, TextInput, ActivityIndicator,
+  View, Text, TextInput, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -26,6 +26,7 @@ import {
 } from '../constants';
 
 import { CloseIcon } from '../icons/close';
+import Buttons from '../components/Buttons';
 
 class CreateAlarmScreen extends Component {
   constructor() {
@@ -106,16 +107,19 @@ class CreateAlarmScreen extends Component {
         />
         <DayPicker />
         {this.loader()}
-        <Button
-          title="Create Alarm"
-          color={Colors.darkGray}
-          onPress={() => createAlarm({
-            uid,
-            arrivalTime: arrivalTime.getTime(),
-            timeToGetReady: readyTime,
-            destinationLoc: workAddress,
-          })}
-        />
+        <View style={{ alignItems: 'center' }}>
+          <Buttons
+            title="Create Alarm"
+            backgroundColor={Colors.primary}
+            textColor={Colors.black}
+            onPress={() => createAlarm({
+              uid,
+              arrivalTime: arrivalTime.getTime(),
+              timeToGetReady: readyTime,
+              destinationLoc: workAddress,
+            })}
+          />
+        </View>
       </View>
     );
   }
