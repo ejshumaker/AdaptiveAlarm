@@ -34,8 +34,19 @@ class CreateAlarmScreen extends Component {
     this.state = {
       readyTime: 0,
       arrivalTime: new Date(),
-      workAddress: '1001 W Dayton Street, Madison WI',
+      workAddress: '', // 1001 W Dayton Street, Madison WI
     };
+
+    this.onDestChange = this.onDestChange.bind(this);
+  }
+
+  onDestChange(key, value) {
+    console.log('-------- INSIDE ONCHANGE -----------');
+    console.log(key, value);
+    // parent class change handler is always called with field name and value
+    this.setState({
+      [key]: value,
+    });
   }
 
   loader() {
@@ -44,6 +55,7 @@ class CreateAlarmScreen extends Component {
       return <ActivityIndicator color={Colors.primary} size="large" />;
     } return null;
   }
+
 
   render() {
     const {
@@ -79,7 +91,7 @@ class CreateAlarmScreen extends Component {
           NEW ALARM:
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
-        <Autocomplete />
+        <Autocomplete onDestChange={this.onDestChange} />
         <Text style={GlobalStyles.subtitle}>Routine Time</Text>
         <TextInput
           style={GlobalStyles.input}
