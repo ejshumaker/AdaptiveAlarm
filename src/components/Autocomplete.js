@@ -48,8 +48,8 @@ const Autocomplete = () => (
           </View>
           <Image
             style={{ marginTop: 5 }}
-            // eslint-disable-next-line
-            source={require("../assets/powered_by_google_on_non_white.png")}
+            /* eslint-disable-next-line */
+            source={require('../assets/powered_by_google_on_non_white.png')}
           />
         </View>
       </Fragment>
