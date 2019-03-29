@@ -6,8 +6,8 @@
   * @weinoh 03-26-2019
 */
 
-import React, { Fragment } from 'react';
-import { TextInput, ScrollView } from 'react-native';
+import React, { Fragment, Component } from 'react';
+import { TextInput, View } from 'react-native';
 // import PropTypes from 'prop-types';
 import { GoogleAutoComplete } from 'react-native-google-autocomplete';
 import LocationItem from './LocationItem';
@@ -16,31 +16,45 @@ import { GlobalStyles } from '../constants';
 const API_KEY = 'AIzaSyBpwrz2oV29sjAAKj2l6BIb6l5luzDIsIw';
 
 
-const Autocomplete = () => (
-  <GoogleAutoComplete apiKey={API_KEY} debounce={500}>
-    {({
-      inputValue, handleTextChange, locationResults, fetchDetails,
-    }) => (
-      <Fragment>
-        <TextInput
-          style={GlobalStyles.destinationInput}
-          value={inputValue}
-          onChangeText={handleTextChange}
-          placeholder="Enter Destination"
-        />
-        <ScrollView style={{ maxHeight: 100 }}>
-          {locationResults.map((el, i) => (
-            <LocationItem
-              {...el}
-              fetchDetails={fetchDetails}
-              key={String(i)}
+class Autocomplete extends Component {
+  constructor() {
+    super();
+    this.state = {
+      destination: '',
+    };
+  }
+
+  render() {
+    return (
+      <GoogleAutoComplete
+        apiKey={API_KEY}
+        debounce={500}
+      >
+        {({
+          inputValue, handleTextChange, locationResults, fetchDetails,
+        }) => (
+          <Fragment>
+            <TextInput
+              style={GlobalStyles.destinationInput}
+              value={inputValue}
+              onChangeText={handleTextChange}
+              placeholder="Enter Destination"
             />
-          ))}
-        </ScrollView>
-      </Fragment>
-    )}
-  </GoogleAutoComplete>
-);
+            <View style={{ maxHeight: 100 }}>
+              {locationResults.map((el, i) => (
+                <LocationItem
+                  {...el}
+                  fetchDetails={fetchDetails}
+                  key={String(i)}
+                />
+              ))}
+            </View>
+          </Fragment>
+        )}
+      </GoogleAutoComplete>
+    );
+  }
+}
 
 export default Autocomplete;
 

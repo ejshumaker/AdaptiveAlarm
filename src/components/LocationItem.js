@@ -6,7 +6,7 @@
 
 
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { GlobalStyles } from '../constants';
 
@@ -15,13 +15,19 @@ class LocationItem extends PureComponent {
     description: PropTypes.string.isRequired,
   }
 
+
+  _handlePress = async () => {
+    const res = await this.props.fetchDetails(this.props.place_id);
+    console.log('res output:', JSON.stringify(res));
+  }
+
   render() {
     return (
-      <View>
+      <TouchableOpacity onPress={this._handlePress}>
         <Text style={GlobalStyles.searchSuggestions}>
           { this.props.description }
         </Text>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
