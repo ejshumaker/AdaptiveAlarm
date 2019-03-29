@@ -54,6 +54,7 @@ class HomeScreen extends Component {
     const { navigate } = navigation;
 
     // destructure alarms
+    console.log(alarms);
     const alarm = alarms.alarm1 || {};
     const {
       destinationLoc,

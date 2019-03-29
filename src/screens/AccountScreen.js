@@ -57,9 +57,17 @@ class AccountScreen extends Component {
       timeToGetReady,
     } = alarm;
 
+    const timeToGetReadyString = timeToGetReady
+      ? `${timeToGetReady} minutes`
+      : 'No routine set';
+
     const stringLength = 18;
-    const shortDestinationLoc = `${destinationLoc.substring(0, stringLength)}...`;
-    const workTime = moment(arrivalTime).format('hh:mm a');
+    const shortDestinationLoc = destinationLoc
+      ? `${destinationLoc.substring(0, stringLength)}...`
+      : 'No destination set';
+    const workTime = arrivalTime
+      ? moment(arrivalTime).format('hh:mm a')
+      : 'No time set';
 
 
     // STYLESHEET FOR USER PROFILE
@@ -181,7 +189,7 @@ class AccountScreen extends Component {
                   },
                 ]}
                 >
-                  {`${timeToGetReady} minutes`}
+                  {timeToGetReadyString}
                 </Text>
               </View>
             </View>
@@ -270,6 +278,7 @@ AccountScreen.propTypes = {
 AccountScreen.defaultProps = {
   firstName: '',
   lastName: '',
+  alarms: {},
 };
 
 /**
