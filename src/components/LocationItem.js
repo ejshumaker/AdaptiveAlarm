@@ -3,7 +3,7 @@
  * uses https://github.com/EQuimper/react-native-google-autocomplete
  * @weinoh 03-26-2019
  */
-
+/* eslint-disable camelcase */
 import React, { PureComponent } from 'react';
 import {
   View, Text, TouchableOpacity, Keyboard,
@@ -16,13 +16,13 @@ class LocationItem extends PureComponent {
   static propTypes = {
     description: PropTypes.string.isRequired,
     fetchDetails: PropTypes.func.isRequired,
-    placeId: PropTypes.string.isRequired,
+    place_id: PropTypes.string.isRequired,
   };
 
   handlePress = async () => {
-    const { fetchDetails, placeId } = this.props;
+    const { fetchDetails, place_id } = this.props;
     Keyboard.dismiss();
-    const res = await fetchDetails(placeId);
+    const res = await fetchDetails(place_id);
     const { lat } = res.geometry.location;
     const { lng } = res.geometry.location;
     console.log(`lat: ${lat} lng: ${lng}`);
