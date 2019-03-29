@@ -24,42 +24,57 @@ class Autocomplete extends Component {
     this.updateDest = this.updateDest.bind(this);
   }
 
-const Autocomplete = () => (
-  <GoogleAutoComplete apiKey={API_KEY} debounce={1000} radius="50000" minLength={3} queryTypes="establishment">
-    {({
-      inputValue, handleTextChange, locationResults, fetchDetails, isSearching,
-    }) => (
-      <Fragment>
-        <View style={GlobalStyles.centerChildrenXY}>
-          <TextInput
-            style={GlobalStyles.destinationInput}
-            value={inputValue}
-            onChangeText={handleTextChange}
-            placeholder="Enter Destination"
-            placeholderTextColor={Colors.white}
-          />
-          {isSearching && <ActivityIndicator size="large" color={Colors.primary} />}
-          <View>
-            {locationResults.map((el, i) => (
+
+  updateDest(key, value) {
+    this.setState({
+      [key]: value,
+    });
+    console.log('-----------------------');
+    console.log(this.state.destination);
+  }
 
 
-              <LocationItem
-                style={GlobalStyles.searchSuggestions}
-                {...el}
-                fetchDetails={fetchDetails}
-                key={String(i)}
+  render() {
+    return (
+      <GoogleAutoComplete apiKey={API_KEY} debounce={1000} radius="50000" minLength={3} queryTypes="establishment">
+        {({
+          inputValue, handleTextChange, locationResults, fetchDetails, isSearching, clearSearchs,
+        }) => (
+          <Fragment>
+            <View style={GlobalStyles.centerChildrenXY}>
+              <TextInput
+                style={GlobalStyles.destinationInput}
+                value={this.state.destination || inputValue}
+                onChangeText={handleTextChange}
+                placeholder="Enter Destination"
+                placeholderTextColor={Colors.white}
               />
-            ))}
-          </View>
-          <Image
-            style={{ marginTop: 5 }}
+              {isSearching && <ActivityIndicator size="large" color={Colors.primary} />}
+              <View>
+                {locationResults.map((el, i) => (
+
+
+                  <LocationItem
+                    style={GlobalStyles.searchSuggestions}
+                    {...el}
+                    fetchDetails={fetchDetails}
+                    updateDest={this.updateDest}
+                    resetSearch={clearSearchs}
+                    key={String(i)}
+                  />
+                ))}
+              </View>
+              <Image
+                style={{ marginTop: 5 }}
             /* eslint-disable-next-line */
             source={require('../assets/powered_by_google_on_non_white.png')}
-          />
-        </View>
-      </Fragment>
-    )}
-  </GoogleAutoComplete>
-);
+              />
+            </View>
+          </Fragment>
+        )}
+      </GoogleAutoComplete>
+    );
+  }
+}
 
 export default Autocomplete;

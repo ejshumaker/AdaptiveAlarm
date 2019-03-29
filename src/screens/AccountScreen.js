@@ -24,11 +24,7 @@ class AccountScreen extends Component {
   constructor() {
     super();
     this.state = {
-<<<<<<< HEAD
       title: 'PROFILE:',
-=======
-      title: 'YOUR PROFILE:',
->>>>>>> dev
     };
   }
 
@@ -60,11 +56,8 @@ class AccountScreen extends Component {
       titleView: {
         marginTop: 40,
         marginBottom: 10,
-<<<<<<< HEAD
         marginLeft: 0,
         // alignItems: 'center',
-=======
->>>>>>> dev
       },
       imageView: {
         width: '80%',
@@ -81,7 +74,6 @@ class AccountScreen extends Component {
       userinfopane: {
         width: '95%',
         alignItems: 'center',
-<<<<<<< HEAD
         justifyContent: 'space-evenly',
       },
       profileRow: {
@@ -105,28 +97,6 @@ class AccountScreen extends Component {
         flexDirection: 'column',
         justifyContent: 'flex-end',
         marginVertical: 6,
-=======
-        justifyContent: 'space-around',
-        flexDirection: 'column',
-      },
-      profileRow: {
-        flex: 8,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        borderBottomWidth: 2,
-        borderBottomColor: Colors.white,
-        marginBottom: 10,
-        height: 32,
-        width: '90%',
-      },
-      infoColumn: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-      },
-      dataColumn: {
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
->>>>>>> dev
       },
       signOutButton: {
         width: '80%',
@@ -137,7 +107,6 @@ class AccountScreen extends Component {
     });
 
     return (
-<<<<<<< HEAD
       <View style={[GlobalStyles.centerChildrenXY, { height: '85%', display: 'block', justifyContent: 'space-evenly' }]}>
 
 
@@ -149,16 +118,6 @@ class AccountScreen extends Component {
               color: Colors.primary,
               textAlign: 'left',
             },
-=======
-      <View style={[GlobalStyles.centerChildrenXY, { height: '85%', justifyContent: 'space-around' }]}>
-
-
-        {/* VIEW FOR TITLE ! "YOUR PROFILE" */}
-        <View style={[styles.titleView, { flex: 'auto' }]}>
-          <Text style={[
-            GlobalStyles.h2,
-            { color: Colors.primary },
->>>>>>> dev
           ]}
           >
             {title}
@@ -166,11 +125,7 @@ class AccountScreen extends Component {
 
 
           {/* VIEW FOR IMAGE OF USER */}
-<<<<<<< HEAD
           <View style={[styles.imageView]}>
-=======
-          <View style={[styles.imageView, { flex: 'auto' }]}>
->>>>>>> dev
 
 
             {/* TODO: Replace with Icon ! */}
@@ -182,11 +137,7 @@ class AccountScreen extends Component {
             { this.loader() }
 
             { /* DISPLAY USER'S NAME BELOW IMAGE */ }
-<<<<<<< HEAD
             <Text style={[GlobalStyles.h2, { color: Colors.white }]}>
-=======
-            <Text style={[GlobalStyles.h3, { color: Colors.primary }]}>
->>>>>>> dev
               {firstName}
               {' '}
               {lastName}
@@ -198,19 +149,11 @@ class AccountScreen extends Component {
         { /* END -- VIEW FOR TITLE */ }
 
         {/* VIEW FOR USER INFO */}
-<<<<<<< HEAD
         <View style={[styles.userinfopane]}>
 
 
           {/* VIEW FOR USER'S ROUTINE TIME */}
           <View style={[styles.profileRow]}>
-=======
-        <View style={[styles.userinfopane, { flex: 'auto' }]}>
-
-
-          {/* VIEW FOR USER'S ROUTINE TIME */}
-          <View style={[styles.profileRow, { flex: 'auto' }]}>
->>>>>>> dev
 
             <View style={styles.infoColumn}>
               <Text style={[GlobalStyles.paragraph]}>Routine Time</Text>
@@ -231,11 +174,7 @@ class AccountScreen extends Component {
           {/* END --  VIEW FOR USER'S ROUTINE TIME */}
 
           {/* VIEW FOR USER'S HOME ADDRESS */}
-<<<<<<< HEAD
           <View style={[styles.profileRow]}>
-=======
-          <View style={[styles.profileRow, { flex: 'auto' }]}>
->>>>>>> dev
 
             <View style={styles.infoColumn}>
               <Text style={[GlobalStyles.paragraph]}>Home</Text>
@@ -259,11 +198,7 @@ class AccountScreen extends Component {
 
 
           {/* VIEW FOR USER'S WORK ADDRESS */}
-<<<<<<< HEAD
           <View style={[styles.profileRow]}>
-=======
-          <View style={[styles.profileRow, { flex: 'auto' }]}>
->>>>>>> dev
 
             <View style={styles.infoColumn}>
               <Text style={[GlobalStyles.paragraph]}>Work</Text>
