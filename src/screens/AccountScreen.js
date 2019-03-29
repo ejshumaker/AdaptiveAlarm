@@ -21,7 +21,7 @@ import {
 } from '../constants';
 
 import { LeftIcon } from '../icons/left';
-import Buttons from "../components/Buttons";
+import Buttons from '../components/Buttons';
 
 // STYLESHEET FOR USER PROFILE
 const styles = StyleSheet.create({
@@ -104,12 +104,15 @@ class AccountScreen extends Component {
 
     return (
       <View style={[GlobalStyles.container, { height: '85%', justifyContent: 'space-around' }]}>
-        <LeftIcon style={{ marginLeft: 28, marginTop: 75 }} onPress={() => {
-          navigation.navigate("Main");
-        }} />
+        <LeftIcon
+          style={{ marginLeft: 28, marginTop: 75 }}
+          onPress={() => {
+            navigation.navigate('Main');
+          }}
+        />
 
         {/* VIEW FOR TITLE ! "YOUR PROFILE" */}
-        <View style={[styles.titleView, { flex: 1, alignItems: 'center', }]}>
+        <View style={[styles.titleView, { flex: 1, alignItems: 'center' }]}>
 
           <Text style={[
             GlobalStyles.h2,
