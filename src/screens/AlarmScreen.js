@@ -8,6 +8,8 @@ import { alarmOff } from '../store/actions/alarmActions';
 import { GlobalStyles, Colors } from '../constants';
 import { Audio } from 'expo'
 
+import { RightIcon } from '../icons/right';
+
 class AlarmScreen extends Component {
   constructor() {
     super();
@@ -57,22 +59,24 @@ class AlarmScreen extends Component {
     const { navigation, turnAlarmOff } = this.props;
     const { navigate } = navigation;
     return (
-      <View style={GlobalStyles.centerChildrenXY}>
-        <Text style={[GlobalStyles.h1, GlobalStyles.margin, { color: Colors.primary }]}>
-          { time }
-        </Text>
-        <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="Sound Alarm"
-          color ={Colors.darkGray}
-          onPress= {() => this.playSound()}
-        />
-        <Button
-          title="Turn Off Alarm"
-          color={Colors.darkGray}
-          onPress={() => turnAlarmOff(navigate)}
-        />
-      </View>
+      <View style={{ marginTop: 75 }}>
+        <View style={{ alignItems: 'flex-end', marginRight: 28 }}>
+          <RightIcon onPress={() => {
+            navigation.navigate("Main");
+          }} />
+        </View>
+        <View style={{ alignItems: 'center', marginTop: 200 }}>
+          <Text style={[GlobalStyles.h1, GlobalStyles.margin, { color: Colors.primary }]}>
+            {time}
+          </Text>
+          <View style={{ height: 8, width: 8 }} />
+          <Button
+            title="Turn Off Alarm"
+            color={Colors.darkGray}
+            onPress={() => turnAlarmOff(navigate)}
+          />
+        </View>
+      </View >
     );
   }
 }
