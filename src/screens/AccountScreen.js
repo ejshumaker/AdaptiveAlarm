@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import { userSignOut } from '../store/actions/userActions';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
@@ -45,7 +46,20 @@ class AccountScreen extends Component {
       signOut, // Redux actions
       firstName, // Redux store
       lastName,
+      alarms,
     } = this.props;
+
+    // destructure alarms
+    const alarm = alarms.alarm1 || {};
+    const {
+      destinationLoc,
+      arrivalTime,
+      timeToGetReady,
+    } = alarm;
+
+    const stringLength = 18;
+    const shortDestinationLoc = `${destinationLoc.substring(0, stringLength)}...`;
+    const workTime = moment(arrivalTime).format('hh:mm a');
 
 
     // STYLESHEET FOR USER PROFILE
@@ -167,7 +181,7 @@ class AccountScreen extends Component {
                   },
                 ]}
                 >
-                  {'45 minutes'}
+                  {`${timeToGetReady} minutes`}
                 </Text>
               </View>
             </View>
@@ -177,7 +191,7 @@ class AccountScreen extends Component {
             <View style={[styles.profileRow]}>
 
               <View style={styles.infoColumn}>
-                <Text style={[GlobalStyles.paragraph]}>Home</Text>
+                <Text style={[GlobalStyles.paragraph]}>Work Address</Text>
               </View>
 
               <View style={styles.dataColumn}>
@@ -188,8 +202,7 @@ class AccountScreen extends Component {
                   },
                 ]}
                 >
-                  {/* TODO: REPLACE WITH CURRENT LOCATION (ADDRESS) */}
-                  {'210 Lakelawn Place, Madison, WI'}
+                  {shortDestinationLoc}
                 </Text>
               </View>
 
@@ -201,7 +214,7 @@ class AccountScreen extends Component {
             <View style={[styles.profileRow]}>
 
               <View style={styles.infoColumn}>
-                <Text style={[GlobalStyles.paragraph]}>Work</Text>
+                <Text style={[GlobalStyles.paragraph]}>Work Time</Text>
               </View>
 
               <View style={styles.dataColumn}>
@@ -212,8 +225,7 @@ class AccountScreen extends Component {
                   },
                 ]}
                 >
-                  {/* TODO: REPLACE WITH ACTUAL DESTINATION INPUT */}
-                  {'1308 W Dayton St, Madison, WI'}
+                  {workTime}
                 </Text>
               </View>
             </View>
@@ -250,7 +262,8 @@ AccountScreen.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  // // Redux dispatch
+  alarms: PropTypes.object, // eslint-disable-line
+  // Redux dispatch
   signOut: PropTypes.func.isRequired,
 };
 
@@ -267,8 +280,8 @@ AccountScreen.defaultProps = {
 const mapStateToProps = state => ({
   firstName: state.user.firstName,
   lastName: state.user.lastName,
-  userName: state.user.userName,
   email: state.user.email,
+  alarms: state.user.alarms,
   errorMessage: state.user.errorMessage,
   loading: state.user.loadingFetch,
   alarmTime: state.alarm.time,
