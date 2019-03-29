@@ -4,6 +4,7 @@
  * @eschirtz 03-02-19
  */
 import User from '../../custom_modules/User';
+import Alarm from '../../custom_modules/Alarm';
 import { alarmCalculateTime } from './alarmActions';
 
 /**
@@ -59,7 +60,7 @@ export function userDeleteAlarm(alarmId, uid) {
  * and updates the store to reflect
  * @param  {Number} uid
  */
-export function userFetch(uid) {
+export function userFetch(uid, navigate) {
   return dispatch => dispatch({
     type: 'USER_FETCH',
     payload: User.fetch(uid),
@@ -83,6 +84,9 @@ export function userFetch(uid) {
           payload: false,
         });
       }
+    })
+    .then(() => {
+      Alarm.armAlarm(navigate);
     });
 }
 

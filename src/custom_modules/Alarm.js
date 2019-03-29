@@ -1,7 +1,4 @@
 import { Location, Permissions } from 'expo';
-import store from '../store';
-import navigation from 'react-navigation';
-
 
 /**
   * Uses Google Maps API to get the duration in traffic from startLoc to
@@ -120,15 +117,16 @@ async function getCurrentLocation() {
 }
 */
 
-triggerNavigate = async(navigate) => {
+const triggerNavigate = async (navigate) => {
   navigate('Alarm');
-}
-export async function armAlarm (navigate) {
+};
+async function armAlarm(navigate) {
+  console.log(navigate);
   const date = new Date();
-  var current = date.getTime();
-  var dumbAlarm = current + 5000;
-  var difference = dumbAlarm - current;
+  const current = date.getTime();
+  const dumbAlarm = current + 5000;
+  const difference = dumbAlarm - current;
   setTimeout(() => triggerNavigate(navigate), difference);
 }
 
-export default { getAlarmTime };
+export default { getAlarmTime, armAlarm };
