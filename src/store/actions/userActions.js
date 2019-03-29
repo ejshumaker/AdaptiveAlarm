@@ -33,6 +33,18 @@ export function userCreateAlarm(payload) {
 }
 
 /**
+ * Deletes alarm from firebase
+ */
+export function userDeleteAlarm(alarmId) {
+  return (dispatch) => {
+    console.log('deleting alarm');
+    dispatch({
+      type: 'USER_DELETE_ALARM',
+      payload: alarmId,
+    });
+  };
+}
+/**
  * Fetches the user's data from Firebase
  * and updates the store to reflect
  * @param  {Number} uid

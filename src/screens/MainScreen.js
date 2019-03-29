@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import AnalogClock from '../components/AnalogClock';
 
+import { userDeleteAlarm } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
 
 class MainScreen extends Component {
@@ -25,10 +28,19 @@ class MainScreen extends Component {
 
   render() {
     const { predictedTimeHour, predictedTimeMin, predictedTimeMeridiem } = this.state;
+    const {
+      // functions
+      navigate,
+      deleteAlarm,
+      // values
+      alarmTime,
+      alarmActive,
+      loading,
+    } = this.props;
     return (
       <View style={[GlobalStyles.centerChildrenXY]}>
         <Text style={
-            [GlobalStyles.h1, GlobalStyles.margin, { color: Colors.primary, fontSize: 30 }]
+            [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary }]
           }
         >
           { 'PREDICTED:' }
@@ -59,17 +71,43 @@ class MainScreen extends Component {
         <Button
           title="Delete Alarm"
           color={Colors.darkGray}
-          onPress={() => null}
+          onPress={() => deleteAlarm()}
         />
         <View style={{ height: 8, width: 8 }} />
         <Button
           title="Create Alarm"
           color={Colors.darkGray}
-          onPress={() => null}
+          onPress={() => navigate('CreateAlarm')}
         />
       </View>
     );
   }
 }
 
-export default MainScreen;
+MainScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  deleteAlarm: PropTypes.func.isRequired,
+  alarmTime: PropTypes.number,
+  alarmActive: PropTypes.bool,
+  loading: PropTypes.bool,
+};
+
+MainScreen.defaultProps = {
+  alarmTime: -1,
+  alarmActive: true,
+  loading: false,
+};
+
+const mapStateToProps = state => ({
+  alarmTime: state.alarm.time,
+  alarmActive: state.alarm.active,
+  loading: state.alarm.loading,
+});
+
+const mapDispatchToProps = dispatch => ({
+  deleteAlarm: () => { dispatch(userDeleteAlarm()); },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
