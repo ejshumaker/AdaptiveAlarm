@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import { GlobalStyles, Colors } from '../constants';
 
 import { AddIcon } from '../icons/add';
-import { PersonIcon } from '../icons/person';
+import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
@@ -41,15 +41,17 @@ class MainScreen extends Component {
         <View style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "center",
+          justifyContent: "space-between",
+          marginTop: 75,
+          paddingHorizontal: 28,
         }}>
-          <MenuIcon style={{ marginRight: 130, marginTop: 75 }} onPress={() => {
+          <MenuIcon onPress={() => {
             navigation.navigate("Alarm");
           }} />
-          <PersonIcon style={{ marginTop: 75 }} onPress={() => {
+          <UserIcon onPress={() => {
             navigation.navigate("Account");
           }} />
-          <AddIcon style={{ marginLeft: 130, marginTop: 75 }} onPress={() => {
+          <AddIcon onPress={() => {
             navigation.navigate("CreateAlarm");
           }} />
 
