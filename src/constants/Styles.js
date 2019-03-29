@@ -23,11 +23,15 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.backgroundColor,
     justifyContent: 'center',
+    height: '90%',
+    width: '100%',
   },
   centerChildrenXY: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    height: '90%',
+    width: '100%',
   },
   /* Text */
   h1: {
