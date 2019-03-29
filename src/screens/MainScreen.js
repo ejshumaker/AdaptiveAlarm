@@ -19,6 +19,7 @@ class MainScreen extends Component {
       predictedTimeMin: moment().format('mm'),
       predictedTimeMeridiem: moment().format('a'),
     };
+    this.hasAlarmView = this.hasAlarmView.bind(this);
   }
 
   componentDidMount() {
@@ -29,56 +30,17 @@ class MainScreen extends Component {
     });
   }
 
-  render() {
-    const { navigation } = this.props;
-    const {
-      predictedTimeHour,
-      predictedTimeMin,
-      predictedTimeMeridiem,
-    } = this.state;
+  hasAlarmView() {
+    const { predictedTimeHour, predictedTimeMin, predictedTimeMeridiem } = this.state;
     return (
       <View>
-        <View style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: 75,
-          paddingHorizontal: 28,
-        }}
-        >
-          <MenuIcon
-            style={{}}
-            onPress={() => {
-              navigation.navigate('Alarm');
-            }}
-          />
-          <PersonIcon
-            style={{ }}
-            onPress={() => {
-              navigation.navigate('Account');
-            }}
-          />
-          <AddIcon
-            style={{ }}
-            onPress={() => {
-              navigation.navigate('CreateAlarm');
-            }}
-          />
-
-        </View>
-
-        <Text
-          style={[
-            GlobalStyles.h1,
-            GlobalStyles.margin,
-            {
-              color: Colors.primary, fontSize: 30, marginLeft: 52, marginTop: 30,
-            },
-          ]}
+        <Text style={
+          [GlobalStyles.h2, { color: Colors.primary, marginTop: 28 }]
+        }
         >
           {'PREDICTED:'}
         </Text>
-        <View style={{ alignItems: 'center', marginTop: 20 }}>
+        <View style={{ alignItems: 'center' }}>
           <Text
             style={[
               GlobalStyles.margin,
@@ -95,33 +57,135 @@ class MainScreen extends Component {
               {predictedTimeMeridiem.toUpperCase()}
             </Text>
           </Text>
-          <AnalogClock
-            minuteHandLength={105}
-            minuteHandColor={Colors.white}
-            minuteHandWidth={3}
-            minuteHandCurved={false}
-            hourHandColor={Colors.primary}
-            hourHandCurved={false}
-            hourHandWidth={6}
+        </View>
+      </View>
+    );
+  }
+
+  hasNoAlarmView() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
+        <Text style={
+          [GlobalStyles.h1, GlobalStyles.margin, { color: Colors.primary, fontSize: 30 }]
+        }
+        >
+          { 'No Alarm Found!' }
+        </Text>
+      </View>
+    );
+  }
+
+  clockView() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
+        <AnalogClock
+          minuteHandLength={110}
+          minuteHandColor={Colors.white}
+          minuteHandWidth={2}
+          minuteHandCurved={false}
+          hourHandColor={Colors.primary}
+          hourHandCurved={false}
+          hourHandWidth={4}
           // clockBorderColor={Colors.white}
           // clockCentreColor={Colors.white}
-          />
-          <View style={{ height: 50, width: 8 }} />
-          <Buttons
-            title="Delete Alarm"
-            backgroundColor={Colors.darkGray}
-            textColor={Colors.white}
-            onPress={() => null}
-          />
-          {/* Temporary button to navigate to Home Screen, TODO: Remove */}
-          <Buttons
-            title="Homepage"
-            backgroundColor={Colors.primary}
-            textColor={Colors.black}
-            onPress={() => {
-              navigation.navigate('Home');
-            }}
-          />
+        />
+        <View style={{ height: 32, width: 8 }} />
+      </View>
+    );
+  }
+
+  hasAlarmButtons() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
+        <Buttons
+          title="Delete Alarm"
+          backgroundColor={Colors.primary}
+          textColor={Colors.black}
+          onPress={() => null}
+        />
+        <Buttons
+          title="Create Alarm"
+          backgroundColor={Colors.darkGray}
+          textColor={Colors.white}
+          onPress={() => null}
+        />
+      </View>
+    );
+  }
+
+  hasNoAlarmButtons() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
+        <Buttons
+          title="Create Alarm"
+          color={Colors.darkGray}
+          onPress={() => null}
+        />
+      </View>
+    );
+  }
+
+  menu() {
+    const { navigation } = this.props;
+    return (
+      <View style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 75,
+        paddingHorizontal: 28,
+      }}
+      >
+        <MenuIcon
+          style={{}}
+          onPress={() => {
+            navigation.navigate('Alarm');
+          }}
+        />
+        <PersonIcon
+          style={{ }}
+          onPress={() => {
+            navigation.navigate('Account');
+          }}
+        />
+        <AddIcon
+          style={{ }}
+          onPress={() => {
+            navigation.navigate('CreateAlarm');
+          }}
+        />
+      </View>
+    );
+  }
+
+  render() {
+    if (true) {
+      return (
+        <View>
+          {this.menu()}
+          <View style={{ alignItems: 'center', width: '100%' }}>
+            { this.hasAlarmView() }
+            { this.clockView() }
+            { this.hasAlarmButtons() }
+          </View>
+        </View>
+      );
+    }
+    return (
+      <View>
+        {this.menu()}
+        <View style={{ alignItems: 'center', width: '100%' }}>
+          { this.hasNoAlarmView() }
+          { this.clockView() }
+          { this.hasNoAlarmButtons() }
         </View>
       </View>
     );
