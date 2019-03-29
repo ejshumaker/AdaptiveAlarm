@@ -84,7 +84,7 @@ class Autocomplete extends Component {
                   width: '100%',
                   backgroundColor: Colors.darkGray,
                   borderRadius: 8,
-                  marginVertical: 8,
+                  marginVertical: 12,
                 }}
               >
                 <SearchIcon style={{ marginLeft: 13, marginTop: 8 }} />
