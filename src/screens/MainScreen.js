@@ -27,8 +27,8 @@ class MainScreen extends Component {
     return (
       <View>
         <Text style={
-            [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary }]
-          }
+          [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary, marginTop: 40 }]
+        }
         >
           {'PREDICTED:'}
         </Text>
@@ -43,7 +43,7 @@ class MainScreen extends Component {
             {':'}
             {min}
           </Text>
-          <Text style={[{ fontSize: 40 }]}>
+          <Text style={[{ fontSize: 40, textTransform: 'uppercase', fontWeight: '500' }]}>
             {' '}
             {meridian}
           </Text>
@@ -58,8 +58,8 @@ class MainScreen extends Component {
     return (
       <View>
         <Text style={
-            [GlobalStyles.h2, { color: Colors.primary, marginBottom: 48 }]
-          }
+          [GlobalStyles.h2, { color: Colors.primary, marginBottom: 48 }]
+        }
         >
           {'NO ALARM SET'}
         </Text>
@@ -73,13 +73,13 @@ class MainScreen extends Component {
     return (
       <View>
         <AnalogClock
-          minuteHandLength={110}
+          minuteHandLength={105}
           minuteHandColor={Colors.white}
           minuteHandWidth={2}
           minuteHandCurved={false}
           hourHandColor={Colors.primary}
           hourHandCurved={false}
-          hourHandWidth={4}
+          hourHandWidth={6}
         />
         <View style={{ height: 32, width: 8 }} />
       </View>
@@ -144,13 +144,13 @@ class MainScreen extends Component {
           }}
         />
         <UserIcon
-          style={{ }}
+          style={{}}
           onPress={() => {
             navigation.navigate('Account');
           }}
         />
         <AddIcon
-          style={{ }}
+          style={{}}
           onPress={() => {
             navigation.navigate('CreateAlarm');
           }}
@@ -169,9 +169,9 @@ class MainScreen extends Component {
         <View>
           {this.menu()}
           <View style={{ alignItems: 'center', width: '100%' }}>
-            { this.hasAlarmView() }
-            { this.clockView() }
-            { this.hasAlarmButtons() }
+            {this.hasAlarmView()}
+            {this.clockView()}
+            {this.hasAlarmButtons()}
           </View>
         </View>
       );
@@ -180,9 +180,9 @@ class MainScreen extends Component {
       <View>
         {this.menu()}
         <View style={{ alignItems: 'center', width: '100%' }}>
-          { this.hasNoAlarmView() }
-          { this.clockView() }
-          { this.hasNoAlarmButtons() }
+          {this.hasNoAlarmView()}
+          {this.clockView()}
+          {this.hasNoAlarmButtons()}
         </View>
       </View>
     );
