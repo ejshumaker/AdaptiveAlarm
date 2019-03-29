@@ -21,7 +21,6 @@ function createAlarm(payload) {
 
   return new Promise((resolve, reject) => {
     const alarmKey = 'alarm1'; // uncomment below line for multiple alarms
-    // const alarmKey = database().ref(`users/${uid}/alarms`).push().key;
     database().ref(`users/${uid}/alarms/${alarmKey}`)
       .set({
         destinationLoc,

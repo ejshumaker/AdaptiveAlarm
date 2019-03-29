@@ -69,7 +69,7 @@ class Autocomplete extends Component {
               <View
                 style={{
                   flexDirection: 'row',
-                  width: 272,
+                  width: '100%',
                   backgroundColor: Colors.darkGray,
                   borderRadius: 8,
                 }}
@@ -86,13 +86,12 @@ class Autocomplete extends Component {
                   placeholderTextColor={Colors.white}
                 />
                 <CloseIcon
-                  style={{ marginRight: 13, marginTop: 8 }}
+                  style={{ marginTop: 8 }}
                   onPress={() => {
                     this.updateDest('autoCompleteValue', null);
                     handleTextChange('');
                     clearSearchs();
                   }}
-
                 />
               </View>
               {isSearching && (
@@ -101,7 +100,7 @@ class Autocomplete extends Component {
               <View
                 style={{
                   backgroundColor: Colors.gray,
-                  width: 272,
+                  width: '100%',
                   borderBottomLeftRadius: 8,
                   borderBottomRightRadius: 8,
                   marginTop: -4.5,
@@ -122,8 +121,9 @@ class Autocomplete extends Component {
                 ))}
               </View>
               <Image
-                style={{ marginTop: 20 }}
+                style={{ marginTop: 12, height: 10 }}
                 source={googleStamp}
+                resizeMode="contain"
               />
             </View>
           </Fragment>

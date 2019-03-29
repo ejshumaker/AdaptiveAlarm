@@ -23,53 +23,6 @@ import {
 import { CloseIcon } from '../icons/close';
 import Buttons from '../components/Buttons';
 
-// STYLESHEET FOR USER PROFILE
-const styles = StyleSheet.create({
-  titleView: {
-    marginBottom: 10,
-  },
-  imageView: {
-    width: '80%',
-    margin: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  usericon: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    margin: 20,
-  },
-  userinfopane: {
-    width: '95%',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    flexDirection: 'column',
-  },
-  profileRow: {
-    flex: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomWidth: 2,
-    borderBottomColor: Colors.white,
-    marginBottom: 10,
-    height: 32,
-    width: '90%',
-  },
-  infoColumn: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-  dataColumn: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  signOutButton: {
-    height: 80,
-    marginBottom: 50,
-  },
-});
-
 class AccountScreen extends Component {
   constructor() {
     super();
@@ -88,6 +41,7 @@ class AccountScreen extends Component {
   render() {
     const { title } = this.state;
     const {
+      navigation,
       signOut, // Redux actions
       firstName, // Redux store
       lastName,
@@ -98,7 +52,6 @@ class AccountScreen extends Component {
     const styles = StyleSheet.create({
       titleView: {
         marginBottom: 10,
-        // alignItems: 'center',
       },
       imageView: {
         width: '80%',

@@ -58,7 +58,7 @@ class MainScreen extends Component {
     return (
       <View>
         <Text style={
-          [GlobalStyles.h2, { color: Colors.primary, marginBottom: 48 }]
+          [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary, marginVertical: 40 }]
         }
         >
           {'NO ALARM SET'}
@@ -97,9 +97,9 @@ class MainScreen extends Component {
     return (
       <View>
         <Buttons
-          title="Delete Alarm"
-          backgroundColor={Colors.primary}
-          textColor={Colors.black}
+          title="DELETE"
+          backgroundColor={Colors.darkGray}
+          textColor={Colors.white}
           onPress={() => deleteAlarm()}
         />
         <Buttons

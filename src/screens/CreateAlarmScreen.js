@@ -17,16 +17,16 @@ import PropTypes from 'prop-types';
 
 import {
   DayPicker,
+  Buttons,
+  Autocomplete,
 } from '../components';
+import { CloseIcon } from '../icons/close';
 import { userCreateAlarm } from '../store/actions/userActions';
 
 import {
   Colors,
   GlobalStyles,
 } from '../constants';
-
-import { CloseIcon } from '../icons/close';
-import Buttons from '../components/Buttons';
 
 class CreateAlarmScreen extends Component {
   constructor() {
@@ -80,15 +80,7 @@ class CreateAlarmScreen extends Component {
           NEW ALARM:
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
-        <TextInput
-          style={GlobalStyles.input}
-          returnKeyType="next"
-          ref={(input) => { this.workAddressInput = input; }}
-          onSubmitEditing={() => this.arrivalTimeInput.focus()}
-          onChangeText={text => this.setState({ workAddress: text })}
-          placeholder="Work Address"
-          placeholderTextColor={Colors.darkGray}
-        />
+        <Autocomplete />
         <Text style={GlobalStyles.subtitle}>Routine Time</Text>
         <TextInput
           style={GlobalStyles.input}
