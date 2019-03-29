@@ -39,7 +39,7 @@ describe('Account Screen', () => {
     expect(wrapper2).toMatchSnapshot();
   });
 
-  it('should call the mock sign out function', () => {
+  it('should call the sign out action', () => {
     wrapper.find('[title="Sign Out"]').simulate(
       'press',
       { preventDefault() {} },
