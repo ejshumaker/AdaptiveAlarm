@@ -15,9 +15,6 @@ jest.setTimeout(10000);
 describe('Alarm Calculation tests', () => {
   beforeAll(() => {
   });
-  test('works', () => {
-    expect(1).toBe(1);
-  });
 
   fetch
     .mockResponseOnce(JSON.stringify({

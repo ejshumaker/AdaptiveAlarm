@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Analog Clock tests test clock time is shown for 00:00 1`] = `ReactWrapper {}`;
+
+exports[`Analog Clock tests test clock time is shown for 12:15 1`] = `ReactWrapper {}`;
