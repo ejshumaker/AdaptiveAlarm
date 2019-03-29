@@ -68,9 +68,9 @@ class AlarmScreen extends Component {
     }
   }
 
-
   playSound = async () => {
     if (this.sound != null) {
+      await this.sound.setIsLoopingAsync(true);
       await this.sound.playAsync();
     }
   }
