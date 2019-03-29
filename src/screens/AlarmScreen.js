@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View, Text, Button } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { alarmOff } from '../store/actions/alarmActions';
+import { alarmOff }  from '../store/actions/alarmActions';
 
 import { GlobalStyles, Colors } from '../constants';
 import { Audio } from 'expo'
@@ -15,6 +15,7 @@ class AlarmScreen extends Component {
     super();
     this.state = {
       time: moment().format('LT'),
+      load: true
     };
   }
 
@@ -34,14 +35,34 @@ class AlarmScreen extends Component {
     });
 
     this.getSoundLoaded();
+      const { addListener } = this.props.navigation;
+      const self = this;
+
+      this.listeners = [
+        addListener('didFocus', () => {
+          this.getSoundLoaded();
+        }),
+      ]
   }
+
+  componentWillUnmount() {
+    this.listeners.forEach(
+      sub => { sub.remove() },
+    )
+  }
+
+
 
   getSoundLoaded = async () => {
     try {
         if(this.sound == null) {
           this.sound = new Expo.Audio.Sound();
         }
-        await this.sound.loadAsync(require('../constants/alarm.mp3'));
+        if(this.state.load == true) {
+          await this.sound.loadAsync(require('../constants/alarm.mp3'));
+          this.setState({ load: false });
+        }
+        this.playSound();
     } catch(error) {
       console.log(error);
     }
@@ -52,6 +73,12 @@ class AlarmScreen extends Component {
     if(this.sound != null) {
       await this.sound.playAsync();
     }
+  }
+
+
+  stopSound = async(navigate) => {
+    await this.sound.stopAsync();
+    navigate('Home');
   }
 
   render() {
@@ -73,7 +100,7 @@ class AlarmScreen extends Component {
           <Button
             title="Turn Off Alarm"
             color={Colors.darkGray}
-            onPress={() => turnAlarmOff(navigate)}
+            onPress= {() => this.stopSound(navigate)}
           />
         </View>
       </View >
@@ -82,7 +109,8 @@ class AlarmScreen extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  turnAlarmOff: (navigate) => { dispatch(alarmOff(navigate('Home'))); },
+  turnAlarmOff: (navigate) => {
+    dispatch(alarmOff(navigate('Home'))); },
 });
 
 AlarmScreen.propTypes = {
