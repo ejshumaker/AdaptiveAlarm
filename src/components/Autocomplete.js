@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 // import PropTypes from 'prop-types';
 import { GoogleAutoComplete } from 'react-native-google-autocomplete';
+import PropTypes from 'prop-types';
 import LocationItem from './LocationItem';
 import { GlobalStyles, Colors } from '../constants';
 import { SearchIcon } from '../icons/search';
@@ -22,6 +23,10 @@ const googleStamp = require('../assets/powered_by_google_on_non_white.png');
 const API_KEY = 'AIzaSyBpwrz2oV29sjAAKj2l6BIb6l5luzDIsIw';
 
 class Autocomplete extends Component {
+  static propTypes = {
+    onDestChange: PropTypes.func.isRequired,
+  };
+
   constructor() {
     super();
     // Below is disabled because state is altered within location item.
@@ -40,9 +45,12 @@ class Autocomplete extends Component {
   };
 
   updateDest(key, value) {
+    const { onDestChange } = this.props;
     this.setState({
       [key]: value,
     });
+
+    if (key === 'destination') onDestChange('workAddress', value);
   }
 
 
