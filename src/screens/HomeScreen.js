@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Button, ActivityIndicator,
+  View, Text, Button, ActivityIndicator, StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -19,10 +19,7 @@ import { userSignOut } from '../store/actions/userActions';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
 import alarmCalculationTests from '../tests/alarmCalculationTests';
 
-import {
-  Colors,
-  GlobalStyles,
-} from '../constants';
+import { Colors, GlobalStyles } from '../constants';
 
 class HomeScreen extends Component {
   constructor() {
@@ -36,7 +33,8 @@ class HomeScreen extends Component {
     const { loading } = this.props;
     if (loading) {
       return <ActivityIndicator color={Colors.primary} size="large" />;
-    } return null;
+    }
+    return null;
   }
 
   render() {
@@ -44,16 +42,32 @@ class HomeScreen extends Component {
     const {
       navigation, // from react-navigation
       signOut, // Redux actions
-      calculateTime,
       firstName, // Redux store
       lastName,
       userName,
       email,
+      alarms,
       alarmTime,
+      alarmCalculating,
       errorMessage,
     } = this.props;
     const { navigate } = navigation;
 
+    // destructure alarms
+    const alarm = alarms.alarm1 || {};
+    const {
+      destinationLoc,
+      arrivalTime,
+      timeToGetReady,
+    } = alarm;
+
+    let arrivalTimeString;
+    if (arrivalTime) {
+      const date = new Date(arrivalTime);
+      arrivalTimeString = date.toLocaleTimeString();
+    } else {
+      arrivalTimeString = 'n/a';
+    }
     /**
      * There are way more 'magic' numbers in the styling
      * than should be preffered, just tossed them in to make it passable.
@@ -63,66 +77,78 @@ class HomeScreen extends Component {
     const dateFormat = new Date(alarmTime);
     return (
       <View style={GlobalStyles.centerChildrenXY}>
+        <StatusBar barStyle="light-content" />
         <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
-        { this.loader() }
-        <View style={{
-          height: 80, margin: 8, width: '60%',
-        }}
-        >
-          <View style={{
-            flex: 1,
-            justifyContent: 'space-around',
+        {this.loader()}
+        <View
+          style={{
+            textAlign: 'left',
+            width: '60%',
+            margin: 16,
           }}
-          >
-            <Button
-              title="Async"
-              color={Colors.darkGray}
-              onPress={() => calculateTime(Date.now())}
-            />
-            <Button
-              title="Run Alarm Calculation Tests"
-              color={Colors.darkGray}
-              onPress={() => alarmCalculationTests()}
-            />
-          </View>
-        </View>
-        <View style={{
-          textAlign: 'left',
-          width: '60%',
-          margin: 16,
-        }}
         >
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Username</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              { color: Colors.primary, marginBottom: 8 },
+            ]}
+          >
             {userName}
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Full Name</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              { color: Colors.primary, marginBottom: 8 },
+            ]}
+          >
             {firstName}
             {' '}
             {lastName}
           </Text>
-          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Email Address</Text>
-          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>
+            Email Address
+          </Text>
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              { color: Colors.primary, marginBottom: 8 },
+            ]}
+          >
             {email}
+          </Text>
+          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Info</Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+            {destinationLoc}
+          </Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+            {arrivalTimeString}
+          </Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+            {timeToGetReady}
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Error Message</Text>
           <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
             {errorMessage}
           </Text>
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Time</Text>
-          <Text style={[GlobalStyles.paragraph, {
-            color: Colors.primary,
-            marginBottom: 8,
-          }]}
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              {
+                color: Colors.primary,
+                marginBottom: 8,
+              },
+            ]}
           >
-            {dateFormat.toLocaleTimeString()}
+            {alarmCalculating ? 'Calculating...' : dateFormat.toLocaleTimeString()}
           </Text>
         </View>
         <Button
-          title="Styles"
+          title="Create New Alarm"
           color={Colors.darkGray}
-          onPress={() => navigate('StyleDemo')}
+          onPress={() => navigate('CreateAlarm')}
         />
         {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
         <View style={{ height: 8, width: 8 }} />
@@ -145,6 +171,13 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate('AutoComplete')}
         />
+        {/* Temporary button to navigate to Account Screen, TODO: Remove */}
+        <View style={{ height: 8, width: 8 }} />
+        <Button
+          title="Account"
+          color={Colors.darkGray}
+          onPress={() => navigate('Account')}
+        />
         <View style={{ height: 8, width: 8 }} />
         {/* Temporary button to navigate to MainScreen (true home screen) TODO: Remove */}
         <Button
@@ -154,10 +187,12 @@ class HomeScreen extends Component {
         />
         <View style={{ height: 8, width: 8 }} />
         <Button
-          title="Sign Out"
+          title="Reusable Components"
           color={Colors.darkGray}
-          onPress={signOut}
+          onPress={() => navigate('ReusableComponents')}
         />
+        <View style={{ height: 8, width: 8 }} />
+        <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
       </View>
     );
   }
@@ -174,9 +209,10 @@ HomeScreen.propTypes = {
   email: PropTypes.string,
   errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
-  alarmTime: PropTypes.number.isRequired,
+  alarmTime: PropTypes.number,
+  alarmCalculating: PropTypes.bool.isRequired,
+  alarms: PropTypes.object, // eslint-disable-line
   // Redux dispatch
-  calculateTime: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
 };
 
@@ -186,6 +222,8 @@ HomeScreen.defaultProps = {
   userName: '',
   email: '',
   errorMessage: '',
+  alarms: {},
+  alarmTime: -1,
 };
 
 /**
@@ -201,6 +239,8 @@ const mapStateToProps = state => ({
   errorMessage: state.user.errorMessage,
   loading: state.user.loadingFetch,
   alarmTime: state.alarm.time,
+  alarmCalculating: state.alarm.loading,
+  alarms: state.user.alarms,
 });
 
 /**
@@ -209,8 +249,15 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
-  signOut: () => { dispatch(userSignOut()); },
-  calculateTime: (time) => { dispatch(alarmCalculateTime(time)); },
+  signOut: () => {
+    dispatch(userSignOut());
+  },
+  calculateTime: (time) => {
+    dispatch(alarmCalculateTime(time));
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen);

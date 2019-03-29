@@ -4,9 +4,9 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable prefer-const */
 /* Source: https://github.com/raymondchooi/react-native-analog-clock.git */
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Colors } from '../constants';
+import React, { Component } from "react";
+import { View } from "react-native";
+import { Colors } from "../constants";
 
 export default class AnalogClock extends Component {
   constructor(props) {
@@ -17,8 +17,10 @@ export default class AnalogClock extends Component {
     this.state = {
       // sec: d.getSeconds() * 6,
       min: d.getMinutes() * 6 + (d.getSeconds() * 6) / 60,
-      hour: ((d.getHours() % 12) / 12) * 360 + 90
-        + (d.getMinutes() * 6 + (d.getSeconds() * 6) / 60) / 12,
+      hour:
+        ((d.getHours() % 12) / 12) * 360 +
+        90 +
+        (d.getMinutes() * 6 + (d.getSeconds() * 6) / 60) / 12
     };
   }
 
@@ -26,10 +28,13 @@ export default class AnalogClock extends Component {
     this.timer = setInterval(() => {
       let d = new Date();
       // this.setState({ sec: d.getSeconds() * 6 });
-      this.setState({ min: d.getMinutes() * 6
-        + (d.getSeconds() * 6) / 60 });
-      this.setState({ hour: ((d.getHours() % 12) / 12) * 360 + 90
-        + (d.getMinutes() * 6 + (d.getSeconds() * 6) / 60) / 12 });
+      this.setState({ min: d.getMinutes() * 6 + (d.getSeconds() * 6) / 60 });
+      this.setState({
+        hour:
+          ((d.getHours() % 12) / 12) * 360 +
+          90 +
+          (d.getMinutes() * 6 + (d.getSeconds() * 6) / 60) / 12
+      });
     }, 1000);
   }
 
@@ -41,10 +46,10 @@ export default class AnalogClock extends Component {
     return {
       width: this.props.clockSize,
       height: this.props.clockSize,
-      position: 'relative',
+      position: "relative",
       borderColor: Colors.white,
       borderWidth: this.props.clockBorderWidth,
-      borderRadius: this.props.clockSize / 2,
+      borderRadius: this.props.clockSize / 2
     };
   }
 
@@ -52,9 +57,9 @@ export default class AnalogClock extends Component {
     return {
       width: this.props.clockSize,
       height: this.props.clockSize,
-      position: 'absolute',
+      position: "absolute",
       right: -this.props.clockBorderWidth,
-      bottom: -this.props.clockBorderWidth,
+      bottom: -this.props.clockBorderWidth
     };
   }
 
@@ -65,7 +70,7 @@ export default class AnalogClock extends Component {
       backgroundColor: this.props.clockCentreColor,
       borderRadius: this.props.clockCentreSize / 2,
       top: (this.props.clockSize - this.props.clockCentreSize) / 2,
-      left: (this.props.clockSize - this.props.clockCentreSize) / 2,
+      left: (this.props.clockSize - this.props.clockCentreSize) / 2
     };
   }
 
@@ -73,7 +78,7 @@ export default class AnalogClock extends Component {
     return {
       width: 0,
       height: 0,
-      position: 'absolute',
+      position: "absolute",
       backgroundColor: this.props.hourHandColor,
       top: this.props.clockSize / 2,
       left: this.props.clockSize / 2,
@@ -82,9 +87,11 @@ export default class AnalogClock extends Component {
       paddingVertical: this.props.hourHandWidth,
       paddingLeft: this.props.hourHandLength,
       borderTopLeftRadius: this.props.hourHandCurved
-        ? this.props.hourHandWidth : 0,
+        ? this.props.hourHandWidth
+        : 0,
       borderBottomLeftRadius: this.props.hourHandCurved
-        ? this.props.hourHandWidth : 0,
+        ? this.props.hourHandWidth
+        : 0
     };
   }
 
@@ -92,7 +99,7 @@ export default class AnalogClock extends Component {
     return {
       width: 0,
       height: 0,
-      position: 'absolute',
+      position: "absolute",
       backgroundColor: this.props.minuteHandColor,
       top: this.props.clockSize / 2,
       left: this.props.clockSize / 2,
@@ -101,9 +108,11 @@ export default class AnalogClock extends Component {
       paddingTop: this.props.minuteHandLength,
       paddingHorizontal: this.props.minuteHandWidth,
       borderTopLeftRadius: this.props.minuteHandCurved
-        ? this.props.minuteHandWidth : 0,
+        ? this.props.minuteHandWidth
+        : 0,
       borderTopRightRadius: this.props.minuteHandCurved
-        ? this.props.minuteHandWidth : 0,
+        ? this.props.minuteHandWidth
+        : 0
     };
   }
 
@@ -111,8 +120,8 @@ export default class AnalogClock extends Component {
     return {
       width: 0,
       height: 0,
-      position: 'absolute',
-      backgroundColor: 'black',
+      position: "absolute",
+      backgroundColor: "black",
       top: this.props.clockSize / 2,
       left: this.props.clockSize / 2,
       marginTop: -(this.props.secondHandLength / 2),
@@ -120,9 +129,11 @@ export default class AnalogClock extends Component {
       paddingTop: this.props.secondHandLength,
       paddingHorizontal: this.props.secondHandWidth,
       borderTopLeftRadius: this.props.secondHandCurved
-        ? this.props.secondHandWidth : 0,
+        ? this.props.secondHandWidth
+        : 0,
       borderTopRightRadius: this.props.secondHandCurved
-        ? this.props.secondHandWidth : 0,
+        ? this.props.secondHandWidth
+        : 0
     };
   }
 
@@ -139,17 +150,38 @@ export default class AnalogClock extends Component {
         */}
 
         <View style={this.clockHolder()}>
-
-          <View style={[this.hourHandStyles(),
-            { transform: [{ rotate: this.state.hour + 'deg' },
-              { translateX: -(this.props.hourHandOffset
-                           + this.props.hourHandLength / 2) }] }]}
+          <View
+            style={[
+              this.hourHandStyles(),
+              {
+                transform: [
+                  { rotate: this.state.hour + "deg" },
+                  {
+                    translateX: -(
+                      this.props.hourHandOffset +
+                      this.props.hourHandLength / 2
+                    )
+                  }
+                ]
+              }
+            ]}
           />
 
-          <View style={[this.minuteHandStyles(),
-            { transform: [{ rotate: this.state.min + 'deg' },
-              { translateY: -(this.props.minuteHandOffset
-                            + this.props.minuteHandLength / 2) }] }]}
+          <View
+            style={[
+              this.minuteHandStyles(),
+              {
+                transform: [
+                  { rotate: this.state.min + "deg" },
+                  {
+                    translateY: -(
+                      this.props.minuteHandOffset +
+                      this.props.minuteHandLength / 2
+                    )
+                  }
+                ]
+              }
+            ]}
           />
 
           {/* <View style={[this.secondHandStyles(),
@@ -159,7 +191,6 @@ export default class AnalogClock extends Component {
           /> */}
 
           <View style={this.clockFace()} />
-
         </View>
       </View>
     );
@@ -167,24 +198,24 @@ export default class AnalogClock extends Component {
 }
 
 AnalogClock.defaultProps = {
-  backgroundImage: './img/clockBack.png',
+  backgroundImage: "./img/clockBack.png",
   clockSize: 270,
   clockBorderWidth: 7,
-  clockCentreSize: 15,
-  clockCentreColor: 'black',
-  hourHandColor: 'black',
+  //clockCentreSize: 15,
+  //clockCentreColor: 'black',
+  hourHandColor: "black",
   hourHandCurved: true,
   hourHandLength: 70,
   hourHandWidth: 5.5,
   hourHandOffset: 0,
-  minuteHandColor: 'black',
+  minuteHandColor: "black",
   minuteHandCurved: true,
   minuteHandLength: 100,
   minuteHandWidth: 5,
   minuteHandOffset: 0,
-  secondHandColor: 'black',
+  secondHandColor: "black",
   secondHandCurved: false,
   secondHandLength: 120,
   secondHandWidth: 2,
-  secondHandOffset: 0,
+  secondHandOffset: 0
 };

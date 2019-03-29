@@ -99,29 +99,3 @@ async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
 export {
   getRouteTime, getCurrentLocation, getAlarmTime, getAlarmTimeFromLocation,
 };
-/**
-  * Get User's current location from Google Maps API. Better to use Expo.
-  */
-/* eslint-disable no-unused-vars */
-/*
-async function getCurrentLocation() {
-  const API_KEY = 'AIzaSyDMsg5GK6Bv8UJF8tMkWI81XoYDZ9vy7R8';
-  const url = `https://www.googleapis.com/geolocation/v1/geolocate?key=${API_KEY}`;
-  console.log('here');
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(response => response.json())
-      .then((json) => {
-        if (json.status !== 'OK') {
-          const errorMessage = json.error_message || 'Unknown error';
-          reject(errorMessage);
-        }
-        console.log(json.location);
-        const { lat } = json.location;
-        const { lng } = json.location;
-        console.log(`lat: ${lat} long: ${lng}`);
-        resolve(`{lat: ${lat}, lng: ${lng}}`);
-      });
-  });
-}
-*/
