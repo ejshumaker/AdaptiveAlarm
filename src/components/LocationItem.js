@@ -6,7 +6,9 @@
 
 import React, { PureComponent } from 'react';
 import {
-  View, Text, TouchableOpacity, Keyboard,
+  Text,
+  TouchableOpacity,
+  Keyboard,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { GlobalStyles } from '../constants';
@@ -15,11 +17,13 @@ class LocationItem extends PureComponent {
   static propTypes = {
     description: PropTypes.string.isRequired,
     fetchDetails: PropTypes.func.isRequired,
+    place_id: PropTypes.string.isRequired,
   }
 
   handlePress = async () => {
+    const { fetchDetails, place_id } = this.props;
     Keyboard.dismiss();
-    const res = await this.props.fetchDetails(this.props.place_id);
+    const res = await fetchDetails(place_id);
     const { lat } = res.geometry.location;
     const { lng } = res.geometry.location;
     const formattedAddress = res.formatted_address;
@@ -33,10 +37,11 @@ class LocationItem extends PureComponent {
   };
 
   render() {
+    const { description } = this.props;
     return (
       <TouchableOpacity onPress={this.handlePress}>
         <Text style={GlobalStyles.searchSuggestions}>
-          { this.props.description }
+          { description }
         </Text>
       </TouchableOpacity>
     );
