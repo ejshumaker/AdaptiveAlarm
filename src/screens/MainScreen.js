@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import AnalogClock from '../components/AnalogClock';
 import Buttons from '../components/Buttons';
-import PropTypes from "prop-types";
 
 import { GlobalStyles, Colors } from '../constants';
 
@@ -61,7 +61,9 @@ class MainScreen extends Component {
           style={[
             GlobalStyles.h1,
             GlobalStyles.margin,
-            { color: Colors.primary, fontSize: 30, marginLeft: 52, marginTop: 30 },
+            {
+              color: Colors.primary, fontSize: 30, marginLeft: 52, marginTop: 30,
+            },
           ]}
         >
           {'PREDICTED:'}
@@ -107,10 +109,10 @@ class MainScreen extends Component {
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => {
-              navigation.navigate("Home");
+              navigation.navigate('Home');
             }}
           />
-        </View >
+        </View>
       </View>
     );
   }
