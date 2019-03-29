@@ -135,15 +135,14 @@ class MainScreen extends Component {
           { this.hasAlarmButtons() }
         </View>
       );
-    } else {
-      return (
-        <View style={[GlobalStyles.centerChildrenXY]}>
-          { this.hasNoAlarmView() }
-          { this.clockView() }
-          { this.hasNoAlarmButtons() }
-        </View>
-      );
     }
+    return (
+      <View style={[GlobalStyles.centerChildrenXY]}>
+        { this.hasNoAlarmView() }
+        { this.clockView() }
+        { this.hasNoAlarmButtons() }
+      </View>
+    );
   }
 }
 

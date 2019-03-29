@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 /* eslint-disable import/first */
-import 'react-native';
 import React from 'react';
 import Enzyme, { mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';

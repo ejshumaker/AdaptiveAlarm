@@ -7,6 +7,15 @@ require('react-native-mock-render/mock');
 jest.mock('react-native', () => require('react-native-mock-render'), { virtual: true });
 const { JSDOM } = require('jsdom');
 
+jest.mock('expo', () => ({
+  Permissions: {
+    askAsync: jest.fn(),
+  },
+  Location: {
+    getCurrentPositionAsync: jest.fn(),
+  },
+}));
+
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 const { window } = jsdom;
 

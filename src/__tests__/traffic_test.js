@@ -1,13 +1,5 @@
 /* eslint-disable no-undef */
 /* eslint-disable import/first */
-jest.mock('expo', () => ({
-  Permissions: {
-    askAsync: jest.fn(),
-  },
-  Location: {
-    getCurrentPositionAsync: jest.fn(),
-  },
-}));
 
 import { getAlarmTimeFromLocation } from '../custom_modules/Alarm';
 

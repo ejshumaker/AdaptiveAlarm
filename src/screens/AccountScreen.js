@@ -283,3 +283,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountScreen);
+export { AccountScreen };
