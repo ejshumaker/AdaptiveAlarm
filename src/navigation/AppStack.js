@@ -3,7 +3,9 @@ import { createStackNavigator } from 'react-navigation';
 import { Colors } from '../constants';
 import HomeScreen from '../screens/HomeScreen';
 import StyleDemoScreen from '../screens/StyleDemoScreen';
+
 import AlarmScreen from '../screens/AlarmScreen';
+import CreateAlarmScreen from '../screens/CreateAlarmScreen';
 import MainScreen from '../screens/MainScreen';
 import DayPickerTestScreen from '../screens/DayPickerTestScreen';
 import AutocompleteScreen from '../screens/AutocompleteScreen';
@@ -15,6 +17,13 @@ export default createStackNavigator(
       screen: HomeScreen,
       navigationOptions: () => ({
         title: 'Adaptive Alarm',
+        header: null,
+      }),
+    },
+    CreateAlarm: {
+      screen: CreateAlarmScreen,
+      navigationOptions: () => ({
+        title: 'Create Alarm',
         header: null,
       }),
     },
@@ -50,26 +59,14 @@ export default createStackNavigator(
       screen: DayPickerTestScreen,
       navigationOptions: () => ({
         title: 'DayPicker',
-        headerStyle: {
-          backgroundColor: Colors.darkGray,
-        },
-        headerTintColor: Colors.white,
-        headerTitleStyle: {
-          fontWeight: '100',
-        },
+        header: null,
       }),
     },
     Account: {
       screen: AccountScreen,
       navigationOptions: () => ({
         title: 'Account',
-        headerStyle: {
-          backgroundColor: Colors.darkGray,
-        },
-        headerTintColor: Colors.white,
-        headerTitleStyle: {
-          fontWeight: '100',
-        },
+        header: null,
       }),
     },
     AutoComplete: {
@@ -87,9 +84,9 @@ export default createStackNavigator(
     },
   },
   {
+    initialRouteName: 'Main',
     cardStyle: {
       backgroundColor: Colors.background,
     },
   },
-
 );

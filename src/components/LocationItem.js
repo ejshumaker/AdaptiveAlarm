@@ -3,52 +3,61 @@
  * uses https://github.com/EQuimper/react-native-google-autocomplete
  * @weinoh 03-26-2019
  */
-
+/* eslint-disable camelcase */
 import React, { PureComponent } from 'react';
 import {
-  Text,
-  TouchableOpacity,
-  Keyboard,
+  View, Text, TouchableOpacity, Keyboard,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { GlobalStyles } from '../constants';
+import { GlobalStyles, Colors } from '../constants';
+import { LocationIcon } from '../icons/location';
 
 class LocationItem extends PureComponent {
   static propTypes = {
     description: PropTypes.string.isRequired,
     fetchDetails: PropTypes.func.isRequired,
+    updateDest: PropTypes.func.isRequired,
+    resetSearch: PropTypes.func.isRequired,
     place_id: PropTypes.string.isRequired,
-  }
+  };
 
   handlePress = async () => {
-    const { fetchDetails, place_id } = this.props;
+    const {
+      fetchDetails, place_id, updateDest, resetSearch,
+    } = this.props;
     Keyboard.dismiss();
     const res = await fetchDetails(place_id);
     const { lat } = res.geometry.location;
     const { lng } = res.geometry.location;
     const formattedAddress = res.formatted_address;
-    console.log('--------------------------------');
-    console.log(`lat: ${lat} lng: ${lng}`);
-    console.log('--------------------------------');
-    // console.log(`addr: ${formattedAddress}`);
-    console.log('--------------------------------');
-    this.props.updateDest('destination', formattedAddress);
-    this.props.resetSearch();
+    updateDest('destination', formattedAddress);
+    updateDest('lat', lat);
+    updateDest('lng', lng);
+    resetSearch();
   };
 
   render() {
     const { description } = this.props;
     return (
       <TouchableOpacity onPress={this.handlePress}>
-        <Text style={GlobalStyles.searchSuggestions}>
-          { description }
-        </Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            width: 272,
+            borderTopWidth: 0.5,
+            borderTopColor: Colors.darkGray,
+          }}
+        >
+          <LocationIcon style={{ marginLeft: 13, marginTop: 14 }} />
+          <Text style={GlobalStyles.searchSuggestions}>
+            {description}
+          </Text>
+        </View>
       </TouchableOpacity>
     );
   }
 }
 
 export default LocationItem;
-
 
 // TODO: how to reference props correctly here ?

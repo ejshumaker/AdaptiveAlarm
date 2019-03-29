@@ -7,7 +7,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Image, Button, StyleSheet, ActivityIndicator,
+  View, Text, Image, StyleSheet, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -19,6 +19,57 @@ import {
   Colors,
   GlobalStyles,
 } from '../constants';
+
+import { LeftIcon } from '../icons/left';
+import Buttons from '../components/Buttons';
+
+// STYLESHEET FOR USER PROFILE
+const styles = StyleSheet.create({
+  titleView: {
+    marginTop: 40,
+    marginBottom: 10,
+  },
+  imageView: {
+    width: '80%',
+    margin: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  usericon: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    margin: 20,
+  },
+  userinfopane: {
+    width: '95%',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'column',
+  },
+  profileRow: {
+    flex: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 2,
+    borderBottomColor: Colors.white,
+    marginBottom: 10,
+    height: 32,
+    width: '90%',
+  },
+  infoColumn: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  dataColumn: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  signOutButton: {
+    height: 80,
+    marginBottom: 50,
+  },
+});
 
 class AccountScreen extends Component {
   constructor() {
@@ -43,6 +94,7 @@ class AccountScreen extends Component {
       // calculateTime,
       firstName, // Redux store
       lastName,
+      navigation,
       // userName,
       // email,
       // alarmTime,
@@ -133,8 +185,8 @@ class AccountScreen extends Component {
               source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png' }}
               style={styles.usericon}
             />
-            { /* LOADING ICON FUNCTION */ }
-            { this.loader() }
+            { /* LOADING ICON FUNCTION */}
+            {this.loader()}
 
             { /* DISPLAY USER'S NAME BELOW IMAGE */ }
             <Text style={[GlobalStyles.h2, { color: Colors.white }]}>
@@ -146,7 +198,7 @@ class AccountScreen extends Component {
           {/* END -- VIEW FOR IMAGE OF USER */}
 
         </View>
-        { /* END -- VIEW FOR TITLE */ }
+        { /* END -- VIEW FOR TITLE */}
 
         {/* VIEW FOR USER INFO */}
         <View style={[styles.userinfopane]}>
@@ -225,10 +277,11 @@ class AccountScreen extends Component {
 
 
         {/* VIEW FOR SIGN OUT BUTTON */}
-        <View style={styles.signOutButton}>
-          <Button
+        <View style={[styles.signOutButton, { alignItems: 'center' }]}>
+          <Buttons
             title="Sign Out"
-            color={Colors.darkGray}
+            backgroundColor={Colors.darkGray}
+            textColor={Colors.white}
             onPress={signOut}
           />
         </View>
