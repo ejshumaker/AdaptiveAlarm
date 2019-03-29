@@ -38,7 +38,6 @@ export default createStackNavigator(
         header: null,
       }),
     },
-<<<<<<< HEAD
     Main: {
       screen: MainScreen,
       navigationOptions: () => ({
