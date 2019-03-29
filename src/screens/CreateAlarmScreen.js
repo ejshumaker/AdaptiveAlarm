@@ -46,7 +46,7 @@ class CreateAlarmScreen extends Component {
     console.log(key, value);
     // parent class change handler is always called with field name and value
     this.setState({
-      [key]: value,
+      workAddress: value,
     });
   }
 
