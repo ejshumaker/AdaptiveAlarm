@@ -17,7 +17,10 @@ import PropTypes from 'prop-types';
 
 import {
   DayPicker,
+  Buttons,
+  Autocomplete,
 } from '../components';
+import { CloseIcon } from '../icons/close';
 import { userCreateAlarm } from '../store/actions/userActions';
 
 import {
@@ -25,16 +28,13 @@ import {
   GlobalStyles,
 } from '../constants';
 
-import { CloseIcon } from '../icons/close';
-import Buttons from '../components/Buttons';
-
 class CreateAlarmScreen extends Component {
   constructor() {
     super();
     this.state = {
-      readyTime: 31,
-      arrivalTime: new Date(2019, 3, 26, 10, 6, 16),
-      workAddress: 'Middleton, WI',
+      readyTime: 0,
+      arrivalTime: new Date(),
+      workAddress: '1001 W Dayton Street, Madison WI',
     };
   }
 
@@ -47,10 +47,10 @@ class CreateAlarmScreen extends Component {
 
   render() {
     const {
-      uid,
       createAlarm,
-      navigation
+      navigation,
     } = this.props;
+    const { navigate } = navigation;
 
     const {
       readyTime,
@@ -60,9 +60,12 @@ class CreateAlarmScreen extends Component {
 
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
-        <CloseIcon style={{ marginLeft: -20, marginTop: 27 }} onPress={() => {
-          navigation.navigate("Main");
-        }} />
+        <CloseIcon
+          style={{ marginLeft: -20, marginTop: 27 }}
+          onPress={() => {
+            navigate('Main');
+          }}
+        />
         <Text
           style={[
             GlobalStyles.h2,
@@ -76,15 +79,7 @@ class CreateAlarmScreen extends Component {
           NEW ALARM:
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
-        <TextInput
-          style={GlobalStyles.input}
-          returnKeyType="next"
-          ref={(input) => { this.workAddressInput = input; }}
-          onSubmitEditing={() => this.arrivalTimeInput.focus()}
-          onChangeText={text => this.setState({ workAddress: text })}
-          placeholder="Work Address"
-          placeholderTextColor={Colors.darkGray}
-        />
+        <Autocomplete />
         <Text style={GlobalStyles.subtitle}>Routine Time</Text>
         <TextInput
           style={GlobalStyles.input}
@@ -100,11 +95,12 @@ class CreateAlarmScreen extends Component {
           style={GlobalStyles.input}
           returnKeyType="next"
           ref={(input) => { this.arrivalTimeInput = input; }}
-          onSubmitEditing={() => this.workAddressInput.focus()}
+          onSubmitEditing={() => null}
           onChangeText={text => this.setState({ arrivalTime: text })}
-          placeholder="8:00"
+          placeholder="(8:00 AM)"
           placeholderTextColor={Colors.darkGray}
         />
+        <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
         <DayPicker />
         {this.loader()}
         <View style={{ alignItems: 'center' }}>
@@ -113,10 +109,10 @@ class CreateAlarmScreen extends Component {
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => createAlarm({
-              uid,
               arrivalTime: arrivalTime.getTime(),
               timeToGetReady: readyTime,
               destinationLoc: workAddress,
+              navigate,
             })}
           />
         </View>
@@ -132,7 +128,6 @@ CreateAlarmScreen.propTypes = {
   // Redux dispatch
   createAlarm: PropTypes.func.isRequired,
   // Redux state
-  uid: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
@@ -142,7 +137,6 @@ CreateAlarmScreen.propTypes = {
  * @eschirtz 03-03-19
  */
 const mapStateToProps = state => ({
-  uid: state.user.uid,
   loading: state.user.loading,
 });
 

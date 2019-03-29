@@ -1,8 +1,6 @@
 import { Location, Permissions } from 'expo';
-import store from '../store';
-import navigation from 'react-navigation';
 
-
+const MILS_PER_HOUR = 3600000;
 /**
   * Uses Google Maps API to get the duration in traffic from startLoc to
   * destinationLoc.
@@ -64,6 +62,9 @@ async function getCurrentLocation() {
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
 async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
+  console.log(destinationLoc);
+  console.log(timeToGetReady);
+  console.log(arrivalTime);
   const loops = 4;
   return new Promise((resolve) => {
     getCurrentLocation()
@@ -84,48 +85,23 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
                 });
               i += 1;
             }
-            console.log(departureTime);
             resolve(departureTime - timeToGetReady * 60000);
           });
       });
   });
 }
-/**
-  * Get User's current location from Google Maps API. Better to use Expo.
-  */
-/* eslint-disable no-unused-vars */
-/*
-async function getCurrentLocation() {
-  const API_KEY = 'AIzaSyDMsg5GK6Bv8UJF8tMkWI81XoYDZ9vy7R8';
-  const url = `https://www.googleapis.com/geolocation/v1/geolocate?key=${API_KEY}`;
-  console.log('here');
-  return new Promise((resolve, reject) => {
-    fetch(url)
-      .then(response => response.json())
-      .then((json) => {
-        if (json.status !== 'OK') {
-          const errorMessage = json.error_message || 'Unknown error';
-          reject(errorMessage);
-        }
-        console.log(json.location);
-        const { lat } = json.location;
-        const { lng } = json.location;
-        console.log(`lat: ${lat} long: ${lng}`);
-        resolve(`{lat: ${lat}, lng: ${lng}}`);
-      });
-  });
-}
-*/
 
-triggerNavigate = async(navigate) => {
+function triggerNavigate(navigate) {
   navigate('Alarm');
 }
-export async function armAlarm (navigate) {
+async function armAlarm(alarmTime, navigate) {
   const date = new Date();
-  var current = date.getTime();
-  var dumbAlarm = current + 5000;
-  var difference = dumbAlarm - current;
+  const current = date.getTime(); // get current time
+  let difference = alarmTime - current;
+  console.log(difference);
+  if (difference < 0) difference = 0;
+  console.log(`${difference / (MILS_PER_HOUR)} Hours`);
   setTimeout(() => triggerNavigate(navigate), difference);
 }
 
-export default { getAlarmTime };
+export default { getAlarmTime, armAlarm };

@@ -25,7 +25,7 @@ class AuthLoadingScreen extends React.Component {
     auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
-        fetchUser(user.uid);
+        fetchUser(user.uid, navigation.navigate);
         navigation.navigate('App');
       } else {
         // User is signed out.
@@ -56,7 +56,7 @@ AuthLoadingScreen.propTypes = {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  fetchUser: (user) => { dispatch(userFetch(user)); },
+  fetchUser: (user, navigate) => { dispatch(userFetch(user, navigate)); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthLoadingScreen);
