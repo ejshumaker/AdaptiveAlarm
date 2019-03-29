@@ -125,7 +125,7 @@ class CreateAlarmScreen extends Component {
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
         <Autocomplete onDestChange={this.onDestChange} />
-        <Text style={[GlobalStyles.subtitle, { marginTop: '-35%' }]}>Routine Time</Text>
+        <Text style={[GlobalStyles.subtitle, { marginTop: '-20%' }]}>Routine Time</Text>
         <TextInput
           style={GlobalStyles.input}
           returnKeyType="next"
@@ -146,10 +146,10 @@ class CreateAlarmScreen extends Component {
           placeholder="(8:00 AM)"
           placeholderTextColor={Colors.darkGray}
         />
-        <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
-        <DayPicker />
+        <Text style={[GlobalStyles.subtitle, { marginBottom: 16 }]}>Recurring (beta)</Text>
+        <DayPicker style={{}} />
         {this.loader()}
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: 'center', marginBottom: '33%' }}>
           <Buttons
             title="Create Alarm"
             backgroundColor={Colors.primary}
