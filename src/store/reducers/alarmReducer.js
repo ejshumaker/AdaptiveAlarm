@@ -8,6 +8,7 @@
 
 const initialAlarmState = {
   time: undefined,
+  active: true,
   loading: false,
 };
 const alarmReducer = (state = initialAlarmState, action) => {

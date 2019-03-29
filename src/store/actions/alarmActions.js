@@ -17,13 +17,6 @@ export function alarmCalculateTime(destinationLoc, timeToGetReady, arrivalTime) 
   });
 }
 
-export function alarmFoo(bar) {
-  return {
-    type: 'ALARM_FOO',
-    payload: bar,
-  };
-}
-
 // TODO: Turn off the alarm and navigate home
 export function alarmOff(navigate) {
   return {

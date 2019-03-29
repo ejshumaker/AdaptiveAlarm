@@ -59,26 +59,14 @@ export default createStackNavigator(
       screen: DayPickerTestScreen,
       navigationOptions: () => ({
         title: 'DayPicker',
-        headerStyle: {
-          backgroundColor: Colors.darkGray,
-        },
-        headerTintColor: Colors.white,
-        headerTitleStyle: {
-          fontWeight: '100',
-        },
+        header: null,
       }),
     },
     Account: {
       screen: AccountScreen,
       navigationOptions: () => ({
         title: 'Account',
-        headerStyle: {
-          backgroundColor: Colors.darkGray,
-        },
-        headerTintColor: Colors.white,
-        headerTitleStyle: {
-          fontWeight: '100',
-        },
+        header: null,
       }),
     },
     AutoComplete: {
@@ -96,6 +84,7 @@ export default createStackNavigator(
     },
   },
   {
+    initialRouteName: 'Main',
     cardStyle: {
       backgroundColor: Colors.background,
     },
