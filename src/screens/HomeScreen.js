@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 
 import { userSignOut } from '../store/actions/userActions';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
+import { armAlarm }   from '../custom_modules/Alarm';
 
 import {
   Colors,
@@ -145,6 +146,11 @@ class HomeScreen extends Component {
           title="True Home Screen"
           color={Colors.darkGray}
           onPress={() => navigate('Main')}
+        />
+        <Button
+          title="Arm Alarm"
+          color={Colors.darkGray}
+          onPress={() => armAlarm(this.props.navigation.navigate)}
         />
         <View style={{ height: 8, width: 8 }} />
         <Button

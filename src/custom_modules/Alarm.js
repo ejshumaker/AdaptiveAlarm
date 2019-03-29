@@ -128,3 +128,5 @@ export async function armAlarm (navigate) {
   var difference = dumbAlarm - current;
   setTimeout(() => triggerNavigate(navigate), difference);
 }
+
+export default { getAlarmTime };
