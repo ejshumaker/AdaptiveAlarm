@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -25,6 +25,7 @@ class MainScreen extends Component {
     const meridian = !loading && alarmTime !== -1 ? moment(alarmTime).format('a') : '- -';
     return (
       <View>
+
         <Text style={
           [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary, marginTop: 40 }]
         }
@@ -69,7 +70,9 @@ class MainScreen extends Component {
     // eslint-disable-next-line no-unused-vars
     const self = this;
     return (
+
       <View style={{ marginVertical: 48 }}>
+        <StatusBar barStyle="light-content" />
         <AnalogClock
           minuteHandLength={105}
           minuteHandColor={Colors.white}
