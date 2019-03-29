@@ -53,7 +53,6 @@ export default createStackNavigator(
       navigationOptions: () => ({
         title: 'Main',
         header: null,
-
       }),
     },
     DayPicker: {
@@ -97,6 +96,7 @@ export default createStackNavigator(
     },
   },
   {
+    initialRouteName: 'Main',
     cardStyle: {
       backgroundColor: Colors.background,
     },

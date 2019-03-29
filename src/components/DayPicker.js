@@ -1,25 +1,13 @@
 import React, { PureComponent } from 'react';
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
+  View, Text, TouchableOpacity, StyleSheet,
 } from 'react-native';
 import styled from 'styled-components';
 import { Colors } from '../constants';
 
-const Circle = styled.View`
-  width: 42px;
-  height: 48px;
-  border-radius: 8px;
-  justify-content: center;
-  align-items: center;
-  margin: 2px;
-`;
-
 const styles = StyleSheet.create({
   text: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   container: {
@@ -107,7 +95,6 @@ class DayPicker extends PureComponent {
         }
         break;
       default:
-        break;
     }
   }
 
@@ -124,134 +111,164 @@ class DayPicker extends PureComponent {
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={() => this.updateOnPress('S')}>
-          <Circle style={{
-            backgroundColor: sButton === 'S'
-              ? Colors.primary
-              : Colors.darkGray,
-          }}
+          <Circle
+            style={{
+              backgroundColor:
+                sButton === 'S' ? Colors.primary : Colors.darkGray,
+            }}
           >
-            <Text style={[styles.text, {
-              color: sButton === 'S'
-                ? Colors.black
-                : Colors.white,
-            }]}
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    sButton === 'S' ? Colors.black : Colors.white,
+                },
+              ]}
             >
-            S
+              S
             </Text>
           </Circle>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.updateOnPress('M')}>
-          <Circle style={{
-            backgroundColor: mButton === 'M'
-              ? Colors.primary
-              : Colors.darkGray,
-          }}
+          <Circle
+            style={{
+              backgroundColor:
+                mButton === 'M' ? Colors.primary : Colors.darkGray,
+            }}
           >
-            <Text style={[styles.text, {
-              color: mButton === 'M'
-                ? Colors.black
-                : Colors.white,
-            }]}
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    mButton === 'M' ? Colors.black : Colors.white,
+                },
+              ]}
             >
-            M
+              M
             </Text>
           </Circle>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.updateOnPress('T')}>
-          <Circle style={{
-            backgroundColor: tButton === 'T'
-              ? Colors.primary
-              : Colors.darkGray,
-          }}
+          <Circle
+            style={{
+              backgroundColor:
+                tButton === 'T' ? Colors.primary : Colors.darkGray,
+            }}
           >
-            <Text style={[styles.text, {
-              color: tButton === 'T'
-                ? Colors.black
-                : Colors.white,
-            }]}
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    tButton === 'T' ? Colors.black : Colors.white,
+                },
+              ]}
             >
-            T
+              T
             </Text>
           </Circle>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.updateOnPress('W')}>
-          <Circle style={{
-            backgroundColor: wButton === 'W'
-              ? Colors.primary
-              : Colors.darkGray,
-          }}
+          <Circle
+            style={{
+              backgroundColor:
+                wButton === 'W' ? Colors.primary : Colors.darkGray,
+            }}
           >
-            <Text style={[styles.text, {
-              color: wButton === 'W'
-                ? Colors.black
-                : Colors.white,
-            }]}
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    wButton === 'W' ? Colors.black : Colors.white,
+                },
+              ]}
             >
-            W
+              W
             </Text>
           </Circle>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.updateOnPress('Th')}>
-          <Circle style={{
-            backgroundColor: thButton === 'Th'
-              ? Colors.primary
-              : Colors.darkGray,
-          }}
+          <Circle
+            style={{
+              backgroundColor:
+                thButton === 'Th' ? Colors.primary : Colors.darkGray,
+            }}
           >
-            <Text style={[styles.text, {
-              color: thButton === 'Th'
-                ? Colors.black
-                : Colors.white,
-            }]}
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    thButton === 'Th' ? Colors.black : Colors.white,
+                },
+              ]}
             >
-            Th
+              Th
             </Text>
           </Circle>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.updateOnPress('F')}>
-          <Circle style={{
-            backgroundColor: fButton === 'F'
-              ? Colors.primary
-              : Colors.darkGray,
-          }}
+          <Circle
+            style={{
+              backgroundColor:
+                fButton === 'F' ? Colors.primary : Colors.darkGray,
+            }}
           >
-            <Text style={[styles.text, {
-              color: fButton === 'F'
-                ? Colors.black
-                : Colors.white,
-            }]}
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    fButton === 'F' ? Colors.black : Colors.white,
+                },
+              ]}
             >
-            F
+              F
             </Text>
           </Circle>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => this.updateOnPress('Sa')}>
-          <Circle style={{
-            backgroundColor: saButton === 'Sa'
-              ? Colors.primary
-              : Colors.darkGray,
-          }}
+          <Circle
+            style={{
+              backgroundColor:
+                saButton === 'Sa' ? Colors.primary : Colors.darkGray,
+            }}
           >
-            <Text style={[styles.text, {
-              color: saButton === 'Sa'
-                ? Colors.black
-                : Colors.white,
-            }]}
+            <Text
+              style={[
+                styles.text,
+                {
+                  color:
+                    saButton === 'Sa' ? Colors.black : Colors.white,
+                },
+              ]}
             >
-            Sa
+              Sa
             </Text>
           </Circle>
         </TouchableOpacity>
-
       </View>
     );
   }
 }
+
+const Circle = styled.View`
+  width: 35px;
+  height: 40px;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  margin: 4px;
+`;
+
 
 export default DayPicker;

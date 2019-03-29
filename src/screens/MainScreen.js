@@ -1,61 +1,72 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import AnalogClock from '../components/AnalogClock';
+import { AnalogClock, Buttons } from '../components';
 
 import { userDeleteAlarm } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
 
 class MainScreen extends Component {
-  constructor() {
-    super();
-    this.state = {
-      predictedTimeHour: moment().format('hh'),
-      predictedTimeMin: moment().format('mm'),
-      predictedTimeMeridiem: moment().format('a'),
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
-      predictedTimeHour: moment().format('hh'),
-      predictedTimeMin: moment().format('mm'),
-      predictedTimeMeridiem: moment().format('a'),
-    });
-  }
-
-  render() {
-    const { predictedTimeHour, predictedTimeMin, predictedTimeMeridiem } = this.state;
+  hasAlarmView() {
     const {
-      // functions
-      navigate,
-      deleteAlarm,
       // values
       alarmTime,
-      alarmActive,
       loading,
     } = this.props;
+
+    const hour = !loading && alarmTime !== -1 ? moment(alarmTime).format('hh') : '0';
+    const min = !loading && alarmTime !== -1 ? moment(alarmTime).format('mm') : '00';
+    const meridian = !loading && alarmTime !== -1 ? moment(alarmTime).format('a') : '- -';
     return (
-      <View style={[GlobalStyles.centerChildrenXY]}>
+      <View>
         <Text style={
             [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary }]
           }
         >
-          { 'PREDICTED:' }
+          {'PREDICTED:'}
         </Text>
-        <Text style={[GlobalStyles.margin, { alignItems: 'center', color: Colors.white, fontSize: 70 }]}>
+        <Text
+          style={[
+            GlobalStyles.margin,
+            { alignItems: 'center', color: Colors.white, fontSize: 70 },
+          ]}
+        >
           <Text style={[{ fontWeight: 'bold' }]}>
-            { predictedTimeHour }
-            { ':' }
-            { predictedTimeMin }
+            {hour}
+            {':'}
+            {min}
           </Text>
           <Text style={[{ fontSize: 40 }]}>
-            { ' ' }
-            { predictedTimeMeridiem.toUpperCase() }
+            {' '}
+            {meridian}
           </Text>
         </Text>
+      </View>
+    );
+  }
+
+  hasNoAlarmView() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
+        <Text style={
+            [GlobalStyles.h2, { color: Colors.primary, marginBottom: 48 }]
+          }
+        >
+          {'NO ALARM SET'}
+        </Text>
+      </View>
+    );
+  }
+
+  clockView() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    return (
+      <View>
         <AnalogClock
           minuteHandLength={110}
           minuteHandColor={Colors.white}
@@ -64,21 +75,71 @@ class MainScreen extends Component {
           hourHandColor={Colors.primary}
           hourHandCurved={false}
           hourHandWidth={4}
-          clockBorderColor={Colors.white}
-          clockCentreColor={Colors.white}
         />
         <View style={{ height: 32, width: 8 }} />
-        <Button
+      </View>
+    );
+  }
+
+  hasAlarmButtons() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    const { deleteAlarm, navigation } = this.props;
+    const { navigate } = navigation;
+    return (
+      <View>
+        <Buttons
           title="Delete Alarm"
-          color={Colors.darkGray}
+          backgroundColor={Colors.primary}
+          textColor={Colors.black}
           onPress={() => deleteAlarm()}
         />
-        <View style={{ height: 8, width: 8 }} />
-        <Button
+        <Buttons
           title="Create Alarm"
-          color={Colors.darkGray}
+          backgroundColor={Colors.darkGray}
+          textColor={Colors.white}
           onPress={() => navigate('CreateAlarm')}
         />
+      </View>
+    );
+  }
+
+  hasNoAlarmButtons() {
+    // eslint-disable-next-line no-unused-vars
+    const self = this;
+    const { navigation } = this.props;
+    const { navigate } = navigation;
+    return (
+      <View>
+        <Buttons
+          title="Create Alarm"
+          backgroundColor={Colors.darkGray}
+          textColor={Colors.white}
+          onPress={() => navigate('CreateAlarm')}
+        />
+      </View>
+    );
+  }
+
+  render() {
+    const {
+      alarmActive,
+    } = this.props;
+
+    if (alarmActive) {
+      return (
+        <View style={[GlobalStyles.centerChildrenXY]}>
+          { this.hasAlarmView() }
+          { this.clockView() }
+          { this.hasAlarmButtons() }
+        </View>
+      );
+    }
+    return (
+      <View style={[GlobalStyles.centerChildrenXY]}>
+        { this.hasNoAlarmView() }
+        { this.clockView() }
+        { this.hasNoAlarmButtons() }
       </View>
     );
   }
