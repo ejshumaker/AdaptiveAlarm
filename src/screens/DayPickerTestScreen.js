@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   View,
   Text,
-} from "react-native";
+} from 'react-native';
 import { Colors, GlobalStyles } from '../constants';
 import DayPicker from '../components/DayPicker';
 
@@ -14,7 +14,7 @@ class DayPickerTestScreen extends Component {
   render() {
     return (
       <View style={GlobalStyles.centerChildrenXY}>
-        <DayPicker/>
+        <DayPicker />
       </View>
     );
   }

@@ -12,6 +12,9 @@ const initialUserState = {
   lastName: undefined,
   userName: undefined,
   email: undefined,
+  destinationLoc: undefined,
+  timeToGetReady: undefined,
+  arrivalTime: undefined,
   error: false,
   errorMessage: undefined, // overwrite with a message
   loading: false, // global loading flag
@@ -20,6 +23,33 @@ const initialUserState = {
 
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
+    // CREATE ALARM //
+    case 'USER_CREATE_ALARM_PENDING':
+      state = { ...state, loading: true };
+      break;
+    case 'USER_CREATE_ALARM_REJECTED':
+      state = {
+        ...state,
+        errorMessage:
+        action.payload.message,
+        error: action.error,
+        loading: false,
+      };
+      break;
+    case 'USER_CREATE_ALARM_FULFILLED': {
+      // Push new alarm into alarms array
+      const { alarms } = state;
+      const { key } = action.payload;
+      alarms[key] = action.payload;
+      state = {
+        ...state,
+        alarms,
+        errorMessage: undefined,
+        error: action.error,
+        loading: false,
+      };
+      break;
+    }
     // CREATE ACCOUNT //
     case 'USER_CREATE_ACCOUNT_PENDING':
       state = { ...state, loading: true };
@@ -61,8 +91,7 @@ const userReducer = (state = initialUserState, action) => {
     case 'USER_SIGN_IN_REJECTED':
       state = {
         ...state,
-        errorMessage:
-        action.payload.message,
+        errorMessage: action.payload.message,
         error: action.error,
         loading: false,
       };
@@ -97,6 +126,7 @@ const userReducer = (state = initialUserState, action) => {
         userName,
         email,
         uid,
+        alarms,
       } = action.payload;
       state = {
         ...state,
@@ -105,6 +135,7 @@ const userReducer = (state = initialUserState, action) => {
         userName,
         email,
         uid,
+        alarms,
         loading: false,
         loadingFetch: false,
       };
