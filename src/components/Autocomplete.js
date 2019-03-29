@@ -20,9 +20,9 @@ const Autocomplete = () => (
   <GoogleAutoComplete
     apiKey={API_KEY}
     debounce={1000}
-    radius={50000}
+    radius="50000"
     minLength={3}
-    queryTypes={"establishment"}
+    queryTypes="establishment"
   >
     {({
       inputValue,

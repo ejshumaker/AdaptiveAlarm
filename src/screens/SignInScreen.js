@@ -1,5 +1,11 @@
 import React from "react";
-import { TextInput, Text, View, ActivityIndicator } from "react-native";
+import {
+  TextInput,
+  Text,
+  View,
+  ActivityIndicator,
+  StatusBar
+} from "react-native";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -34,6 +40,7 @@ class SignInScreen extends React.Component {
     const { email, password } = this.state;
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
+        <StatusBar barStyle="light-content" />
         <Text
           style={[
             GlobalStyles.h2,

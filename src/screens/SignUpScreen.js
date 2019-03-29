@@ -5,7 +5,8 @@ import {
   ActivityIndicator,
   Text,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
+  StatusBar
 } from "react-native";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -46,6 +47,7 @@ class SignUpScreen extends React.Component {
     const { createAccount, navigation, errorMessage } = this.props;
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
+        <StatusBar barStyle="light-content" />
         <Text
           style={[
             GlobalStyles.h2,
