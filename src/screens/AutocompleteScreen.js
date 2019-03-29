@@ -16,7 +16,7 @@ export default class AutocompleteScreen extends Component {
 
   render() {
     return (
-      <View style={GlobalStyles.centerChildrenXY}>
+      <View style={[GlobalStyles.centerChildrenXY, { margin: 20 }]}>
         <Autocomplete />
       </View>
     );
