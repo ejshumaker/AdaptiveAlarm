@@ -32,9 +32,9 @@ class CreateAlarmScreen extends Component {
   constructor() {
     super();
     this.state = {
-      readyTime: 31,
-      arrivalTime: new Date(2019, 3, 26, 11, 6, 16),
-      workAddress: 'Middleton, WI',
+      readyTime: 0,
+      arrivalTime: new Date(),
+      workAddress: '1001 W Dayton Street, Madison WI',
     };
   }
 
@@ -47,7 +47,6 @@ class CreateAlarmScreen extends Component {
 
   render() {
     const {
-      uid,
       createAlarm,
       navigation,
     } = this.props;
@@ -109,8 +108,7 @@ class CreateAlarmScreen extends Component {
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => createAlarm({
-              uid,
-              arrivalTime: arrivalTime.getTime(),
+              arrivalTime: arrivalTime.getTime() + 60000,
               timeToGetReady: readyTime,
               destinationLoc: workAddress,
               navigate,
@@ -129,7 +127,6 @@ CreateAlarmScreen.propTypes = {
   // Redux dispatch
   createAlarm: PropTypes.func.isRequired,
   // Redux state
-  uid: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
 };
 
@@ -139,7 +136,6 @@ CreateAlarmScreen.propTypes = {
  * @eschirtz 03-03-19
  */
 const mapStateToProps = state => ({
-  uid: state.user.uid,
   loading: state.user.loading,
 });
 

@@ -7,10 +7,6 @@ import Alarm from '../../custom_modules/Alarm';
   * @tsteiner4 3-9-2019
   */
 export function alarmCalculateTime(destinationLoc, timeToGetReady, arrivalTime, navigate) {
-  // navigate home if requested
-  if (navigate) {
-    navigate('Main');
-  }
   return dispatch => dispatch({
     type: 'ALARM_SET_TIME',
     payload: Alarm.getAlarmTime(
@@ -19,7 +15,8 @@ export function alarmCalculateTime(destinationLoc, timeToGetReady, arrivalTime, 
       arrivalTime,
     ),
   })
-    .then(() => {
+    .then((resp) => {
+      Alarm.armAlarm(resp.value, navigate);
       dispatch({
         type: 'ALARM_SET_ACTIVE_STATUS',
         payload: true,

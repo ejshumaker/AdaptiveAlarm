@@ -140,12 +140,6 @@ class MainScreen extends Component {
         paddingHorizontal: 28,
       }}
       >
-        <MenuIcon
-          style={{}}
-          onPress={() => {
-            navigation.navigate('Alarm');
-          }}
-        />
         <UserIcon
           style={{}}
           onPress={() => {

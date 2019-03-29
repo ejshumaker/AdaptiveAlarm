@@ -4,7 +4,6 @@
  * @eschirtz 03-02-19
  */
 import User from '../../custom_modules/User';
-import Alarm from '../../custom_modules/Alarm';
 import { alarmCalculateTime } from './alarmActions';
 
 /**
@@ -77,6 +76,7 @@ export function userFetch(uid, navigate) {
           destinationLoc,
           timeToGetReady,
           arrivalTime,
+          navigate,
         ));
       } else {
         dispatch({
@@ -84,9 +84,6 @@ export function userFetch(uid, navigate) {
           payload: false,
         });
       }
-    })
-    .then(() => {
-      Alarm.armAlarm(navigate);
     });
 }
 

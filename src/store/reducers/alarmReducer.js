@@ -38,7 +38,6 @@ const alarmReducer = (state = initialAlarmState, action) => {
         ...state,
         active: action.payload,
       };
-      console.log(state);
       break;
     default:
   }
