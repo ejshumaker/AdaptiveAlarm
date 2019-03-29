@@ -46,7 +46,7 @@ class CreateAlarmScreen extends Component {
     console.log(key, value);
     // parent class change handler is always called with field name and value
     this.setState({
-      [key]: value,
+      workAddress: value,
     });
   }
 
@@ -63,10 +63,10 @@ class CreateAlarmScreen extends Component {
       Alert.alert('Time to get ready must be a number!');
       return;
     }
-    console.log(moment('8:00', 'LT'));
     try {
       const momentString = moment(arrivalTime, 'LT');
       const date = new Date(momentString);
+      // eslint-disable-next-line
       if (isNaN(date.getTime())) {
         Alert.alert('Please double check your time of arrival');
         return;
