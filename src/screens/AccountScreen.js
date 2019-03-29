@@ -24,7 +24,7 @@ class AccountScreen extends Component {
   constructor() {
     super();
     this.state = {
-      title: 'YOUR PROFILE:',
+      title: 'PROFILE:',
     };
   }
 
@@ -56,6 +56,7 @@ class AccountScreen extends Component {
       titleView: {
         marginTop: 40,
         marginBottom: 10,
+        alignItems: 'center',
       },
       imageView: {
         width: '80%',
@@ -72,26 +73,29 @@ class AccountScreen extends Component {
       userinfopane: {
         width: '95%',
         alignItems: 'center',
-        justifyContent: 'space-around',
-        flexDirection: 'column',
+        justifyContent: 'space-evenly',
       },
       profileRow: {
-        flex: 8,
+        // flex: 8,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderBottomWidth: 2,
+        borderBottomWidth: 0.5,
         borderBottomColor: Colors.white,
-        marginBottom: 10,
-        height: 32,
+        marginVertical: 4,
+        height: 40,
         width: '90%',
       },
       infoColumn: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
+        // flex: 0.5,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        marginVertical: 6,
       },
       dataColumn: {
-        flexDirection: 'row',
+        // flex: 0.5,
+        flexDirection: 'column',
         justifyContent: 'flex-end',
+        marginVertical: 6,
       },
       signOutButton: {
         width: '80%',
@@ -102,11 +106,11 @@ class AccountScreen extends Component {
     });
 
     return (
-      <View style={[GlobalStyles.centerChildrenXY, { height: '85%', justifyContent: 'space-around' }]}>
+      <View style={[GlobalStyles.centerChildrenXY, { height: '85%', display: 'block', justifyContent: 'space-evenly' }]}>
 
 
         {/* VIEW FOR TITLE ! "YOUR PROFILE" */}
-        <View style={[styles.titleView, { flex: 'auto' }]}>
+        <View style={[styles.titleView]}>
           <Text style={[
             GlobalStyles.h2,
             { color: Colors.primary },
@@ -117,7 +121,7 @@ class AccountScreen extends Component {
 
 
           {/* VIEW FOR IMAGE OF USER */}
-          <View style={[styles.imageView, { flex: 'auto' }]}>
+          <View style={[styles.imageView]}>
 
 
             {/* TODO: Replace with Icon ! */}
@@ -129,7 +133,7 @@ class AccountScreen extends Component {
             { this.loader() }
 
             { /* DISPLAY USER'S NAME BELOW IMAGE */ }
-            <Text style={[GlobalStyles.h3, { color: Colors.primary }]}>
+            <Text style={[GlobalStyles.h2, { color: Colors.white }]}>
               {firstName}
               {' '}
               {lastName}
@@ -141,11 +145,11 @@ class AccountScreen extends Component {
         { /* END -- VIEW FOR TITLE */ }
 
         {/* VIEW FOR USER INFO */}
-        <View style={[styles.userinfopane, { flex: 'auto' }]}>
+        <View style={[styles.userinfopane]}>
 
 
           {/* VIEW FOR USER'S ROUTINE TIME */}
-          <View style={[styles.profileRow, { flex: 'auto' }]}>
+          <View style={[styles.profileRow]}>
 
             <View style={styles.infoColumn}>
               <Text style={[GlobalStyles.paragraph]}>Routine Time</Text>
@@ -166,7 +170,7 @@ class AccountScreen extends Component {
           {/* END --  VIEW FOR USER'S ROUTINE TIME */}
 
           {/* VIEW FOR USER'S HOME ADDRESS */}
-          <View style={[styles.profileRow, { flex: 'auto' }]}>
+          <View style={[styles.profileRow]}>
 
             <View style={styles.infoColumn}>
               <Text style={[GlobalStyles.paragraph]}>Home</Text>
@@ -190,7 +194,7 @@ class AccountScreen extends Component {
 
 
           {/* VIEW FOR USER'S WORK ADDRESS */}
-          <View style={[styles.profileRow, { flex: 'auto' }]}>
+          <View style={[styles.profileRow]}>
 
             <View style={styles.infoColumn}>
               <Text style={[GlobalStyles.paragraph]}>Work</Text>
