@@ -4,15 +4,76 @@
  * @eschirtz 03-02-19
  */
 import User from '../../custom_modules/User';
+import { alarmCalculateTime } from './alarmActions';
 
-
-export function userFetch(uid) {
-  return {
-    type: 'USER_FETCH',
-    payload: User.fetch(uid),
-  };
+/**
+ * Stores alarm data in firebase and
+ * returns a new alarm with associated key
+ * @param  {[Object]} payload
+ */
+export function userCreateAlarm(payload) {
+  return dispatch => dispatch({
+    type: 'USER_CREATE_ALARM',
+    payload: User.createAlarm(payload),
+  })
+    .then((resp) => {
+      // pull out the new alarm TEMP
+      const {
+        destinationLoc,
+        timeToGetReady,
+        arrivalTime,
+      } = resp.value;
+      dispatch(alarmCalculateTime(
+        destinationLoc,
+        timeToGetReady,
+        arrivalTime,
+      ));
+    })
+    .catch(error => console.log(error)); // eslint-disable-line
 }
 
+/**
+ * Deletes alarm from firebase
+ */
+export function userDeleteAlarm(alarmId) {
+  return (dispatch) => {
+    console.log('deleting alarm');
+    dispatch({
+      type: 'USER_DELETE_ALARM',
+      payload: alarmId,
+    });
+  };
+}
+/**
+ * Fetches the user's data from Firebase
+ * and updates the store to reflect
+ * @param  {Number} uid
+ */
+export function userFetch(uid) {
+  return dispatch => dispatch({
+    type: 'USER_FETCH',
+    payload: User.fetch(uid),
+  })
+    .then((resp) => {
+      const {
+        destinationLoc,
+        timeToGetReady,
+        arrivalTime,
+      } = resp.value.alarms.alarm1; // alarm1 is temporary!!!
+      dispatch(alarmCalculateTime(
+        destinationLoc,
+        timeToGetReady,
+        arrivalTime,
+      ));
+    });
+}
+
+/**
+ * Creates an account with firebase &
+ * creates an associated entry for the user in the database
+ * with all their profile information
+ * @param  {Object} payload
+ */
 export function userCreateAccount(payload) {
   return dispatch => dispatch({
     type: 'USER_CREATE_ACCOUNT',
@@ -22,7 +83,10 @@ export function userCreateAccount(payload) {
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
-
+/**
+ * Signs user in
+ * @param payload
+ */
 export function userSignIn(payload) {
   return dispatch => dispatch({
     type: 'USER_SIGN_IN',
@@ -31,6 +95,9 @@ export function userSignIn(payload) {
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
+/**
+ * Signs user out
+ */
 export function userSignOut() {
   return {
     type: 'USER_SIGN_OUT',

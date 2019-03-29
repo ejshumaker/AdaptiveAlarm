@@ -63,30 +63,29 @@ async function getCurrentLocation() {
 
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
+async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
   const loops = 4;
   return new Promise((resolve) => {
     getCurrentLocation()
       .then((response) => {
         const startLoc = response;
 
-        getRouteTime(startLoc, destinationLoc, arrivalTime.getTime())
+        getRouteTime(startLoc, destinationLoc, arrivalTime)
           .then(async (re) => {
             let duration = re;
-            let departureTime = arrivalTime.getTime();
+            let departureTime = arrivalTime;
             let i = 0;
-            console.log(duration);
             while (Math.abs(departureTime + (duration * 60000)
-        - arrivalTime.getTime()) > 6 * 60 * 1000 && i < loops) {
+        - arrivalTime) > 6 * 60 * 1000 && i < loops) {
               departureTime = arrivalTime - Math.floor(duration * 60000);
               await getRouteTime(startLoc, destinationLoc, departureTime)
                 .then((resp) => {
                   duration = resp;
-                  console.log(duration);
                 });
               i += 1;
             }
-            resolve(departureTime - timeToGetReady*60000);
+            console.log(departureTime);
+            resolve(departureTime - timeToGetReady * 60000);
           });
       });
   });
