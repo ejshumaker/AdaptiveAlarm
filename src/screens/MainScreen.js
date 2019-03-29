@@ -3,10 +3,15 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { AnalogClock, Buttons } from '../components';
+import AnalogClock from '../components/AnalogClock';
+import Buttons from '../components/Buttons';
 
 import { userDeleteAlarm } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
+
+import { AddIcon } from '../icons/add';
+import { UserIcon } from '../icons/user';
+import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
   hasAlarmView() {
@@ -95,10 +100,10 @@ class MainScreen extends Component {
           onPress={() => deleteAlarm()}
         />
         <Buttons
-          title="Create Alarm"
+          title="Development Page"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
-          onPress={() => navigate('CreateAlarm')}
+          onPress={() => navigate('Home')}
         />
       </View>
     );
@@ -112,10 +117,43 @@ class MainScreen extends Component {
     return (
       <View>
         <Buttons
-          title="Create Alarm"
+          title="Development Page"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
-          onPress={() => navigate('CreateAlarm')}
+          onPress={() => navigate('Home')}
+        />
+      </View>
+    );
+  }
+
+  menu() {
+    const { navigation } = this.props;
+    return (
+      <View style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 75,
+        paddingHorizontal: 28,
+      }}
+      >
+        <MenuIcon
+          style={{}}
+          onPress={() => {
+            navigation.navigate('Alarm');
+          }}
+        />
+        <UserIcon
+          style={{ }}
+          onPress={() => {
+            navigation.navigate('Account');
+          }}
+        />
+        <AddIcon
+          style={{ }}
+          onPress={() => {
+            navigation.navigate('CreateAlarm');
+          }}
         />
       </View>
     );
@@ -128,18 +166,24 @@ class MainScreen extends Component {
 
     if (alarmActive) {
       return (
-        <View style={[GlobalStyles.centerChildrenXY]}>
-          { this.hasAlarmView() }
-          { this.clockView() }
-          { this.hasAlarmButtons() }
+        <View>
+          {this.menu()}
+          <View style={{ alignItems: 'center', width: '100%' }}>
+            { this.hasAlarmView() }
+            { this.clockView() }
+            { this.hasAlarmButtons() }
+          </View>
         </View>
       );
     }
     return (
-      <View style={[GlobalStyles.centerChildrenXY]}>
-        { this.hasNoAlarmView() }
-        { this.clockView() }
-        { this.hasNoAlarmButtons() }
+      <View>
+        {this.menu()}
+        <View style={{ alignItems: 'center', width: '100%' }}>
+          { this.hasNoAlarmView() }
+          { this.clockView() }
+          { this.hasNoAlarmButtons() }
+        </View>
       </View>
     );
   }

@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Button, TextInput, ActivityIndicator,
+  View, Text, TextInput, ActivityIndicator,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,6 +24,9 @@ import {
   Colors,
   GlobalStyles,
 } from '../constants';
+
+import { CloseIcon } from '../icons/close';
+import Buttons from '../components/Buttons';
 
 class CreateAlarmScreen extends Component {
   constructor() {
@@ -46,6 +49,7 @@ class CreateAlarmScreen extends Component {
     const {
       uid,
       createAlarm,
+      navigation
     } = this.props;
 
     const {
@@ -56,17 +60,20 @@ class CreateAlarmScreen extends Component {
 
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
+        <CloseIcon style={{ marginLeft: -20, marginTop: 27 }} onPress={() => {
+          navigation.navigate("Main");
+        }} />
         <Text
           style={[
             GlobalStyles.h2,
             {
               color: Colors.primary,
               marginBottom: 48,
-              marginTop: 96,
+              marginTop: 40,
             },
           ]}
         >
-        NEW ALARM:
+          NEW ALARM:
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
         <TextInput
@@ -100,16 +107,19 @@ class CreateAlarmScreen extends Component {
         />
         <DayPicker />
         {this.loader()}
-        <Button
-          title="Create Alarm"
-          color={Colors.darkGray}
-          onPress={() => createAlarm({
-            uid,
-            arrivalTime: arrivalTime.getTime(),
-            timeToGetReady: readyTime,
-            destinationLoc: workAddress,
-          })}
-        />
+        <View style={{ alignItems: 'center' }}>
+          <Buttons
+            title="Create Alarm"
+            backgroundColor={Colors.primary}
+            textColor={Colors.black}
+            onPress={() => createAlarm({
+              uid,
+              arrivalTime: arrivalTime.getTime(),
+              timeToGetReady: readyTime,
+              destinationLoc: workAddress,
+            })}
+          />
+        </View>
       </View>
     );
   }
