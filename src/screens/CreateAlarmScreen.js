@@ -25,6 +25,8 @@ import {
   GlobalStyles,
 } from '../constants';
 
+import { CloseIcon } from '../icons/close';
+
 class CreateAlarmScreen extends Component {
   constructor() {
     super();
@@ -46,6 +48,7 @@ class CreateAlarmScreen extends Component {
     const {
       uid,
       createAlarm,
+      navigation
     } = this.props;
 
     const {
@@ -56,17 +59,20 @@ class CreateAlarmScreen extends Component {
 
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
+        <CloseIcon style={{ marginLeft: -20, marginTop: 27 }} onPress={() => {
+          navigation.navigate("Main");
+        }} />
         <Text
           style={[
             GlobalStyles.h2,
             {
               color: Colors.primary,
               marginBottom: 48,
-              marginTop: 96,
+              marginTop: 40,
             },
           ]}
         >
-        NEW ALARM:
+          NEW ALARM:
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
         <TextInput

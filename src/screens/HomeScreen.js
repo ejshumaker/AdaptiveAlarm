@@ -185,12 +185,6 @@ class HomeScreen extends Component {
           onPress={() => navigate('Main')}
         />
         <View style={{ height: 8, width: 8 }} />
-        <Button
-          title="Reusable Components"
-          color={Colors.darkGray}
-          onPress={() => navigate('ReusableComponents')}
-        />
-        <View style={{ height: 8, width: 8 }} />
         <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
       </View>
     );
