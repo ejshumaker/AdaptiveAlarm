@@ -56,7 +56,8 @@ class AccountScreen extends Component {
       titleView: {
         marginTop: 40,
         marginBottom: 10,
-        alignItems: 'center',
+        marginLeft: 0,
+        // alignItems: 'center',
       },
       imageView: {
         width: '80%',
@@ -113,7 +114,10 @@ class AccountScreen extends Component {
         <View style={[styles.titleView]}>
           <Text style={[
             GlobalStyles.h2,
-            { color: Colors.primary },
+            {
+              color: Colors.primary,
+              textAlign: 'left',
+            },
           ]}
           >
             {title}
