@@ -69,8 +69,10 @@ export default StyleSheet.create({
   margin: {
     margin: defaultMargin,
   },
+  /* Text input styling */
   input: {
     height: 50,
+    fontSize: 18,
     borderBottomWidth: 2,
     borderBottomColor: Colors.primary,
     color: Colors.white,
@@ -87,7 +89,7 @@ export default StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     padding: 10,
-    backgroundColor: Colors.darkGray
+    backgroundColor: Colors.darkGray,
   },
   searchSuggestions: {
     backgroundColor: Colors.gray,
@@ -99,4 +101,10 @@ export default StyleSheet.create({
     marginRight: 5,
     padding: 10,
   },
+  h2_center: {
+    color: Colors.white,
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  }
 });

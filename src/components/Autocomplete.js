@@ -7,14 +7,15 @@
 */
 
 import React, { Fragment, Component } from 'react';
-import { TextInput, View } from 'react-native';
+import {
+  TextInput, ActivityIndicator, View, Image, Button, ScrollView,
+} from 'react-native';
 // import PropTypes from 'prop-types';
 import { GoogleAutoComplete } from 'react-native-google-autocomplete';
 import LocationItem from './LocationItem';
-import { GlobalStyles } from '../constants';
+import { GlobalStyles, Colors } from '../constants';
 
 const API_KEY = 'AIzaSyBpwrz2oV29sjAAKj2l6BIb6l5luzDIsIw';
-
 
 class Autocomplete extends Component {
   constructor() {
@@ -22,32 +23,59 @@ class Autocomplete extends Component {
     this.state = {
       destination: '',
     };
+    this.updateDest = this.updateDest.bind(this);
+  }
+
+  updateDest(key, value) {
+    this.setState({
+      [key]: value,
+    });
+    console.log('-----------------------');
+    console.log(this.state.destination);
   }
 
   render() {
     return (
-      <GoogleAutoComplete
-        apiKey={API_KEY}
-        debounce={500}
-      >
+      <GoogleAutoComplete apiKey={API_KEY} debounce={1000} radius="50000" minLength={3} queryTypes="establishment">
         {({
-          inputValue, handleTextChange, locationResults, fetchDetails,
+          inputValue, handleTextChange, locationResults, fetchDetails, isSearching, clearSearchs,
         }) => (
           <Fragment>
-            <TextInput
-              style={GlobalStyles.destinationInput}
-              value={inputValue}
-              onChangeText={handleTextChange}
-              placeholder="Enter Destination"
-            />
-            <View style={{ maxHeight: 100 }}>
-              {locationResults.map((el, i) => (
-                <LocationItem
-                  {...el}
-                  fetchDetails={fetchDetails}
-                  key={String(i)}
+            <View style={GlobalStyles.centerChildrenXY}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  width: 272,
+                  backgroundColor: Colors.darkGray,
+                  borderRadius: 8,
+                }}
+              >
+                <TextInput
+                  style={GlobalStyles.destinationInput}
+                  placeholder="Enter Destination"
+                  placeholderTextColor={Colors.white}
+                  onChangeText={handleTextChange}
+                  value={this.state.destination || inputValue}
                 />
-              ))}
+              </View>
+              {isSearching && <ActivityIndicator size="large" color={Colors.primary} />}
+              <View style={{ flexDirection: 'row' }}>
+                {locationResults.map((el, i) => (
+                  <LocationItem
+                    style={GlobalStyles.searchSuggestions}
+                    {...el}
+                    fetchDetails={fetchDetails}
+                    key={String(i)}
+                    resetSearch={clearSearchs}
+                    updateDest={this.updateDest}
+                    value={this.state.destination}
+                  />
+                ))}
+              </ScrollView>
+              <Image
+                style={{ marginTop: 5 }}
+                source={require('../assets/powered_by_google_on_non_white.png')}
+              />
             </View>
           </Fragment>
         )}
