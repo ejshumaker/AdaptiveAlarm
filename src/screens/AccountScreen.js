@@ -20,55 +20,8 @@ import {
   GlobalStyles,
 } from '../constants';
 
-import { CloseIcon } from '../icons/close';
+// import { LeftIcon } from '../icons/left';
 import Buttons from '../components/Buttons';
-
-// STYLESHEET FOR USER PROFILE
-const styles = StyleSheet.create({
-  titleView: {
-    marginBottom: 10,
-  },
-  imageView: {
-    width: '80%',
-    margin: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  usericon: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    margin: 20,
-  },
-  userinfopane: {
-    width: '95%',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    flexDirection: 'column',
-  },
-  profileRow: {
-    flex: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomWidth: 2,
-    borderBottomColor: Colors.white,
-    marginBottom: 10,
-    height: 32,
-    width: '90%',
-  },
-  infoColumn: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-  dataColumn: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  signOutButton: {
-    height: 80,
-    marginBottom: 50,
-  },
-});
 
 class AccountScreen extends Component {
   constructor() {
@@ -93,7 +46,7 @@ class AccountScreen extends Component {
       // calculateTime,
       firstName, // Redux store
       lastName,
-      navigation,
+      // navigation,
       // userName,
       // email,
       // alarmTime,
@@ -158,9 +111,12 @@ class AccountScreen extends Component {
 
     return (
       <View style={{ justifyContent: 'space-around' }}>
-        <CloseIcon style={{ marginLeft: 28, marginTop: 75 }} onPress={() => {
-          navigation.navigate("Main");
-        }} />
+        <CloseIcon
+          style={{ marginLeft: 28, marginTop: 75 }}
+          onPress={() => {
+            navigation.navigate('Main');
+          }}
+        />
         {/* VIEW FOR TITLE ! "YOUR PROFILE" */}
         <View style={{ alignItems: 'center' }}>
           <View style={[styles.titleView]}>
