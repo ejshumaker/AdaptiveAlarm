@@ -1,6 +1,9 @@
 import { Location, Permissions } from 'expo';
 
 const MILS_PER_HOUR = 3600000;
+const MILS_PER_MIN = 60000;
+const SECS_PER_MIN = 60;
+
 /**
   * Uses Google Maps API to get the duration in traffic from startLoc to
   * destinationLoc.
@@ -20,9 +23,9 @@ async function getRouteTime(startLoc, destinationLoc, departureTime) {
         }
         if (json.rows.length) {
           if (json.rows[0].elements[0].duration_in_traffic) {
-            resolve(json.rows[0].elements[0].duration_in_traffic.value / 60);
+            resolve(json.rows[0].elements[0].duration_in_traffic.value / SECS_PER_MIN);
           } else {
-            resolve(json.rows[0].elements[0].duration.value / 60);
+            resolve(json.rows[0].elements[0].duration.value / SECS_PER_MIN);
           }
         } else {
           reject();
@@ -76,16 +79,16 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
             let duration = re;
             let departureTime = arrivalTime;
             let i = 0;
-            while (Math.abs(departureTime + (duration * 60000)
-        - arrivalTime) > 6 * 60 * 1000 && i < loops) {
-              departureTime = arrivalTime - Math.floor(duration * 60000);
+            while (Math.abs(departureTime + (duration * MILS_PER_MIN)
+        - arrivalTime) > 6 * MILS_PER_MIN && i < loops) {
+              departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
               await getRouteTime(startLoc, destinationLoc, departureTime)
                 .then((resp) => {
                   duration = resp;
                 });
               i += 1;
             }
-            resolve(departureTime - timeToGetReady * 60000);
+            resolve(departureTime - timeToGetReady * MILS_PER_MIN);
           });
       });
   });
