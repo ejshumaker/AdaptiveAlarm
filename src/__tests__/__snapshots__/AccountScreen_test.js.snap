@@ -43,7 +43,6 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             },
             Object {
               "color": "#E4F96A",
-              "marginLeft": 0,
               "marginTop": 40,
             },
           ]
@@ -375,7 +374,6 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             },
             Object {
               "color": "#E4F96A",
-              "marginLeft": 0,
               "marginTop": 40,
             },
           ]
