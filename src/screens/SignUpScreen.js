@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   TextInput,
   View,
@@ -6,32 +6,32 @@ import {
   Text,
   ScrollView,
   SafeAreaView,
-  StatusBar
-} from "react-native";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+  StatusBar,
+} from 'react-native';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import { userCreateAccount } from "../store/actions/userActions";
-import { Colors, GlobalStyles } from "../constants";
-import Buttons from "../components/Buttons";
-import { EmailIcon } from "../icons/email";
-import { KeyIcon } from "../icons/key";
-import { PersonIcon } from "../icons/person";
-import { Number1Icon } from "../icons/one";
-import { Number2Icon } from "../icons/two";
+import { userCreateAccount } from '../store/actions/userActions';
+import { Colors, GlobalStyles } from '../constants';
+import Buttons from '../components/Buttons';
+import { EmailIcon } from '../icons/email';
+import { KeyIcon } from '../icons/key';
+import { PersonIcon } from '../icons/person';
+import { Number1Icon } from '../icons/one';
+import { Number2Icon } from '../icons/two';
 
 class SignUpScreen extends React.Component {
   state = {
-    firstName: "",
-    lastName: "",
-    userName: "",
-    password: "",
-    email: ""
+    firstName: '',
+    lastName: '',
+    userName: '',
+    password: '',
+    email: '',
   };
 
   onChangeText(key, value) {
     this.setState({
-      [key]: value
+      [key]: value,
     });
   }
 
@@ -51,7 +51,7 @@ class SignUpScreen extends React.Component {
         <Text
           style={[
             GlobalStyles.h2,
-            { textAlign: "left", color: Colors.primary }
+            { textAlign: 'left', color: Colors.primary },
           ]}
         >
           SIGN UP:
@@ -60,24 +60,24 @@ class SignUpScreen extends React.Component {
         <Text
           style={[
             GlobalStyles.paragraph,
-            { color: Colors.error, marginVertical: 24 }
+            { color: Colors.error, marginVertical: 24 },
           ]}
         >
           {errorMessage}
         </Text>
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
 
             height: 40,
             backgroundColor: Colors.darkGray,
             borderRadius: 8,
-            marginBottom: 30
+            marginBottom: 30,
           }}
         >
           <EmailIcon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
-            onChangeText={value => this.onChangeText("email", value)}
+            onChangeText={value => this.onChangeText('email', value)}
             style={GlobalStyles.destinationInput}
             placeholder="Email"
             placeholderTextColor={Colors.gray}
@@ -85,17 +85,17 @@ class SignUpScreen extends React.Component {
         </View>
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
 
             height: 40,
             backgroundColor: Colors.darkGray,
             borderRadius: 8,
-            marginBottom: 30
+            marginBottom: 30,
           }}
         >
           <PersonIcon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
-            onChangeText={value => this.onChangeText("userName", value)}
+            onChangeText={value => this.onChangeText('userName', value)}
             style={GlobalStyles.destinationInput}
             placeholder="Username"
             placeholderTextColor={Colors.gray}
@@ -103,17 +103,17 @@ class SignUpScreen extends React.Component {
         </View>
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
 
             height: 40,
             backgroundColor: Colors.darkGray,
             borderRadius: 8,
-            marginBottom: 30
+            marginBottom: 30,
           }}
         >
           <KeyIcon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
-            onChangeText={value => this.onChangeText("password", value)}
+            onChangeText={value => this.onChangeText('password', value)}
             style={GlobalStyles.destinationInput}
             secureTextEntry
             placeholder="Password"
@@ -122,17 +122,17 @@ class SignUpScreen extends React.Component {
         </View>
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
 
             height: 40,
             backgroundColor: Colors.darkGray,
             borderRadius: 8,
-            marginBottom: 30
+            marginBottom: 30,
           }}
         >
           <Number1Icon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
-            onChangeText={value => this.onChangeText("firstName", value)}
+            onChangeText={value => this.onChangeText('firstName', value)}
             style={GlobalStyles.destinationInput}
             placeholder="First Name"
             placeholderTextColor={Colors.gray}
@@ -140,22 +140,22 @@ class SignUpScreen extends React.Component {
         </View>
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: 'row',
 
             height: 40,
             backgroundColor: Colors.darkGray,
-            borderRadius: 8
+            borderRadius: 8,
           }}
         >
           <Number2Icon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
-            onChangeText={value => this.onChangeText("lastName", value)}
+            onChangeText={value => this.onChangeText('lastName', value)}
             style={GlobalStyles.destinationInput}
             placeholder="Last Name"
             placeholderTextColor={Colors.gray}
           />
         </View>
-        <View style={{ marginTop: 60, alignItems: "center" }}>
+        <View style={{ marginTop: 60, alignItems: 'center' }}>
           <Buttons
             title="Sign Up"
             backgroundColor={Colors.primary}
@@ -166,14 +166,14 @@ class SignUpScreen extends React.Component {
                 lastName,
                 email,
                 userName,
-                password
+                password,
               } = this.state;
               createAccount({
                 firstName,
                 lastName,
                 email,
                 userName,
-                password
+                password,
               });
             }}
           />
@@ -182,7 +182,7 @@ class SignUpScreen extends React.Component {
             backgroundColor={Colors.darkGray}
             textColor={Colors.white}
             onPress={() => {
-              navigation.navigate("SignIn");
+              navigation.navigate('SignIn');
             }}
           />
         </View>
@@ -193,30 +193,31 @@ class SignUpScreen extends React.Component {
 
 SignUpScreen.propTypes = {
   navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired
+    navigate: PropTypes.func.isRequired,
   }).isRequired,
   // Redux state
   errorMessage: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   // Redux dispatch
-  createAccount: PropTypes.func.isRequired
+  createAccount: PropTypes.func.isRequired,
 };
 const mapStateToProps = state => ({
   errorMessage: state.user.errorMessage,
-  loading: state.user.loading
+  loading: state.user.loading,
 });
 
 SignUpScreen.defaultProps = {
-  errorMessage: ""
+  errorMessage: '',
 };
 
 const mapDispatchToProps = dispatch => ({
-  createAccount: credentials => {
+  createAccount: (credentials) => {
     dispatch(userCreateAccount(credentials));
-  }
+  },
 });
 
+export { SignUpScreen };
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(SignUpScreen);

@@ -59,4 +59,5 @@ const mapDispatchToProps = dispatch => ({
   fetchUser: (user, navigate) => { dispatch(userFetch(user, navigate)); },
 });
 
+export { AuthLoadingScreen };
 export default connect(mapStateToProps, mapDispatchToProps)(AuthLoadingScreen);

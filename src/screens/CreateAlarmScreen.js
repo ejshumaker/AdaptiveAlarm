@@ -190,4 +190,5 @@ const mapDispatchToProps = dispatch => ({
   createAlarm: (payload) => { dispatch(userCreateAlarm(payload)); },
 });
 
+export { CreateAlarmScreen };
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAlarmScreen);

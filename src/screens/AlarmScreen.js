@@ -123,4 +123,5 @@ AlarmScreen.propTypes = {
   }).isRequired,
 };
 
+export { AlarmScreen };
 export default connect(null, mapDispatchToProps)(AlarmScreen);

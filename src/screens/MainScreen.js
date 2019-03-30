@@ -209,4 +209,5 @@ const mapDispatchToProps = dispatch => ({
   deleteAlarm: (alarmId) => { dispatch(userDeleteAlarm(alarmId)); },
 });
 
+export { MainScreen };
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);
