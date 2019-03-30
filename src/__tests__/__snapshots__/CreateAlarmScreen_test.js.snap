@@ -7,9 +7,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "height": "90%",
         "justifyContent": "center",
-        "width": "100%",
       },
       Object {
         "padding": 48,
@@ -66,9 +64,6 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
           "fontSize": 14,
           "fontWeight": "200",
         },
-        Object {
-          "marginTop": 0,
-        },
       ]
     }
   >
@@ -122,28 +117,20 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
   />
   <Text
     style={
-      Array [
-        Object {
-          "color": "#DDDDDD",
-          "fontSize": 14,
-          "fontWeight": "200",
-        },
-        Object {
-          "marginBottom": 16,
-        },
-      ]
+      Object {
+        "color": "#DDDDDD",
+        "fontSize": 14,
+        "fontWeight": "200",
+      }
     }
   >
     Recurring (beta)
   </Text>
-  <DayPicker
-    style={Object {}}
-  />
+  <DayPicker />
   <View
     style={
       Object {
         "alignItems": "center",
-        "marginBottom": "33%",
       }
     }
   >
@@ -164,9 +151,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "height": "90%",
         "justifyContent": "center",
-        "width": "100%",
       },
       Object {
         "padding": 48,
@@ -223,9 +208,6 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
           "fontSize": 14,
           "fontWeight": "200",
         },
-        Object {
-          "marginTop": 0,
-        },
       ]
     }
   >
@@ -279,28 +261,20 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
   />
   <Text
     style={
-      Array [
-        Object {
-          "color": "#DDDDDD",
-          "fontSize": 14,
-          "fontWeight": "200",
-        },
-        Object {
-          "marginBottom": 16,
-        },
-      ]
+      Object {
+        "color": "#DDDDDD",
+        "fontSize": 14,
+        "fontWeight": "200",
+      }
     }
   >
     Recurring (beta)
   </Text>
-  <DayPicker
-    style={Object {}}
-  />
+  <DayPicker />
   <View
     style={
       Object {
         "alignItems": "center",
-        "marginBottom": "33%",
       }
     }
   >
