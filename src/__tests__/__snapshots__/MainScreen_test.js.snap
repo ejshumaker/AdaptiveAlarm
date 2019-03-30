@@ -98,9 +98,6 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
         }
       }
     >
-      <StatusBar
-        barStyle="light-content"
-      />
       <AnalogClock
         backgroundImage="./img/clockBack.png"
         clockBorderWidth={7}

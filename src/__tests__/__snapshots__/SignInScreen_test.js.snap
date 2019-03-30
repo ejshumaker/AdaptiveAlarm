@@ -7,9 +7,7 @@ exports[`SignIn Screen test SignIn screen matches snapshot 1`] = `
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "height": "90%",
         "justifyContent": "center",
-        "width": "100%",
       },
       Object {
         "padding": 48,
@@ -161,9 +159,7 @@ exports[`SignIn Screen test SignIn screen matches snapshot after state set 1`] =
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "height": "90%",
         "justifyContent": "center",
-        "width": "100%",
       },
       Object {
         "padding": 48,
