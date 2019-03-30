@@ -90,7 +90,7 @@ class AccountScreen extends Component {
       userinfopane: {
         width: '95%',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
       },
       profileRow: {
         // flex: 8,

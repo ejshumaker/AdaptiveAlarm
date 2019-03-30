@@ -14,6 +14,15 @@ jest.mock('expo', () => ({
   Location: {
     getCurrentPositionAsync: jest.fn(),
   },
+  Audio: {
+    setIsEnabledAsync: jest.fn(),
+    setAudioModeAsync: jest.fn(),
+    Sound: jest.fn(() => ({
+      loadAsync: jest.fn(),
+      setIsLoopingAsync: jest.fn(),
+      playAsync: jest.fn(),
+    })),
+  },
 }));
 
 const jsdom = new JSDOM('<!doctype html><html><body></body></html>');

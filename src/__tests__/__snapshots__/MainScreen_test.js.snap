@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main Screen test Main screen matches snapshot 1`] = `
+<View>
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginTop": 75,
+        "paddingHorizontal": 28,
+      }
+    }
+  >
+    <UserIcon
+      onPress={[Function]}
+      style={Object {}}
+    />
+    <AddIcon
+      onPress={[Function]}
+      style={Object {}}
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontSize": 30,
+              "fontWeight": "bold",
+            },
+            Object {
+              "margin": 8,
+            },
+            Object {
+              "color": "#E4F96A",
+              "marginTop": 40,
+            },
+          ]
+        }
+      >
+        PREDICTED:
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "color": "#DDDDDD",
+              "fontSize": 70,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontWeight": "bold",
+              },
+            ]
+          }
+        >
+          10
+          :
+          00
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 40,
+                "fontWeight": "500",
+                "textTransform": "uppercase",
+              },
+            ]
+          }
+        >
+           
+          am
+        </Text>
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "marginVertical": 48,
+        }
+      }
+    >
+      <StatusBar
+        barStyle="light-content"
+      />
+      <AnalogClock
+        backgroundImage="./img/clockBack.png"
+        clockBorderWidth={7}
+        clockSize={270}
+        hourHandColor="#E4F96A"
+        hourHandCurved={false}
+        hourHandLength={70}
+        hourHandOffset={0}
+        hourHandWidth={6}
+        minuteHandColor="#DDDDDD"
+        minuteHandCurved={false}
+        minuteHandLength={105}
+        minuteHandOffset={0}
+        minuteHandWidth={2}
+        secondHandColor="black"
+        secondHandCurved={false}
+        secondHandLength={120}
+        secondHandOffset={0}
+        secondHandWidth={2}
+      />
+    </View>
+    <View>
+      <Buttons
+        backgroundColor="#505050"
+        onPress={[Function]}
+        textColor="#DDDDDD"
+        title="DELETE"
+      />
+      <Buttons
+        backgroundColor="#505050"
+        onPress={[Function]}
+        textColor="#DDDDDD"
+        title="Development Page"
+      />
+    </View>
+  </View>
+</View>
+`;

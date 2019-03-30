@@ -11,17 +11,18 @@ Enzyme.configure({ adapter: new Adapter() });
 describe('Alarm Screen', () => {
   let wrapper;
   // our mock login function to replace the one provided by mapDispatchToProps
-  const mockturnAlarmOfffn = jest.fn();
-  const navigation = { navigate: jest.fn() };
+  const mockStopSound = jest.fn();
+  const navigation = { navigate: jest.fn(), addListener: jest.fn() };
   const time1 = moment(0).format('LT');
   const time2 = moment('20111031', 'YYYYMMDD').format('LT');
 
   beforeEach(() => {
     // pass the mock function as the login prop
     wrapper = shallow(<AlarmScreen
-      turnAlarmOff={mockturnAlarmOfffn}
       navigation={navigation}
     />);
+    wrapper.setState({ load: false });
+    wrapper.instance().getSoundLoaded = jest.fn();
   });
 
   it('test Alarm screen matches snapshot time 1', () => {
@@ -35,10 +36,18 @@ describe('Alarm Screen', () => {
   });
 
   it('should call the alarm off action', () => {
-    wrapper.find('[title="Turn Off Alarm"]').simulate(
+    /* wrapper.find('[title="STOP"]').simulate(
       'press',
       { preventDefault() {} },
     );
-    expect(mockturnAlarmOfffn.mock.calls.length).toBe(1);
+    expect(mockStopSound.mock.calls.length).toBe(1); */
+    wrapper.instance().stopSound = mockStopSound;
+    wrapper.instance().getSoundLoaded = jest.fn();
+    wrapper.find('[title="STOP"]').simulate(
+      'press',
+      { preventDefault() {} },
+    );
+
+    expect(mockStopSound).toHaveBeenCalledTimes(1);
   });
 });

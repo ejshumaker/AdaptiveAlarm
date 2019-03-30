@@ -3,177 +3,98 @@
 exports[`Account Screen test account screen matches snapshot done loading 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      },
-      Object {
-        "height": "85%",
-        "justifyContent": "space-around",
-      },
-    ]
+    Object {
+      "justifyContent": "space-around",
+    }
   }
 >
+  <CloseIcon
+    onPress={[Function]}
+    style={
+      Object {
+        "marginLeft": 28,
+        "marginTop": 75,
+      }
+    }
+  />
   <View
     style={
-      Array [
-        Object {
-          "marginBottom": 10,
-          "marginTop": 40,
-        },
-        Object {
-          "flex": 1,
-        },
-      ]
+      Object {
+        "alignItems": "center",
+      }
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#DDDDDD",
-            "fontSize": 30,
-            "fontWeight": "bold",
-          },
-          Object {
-            "color": "#E4F96A",
-          },
-        ]
-      }
-    >
-      YOUR PROFILE:
-    </Text>
     <View
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "justifyContent": "center",
-            "margin": 10,
-            "width": "80%",
-          },
-          Object {
-            "flex": 1,
+            "marginBottom": 10,
           },
         ]
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png",
-          }
-        }
-        style={
-          Object {
-            "borderRadius": 75,
-            "height": 150,
-            "margin": 20,
-            "width": 150,
-          }
-        }
-      />
       <Text
         style={
           Array [
             Object {
               "color": "#DDDDDD",
-              "fontSize": 24,
-              "fontWeight": "500",
+              "fontSize": 30,
+              "fontWeight": "bold",
             },
             Object {
               "color": "#E4F96A",
+              "marginLeft": 0,
+              "marginTop": 40,
             },
           ]
         }
       >
-        Tristan
-         
-        Steiner
+        PROFILE:
       </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flexDirection": "column",
-          "justifyContent": "space-around",
-          "width": "95%",
-        },
-        Object {
-          "flex": 1,
-        },
-      ]
-    }
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "borderBottomColor": "#DDDDDD",
-            "borderBottomWidth": 2,
-            "flex": 8,
-            "flexDirection": "row",
-            "height": 32,
-            "justifyContent": "space-between",
-            "marginBottom": 10,
-            "width": "90%",
-          },
-          Object {
-            "flex": 1,
-          },
-        ]
-      }
-    >
       <View
         style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-start",
-          }
+          Array [
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "margin": 10,
+              "width": "80%",
+            },
+          ]
         }
       >
+        <Image
+          source={
+            Object {
+              "uri": "https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 75,
+              "height": 150,
+              "margin": 20,
+              "width": 150,
+            }
+          }
+        />
         <Text
           style={
             Array [
               Object {
                 "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
+                "fontSize": 30,
+                "fontWeight": "bold",
               },
-            ]
-          }
-        >
-          Routine Time
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-end",
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
               Object {
                 "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-              Object {
-                "color": "#E4F96A",
               },
             ]
           }
         >
-          45 minutes
+          Tristan
+           
+          Steiner
         </Text>
       </View>
     </View>
@@ -181,152 +102,232 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
       style={
         Array [
           Object {
-            "borderBottomColor": "#DDDDDD",
-            "borderBottomWidth": 2,
-            "flex": 8,
-            "flexDirection": "row",
-            "height": 32,
+            "alignItems": "center",
             "justifyContent": "space-between",
-            "marginBottom": 10,
-            "width": "90%",
-          },
-          Object {
-            "flex": 1,
+            "width": "95%",
           },
         ]
       }
     >
       <View
         style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-start",
-          }
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
         }
       >
-        <Text
+        <View
           style={
-            Array [
-              Object {
-                "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-            ]
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
           }
         >
-          Home
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Routine Time
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No routine set
+          </Text>
+        </View>
       </View>
       <View
         style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-end",
-          }
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
         }
       >
-        <Text
+        <View
           style={
-            Array [
-              Object {
-                "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-              Object {
-                "color": "#E4F96A",
-              },
-            ]
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
           }
         >
-          210 Lakelawn Place, Madison, WI
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Work Address
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No destination set
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Work Time
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No time set
+          </Text>
+        </View>
       </View>
     </View>
     <View
       style={
         Array [
           Object {
-            "borderBottomColor": "#DDDDDD",
-            "borderBottomWidth": 2,
-            "flex": 8,
-            "flexDirection": "row",
-            "height": 32,
-            "justifyContent": "space-between",
-            "marginBottom": 10,
-            "width": "90%",
+            "height": 80,
+            "justifyContent": "space-around",
+            "marginBottom": 50,
+            "marginTop": 40,
+            "width": "80%",
           },
           Object {
-            "flex": 1,
+            "alignItems": "center",
           },
         ]
       }
     >
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-start",
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-            ]
-          }
-        >
-          Work
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-end",
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-              Object {
-                "color": "#E4F96A",
-              },
-            ]
-          }
-        >
-          1308 W Dayton St, Madison, WI
-        </Text>
-      </View>
+      <Buttons
+        backgroundColor="#505050"
+        onPress={[MockFunction]}
+        textColor="#DDDDDD"
+        title="Sign Out"
+      />
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "height": 80,
-        "justifyContent": "space-around",
-        "marginBottom": 50,
-        "width": "80%",
-      }
-    }
-  >
-    <Button
-      color="#505050"
-      onPress={[MockFunction]}
-      title="Sign Out"
-    />
   </View>
 </View>
 `;
@@ -334,181 +335,102 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
 exports[`Account Screen test account screen matches snapshot not done loading 1`] = `
 <View
   style={
-    Array [
-      Object {
-        "alignItems": "center",
-        "flex": 1,
-        "justifyContent": "center",
-      },
-      Object {
-        "height": "85%",
-        "justifyContent": "space-around",
-      },
-    ]
+    Object {
+      "justifyContent": "space-around",
+    }
   }
 >
+  <CloseIcon
+    onPress={[Function]}
+    style={
+      Object {
+        "marginLeft": 28,
+        "marginTop": 75,
+      }
+    }
+  />
   <View
     style={
-      Array [
-        Object {
-          "marginBottom": 10,
-          "marginTop": 40,
-        },
-        Object {
-          "flex": 1,
-        },
-      ]
+      Object {
+        "alignItems": "center",
+      }
     }
   >
-    <Text
-      style={
-        Array [
-          Object {
-            "color": "#DDDDDD",
-            "fontSize": 30,
-            "fontWeight": "bold",
-          },
-          Object {
-            "color": "#E4F96A",
-          },
-        ]
-      }
-    >
-      YOUR PROFILE:
-    </Text>
     <View
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "justifyContent": "center",
-            "margin": 10,
-            "width": "80%",
-          },
-          Object {
-            "flex": 1,
+            "marginBottom": 10,
           },
         ]
       }
     >
-      <Image
-        source={
-          Object {
-            "uri": "https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png",
-          }
-        }
-        style={
-          Object {
-            "borderRadius": 75,
-            "height": 150,
-            "margin": 20,
-            "width": 150,
-          }
-        }
-      />
-      <ActivityIndicator
-        color="#E4F96A"
-        size="large"
-      />
       <Text
         style={
           Array [
             Object {
               "color": "#DDDDDD",
-              "fontSize": 24,
-              "fontWeight": "500",
+              "fontSize": 30,
+              "fontWeight": "bold",
             },
             Object {
               "color": "#E4F96A",
+              "marginLeft": 0,
+              "marginTop": 40,
             },
           ]
         }
       >
-        Tristan
-         
-        Steiner
+        PROFILE:
       </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flexDirection": "column",
-          "justifyContent": "space-around",
-          "width": "95%",
-        },
-        Object {
-          "flex": 1,
-        },
-      ]
-    }
-  >
-    <View
-      style={
-        Array [
-          Object {
-            "borderBottomColor": "#DDDDDD",
-            "borderBottomWidth": 2,
-            "flex": 8,
-            "flexDirection": "row",
-            "height": 32,
-            "justifyContent": "space-between",
-            "marginBottom": 10,
-            "width": "90%",
-          },
-          Object {
-            "flex": 1,
-          },
-        ]
-      }
-    >
       <View
         style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-start",
-          }
+          Array [
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "margin": 10,
+              "width": "80%",
+            },
+          ]
         }
       >
+        <Image
+          source={
+            Object {
+              "uri": "https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 75,
+              "height": 150,
+              "margin": 20,
+              "width": 150,
+            }
+          }
+        />
+        <ActivityIndicator
+          color="#E4F96A"
+          size="large"
+        />
         <Text
           style={
             Array [
               Object {
                 "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
+                "fontSize": 30,
+                "fontWeight": "bold",
               },
-            ]
-          }
-        >
-          Routine Time
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-end",
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
               Object {
                 "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-              Object {
-                "color": "#E4F96A",
               },
             ]
           }
         >
-          45 minutes
+          Tristan
+           
+          Steiner
         </Text>
       </View>
     </View>
@@ -516,152 +438,232 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
       style={
         Array [
           Object {
-            "borderBottomColor": "#DDDDDD",
-            "borderBottomWidth": 2,
-            "flex": 8,
-            "flexDirection": "row",
-            "height": 32,
+            "alignItems": "center",
             "justifyContent": "space-between",
-            "marginBottom": 10,
-            "width": "90%",
-          },
-          Object {
-            "flex": 1,
+            "width": "95%",
           },
         ]
       }
     >
       <View
         style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-start",
-          }
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
         }
       >
-        <Text
+        <View
           style={
-            Array [
-              Object {
-                "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-            ]
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
           }
         >
-          Home
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Routine Time
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No routine set
+          </Text>
+        </View>
       </View>
       <View
         style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-end",
-          }
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
         }
       >
-        <Text
+        <View
           style={
-            Array [
-              Object {
-                "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-              Object {
-                "color": "#E4F96A",
-              },
-            ]
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
           }
         >
-          210 Lakelawn Place, Madison, WI
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Work Address
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No destination set
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Work Time
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No time set
+          </Text>
+        </View>
       </View>
     </View>
     <View
       style={
         Array [
           Object {
-            "borderBottomColor": "#DDDDDD",
-            "borderBottomWidth": 2,
-            "flex": 8,
-            "flexDirection": "row",
-            "height": 32,
-            "justifyContent": "space-between",
-            "marginBottom": 10,
-            "width": "90%",
+            "height": 80,
+            "justifyContent": "space-around",
+            "marginBottom": 50,
+            "marginTop": 40,
+            "width": "80%",
           },
           Object {
-            "flex": 1,
+            "alignItems": "center",
           },
         ]
       }
     >
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-start",
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-            ]
-          }
-        >
-          Work
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flexDirection": "row",
-            "justifyContent": "flex-end",
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#DDDDDD",
-                "fontSize": 18,
-                "fontWeight": "300",
-              },
-              Object {
-                "color": "#E4F96A",
-              },
-            ]
-          }
-        >
-          1308 W Dayton St, Madison, WI
-        </Text>
-      </View>
+      <Buttons
+        backgroundColor="#505050"
+        onPress={[MockFunction]}
+        textColor="#DDDDDD"
+        title="Sign Out"
+      />
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "height": 80,
-        "justifyContent": "space-around",
-        "marginBottom": 50,
-        "width": "80%",
-      }
-    }
-  >
-    <Button
-      color="#505050"
-      onPress={[MockFunction]}
-      title="Sign Out"
-    />
   </View>
 </View>
 `;
