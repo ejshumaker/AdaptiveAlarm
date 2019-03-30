@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'row',
   },
 });
@@ -108,7 +109,7 @@ class DayPicker extends PureComponent {
       saButton,
     } = this.state;
     return (
-      <View style={[styles.container]}>
+      <View style={styles.container}>
         <TouchableOpacity onPress={() => this.updateOnPress('S')}>
           <Circle
             style={{

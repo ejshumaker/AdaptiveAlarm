@@ -139,7 +139,6 @@ class AccountScreen extends Component {
               {
                 color: Colors.primary,
                 marginTop: 40,
-                marginLeft: 0,
               },
             ]}
             >
