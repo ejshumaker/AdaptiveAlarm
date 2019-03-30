@@ -9,17 +9,17 @@
  * @eschirtz 03-03-19
  */
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import {
+  View, Text, Button, ActivityIndicator, StatusBar,
+} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { userSetName, userSetAge } from '../store/actions/userActions';
+import { userSignOut } from '../store/actions/userActions';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
+import Alarm from '../custom_modules/Alarm';
 
-import {
-  Colors,
-  GlobalStyles,
-} from '../constants';
+import { Colors, GlobalStyles } from '../constants';
 
 class HomeScreen extends Component {
   constructor() {
@@ -29,76 +29,160 @@ class HomeScreen extends Component {
     };
   }
 
+  loader() {
+    const { loading } = this.props;
+    if (loading) {
+      return <ActivityIndicator color={Colors.primary} size="large" />;
+    }
+    return null;
+  }
+
   render() {
     const { title } = this.state;
     const {
       navigation, // from react-navigation
-      setName, // Redux actions
-      calculateTime,
-      userName, // Redux store
+      signOut, // Redux actions
+      firstName, // Redux store
+      lastName,
+      userName,
+      email,
+      alarms,
       alarmTime,
+      alarmCalculating,
+      errorMessage,
     } = this.props;
     const { navigate } = navigation;
 
+    // destructure alarms
+    console.log(alarms);
+    const alarm = alarms.alarm1 || {};
+    const {
+      destinationLoc,
+      arrivalTime,
+      timeToGetReady,
+    } = alarm;
+
+    let arrivalTimeString;
+    if (arrivalTime) {
+      const date = new Date(arrivalTime);
+      arrivalTimeString = date.toLocaleTimeString();
+    } else {
+      arrivalTimeString = 'n/a';
+    }
     /**
      * There are way more 'magic' numbers in the styling
      * than should be preffered, just tossed them in to make it passable.
      * All our components will be built custom or have a global style applied
      * @eschirtz 03-03-19
      */
+    const dateFormat = new Date(alarmTime);
     return (
       <View style={GlobalStyles.centerChildrenXY}>
+        <StatusBar barStyle="light-content" />
         <Text style={[GlobalStyles.h2, GlobalStyles.margin]}>{title}</Text>
-        <View style={{
-          height: 80, margin: 8, width: '50%',
-        }}
-        >
-          <View style={{
-            flex: 1,
-            justifyContent: 'space-around',
+        {this.loader()}
+        <View
+          style={{
+            textAlign: 'left',
+            width: '60%',
+            margin: 16,
           }}
-          >
-            <Button
-              title="Sync"
-              color={Colors.darkGray}
-              onPress={() => setName('A New Name')}
-            />
-            <View style={{ height: 8, width: 8 }} />
-            <Button
-              title="Async"
-              color={Colors.darkGray}
-              onPress={() => calculateTime(Date.now())}
-            />
-          </View>
-        </View>
-        <View style={{
-          textAlign: 'left',
-          width: '50%',
-          margin: 16,
-        }}
         >
           <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Username</Text>
-          <Text style={[GlobalStyles.paragraph, {
-            color: Colors.primary,
-            marginBottom: 8,
-          }]}
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              { color: Colors.primary, marginBottom: 8 },
+            ]}
           >
             {userName}
           </Text>
-          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Time</Text>
-          <Text style={[GlobalStyles.paragraph, {
-            color: Colors.primary,
-            marginBottom: 8,
-          }]}
+          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Full Name</Text>
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              { color: Colors.primary, marginBottom: 8 },
+            ]}
           >
-            {alarmTime}
+            {firstName}
+            {' '}
+            {lastName}
+          </Text>
+          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>
+            Email Address
+          </Text>
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              { color: Colors.primary, marginBottom: 8 },
+            ]}
+          >
+            {email}
+          </Text>
+          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Info</Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+            {destinationLoc}
+          </Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+            {arrivalTimeString}
+          </Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.primary, marginBottom: 8 }]}>
+            {timeToGetReady}
+          </Text>
+          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Error Message</Text>
+          <Text style={[GlobalStyles.paragraph, { color: Colors.error, marginBottom: 8 }]}>
+            {errorMessage}
+          </Text>
+          <Text style={[GlobalStyles.h4, { marginBottom: 4 }]}>Alarm Time</Text>
+          <Text
+            style={[
+              GlobalStyles.paragraph,
+              {
+                color: Colors.primary,
+                marginBottom: 8,
+              },
+            ]}
+          >
+            {alarmCalculating ? 'Calculating...' : dateFormat.toLocaleTimeString()}
           </Text>
         </View>
+        {/* Temporary button to navigate to MainScreen (true home screen) TODO: Remove */}
         <Button
-          title="Styles"
+          title="True Home Screen"
           color={Colors.darkGray}
-          onPress={() => navigate('StyleDemo')}
+          onPress={() => navigate('Main')}
         />
+        {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
+        <Button
+          title="Alarm"
+          color={Colors.darkGray}
+          onPress={() => navigate('Alarm')}
+        />
+        {/* Temporary button to navigate to DayPicker, TODO: Remove */}
+        <Button
+          title="DayPicker"
+          color={Colors.darkGray}
+          onPress={() => navigate('DayPicker')}
+        />
+        {/* Temporary button to navigate to AutoComplete, TODO: Remove */}
+        <Button
+          title="AutoComplete"
+          color={Colors.darkGray}
+          onPress={() => navigate('AutoComplete')}
+        />
+        {/* Temporary button to navigate to Account Screen, TODO: Remove */}
+        <Button
+          title="Account"
+          color={Colors.darkGray}
+          onPress={() => navigate('Account')}
+        />
+        <Button
+          title="Arm Alarm"
+          color={Colors.darkGray}
+          onPress={() => Alarm.armAlarm(this.props.navigation.navigate)}
+        />
+        <View style={{ height: 8, width: 8 }} />
+        <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
       </View>
     );
   }
@@ -109,11 +193,27 @@ HomeScreen.propTypes = {
     navigate: PropTypes.func.isRequired,
   }).isRequired,
   // Redux state
-  userName: PropTypes.string.isRequired,
-  alarmTime: PropTypes.number.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  userName: PropTypes.string,
+  email: PropTypes.string,
+  errorMessage: PropTypes.string,
+  loading: PropTypes.bool.isRequired,
+  alarmTime: PropTypes.number,
+  alarmCalculating: PropTypes.bool.isRequired,
+  alarms: PropTypes.object, // eslint-disable-line
   // Redux dispatch
-  setName: PropTypes.func.isRequired,
-  calculateTime: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
+};
+
+HomeScreen.defaultProps = {
+  firstName: '',
+  lastName: '',
+  userName: '',
+  email: '',
+  errorMessage: '',
+  alarms: {},
+  alarmTime: -1,
 };
 
 /**
@@ -122,8 +222,15 @@ HomeScreen.propTypes = {
  * @eschirtz 03-03-19
  */
 const mapStateToProps = state => ({
-  userName: state.user.name,
+  firstName: state.user.firstName,
+  lastName: state.user.lastName,
+  userName: state.user.userName,
+  email: state.user.email,
+  errorMessage: state.user.errorMessage,
+  loading: state.user.loadingFetch,
   alarmTime: state.alarm.time,
+  alarmCalculating: state.alarm.loading,
+  alarms: state.user.alarms,
 });
 
 /**
@@ -132,9 +239,15 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
-  setName: (name) => { dispatch(userSetName(name)); },
-  setAge: (age) => { dispatch(userSetAge(age)); },
-  calculateTime: (time) => { dispatch(alarmCalculateTime(time)); },
+  signOut: () => {
+    dispatch(userSignOut());
+  },
+  calculateTime: (time) => {
+    dispatch(alarmCalculateTime(time));
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen);

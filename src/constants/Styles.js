@@ -21,6 +21,8 @@ export default StyleSheet.create({
   /* Layouts */
   container: {
     flex: 1,
+    backgroundColor: Colors.backgroundColor,
+    justifyContent: 'center',
   },
   centerChildrenXY: {
     flex: 1,
@@ -66,5 +68,40 @@ export default StyleSheet.create({
   /* Utility styles */
   margin: {
     margin: defaultMargin,
+  },
+  /* Text input styling */
+  input: {
+    height: 50,
+    fontSize: 18,
+    borderBottomWidth: 2,
+    borderBottomColor: Colors.primary,
+    color: Colors.white,
+    marginBottom: 24,
+  },
+  destinationInput: {
+    borderRadius: 8,
+    borderColor: Colors.darkGray,
+    color: Colors.white,
+    fontSize: 14,
+    width: 200,
+    height: 40,
+    marginLeft: 0,
+    marginRight: 5,
+    padding: 10,
+    backgroundColor: Colors.darkGray,
+  },
+  searchSuggestions: {
+    color: Colors.darkGray,
+    fontSize: 14,
+    width: '90%',
+    height: 55,
+    padding: 10,
+    paddingRight: 15,
+  },
+  h2_center: {
+    color: Colors.white,
+    fontSize: 30,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthLoading Screen test AuthLoading screen matches snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "height": "90%",
+      "justifyContent": "center",
+      "width": "100%",
+    }
+  }
+>
+  <ActivityIndicator
+    color="#E4F96A"
+    size="large"
+  />
+</View>
+`;

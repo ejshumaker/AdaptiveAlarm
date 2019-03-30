@@ -1,22 +1,34 @@
+
+import Alarm from '../../custom_modules/Alarm';
+
 /**
- * These are the alarm action creators,
- * they will be what calls the API's and set's up arguments
- * @eschirtz 03-02-19
- */
-export function alarmCalculateTime(time) {
-  return {
-    type: 'ALARM_CALCULATE_TIME',
-    payload: new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(time);
-      }, 2000);
-    }),
-  };
+  * Calculates the alarm time using the google maps api and input from
+  * the user. Currently returns the duration between locations in traffic and
+  * then subtracts the time to get ready.
+  * @tsteiner4 3-9-2019
+  */
+export function alarmCalculateTime(destinationLoc, timeToGetReady, arrivalTime, navigate) {
+  return dispatch => dispatch({
+    type: 'ALARM_SET_TIME',
+    payload: Alarm.getAlarmTime(
+      destinationLoc,
+      timeToGetReady,
+      arrivalTime,
+    ),
+  })
+    .then((resp) => {
+      Alarm.armAlarm(resp.value, navigate);
+      dispatch({
+        type: 'ALARM_SET_ACTIVE_STATUS',
+        payload: true,
+      });
+    });
 }
 
-export function alarmFoo(bar) {
+// TODO: Turn off the alarm and navigate home
+export function alarmOff(navigate) {
   return {
     type: 'FOO',
-    payload: bar,
+    payload: navigate,
   };
 }
