@@ -17,7 +17,6 @@ async function getRouteTime(startLoc, destinationLoc, departureTime) {
     fetch(url)
       .then(response => response.json())
       .then((json) => {
-        console.log(json);
         if (json.status !== 'OK') {
           const errorMessage = json.error_message || 'Unknown error';
           reject(errorMessage);
@@ -55,7 +54,7 @@ async function getCurrentLocation() {
             .then((location) => {
               const lat = location.coords.latitude;
               const lng = location.coords.longitude;
-              // console.log(`{lat: ${lat}, lng: ${lng}}`);
+              console.log(`{lat: ${lat}, lng: ${lng}}`);
               resolve(`${lat}, ${lng}`);
             });
         }
@@ -65,51 +64,35 @@ async function getCurrentLocation() {
 
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-async function getAlarmTimeFromLocation(startLoc, destinationLoc, arrivalTime, timeToGetReady) {
+async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
   console.log(destinationLoc);
   console.log(timeToGetReady);
   console.log(arrivalTime);
   const loops = 4;
   return new Promise((resolve) => {
-    getRouteTime(startLoc, destinationLoc, arrivalTime)
-      .then(async (re) => {
-        let duration = re;
-        let departureTime = arrivalTime;
-        let i = 0;
-        while (Math.abs(departureTime + (duration * MILS_PER_MIN)
-    - arrivalTime) > 6 * MILS_PER_MIN && i < loops) {
-          departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
-          await getRouteTime(startLoc, destinationLoc, departureTime)
-            .then((resp) => {
-              duration = resp;
-            });
-          console.log(arrivalTime);
-          i += 1;
-        }
-        console.log('here');
-        resolve(departureTime - timeToGetReady * MILS_PER_MIN);
-      });
-  });
-}
-
-
-async function getAlarmTime(destinationLoc, arrivalTime, timeToGetReady) {
-  return new Promise((resolve) => {
     getCurrentLocation()
       .then((response) => {
         const startLoc = response;
 
-        getAlarmTimeFromLocation(startLoc, destinationLoc, arrivalTime, timeToGetReady)
-          .then((resp) => {
-            resolve(resp);
+        getRouteTime(startLoc, destinationLoc, arrivalTime)
+          .then(async (re) => {
+            let duration = re;
+            let departureTime = arrivalTime;
+            let i = 0;
+            while (Math.abs(departureTime + (duration * MILS_PER_MIN)
+        - arrivalTime) > 6 * MILS_PER_MIN && i < loops) {
+              departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
+              await getRouteTime(startLoc, destinationLoc, departureTime)
+                .then((resp) => {
+                  duration = resp;
+                });
+              i += 1;
+            }
+            resolve(departureTime - timeToGetReady * MILS_PER_MIN);
           });
       });
   });
 }
-
-export {
-  getRouteTime, getCurrentLocation, getAlarmTime, getAlarmTimeFromLocation,
-};
 
 function triggerNavigate(navigate) {
   navigate('Alarm');
