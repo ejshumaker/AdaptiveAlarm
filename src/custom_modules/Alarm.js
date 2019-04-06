@@ -63,47 +63,20 @@ async function getCurrentLocation() {
 }
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-async function getAlarmTimeFromLocation(startLoc, destinationLoc, timeToGetReady, arrivalTime) {
-  const loops = 4;
+async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit) {
+  const loops = loopLimit;
+  const timeRange = timeLimit;
   return new Promise((resolve) => {
-    getRouteTime(startLoc, destinationLoc, arrivalTime)
-      .then(async (re) => {
-        let duration = re;
-
-        let departureTime = arrivalTime;
-        let i = 0;
-        while (Math.abs(departureTime + (duration * MILS_PER_MIN)
-        - arrivalTime) > 6 * MILS_PER_MIN && i < loops) {
-          departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
-          await getRouteTime(startLoc, destinationLoc, departureTime)
-            .then((resp) => {
-              duration = resp;
-            });
-          i += 1;
-        }
-        resolve(departureTime - timeToGetReady * MILS_PER_MIN);
-      });
-  });
-}
-
-
-async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
-  console.log(destinationLoc);
-  console.log(timeToGetReady);
-  console.log(arrivalTime);
-  const loops = 4;
-  return new Promise((resolve) => {
-    getCurrentLocation()
+    exportFunctions.getCurrentLocation()
       .then((response) => {
         const startLoc = response;
-
         getRouteTime(startLoc, destinationLoc, arrivalTime)
           .then(async (re) => {
             let duration = re;
             let departureTime = arrivalTime;
             let i = 0;
             while (Math.abs(departureTime + (duration * MILS_PER_MIN)
-        - arrivalTime) > 6 * MILS_PER_MIN && i < loops) {
+        - arrivalTime) > timeRange * MILS_PER_MIN && i < loops) {
               departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
               await getRouteTime(startLoc, destinationLoc, departureTime)
                 .then((resp) => {
@@ -130,4 +103,8 @@ async function armAlarm(alarmTime, navigate) {
   setTimeout(() => triggerNavigate(navigate), difference);
 }
 
-export default { getAlarmTime, armAlarm, getAlarmTimeFromLocation };
+const exportFunctions = {
+  getCurrentLocation, getAlarmTime, armAlarm,
+};
+
+export default exportFunctions;

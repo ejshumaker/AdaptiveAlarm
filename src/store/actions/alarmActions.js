@@ -14,6 +14,7 @@ export function alarmCalculateTime(destinationLoc, timeToGetReady, arrivalTime, 
       destinationLoc,
       timeToGetReady,
       arrivalTime,
+      4, 6,
     ),
   })
     .then((resp) => {
