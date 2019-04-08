@@ -19,9 +19,28 @@ function fetchMock(timeArray) {
   }
 }
 
-function fetchMockFailure() {
+function fetchMockFailure(timeArray, loopToFail) {
+  let value; let
+    i;
+  for (i = 0; i < loopToFail; i += 1) {
+    value = timeArray[i];
+    fetch.mockResponseOnce(JSON.stringify({
+      status: 'OK',
+      rows: [{
+        elements: [{
+          duration_in_traffic: {
+            value: value * 60,
+          },
+          duration: {
+            value: 25 * 60,
+          },
+        }],
+      }],
+    }));
+  }
   fetch.mockResponse(JSON.stringify({
     status: 'rejected',
+    error_message: 'error',
     rows: [{
       elements: [{
         duration_in_traffic: {
@@ -35,11 +54,8 @@ function fetchMockFailure() {
   }));
 }
 
-function getCurrentLocationMock(startLoc) {
-  return Promise.resolve(startLoc);
-}
 
-export default { getCurrentLocationMock, fetchMock, fetchMockFailure };
+export default { fetchMock, fetchMockFailure };
 /*
 fetch
   .mockResponseOnce(JSON.stringify({

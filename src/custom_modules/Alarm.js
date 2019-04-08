@@ -24,11 +24,13 @@ async function getRouteTime(startLoc, destinationLoc, departureTime) {
         if (json.rows.length) {
           if (json.rows[0].elements[0].duration_in_traffic) {
             resolve(json.rows[0].elements[0].duration_in_traffic.value / SECS_PER_MIN);
-          } else {
+          } else if (json.rows[0].elements[0].duration) {
             resolve(json.rows[0].elements[0].duration.value / SECS_PER_MIN);
+          } else {
+            reject(Error('no elements in rows'));
           }
         } else {
-          reject();
+          reject(Error('error no rows'));
         }
       })
       .catch((err) => {
@@ -36,6 +38,7 @@ async function getRouteTime(startLoc, destinationLoc, departureTime) {
           'react-native-maps-directions Error on GMAPS route request',
           err,
         );
+        reject(err);
       });
   });
 }
@@ -47,7 +50,7 @@ async function getCurrentLocation() {
       .then((response) => {
         if (response.status !== 'granted') {
           console.log('Permission to access location was denied');
-          reject();
+          reject(Error('Permission to access location was denied'));
         } else {
         // const location = await Location.getCurrentPositionAsync({});
           Location.getCurrentPositionAsync({})
@@ -56,8 +59,14 @@ async function getCurrentLocation() {
               const lng = location.coords.longitude;
               console.log(`{lat: ${lat}, lng: ${lng}}`);
               resolve(`${lat}, ${lng}`);
+            })
+            .catch((e) => {
+              reject(e);
             });
         }
+      })
+      .catch((e) => {
+        reject(e);
       });
   });
 }
@@ -66,7 +75,7 @@ async function getCurrentLocation() {
 async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit) {
   const loops = loopLimit;
   const timeRange = timeLimit;
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     exportFunctions.getCurrentLocation()
       .then((response) => {
         const startLoc = response;
@@ -81,11 +90,20 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
               await getRouteTime(startLoc, destinationLoc, departureTime)
                 .then((resp) => {
                   duration = resp;
+                })
+                .catch((e) => {
+                  reject(e);
                 });
               i += 1;
             }
             resolve(departureTime - timeToGetReady * MILS_PER_MIN);
+          })
+          .catch((e) => {
+            reject(e);
           });
+      })
+      .catch((e) => {
+        reject(e);
       });
   });
 }
@@ -104,7 +122,7 @@ async function armAlarm(alarmTime, navigate) {
 }
 
 const exportFunctions = {
-  getCurrentLocation, getAlarmTime, armAlarm,
+  getCurrentLocation, getAlarmTime, armAlarm, getRouteTime,
 };
 
 export default exportFunctions;
