@@ -3,6 +3,7 @@
  * they call the API's and set their up arguments
  * @eschirtz 03-02-19
  */
+import moment from 'moment';
 import User from '../../custom_modules/User';
 import { alarmCalculateTime } from './alarmActions';
 
@@ -16,6 +17,7 @@ export function userCreateAlarm(payload) {
     destinationLoc,
     timeToGetReady,
     arrivalTime,
+    days,
     navigate,
   } = payload;
   return dispatch => dispatch({
@@ -24,13 +26,15 @@ export function userCreateAlarm(payload) {
       destinationLoc,
       timeToGetReady,
       arrivalTime,
+      days,
     }),
   })
     .then(() => {
+      const date = new Date(moment(arrivalTime, 'LT')); // parse into date
       dispatch(alarmCalculateTime(
         destinationLoc,
         timeToGetReady,
-        arrivalTime,
+        date.getTime(),
         navigate, // pass along the navigation
       ));
       if (navigate) navigate('Main');
@@ -73,10 +77,11 @@ export function userFetch(uid, navigate) {
           timeToGetReady,
           arrivalTime,
         } = resp.value.alarms.alarm1; // "alarm1" is temporary!!!
+        const date = new Date(moment(arrivalTime, 'LT')); // parse into date
         dispatch(alarmCalculateTime(
           destinationLoc,
           timeToGetReady,
-          arrivalTime,
+          date.getTime(),
           navigate,
         ));
       } else {

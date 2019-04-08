@@ -16,6 +16,7 @@ function createAlarm(payload) {
     destinationLoc,
     arrivalTime,
     timeToGetReady,
+    days,
   } = payload;
   const { uid } = auth().currentUser;
 
@@ -26,12 +27,14 @@ function createAlarm(payload) {
         destinationLoc,
         arrivalTime,
         timeToGetReady,
+        days,
       })
       .then(() => {
         resolve({
           destinationLoc,
           arrivalTime,
           timeToGetReady,
+          days,
           key: alarmKey,
         });
       })
