@@ -16,6 +16,9 @@ const initialUserState = {
   destinationLoc: undefined,
   timeToGetReady: undefined,
   arrivalTime: undefined,
+  days: {
+    mon: false, tue: false, wed: false, thu: false, fri: false, sat: false, sun: false,
+  },
   error: false,
   errorMessage: undefined, // overwrite with a message
   loading: false, // global loading flag

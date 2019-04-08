@@ -55,6 +55,7 @@ class AccountScreen extends Component {
       destinationLoc,
       arrivalTime,
       timeToGetReady,
+      days,
     } = alarm;
 
     const timeToGetReadyString = timeToGetReady
@@ -65,10 +66,11 @@ class AccountScreen extends Component {
     const shortDestinationLoc = destinationLoc
       ? `${destinationLoc.substring(0, stringLength)}...`
       : 'No destination set';
-    const workTime = arrivalTime
-      ? moment(arrivalTime).format('hh:mm a')
-      : 'No time set';
 
+    let dayString = '';
+    Object.keys(days).forEach((key) => {
+      if (days[key]) dayString = dayString.concat(`${key} `);
+    });
 
     // STYLESHEET FOR USER PROFILE
     const styles = StyleSheet.create({
@@ -233,7 +235,27 @@ class AccountScreen extends Component {
                   },
                 ]}
                 >
-                  {workTime}
+                  {arrivalTime}
+                </Text>
+              </View>
+            </View>
+
+            {/* VIEW FOR ALARM DAYS */}
+            <View style={[styles.profileRow]}>
+
+              <View style={styles.infoColumn}>
+                <Text style={[GlobalStyles.paragraph]}>Alarms</Text>
+              </View>
+
+              <View style={styles.dataColumn}>
+                <Text style={[
+                  GlobalStyles.paragraph,
+                  {
+                    color: Colors.primary,
+                  },
+                ]}
+                >
+                  {dayString}
                 </Text>
               </View>
             </View>
