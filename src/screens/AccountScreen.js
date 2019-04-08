@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 import { userSignOut } from '../store/actions/userActions';
 import { alarmCalculateTime } from '../store/actions/alarmActions';

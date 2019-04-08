@@ -111,16 +111,9 @@ class CreateAlarmScreen extends Component {
 
   render() {
     const {
-      createAlarm,
       navigation,
     } = this.props;
     const { navigate } = navigation;
-
-    const {
-      readyTime,
-      arrivalTime,
-      workAddress,
-    } = this.state;
 
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
