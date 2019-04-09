@@ -25,12 +25,15 @@ export default class CalendarScreen extends Component {
     const cals = await Calendar.getCalendarsAsync();
     // get all device calendar ids
     const data = cals.filter(item => item).map(({ id }) => ({ id }));
-    const today = new Date();
-    today.setDate(today.getDate());
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowMorning = new Date();
+    const timeZoneOffset = (tomorrowMorning.getTimezoneOffset() / 60);
+    tomorrowMorning.setDate(tomorrowMorning.getDate() + 1);
+    tomorrowMorning.setHours((0 - timeZoneOffset), 0, 0, 0);
+    const tomorrowNight = new Date();
+    tomorrowNight.setDate(tomorrowNight.getDate() + 1);
+    tomorrowNight.setHours((23 - timeZoneOffset), 59, 59, 0);
     // check all events for the following day and return earliest event start time
-    Calendar.getEventsAsync(data, today, tomorrow).then((response) => {
+    Calendar.getEventsAsync(data, tomorrowMorning, tomorrowNight).then((response) => {
       // parse String to get in UTC format
       const startTime = response[0].startDate;
       const date = String(startTime).split('.');
