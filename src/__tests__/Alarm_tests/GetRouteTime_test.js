@@ -34,6 +34,29 @@ describe('Route Time tests', () => {
     }
   });
 
+  test('getRouteTime status = bad response but no error message', async () => {
+    expect.assertions(1);
+    fetch.mockResponse(JSON.stringify({
+      status: 'rejected',
+      rows: [{
+        elements: [{
+          duration_in_traffic: {
+            value: 20 * 60,
+          },
+          duration: {
+            value: 25 * 60,
+          },
+        }],
+      }],
+    }));
+
+    try {
+      await Alarm.getRouteTime('Middleton, WI', 'Madison, WI', departureTime.getTime());
+    } catch (e) {
+      expect(e).toEqual('Unknown error');
+    }
+  });
+
   test('getRouteTime rows undefined', async () => {
     expect.assertions(1);
 

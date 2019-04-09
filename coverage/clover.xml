@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1554682549996" clover="3.2.0">
-  <project timestamp="1554682549996" name="All files">
-    <metrics statements="59" coveredstatements="58" conditionals="16" coveredconditionals="14" methods="22" coveredmethods="20" elements="97" coveredelements="92" complexity="0" loc="59" ncloc="59" packages="1" files="1" classes="1"/>
+<coverage generated="1554784368662" clover="3.2.0">
+  <project timestamp="1554784368662" name="All files">
+    <metrics statements="59" coveredstatements="59" conditionals="16" coveredconditionals="16" methods="22" coveredmethods="22" elements="97" coveredelements="97" complexity="0" loc="59" ncloc="59" packages="1" files="1" classes="1"/>
     <file name="Alarm.js" path="C:\Users\tsteiner4\Desktop\School\CS506\AdaptiveAlarm\src\custom_modules\Alarm.js">
-      <metrics statements="59" coveredstatements="58" conditionals="16" coveredconditionals="14" methods="22" coveredmethods="20"/>
+      <metrics statements="59" coveredstatements="59" conditionals="16" coveredconditionals="16" methods="22" coveredmethods="22"/>
       <line num="3" count="4" type="stmt"/>
       <line num="4" count="4" type="stmt"/>
       <line num="5" count="4" type="stmt"/>
-      <line num="14" count="27" type="stmt"/>
-      <line num="15" count="27" type="stmt"/>
-      <line num="16" count="27" type="stmt"/>
-      <line num="17" count="27" type="stmt"/>
-      <line num="18" count="27" type="stmt"/>
-      <line num="20" count="27" type="cond" truecount="2" falsecount="0"/>
-      <line num="21" count="3" type="cond" truecount="1" falsecount="1"/>
-      <line num="22" count="3" type="stmt"/>
-      <line num="24" count="27" type="cond" truecount="2" falsecount="0"/>
-      <line num="25" count="25" type="cond" truecount="2" falsecount="0"/>
-      <line num="26" count="23" type="stmt"/>
+      <line num="14" count="28" type="stmt"/>
+      <line num="15" count="28" type="stmt"/>
+      <line num="16" count="28" type="stmt"/>
+      <line num="17" count="28" type="stmt"/>
+      <line num="18" count="28" type="stmt"/>
+      <line num="20" count="28" type="cond" truecount="2" falsecount="0"/>
+      <line num="21" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="4" type="stmt"/>
+      <line num="24" count="28" type="cond" truecount="2" falsecount="0"/>
+      <line num="25" count="26" type="cond" truecount="2" falsecount="0"/>
+      <line num="26" count="24" type="stmt"/>
       <line num="27" count="2" type="cond" truecount="2" falsecount="0"/>
       <line num="28" count="1" type="stmt"/>
       <line num="30" count="1" type="stmt"/>
@@ -54,14 +54,14 @@
       <line num="99" count="6" type="stmt"/>
       <line num="102" count="1" type="stmt"/>
       <line num="106" count="1" type="stmt"/>
-      <line num="112" count="0" type="stmt"/>
-      <line num="115" count="1" type="stmt"/>
-      <line num="116" count="1" type="stmt"/>
-      <line num="117" count="1" type="stmt"/>
-      <line num="118" count="1" type="stmt"/>
-      <line num="119" count="1" type="cond" truecount="1" falsecount="1"/>
-      <line num="120" count="1" type="stmt"/>
-      <line num="121" count="1" type="stmt"/>
+      <line num="112" count="3" type="stmt"/>
+      <line num="115" count="3" type="stmt"/>
+      <line num="116" count="3" type="stmt"/>
+      <line num="117" count="3" type="stmt"/>
+      <line num="118" count="3" type="stmt"/>
+      <line num="119" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="120" count="3" type="stmt"/>
+      <line num="121" count="3" type="stmt"/>
       <line num="124" count="4" type="stmt"/>
     </file>
   </project>
