@@ -9,35 +9,35 @@ import { Calendar, Permissions } from 'expo';
 import { GlobalStyles, Colors } from '../constants';
 import { Buttons } from '../components';
 
-
 // eslint-disable-next-line
 export default class CalendarScreen extends Component {
 
   constructor() {
     super();
     this.state = {
-      calendars: [],
       eventStart: '',
     };
   }
 
   async getStartTime() {
+    let timeUTC = 0;
     await Permissions.askAsync('calendar');
     const cals = await Calendar.getCalendarsAsync();
     // get all device calendar ids
     const data = cals.filter(item => item).map(({ id }) => ({ id }));
-    this.setState({ calendars: data });
     const today = new Date();
     today.setDate(today.getDate());
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    const { calendars } = this.state;
     // check all events for the following day and return earliest event start time
-    Calendar.getEventsAsync(calendars, today, tomorrow).then((response) => {
-      this.setState({ eventStart: response[0].startDate });
+    Calendar.getEventsAsync(data, today, tomorrow).then((response) => {
+      // parse String to get in UTC format
+      const startTime = response[0].startDate;
+      const date = String(startTime).split('.');
+      timeUTC = Date.parse(date[0]);
+      this.setState({ eventStart: timeUTC });
     });
   }
-
 
   render() {
     const {
@@ -52,6 +52,7 @@ export default class CalendarScreen extends Component {
           onPress={() => this.getStartTime()}
         />
         <Text style={GlobalStyles.input}>
+          {/* eslint-disable-next-line */}
           Next Event: { eventStart }
         </Text>
       </View>
