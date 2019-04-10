@@ -4,6 +4,19 @@
  * state updates.
  */
 import { auth, database } from 'firebase';
+import store from '../store';
+
+function getNextAlarm() {
+  const state = store.getState();
+  const { alarms } = state.user;
+  const ids = Object.keys(alarms);
+  for (let i = 0; i < ids.length; i += 1) {
+    const alarmId = ids[i];
+    const alarm = alarms[alarmId];
+    return { ...alarm, alarmId };
+  }
+  return undefined;
+}
 /**
  * Calculates alarm time from user entered information
  * stores data in firebase and resolves with data to be
@@ -17,17 +30,18 @@ function createAlarm(payload) {
     arrivalTime,
     timeToGetReady,
     days,
+    isActive,
   } = payload;
   const { uid } = auth().currentUser;
-
   return new Promise((resolve, reject) => {
-    const alarmKey = 'alarm1'; // uncomment below line for multiple alarms
+    const alarmKey = database().ref(`users/${uid}/alarms/`).push().key;
     database().ref(`users/${uid}/alarms/${alarmKey}`)
       .set({
         destinationLoc,
         arrivalTime,
         timeToGetReady,
         days,
+        isActive,
       })
       .then(() => {
         resolve({
@@ -35,7 +49,7 @@ function createAlarm(payload) {
           arrivalTime,
           timeToGetReady,
           days,
-          key: alarmKey,
+          alarmId: alarmKey,
         });
       })
       .catch(error => reject(error));
@@ -46,13 +60,34 @@ function createAlarm(payload) {
  * Deletes an alarm from firebase
  * @param {[alarmId]}
  */
-function deleteAlarm(alarmId = 'alarm1') {
+function deleteAlarm(alarmId) {
   const { uid } = auth().currentUser;
   return new Promise((resolve, reject) => {
     database().ref(`users/${uid}/alarms/${alarmId}`)
       .remove()
       .then(() => {
         resolve(true);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
+/**
+ * Deletes an alarm from firebase
+ * @param {[alarmId]}
+ */
+function setAlarmStatus(alarmId, status) {
+  const { uid } = auth().currentUser;
+  return new Promise((resolve, reject) => {
+    database().ref(`users/${uid}/alarms/${alarmId}/isActive`)
+      .set(status)
+      .then(() => {
+        resolve({
+          alarmId,
+          status,
+        });
       })
       .catch((error) => {
         reject(error);
@@ -135,5 +170,5 @@ function signOut() {
 }
 
 export default {
-  signIn, createAccount, signOut, fetch, createAlarm, deleteAlarm,
+  setAlarmStatus, signIn, createAccount, signOut, fetch, createAlarm, deleteAlarm, getNextAlarm,
 };

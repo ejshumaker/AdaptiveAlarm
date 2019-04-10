@@ -16,9 +16,6 @@ const initialUserState = {
   destinationLoc: undefined,
   timeToGetReady: undefined,
   arrivalTime: undefined,
-  days: {
-    mon: false, tue: false, wed: false, thu: false, fri: false, sat: false, sun: false,
-  },
   error: false,
   errorMessage: undefined, // overwrite with a message
   loading: false, // global loading flag
@@ -88,6 +85,17 @@ const userReducer = (state = initialUserState, action) => {
         errorMessage: undefined,
         error: action.error,
         loading: false,
+      };
+      break;
+    }
+    // Alarm status
+    case 'USER_SET_ALARM_STATUS_FULFILLED': {
+      const { alarmId, status } = action.payload;
+      const alarms = { ...state.alarms }; // make a copy
+      alarms[alarmId].isActive = status;
+      state = {
+        ...state,
+        alarms,
       };
       break;
     }
@@ -169,12 +177,6 @@ const userReducer = (state = initialUserState, action) => {
         lastName: action.payload.lastName,
         userName: action.payload.userName,
         email: action.payload.email,
-      };
-      break;
-    case 'USER_SET_AGE':
-      state = {
-        ...state,
-        age: action.payload,
       };
       break;
     default:

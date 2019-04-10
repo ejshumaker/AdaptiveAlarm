@@ -1,4 +1,4 @@
-
+import moment from 'moment';
 import Alarm from '../../custom_modules/Alarm';
 
 /**
@@ -7,28 +7,39 @@ import Alarm from '../../custom_modules/Alarm';
   * then subtracts the time to get ready.
   * @tsteiner4 3-9-2019
   */
-export function alarmCalculateTime(destinationLoc, timeToGetReady, arrivalTime, navigate) {
+export function alarmCalculateTime(alarm) {
+  const {
+    destinationLoc,
+    timeToGetReady,
+    arrivalTime,
+    alarmId,
+    isActive,
+  } = alarm;
+  const date = new Date(moment(arrivalTime, 'LT')); // parse into date
   return dispatch => dispatch({
     type: 'ALARM_SET_TIME',
     payload: Alarm.getAlarmTime(
       destinationLoc,
       timeToGetReady,
-      arrivalTime,
+      date.getTime(),
     ),
   })
     .then((resp) => {
-      Alarm.armAlarm(resp.value, navigate);
+      Alarm.armAlarm(resp.value);
       dispatch({
-        type: 'ALARM_SET_ACTIVE_STATUS',
-        payload: true,
+        type: 'ALARM_SET_ARMED_STATUS',
+        payload: {
+          armed: isActive,
+          currentAlarmId: alarmId,
+        },
       });
     });
 }
 
-// TODO: Turn off the alarm and navigate home
-export function alarmOff(navigate) {
+// stub
+export function foo() {
   return {
     type: 'FOO',
-    payload: navigate,
+    payload: null,
   };
 }
