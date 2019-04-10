@@ -2,7 +2,7 @@
 /* eslint-disable import/first */
 
 import Alarm from '../../custom_modules/Alarm';
-import Mocks from '../__mocks__/fetchMock';
+import Mocks from '../../__mocks__/fetchMock';
 
 const MILS_PER_MIN = 1000 * 60;
 

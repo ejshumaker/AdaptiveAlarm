@@ -1,68 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1554784368662" clover="3.2.0">
-  <project timestamp="1554784368662" name="All files">
-    <metrics statements="59" coveredstatements="59" conditionals="16" coveredconditionals="16" methods="22" coveredmethods="22" elements="97" coveredelements="97" complexity="0" loc="59" ncloc="59" packages="1" files="1" classes="1"/>
-    <file name="Alarm.js" path="C:\Users\tsteiner4\Desktop\School\CS506\AdaptiveAlarm\src\custom_modules\Alarm.js">
-      <metrics statements="59" coveredstatements="59" conditionals="16" coveredconditionals="16" methods="22" coveredmethods="22"/>
-      <line num="3" count="4" type="stmt"/>
-      <line num="4" count="4" type="stmt"/>
-      <line num="5" count="4" type="stmt"/>
-      <line num="14" count="28" type="stmt"/>
-      <line num="15" count="28" type="stmt"/>
-      <line num="16" count="28" type="stmt"/>
-      <line num="17" count="28" type="stmt"/>
-      <line num="18" count="28" type="stmt"/>
-      <line num="20" count="28" type="cond" truecount="2" falsecount="0"/>
-      <line num="21" count="4" type="cond" truecount="2" falsecount="0"/>
-      <line num="22" count="4" type="stmt"/>
-      <line num="24" count="28" type="cond" truecount="2" falsecount="0"/>
-      <line num="25" count="26" type="cond" truecount="2" falsecount="0"/>
-      <line num="26" count="24" type="stmt"/>
-      <line num="27" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="28" count="1" type="stmt"/>
-      <line num="30" count="1" type="stmt"/>
-      <line num="33" count="1" type="stmt"/>
-      <line num="37" count="1" type="stmt"/>
-      <line num="41" count="1" type="stmt"/>
-      <line num="47" count="4" type="stmt"/>
-      <line num="49" count="4" type="stmt"/>
-      <line num="51" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="52" count="1" type="stmt"/>
-      <line num="53" count="1" type="stmt"/>
-      <line num="56" count="2" type="stmt"/>
-      <line num="58" count="1" type="stmt"/>
-      <line num="59" count="1" type="stmt"/>
-      <line num="60" count="1" type="stmt"/>
-      <line num="61" count="1" type="stmt"/>
-      <line num="64" count="1" type="stmt"/>
-      <line num="69" count="1" type="stmt"/>
-      <line num="76" count="8" type="stmt"/>
-      <line num="77" count="8" type="stmt"/>
-      <line num="78" count="8" type="stmt"/>
-      <line num="79" count="8" type="stmt"/>
-      <line num="81" count="7" type="stmt"/>
-      <line num="82" count="7" type="stmt"/>
-      <line num="84" count="6" type="stmt"/>
-      <line num="85" count="6" type="stmt"/>
-      <line num="86" count="6" type="stmt"/>
-      <line num="87" count="6" type="cond" truecount="2" falsecount="0"/>
-      <line num="89" count="14" type="stmt"/>
-      <line num="90" count="14" type="stmt"/>
-      <line num="92" count="13" type="stmt"/>
-      <line num="95" count="1" type="stmt"/>
-      <line num="97" count="14" type="stmt"/>
-      <line num="99" count="6" type="stmt"/>
-      <line num="102" count="1" type="stmt"/>
-      <line num="106" count="1" type="stmt"/>
-      <line num="112" count="3" type="stmt"/>
-      <line num="115" count="3" type="stmt"/>
-      <line num="116" count="3" type="stmt"/>
-      <line num="117" count="3" type="stmt"/>
-      <line num="118" count="3" type="stmt"/>
-      <line num="119" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="120" count="3" type="stmt"/>
-      <line num="121" count="3" type="stmt"/>
-      <line num="124" count="4" type="stmt"/>
+<coverage generated="1554869351249" clover="3.2.0">
+  <project timestamp="1554869351250" name="All files">
+    <metrics statements="32" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="23" coveredmethods="2" elements="56" coveredelements="4" complexity="0" loc="32" ncloc="32" packages="1" files="1" classes="1"/>
+    <file name="User.js" path="C:\Users\tsteiner4\Desktop\School\CS506\AdaptiveAlarm\src\custom_modules\User.js">
+      <metrics statements="32" coveredstatements="2" conditionals="1" coveredconditionals="0" methods="23" coveredmethods="2"/>
+      <line num="19" count="0" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="22" count="0" type="stmt"/>
+      <line num="23" count="0" type="stmt"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="31" count="0" type="stmt"/>
+      <line num="38" count="0" type="stmt"/>
+      <line num="47" count="0" type="stmt"/>
+      <line num="48" count="0" type="stmt"/>
+      <line num="49" count="0" type="stmt"/>
+      <line num="52" count="0" type="stmt"/>
+      <line num="55" count="0" type="stmt"/>
+      <line num="66" count="0" type="stmt"/>
+      <line num="67" count="0" type="stmt"/>
+      <line num="68" count="0" type="stmt"/>
+      <line num="69" count="0" type="stmt"/>
+      <line num="70" count="0" type="stmt"/>
+      <line num="86" count="0" type="stmt"/>
+      <line num="87" count="0" type="stmt"/>
+      <line num="89" count="0" type="stmt"/>
+      <line num="91" count="0" type="stmt"/>
+      <line num="92" count="0" type="stmt"/>
+      <line num="99" count="0" type="stmt"/>
+      <line num="102" count="0" type="stmt"/>
+      <line num="103" count="0" type="stmt"/>
+      <line num="114" count="0" type="stmt"/>
+      <line num="115" count="0" type="stmt"/>
+      <line num="116" count="0" type="stmt"/>
+      <line num="117" count="0" type="stmt"/>
+      <line num="118" count="0" type="stmt"/>
+      <line num="127" count="2" type="stmt"/>
+      <line num="128" count="2" type="stmt"/>
     </file>
   </project>
 </coverage>

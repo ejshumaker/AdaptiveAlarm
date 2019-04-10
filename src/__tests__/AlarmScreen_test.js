@@ -8,6 +8,9 @@ import moment from 'moment';
 import { AlarmScreen } from '../screens/AlarmScreen';
 
 Enzyme.configure({ adapter: new Adapter() });
+
+jest.mock('../constants/alarm.mp3', () => jest.fn());
+
 describe('Alarm Screen', () => {
   let wrapper;
   // our mock login function to replace the one provided by mapDispatchToProps

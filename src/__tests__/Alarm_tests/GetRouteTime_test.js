@@ -2,7 +2,7 @@
 /* eslint-disable import/first */
 
 import Alarm from '../../custom_modules/Alarm';
-import Mocks from '../__mocks__/fetchMock';
+import Mocks from '../../__mocks__/fetchMock';
 
 jest.setTimeout(10000);
 describe('Route Time tests', () => {
