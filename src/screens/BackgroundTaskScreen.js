@@ -17,6 +17,12 @@ import Buttons from '../components/Buttons';
 
 const BACKGROUND_FETCH_TASK = 'background-fetch';
 
+TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
+  console.log('in BACKGROUND_FETCH_TASK');
+  console.log(Date());
+  return BackgroundFetch.Result.NewData;
+});
+
 // eslint-disable-next-line
 export default class BackgroundTaskScreen extends Component {
   state = {
@@ -43,7 +49,7 @@ export default class BackgroundTaskScreen extends Component {
   };
 
   toggle = async () => {
-    await BackgroundFetch.setMinimumIntervalAsync(10);
+    await BackgroundFetch.setMinimumIntervalAsync(1);
     console.log('setMinimumIntervalAsync');
     if (this.state.isRegistered) {
       await BackgroundFetch.unregisterTaskAsync(BACKGROUND_FETCH_TASK);
@@ -87,8 +93,3 @@ export default class BackgroundTaskScreen extends Component {
     );
   }
 }
-
-TaskManager.defineTask(BACKGROUND_FETCH_TASK, async () => {
-  console.log('in BACKGROUND_FETCH_TASK');
-  return BackgroundFetch.Result.NewData;
-});
