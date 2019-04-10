@@ -15,6 +15,7 @@ export function alarmCalculateTime(alarm) {
     alarmId,
     isActive,
   } = alarm;
+  console.log(alarm);
   const date = new Date(moment(arrivalTime, 'LT')); // parse into date
   return dispatch => dispatch({
     type: 'ALARM_SET_TIME',

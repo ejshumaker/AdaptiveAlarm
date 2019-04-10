@@ -76,18 +76,16 @@ export function userDeleteAlarm(alarmId) {
  * and updates the store to reflect
  * @param  {Number} uid
  */
-export function userFetch(uid, navigate) {
+export function userFetch(uid) {
   return dispatch => dispatch({
     type: 'USER_FETCH',
     payload: User.fetch(uid),
   })
     .then(() => {
       const alarm = User.getNextAlarm();
+      console.log(alarm);
       if (alarm !== undefined) {
-        dispatch(alarmCalculateTime(
-          alarm,
-          navigate,
-        ));
+        dispatch(alarmCalculateTime(alarm));
       } else {
         dispatch({
           type: 'ALARM_SET_ACTIVE_STATUS',

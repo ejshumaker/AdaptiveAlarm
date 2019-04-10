@@ -4,18 +4,49 @@
  * state updates.
  */
 import { auth, database } from 'firebase';
+import moment from 'moment';
 import store from '../store';
+
+const DAY_MAP = {
+  sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6,
+};
 
 function getNextAlarm() {
   const state = store.getState();
   const { alarms } = state.user;
-  const ids = Object.keys(alarms);
+  if (alarms === undefined) return undefined;
+  const currentDay = moment().days();
+  console.log('-- Getting Next Alarm --');
+  console.log(`Today is ${moment().day(currentDay).format('dddd, MMMM Do, h:mm a')}`);
+  let earliestAlarmTime = Number.MAX_SAFE_INTEGER;
+  let earliestAlarmId;
+  let ids = alarms !== undefined ? Object.keys(alarms) : [];
+  ids = ids.filter(id => alarms[id].isActive);
   for (let i = 0; i < ids.length; i += 1) {
-    const alarmId = ids[i];
-    const alarm = alarms[alarmId];
-    return { ...alarm, alarmId };
+    console.log(`\tAlarm #${i}`);
+    const alarm = alarms[ids[i]];
+    // find next day of week
+    let nextDayNumber = Number.MAX_SAFE_INTEGER;
+    const days = alarm.days || {};
+    Object.entries(days)
+      .filter(entry => entry[1]) // check that alarm is triggered for that day
+      .forEach((entry) => {
+        const day = entry[0];
+        let dayNumber = DAY_MAP[day];
+        // If day is earlier within the week, rollover to next week
+        dayNumber = currentDay <= dayNumber ? dayNumber : dayNumber + 7;
+        // Find the nearest day, ie the lowest number
+        nextDayNumber = dayNumber < nextDayNumber ? dayNumber : nextDayNumber;
+      });
+    const day = moment(alarm.arrivalTime, 'LT');
+    day.day(nextDayNumber);
+    console.log(`\tWill go off ${day.format('dddd, MMMM Do, h:mm a')}`);
+    const closestSoFar = day.utc() < earliestAlarmTime;
+    earliestAlarmTime = closestSoFar ? day.utc() : earliestAlarmTime;
+    earliestAlarmId = closestSoFar ? ids[i] : earliestAlarmId;
   }
-  return undefined;
+  const earliestAlarm = alarms[earliestAlarmId];
+  return { ...earliestAlarm, alarmId: earliestAlarmId };
 }
 /**
  * Calculates alarm time from user entered information
@@ -49,6 +80,7 @@ function createAlarm(payload) {
           arrivalTime,
           timeToGetReady,
           days,
+          isActive,
           alarmId: alarmKey,
         });
       })
