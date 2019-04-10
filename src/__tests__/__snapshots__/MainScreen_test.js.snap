@@ -40,55 +40,13 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
               "fontWeight": "bold",
             },
             Object {
-              "margin": 8,
-            },
-            Object {
               "color": "#E4F96A",
-              "marginTop": 40,
+              "marginVertical": 48,
             },
           ]
         }
       >
-        PREDICTED:
-      </Text>
-      <Text
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "color": "#DDDDDD",
-              "fontSize": 70,
-            },
-          ]
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "fontWeight": "bold",
-              },
-            ]
-          }
-        >
-          10
-          :
-          00
-        </Text>
-        <Text
-          style={
-            Array [
-              Object {
-                "fontSize": 40,
-                "fontWeight": "500",
-                "textTransform": "uppercase",
-              },
-            ]
-          }
-        >
-           
-          am
-        </Text>
+        NO ALARMS
       </Text>
     </View>
     <View
@@ -120,12 +78,6 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
       />
     </View>
     <View>
-      <Buttons
-        backgroundColor="#505050"
-        onPress={[Function]}
-        textColor="#DDDDDD"
-        title="DELETE"
-      />
       <Buttons
         backgroundColor="#505050"
         onPress={[Function]}

@@ -111,18 +111,31 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
 function triggerNavigate(navigate) {
   navigate('Alarm');
 }
-async function armAlarm(alarmTime, navigate) {
+let timeoutRef;
+let navigateRef; // hacky way to let navigation persist
+/**
+ * Given an exact time in UTC, armAlarm sets up
+ * the actual alarm/timers required to fire off alarm
+ * @param  {Time_UTC} alarmTime
+ * @param  {Navigation} navigate
+ * @return {[type]}           [description]
+ */
+async function armAlarm(alarmTime) {
+  if (timeoutRef) clearTimeout(timeoutRef);
   const date = new Date();
   const current = date.getTime(); // get current time
-  let difference = alarmTime - current;
-  console.log(difference);
-  if (difference < 0) difference = 0;
-  console.log(`${difference / (MILS_PER_HOUR)} Hours`);
-  setTimeout(() => triggerNavigate(navigate), difference);
+  const difference = alarmTime - current;
+  if (difference < 0) console.warn('Alarm should have gone off, check alarm calculation!');
+  timeoutRef = setTimeout(() => triggerNavigate(exportFunctions.navigateRef), difference);
 }
 
+function initArmAlarm(navigate) {
+  exportFunctions.navigateRef = navigate;
+}
+
+
 const exportFunctions = {
-  getCurrentLocation, getAlarmTime, armAlarm, getRouteTime,
+  navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime,
 };
 
 export default exportFunctions;

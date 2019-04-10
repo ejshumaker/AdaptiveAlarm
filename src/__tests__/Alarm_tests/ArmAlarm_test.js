@@ -15,6 +15,9 @@ describe('Arm Alarm Tests', () => {
       return constantDate;
     }
   };
+  const mockNav = jest.fn();
+  Alarm.initArmAlarm(mockNav);
+
   beforeEach(() => {
 
   });
@@ -23,7 +26,7 @@ describe('Arm Alarm Tests', () => {
     expect.assertions(2);
     const now = new Date();
 
-    await Alarm.armAlarm(now.getTime() + 4 * MILS_PER_HOUR, jest.fn());
+    await Alarm.armAlarm(now.getTime() + 4 * MILS_PER_HOUR);
     expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function),
       4 * MILS_PER_HOUR);
@@ -31,33 +34,32 @@ describe('Arm Alarm Tests', () => {
 
   test('test that after timeout triggerNavigate is called', async () => {
     const now = new Date();
-    callback = jest.fn();
 
-    await Alarm.armAlarm(now.getTime() + 4 * MILS_PER_HOUR, callback);
-    expect(callback).not.toBeCalled();
+    await Alarm.armAlarm(now.getTime() + 4 * MILS_PER_HOUR);
+    expect(mockNav).not.toBeCalled();
 
     jest.advanceTimersByTime(4 * MILS_PER_HOUR);
 
-    expect(callback).toBeCalled();
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(mockNav).toBeCalled();
+    expect(mockNav).toHaveBeenCalledTimes(1);
   });
 
   test('negative difference in time -> triggerNavigate is called', async () => {
     const now = new Date();
-    callback = jest.fn();
 
-    await Alarm.armAlarm(now.getTime() - 4, callback);
+    await Alarm.armAlarm(now.getTime() - 4);
     expect(setTimeout).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 0);
-    expect(callback).not.toBeCalled();
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), -4);
+    expect(mockNav).not.toBeCalled();
 
     jest.advanceTimersByTime(1);
-    expect(callback).toBeCalled();
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(mockNav).toBeCalled();
+    expect(mockNav).toHaveBeenCalledTimes(1);
   });
 
   afterEach(() => {
     setTimeout.mockClear();
+    mockNav.mockClear();
   });
   afterAll(() => {
     global.Date = RealDate;

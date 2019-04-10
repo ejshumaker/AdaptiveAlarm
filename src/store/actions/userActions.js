@@ -16,6 +16,7 @@ export function userCreateAlarm(payload) {
     destinationLoc,
     timeToGetReady,
     arrivalTime,
+    days,
     navigate,
   } = payload;
   return dispatch => dispatch({
@@ -24,33 +25,48 @@ export function userCreateAlarm(payload) {
       destinationLoc,
       timeToGetReady,
       arrivalTime,
+      days,
+      isActive: true, // default new to active
     }),
   })
     .then(() => {
-      dispatch(alarmCalculateTime(
-        destinationLoc,
-        timeToGetReady,
-        arrivalTime,
-        navigate, // pass along the navigation
-      ));
+      const alarm = User.getNextAlarm();
+      dispatch(alarmCalculateTime(alarm));
       if (navigate) navigate('Main');
     })
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
+export function userSetAlarmStatus(alarmId, status, navigate) {
+  return (dispatch) => {
+    dispatch({
+      type: 'USER_SET_ALARM_STATUS',
+      payload: User.setAlarmStatus(alarmId, status),
+    })
+      .then(() => {
+      // get new "nextAlarm"
+        const alarm = User.getNextAlarm();
+        dispatch(alarmCalculateTime(alarm));
+      });
+  };
+}
+
 /**
  * Deletes alarm from firebase
  */
-export function userDeleteAlarm(alarmId, uid) {
+export function userDeleteAlarm(alarmId) {
   return (dispatch) => {
     dispatch({
       type: 'USER_DELETE_ALARM',
-      payload: User.deleteAlarm(alarmId, uid),
+      payload: User.deleteAlarm(alarmId),
     })
       .then(() => {
         dispatch({
-          type: 'ALARM_SET_ACTIVE_STATUS',
-          payload: false,
+          type: 'ALARM_SET_ARMED_STATUS',
+          payload: {
+            armed: false,
+            currentAlarmId: undefined,
+          },
         });
       });
   };
@@ -65,18 +81,11 @@ export function userFetch(uid, navigate) {
     type: 'USER_FETCH',
     payload: User.fetch(uid),
   })
-    .then((resp) => {
-      const { alarms } = resp.value;
-      if (alarms && alarms.alarm1) {
-        const {
-          destinationLoc,
-          timeToGetReady,
-          arrivalTime,
-        } = resp.value.alarms.alarm1; // "alarm1" is temporary!!!
+    .then(() => {
+      const alarm = User.getNextAlarm();
+      if (alarm !== undefined) {
         dispatch(alarmCalculateTime(
-          destinationLoc,
-          timeToGetReady,
-          arrivalTime,
+          alarm,
           navigate,
         ));
       } else {

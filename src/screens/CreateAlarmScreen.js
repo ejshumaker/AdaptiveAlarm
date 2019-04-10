@@ -36,24 +36,27 @@ class CreateAlarmScreen extends Component {
       readyTime: undefined,
       arrivalTime: undefined,
       workAddress: '',
+      days: {
+        mon: false,
+        tue: false,
+        wed: false,
+        thu: false,
+        fri: false,
+        sat: false,
+        sun: false,
+      },
     };
 
     this.onDestChange = this.onDestChange.bind(this);
+    this.onDayChange = this.onDayChange.bind(this);
   }
 
-  onDestChange(key, value) {
-    console.log('-------- INSIDE ONCHANGE -----------');
-    console.log(key, value);
-    // parent class change handler is always called with field name and value
-    this.setState({
-      workAddress: value,
-    });
-  }
-
-  onCreate() {
+  onCreateAlarm() {
     const { createAlarm, navigation } = this.props;
     const { navigate } = navigation;
-    const { arrivalTime, readyTime, workAddress } = this.state;
+    const {
+      arrivalTime, readyTime, workAddress, days,
+    } = this.state;
     // validate and format
     if (!readyTime || !arrivalTime || !workAddress) {
       Alert.alert('Please make sure you have filled out all fields');
@@ -65,21 +68,37 @@ class CreateAlarmScreen extends Component {
     }
     try {
       const momentString = moment(arrivalTime, 'LT');
-      const date = new Date(momentString);
+      const momentDate = moment(momentString);
+      const arrivalTimeString = `${momentDate.format('hh')}:${momentDate.format('mm')}${momentDate.format('a')}`;
+      const date = new Date(momentString); // used to calculate initial alarm estimate
       // eslint-disable-next-line
       if (isNaN(date.getTime())) {
         Alert.alert('Please double check your time of arrival');
         return;
       }
       createAlarm({
-        arrivalTime: date.getTime(),
+        arrivalTime: arrivalTimeString,
         timeToGetReady: readyTime,
         destinationLoc: workAddress,
+        days,
         navigate,
       });
     } catch (error) {
       Alert.alert(error);
     }
+  }
+
+  onDestChange(key, value) {
+    // parent class change handler is always called with field name and value
+    this.setState({
+      workAddress: value,
+    });
+  }
+
+  onDayChange(days) {
+    this.setState({
+      days,
+    });
   }
 
   loader() {
@@ -92,16 +111,9 @@ class CreateAlarmScreen extends Component {
 
   render() {
     const {
-      createAlarm,
       navigation,
     } = this.props;
     const { navigate } = navigation;
-
-    const {
-      readyTime,
-      arrivalTime,
-      workAddress,
-    } = this.state;
 
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
@@ -147,14 +159,16 @@ class CreateAlarmScreen extends Component {
           placeholderTextColor={Colors.darkGray}
         />
         <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
-        <DayPicker />
+        <DayPicker
+          onChangeDay={this.onDayChange}
+        />
         {this.loader()}
         <View style={{ alignItems: 'center' }}>
           <Buttons
             title="Create Alarm"
             backgroundColor={Colors.primary}
             textColor={Colors.black}
-            onPress={() => { this.onCreate(); }}
+            onPress={() => { this.onCreateAlarm(); }}
           />
         </View>
       </View>

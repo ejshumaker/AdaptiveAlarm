@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for store/actions/alarmActions.js</title>
+    <title>Code coverage report for store/reducers/alarmReducer.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="..\..\prettify.css" />
     <link rel="stylesheet" href="..\..\base.css" />
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="..\..\index.html">All files</a> / <a href="index.html">store/actions</a> alarmActions.js
+      <a href="..\..\index.html">All files</a> / <a href="index.html">store/reducers</a> alarmReducer.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/9</span>
+        <span class='fraction'>4/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
-        <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>4/12</span>
       </div>
     </div>
     <p class="quiet">
@@ -93,7 +93,9 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -101,99 +103,103 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import moment from 'moment';
-import Alarm from '../../custom_modules/Alarm';
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Handle action requests for the alarm,
+ * seperating concerns into seperate reducers helps
+ * to manage the application.
+ * @eschirtz 03-03-19
+ */
+/* eslint-disable no-param-reassign */
 &nbsp;
-/**
-  * Calculates the alarm time using the google maps api and input from
-  * the user. Currently returns the duration between locations in traffic and
-  * then subtracts the time to get ready.
-  * @tsteiner4 3-9-2019
-  */
-export function <span class="fstat-no" title="function not covered" >alarmCalculateTime(</span>alarm) {
-  const {
-    destinationLoc,
-    timeToGetReady,
-    arrivalTime,
-    alarmId,
-    isActive,
-  } = <span class="cstat-no" title="statement not covered" >alarm;</span>
-  const loopLimit = <span class="cstat-no" title="statement not covered" >4;</span>
-  const arrivalTimeBuffer = <span class="cstat-no" title="statement not covered" >6;</span>
-  const date = <span class="cstat-no" title="statement not covered" >new Date(moment(arrivalTime, 'LT'));</span> // parse into date
-<span class="cstat-no" title="statement not covered" >  return <span class="fstat-no" title="function not covered" >di</span>spatch =&gt; <span class="cstat-no" title="statement not covered" >dispatch({</span></span>
-    type: 'ALARM_SET_TIME',
-    payload: Alarm.getAlarmTime(
-      destinationLoc,
-      timeToGetReady,
-      date.getTime(), loopLimit, arrivalTimeBuffer,
-    ),
-  })
-    .then(<span class="fstat-no" title="function not covered" >(r</span>esp) =&gt; {
-<span class="cstat-no" title="statement not covered" >      Alarm.armAlarm(resp.value);</span>
-<span class="cstat-no" title="statement not covered" >      dispatch({</span>
-        type: 'ALARM_SET_ARMED_STATUS',
-        payload: {
-          armed: isActive,
-          currentAlarmId: alarmId,
-        },
-      });
-    });
-}
+const initialAlarmState = {
+  time: undefined,
+  currentAlarmId: undefined,
+  armed: false,
+  loading: false,
+};
+const alarmReducer = (state = initialAlarmState, action) =&gt; {
+  switch (action.type) {
+<span class="branch-0 cbranch-no" title="branch not covered" >    case 'ALARM_SET_TIME_PENDING':</span>
+<span class="cstat-no" title="statement not covered" >      state = {</span>
+        ...state,
+        loading: true,
+      };
+<span class="cstat-no" title="statement not covered" >      break;</span>
+<span class="branch-1 cbranch-no" title="branch not covered" >    case 'ALARM_SET_TIME_REJECTED':</span>
+<span class="cstat-no" title="statement not covered" >      state = {</span>
+        ...state,
+        time: -1,
+        loading: false,
+      };
+<span class="cstat-no" title="statement not covered" >      break;</span>
+<span class="branch-2 cbranch-no" title="branch not covered" >    case 'ALARM_SET_TIME_FULFILLED':</span>
+<span class="cstat-no" title="statement not covered" >      state = {</span>
+        ...state,
+        time: action.payload,
+        loading: false,
+      };
+<span class="cstat-no" title="statement not covered" >      break;</span>
+<span class="branch-3 cbranch-no" title="branch not covered" >    case 'ALARM_SET_ARMED_STATUS':</span>
+<span class="cstat-no" title="statement not covered" >      state = {</span>
+        ...state,
+        armed: action.payload.armed,
+        currentAlarmId: action.payload.currentAlarmId,
+      };
+<span class="cstat-no" title="statement not covered" >      break;</span>
+    default:
+  }
+  return state; // The new state that will replace previous state
+};
 &nbsp;
-// stub
-export function <span class="fstat-no" title="function not covered" >foo(</span>) {
-<span class="cstat-no" title="statement not covered" >  return {</span>
-    type: 'FOO',
-    payload: null,
-  };
-}
+export default alarmReducer;
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Apr 10 2019 10:24:12 GMT-0500 (Central Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Apr 10 2019 14:10:46 GMT-0500 (Central Daylight Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>
