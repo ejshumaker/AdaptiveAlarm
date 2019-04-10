@@ -10,6 +10,7 @@ import MainScreen from '../screens/MainScreen';
 import DayPickerTestScreen from '../screens/DayPickerTestScreen';
 import AutocompleteScreen from '../screens/AutocompleteScreen';
 import AccountScreen from '../screens/AccountScreen';
+import BackgroundTaskScreen from '../screens/BackgroundTaskScreen';
 
 export default createStackNavigator(
   {
@@ -73,6 +74,19 @@ export default createStackNavigator(
       screen: AutocompleteScreen,
       navigationOptions: () => ({
         title: 'Autocomplete',
+        headerStyle: {
+          backgroundColor: Colors.darkGray,
+        },
+        headerTintColor: Colors.white,
+        headerTitleStyle: {
+          fontWeight: '100',
+        },
+      }),
+    },
+    BackgroundTask: {
+      screen: BackgroundTaskScreen,
+      navigationOptions: () => ({
+        title: 'BackgroundTask',
         headerStyle: {
           backgroundColor: Colors.darkGray,
         },
