@@ -13,7 +13,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { userSignOut } from '../store/actions/userActions';
-import { alarmCalculateTime } from '../store/actions/alarmActions';
 
 import {
   Colors,
@@ -46,10 +45,11 @@ class AccountScreen extends Component {
       firstName, // Redux store
       lastName,
       alarms,
+      alarmId,
     } = this.props;
 
     // destructure alarms
-    const alarm = alarms.alarm1 || {};
+    const alarm = alarms[alarmId] || {};
     const {
       destinationLoc,
       arrivalTime,
@@ -67,9 +67,11 @@ class AccountScreen extends Component {
       : 'No destination set';
 
     let dayString = '';
-    Object.keys(days).forEach((key) => {
-      if (days[key]) dayString = dayString.concat(`${key} `);
-    });
+    if (days !== undefined) {
+      Object.keys(days).forEach((key) => {
+        if (days[key]) dayString = dayString.concat(`${key} `);
+      });
+    } else dayString = 'No days set';
 
     // STYLESHEET FOR USER PROFILE
     const styles = StyleSheet.create({
@@ -234,7 +236,7 @@ class AccountScreen extends Component {
                   },
                 ]}
                 >
-                  {arrivalTime}
+                  {arrivalTime || 'No time set'}
                 </Text>
               </View>
             </View>
@@ -292,6 +294,7 @@ AccountScreen.propTypes = {
   lastName: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   alarms: PropTypes.object, // eslint-disable-line
+  alarmId: PropTypes.string,
   // Redux dispatch
   signOut: PropTypes.func.isRequired,
 };
@@ -300,6 +303,7 @@ AccountScreen.defaultProps = {
   firstName: '',
   lastName: '',
   alarms: {},
+  alarmId: undefined,
 };
 
 /**
@@ -312,9 +316,8 @@ const mapStateToProps = state => ({
   lastName: state.user.lastName,
   email: state.user.email,
   alarms: state.user.alarms,
-  errorMessage: state.user.errorMessage,
+  alarmId: state.alarm.currentAlarmId,
   loading: state.user.loadingFetch,
-  alarmTime: state.alarm.time,
 });
 
 /**
@@ -324,7 +327,6 @@ const mapStateToProps = state => ({
  */
 const mapDispatchToProps = dispatch => ({
   signOut: () => { dispatch(userSignOut()); },
-  calculateTime: (time) => { dispatch(alarmCalculateTime(time)); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountScreen);
