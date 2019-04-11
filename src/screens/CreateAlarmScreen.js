@@ -55,7 +55,7 @@ class CreateAlarmScreen extends Component {
   componentWillMount() {
     const { navigation } = this.props;
     const parent = navigation.dangerouslyGetParent();
-    this.setState({ parentNav: parent.state.key }, () => { console.log('In setState: ' + this.state.parentNav); });
+    this.setState({ parentNav: parent.state.routeName }, () => { console.log('In setState: ' + this.state.parentNav); });
   }
 
   onCreateAlarm() {
