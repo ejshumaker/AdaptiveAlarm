@@ -37,7 +37,7 @@ export function userCreateAlarm(payload) {
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
-export function userSetAlarmStatus(alarmId, status, navigate) {
+export function userSetAlarmStatus(alarmId, status) {
   return (dispatch) => {
     dispatch({
       type: 'USER_SET_ALARM_STATUS',
@@ -81,18 +81,7 @@ export function userFetch(uid) {
     type: 'USER_FETCH',
     payload: User.fetch(uid),
   })
-    .then(() => {
-      const alarm = User.getNextAlarm();
-      console.log(alarm);
-      if (alarm !== undefined) {
-        dispatch(alarmCalculateTime(alarm));
-      } else {
-        dispatch({
-          type: 'ALARM_SET_ACTIVE_STATUS',
-          payload: false,
-        });
-      }
-    });
+    .then(() => { dispatch(alarmCalculateTime()); });
 }
 
 /**

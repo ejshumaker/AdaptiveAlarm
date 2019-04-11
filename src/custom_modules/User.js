@@ -23,7 +23,6 @@ function getNextAlarm() {
   let ids = alarms !== undefined ? Object.keys(alarms) : [];
   ids = ids.filter(id => alarms[id].isActive);
   for (let i = 0; i < ids.length; i += 1) {
-    console.log(`\tAlarm #${i}`);
     const alarm = alarms[ids[i]];
     // find next day of week
     let nextDayNumber = Number.MAX_SAFE_INTEGER;
@@ -35,18 +34,40 @@ function getNextAlarm() {
         let dayNumber = DAY_MAP[day];
         // If day is earlier within the week, rollover to next week
         dayNumber = currentDay <= dayNumber ? dayNumber : dayNumber + 7;
+        // If day is same, check if time is earlier
+        if (dayNumber === currentDay) {
+          const alarmMoment = moment(alarm.arrivalTime, 'LT');
+          const currentMoment = moment();
+          const isBefore = alarmMoment.isBefore(currentMoment);
+          console.log(alarmMoment.format('dddd, MMMM Do, h:mm a'));
+          if (isBefore) {
+            console.log('is before');
+            dayNumber += 7; // add a week if alarm has already passed
+          } else {
+            console.log('is after');
+          }
+          console.log(currentMoment.format('dddd, MMMM Do, h:mm a'));
+        }
+
         // Find the nearest day, ie the lowest number
         nextDayNumber = dayNumber < nextDayNumber ? dayNumber : nextDayNumber;
       });
     const day = moment(alarm.arrivalTime, 'LT');
     day.day(nextDayNumber);
-    console.log(`\tWill go off ${day.format('dddd, MMMM Do, h:mm a')}`);
+    console.log(`\tAlarm #${i} goes off ${day.format('dddd, MMMM Do, h:mm a')}`);
     const closestSoFar = day.utc() < earliestAlarmTime;
     earliestAlarmTime = closestSoFar ? day.utc() : earliestAlarmTime;
     earliestAlarmId = closestSoFar ? ids[i] : earliestAlarmId;
   }
   const earliestAlarm = alarms[earliestAlarmId];
-  return { ...earliestAlarm, alarmId: earliestAlarmId };
+  if (earliestAlarmId !== undefined) {
+    return {
+      ...earliestAlarm,
+      alarmId: earliestAlarmId,
+      alarmUTC: earliestAlarmTime, // package the actual date & time
+    };
+  }
+  return undefined;
 }
 /**
  * Calculates alarm time from user entered information
