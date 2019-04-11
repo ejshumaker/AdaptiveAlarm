@@ -15,6 +15,7 @@ export default class CalendarScreen extends Component {
   constructor() {
     super();
     this.state = {
+      startLoc: '',
       eventStart: '',
     };
   }
@@ -28,13 +29,17 @@ export default class CalendarScreen extends Component {
     const tomorrowMorning = new Date();
     const timeZoneOffset = (tomorrowMorning.getTimezoneOffset() / 60);
     tomorrowMorning.setDate(tomorrowMorning.getDate() + 1);
-    tomorrowMorning.setHours((0 - timeZoneOffset), 0, 0, 0);
+    // tomorrowMorning.setHours((0 - timeZoneOffset), 0, 0, 0);
+    tomorrowMorning.setHours(0, 0, 0, 0);
     const tomorrowNight = new Date();
     tomorrowNight.setDate(tomorrowNight.getDate() + 1);
-    tomorrowNight.setHours((23 - timeZoneOffset), 59, 59, 0);
+    // tomorrowNight.setHours((23 - timeZoneOffset), 59, 59, 0);
+    tomorrowNight.setHours(23, 59, 59, 0);
     // check all events for the following day and return earliest event start time
     Calendar.getEventsAsync(data, tomorrowMorning, tomorrowNight).then((response) => {
       // parse String to get in UTC format
+      const location = response[0].location;
+      this.setState({ startLoc: location });
       const startTime = response[0].startDate;
       const date = String(startTime).split('.');
       timeUTC = Date.parse(date[0]);
@@ -45,6 +50,7 @@ export default class CalendarScreen extends Component {
   render() {
     const {
       eventStart,
+      startLoc,
     } = this.state;
     return (
       <View style={[GlobalStyles.centerChildrenXY, { margin: 20 }]}>
@@ -56,7 +62,11 @@ export default class CalendarScreen extends Component {
         />
         <Text style={GlobalStyles.input}>
           {/* eslint-disable-next-line */}
-          Next Event: { eventStart }
+          Next Event Start Time: { eventStart }
+        </Text>
+        <Text style={GlobalStyles.input}>
+          {/* eslint-disable-next-line */}
+          Next Event Location: { startLoc }
         </Text>
       </View>
     );
