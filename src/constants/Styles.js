@@ -22,7 +22,6 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundColor,
-    justifyContent: 'center',
   },
   centerChildrenXY: {
     flex: 1,
@@ -73,7 +72,7 @@ export default StyleSheet.create({
   input: {
     height: 50,
     fontSize: 18,
-    borderBottomWidth: 2,
+    borderBottomWidth: 0.5,
     borderBottomColor: Colors.primary,
     color: Colors.white,
     marginBottom: 24,

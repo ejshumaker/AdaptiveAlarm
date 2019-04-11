@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, TextInput, ActivityIndicator, Alert,
+  View, Text, TextInput, ActivityIndicator, Alert
 } from 'react-native';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -104,7 +104,7 @@ class CreateAlarmScreen extends Component {
     } = this.state;
 
     return (
-      <View style={[GlobalStyles.container, { padding: 48 }]}>
+      <View style={[GlobalStyles.container, { paddingHorizontal: 48, paddingVertical: '10%' }]}>
         <CloseIcon
           style={{ marginLeft: -20, marginTop: 27 }}
           onPress={() => {
@@ -117,7 +117,7 @@ class CreateAlarmScreen extends Component {
             {
               color: Colors.primary,
               marginBottom: 48,
-              marginTop: 40,
+              marginTop: 50,
             },
           ]}
         >
@@ -157,7 +157,7 @@ class CreateAlarmScreen extends Component {
             onPress={() => { this.onCreate(); }}
           />
         </View>
-      </View>
+      </View >
     );
   }
 }
