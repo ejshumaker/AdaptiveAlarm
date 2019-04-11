@@ -15,7 +15,7 @@ function getNextAlarm() {
     const alarm = alarms[alarmId];
     return { ...alarm, alarmId };
   }
-  return undefined;
+  return undefined; // TODO: WTF IS THIS
 }
 /**
  * Calculates alarm time from user entered information
@@ -76,7 +76,7 @@ function deleteAlarm(alarmId) {
 
 /**
  * Deletes an alarm from firebase
- * @param {[alarmId]}
+ * @param {[alarmId, status]}
  */
 function setAlarmStatus(alarmId, status) {
   const { uid } = auth().currentUser;
