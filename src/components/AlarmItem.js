@@ -38,13 +38,17 @@ class AlarmItem extends Component {
 
   displayDays() {
     const { alarm } = this.props;
-    const days = Object.entries(alarm.days);
+    const { days } = alarm;
 
     let dayString = '';
 
-    days.forEach((dayEntry) => {
-      if (dayEntry[1]) dayString += ` ${dayEntry[0].charAt(0).toUpperCase() + dayEntry[0].slice(1)}`;
-    });
+    if (days.sun) dayString += ' S';
+    if (days.mon) dayString += ' M';
+    if (days.tue) dayString += ' T';
+    if (days.wed) dayString += ' W';
+    if (days.thu) dayString += ' Th';
+    if (days.fri) dayString += ' F';
+    if (days.sat) dayString += ' Sa';
 
     if (dayString === '') dayString = ' None';
 
@@ -60,14 +64,17 @@ class AlarmItem extends Component {
           style={styles.alarmRow}
         >
           <View style={styles.alarmInfoColumn}>
-            <Text style={[GlobalStyles.h2, { color: Colors.primary }]}>
+            <Text
+              style={[GlobalStyles.h2,
+                { color: alarm.isActive ? Colors.white : Colors.darkGray }]}
+            >
               {alarm.arrivalTime}
             </Text>
             <View style={{ marginTop: 5, flexDirection: 'row' }}>
-              <Text style={[GlobalStyles.paragraph, { justifyContent: 'flex-start', color: Colors.white }]}>
+              <Text style={[GlobalStyles.paragraph, { justifyContent: 'flex-start', color: alarm.isActive ? Colors.white : Colors.darkGray }]}>
               Repeat:
               </Text>
-              <Text style={[GlobalStyles.paragraph, { justifyContent: 'flex-end', color: Colors.primary }]}>
+              <Text style={[GlobalStyles.paragraph, { justifyContent: 'flex-end', color: alarm.isActive ? Colors.primary : Colors.darkGray, fontWeight: 'bold' }]}>
                 {this.displayDays()}
               </Text>
             </View>

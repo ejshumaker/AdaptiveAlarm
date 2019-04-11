@@ -38,7 +38,6 @@ export function userCreateAlarm(payload) {
 }
 
 export function userSetAlarmStatus(alarmId, status) {
-  console.log(`alarmId: ${alarmId} and status: ${status}`);
   return (dispatch) => {
     dispatch({
       type: 'USER_SET_ALARM_STATUS',
