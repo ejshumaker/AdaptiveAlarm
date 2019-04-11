@@ -45,7 +45,7 @@ async function getCurrentLocation() {
     Permissions.askAsync(Permissions.LOCATION)
       .then((response) => {
         if (response.status !== 'granted') {
-          console.log('Permission to access location was denied');
+          console.error('Permission to access location was denied');
           reject();
         } else {
         // const location = await Location.getCurrentPositionAsync({});
@@ -53,7 +53,6 @@ async function getCurrentLocation() {
             .then((location) => {
               const lat = location.coords.latitude;
               const lng = location.coords.longitude;
-              console.log(`{lat: ${lat}, lng: ${lng}}`);
               resolve(`${lat}, ${lng}`);
             });
         }
@@ -87,9 +86,10 @@ async function getAlarmTimeFromLocation(startLoc, destinationLoc, timeToGetReady
 
 
 async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
-  console.log(destinationLoc);
-  console.log(timeToGetReady);
-  console.log(arrivalTime);
+  console.log('-- Calculating Alarm Time --');
+  console.log(`\tDestination: ${destinationLoc}`);
+  console.log(`\tRoutine Time: ${timeToGetReady}`);
+  console.log(`\tArrival Time: ${new Date(arrivalTime)}`);
   const loops = 4;
   return new Promise((resolve) => {
     getCurrentLocation()
@@ -133,7 +133,7 @@ async function armAlarm(alarmTime) {
   const date = new Date();
   const current = date.getTime(); // get current time
   const difference = alarmTime - current;
-  if (difference < 0) console.log('-- Alarm fired after desired time --\n-- Should still be before arrival time --');
+  if (difference < 0) console.log('** Alarm fired after desired time **\n** Should still be before arrival time **');
   timeoutRef = setTimeout(() => triggerNavigate(navigateRef), difference);
 }
 

@@ -17,7 +17,7 @@ function getNextAlarm() {
   if (alarms === undefined) return undefined;
   const currentDay = moment().days();
   console.log('-- Getting Next Alarm --');
-  console.log(`Today is ${moment().day(currentDay).format('dddd, MMMM Do, h:mm a')}`);
+  console.log(`\tToday is ${moment().day(currentDay).format('dddd, MMMM Do, h:mm a')}`);
   let earliestAlarmTime = Number.MAX_SAFE_INTEGER;
   let earliestAlarmId;
   let ids = alarms !== undefined ? Object.keys(alarms) : [];
@@ -39,14 +39,14 @@ function getNextAlarm() {
           const alarmMoment = moment(alarm.arrivalTime, 'LT');
           const currentMoment = moment();
           const isBefore = alarmMoment.isBefore(currentMoment);
-          console.log(alarmMoment.format('dddd, MMMM Do, h:mm a'));
+          console.log(alarmMoment.format('\tdddd, MMMM Do, h:mm a'));
           if (isBefore) {
-            console.log('is before');
+            console.log('\tis before');
             dayNumber += 7; // add a week if alarm has already passed
           } else {
-            console.log('is after');
+            console.log('\tis after');
           }
-          console.log(currentMoment.format('dddd, MMMM Do, h:mm a'));
+          console.log(currentMoment.format('\tdddd, MMMM Do, h:mm a'));
         }
 
         // Find the nearest day, ie the lowest number

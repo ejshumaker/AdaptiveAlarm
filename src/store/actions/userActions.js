@@ -30,8 +30,7 @@ export function userCreateAlarm(payload) {
     }),
   })
     .then(() => {
-      const alarm = User.getNextAlarm();
-      dispatch(alarmCalculateTime(alarm));
+      dispatch(alarmCalculateTime());
       if (navigate) navigate('Main');
     })
     .catch(error => console.log(error)); // eslint-disable-line
