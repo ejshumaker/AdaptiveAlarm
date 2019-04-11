@@ -45,10 +45,17 @@ class CreateAlarmScreen extends Component {
         sat: false,
         sun: false,
       },
+      parentNav: 'Not working', // TODO: undefined
     };
 
     this.onDestChange = this.onDestChange.bind(this);
     this.onDayChange = this.onDayChange.bind(this);
+  }
+
+  componentWillMount() {
+    const { navigation } = this.props;
+    const parent = navigation.dangerouslyGetParent();
+    this.setState({ parentNav: parent.state.key }, () => { console.log('In setState: ' + this.state.parentNav); });
   }
 
   onCreateAlarm() {
@@ -114,6 +121,7 @@ class CreateAlarmScreen extends Component {
       navigation,
     } = this.props;
     const { navigate } = navigation;
+    const { parentNav } = this.state;
 
     return (
       <View style={[GlobalStyles.container, { padding: 48 }]}>
@@ -132,8 +140,9 @@ class CreateAlarmScreen extends Component {
               marginTop: 40,
             },
           ]}
-        >
-          NEW ALARM:
+        > 
+        NEW ALARM: 
+        {parentNav}
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
         <Autocomplete onDestChange={this.onDestChange} />
