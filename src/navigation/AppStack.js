@@ -31,7 +31,7 @@ export default createStackNavigator(
     AlarmList: {
       screen: AlarmListScreen,
       navigationOptions: () => ({
-        title: 'Create Alarm',
+        title: 'Alarm List',
         header: null,
       }),
     },

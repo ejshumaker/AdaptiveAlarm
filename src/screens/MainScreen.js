@@ -11,6 +11,7 @@ import { GlobalStyles, Colors } from '../constants';
 
 import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
+import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
   hasAlarmView() {
@@ -150,6 +151,12 @@ class MainScreen extends Component {
         paddingHorizontal: 28,
       }}
       >
+        <MenuIcon
+          style={{}}
+          onPress={() => {
+            navigation.navigate('AlarmList');
+          }}
+        />
         <UserIcon
           style={{}}
           onPress={() => {

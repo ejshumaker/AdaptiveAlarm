@@ -22,7 +22,7 @@ import {
   Autocomplete,
 } from '../components';
 import { CloseIcon } from '../icons/close';
-import { userCreateAlarm } from '../store/actions/userActions';
+import { userUpdateAlarm } from '../store/actions/userActions';
 
 import {
   Colors,
@@ -201,7 +201,7 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
-  createAlarm: (payload) => { dispatch(userCreateAlarm(payload)); },
+  createAlarm: (payload) => { dispatch(userUpdateAlarm(payload)); },
 });
 
 export { CreateAlarmScreen };
