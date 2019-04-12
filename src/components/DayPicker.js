@@ -115,7 +115,10 @@ class DayPicker extends PureComponent {
       saButton,
     } = this.state;
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {
+        height: 60, alignItems: 'center', justifyContent: 'space-around', marginVertical: 24,
+      }]}
+      >
         <TouchableOpacity onPress={() => this.updateOnPress('S')}>
           <Circle
             style={{

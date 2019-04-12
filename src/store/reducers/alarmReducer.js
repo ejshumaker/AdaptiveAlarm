@@ -38,6 +38,7 @@ const alarmReducer = (state = initialAlarmState, action) => {
       state = {
         ...state,
         armed: action.payload.armed,
+        soundIndex: action.payload.soundIndex,
         currentAlarmId: action.payload.currentAlarmId,
       };
       break;
