@@ -23,6 +23,7 @@ import {
   Autocomplete,
 } from '../components';
 import { CloseIcon } from '../icons/close';
+import { DropdownIcon } from '../icons/dropdown';
 import { userUpdateAlarm, userDeleteAlarm } from '../store/actions/userActions';
 
 import {
@@ -294,7 +295,9 @@ class CreateAlarmScreen extends Component {
             items={sounds}
             value={soundIndex}
             useNativeAndroidPickerStyle={false}
+            style={{ iconContainer: { top: 10 } }}
             textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
+            Icon={() => <DropdownIcon />}
             onValueChange={(itemValue, itemIndex) => {
               this.setState({ soundIndex: String(itemIndex) });
             }
