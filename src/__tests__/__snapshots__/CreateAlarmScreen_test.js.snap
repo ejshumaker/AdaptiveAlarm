@@ -40,6 +40,176 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
       ]
     }
   >
+    Edit Alarm:
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#DDDDDD",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 18,
+      }
+    }
+  >
+    Destination
+  </Text>
+  <Autocomplete
+    autoCompleteValue="Middleton, WI"
+    onDestChange={[Function]}
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 18,
+        },
+      ]
+    }
+  >
+    Routine Time
+  </Text>
+  <TextInput
+    keyboardAppearance="dark"
+    keyboardType="numeric"
+    onChangeText={[Function]}
+    onSubmitEditing={[Function]}
+    placeholder="(30 min)"
+    placeholderTextColor="#505050"
+    returnKeyType="next"
+    style={
+      Object {
+        "borderBottomColor": "#E4F96A",
+        "borderBottomWidth": 0.5,
+        "color": "#DDDDDD",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 14,
+        "height": 50,
+        "marginBottom": 24,
+      }
+    }
+    value="30"
+  />
+  <Text
+    style={
+      Object {
+        "color": "#DDDDDD",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 18,
+      }
+    }
+  >
+    Arrival Time
+  </Text>
+  <TextInput
+    keyboardAppearance="dark"
+    onChangeText={[Function]}
+    onSubmitEditing={[Function]}
+    placeholder="(8:00 AM)"
+    placeholderTextColor="#505050"
+    returnKeyType="next"
+    style={
+      Object {
+        "borderBottomColor": "#E4F96A",
+        "borderBottomWidth": 0.5,
+        "color": "#DDDDDD",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 14,
+        "height": 50,
+        "marginBottom": 24,
+      }
+    }
+    value="8:00 AM"
+  />
+  <Text
+    style={
+      Object {
+        "color": "#DDDDDD",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 18,
+      }
+    }
+  >
+    Recurring
+  </Text>
+  <DayPicker
+    days={
+      Object {
+        "fri": true,
+        "mon": false,
+        "sat": false,
+        "sun": true,
+        "thu": false,
+        "tue": true,
+        "wed": true,
+      }
+    }
+    onChangeDay={[Function]}
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <Buttons
+      backgroundColor="#E4F96A"
+      onPress={[Function]}
+      textColor="#13151A"
+      title="Save Alarm"
+    />
+    <Buttons
+      backgroundColor="#fa0505"
+      onPress={[Function]}
+      textColor="#13151A"
+      title="Delete Alarm"
+    />
+  </View>
+</View>
+`;
+
+exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": undefined,
+        "flex": 1,
+      },
+      Object {
+        "paddingHorizontal": 48,
+        "paddingVertical": "10%",
+      },
+    ]
+  }
+>
+  <CloseIcon
+    onPress={[Function]}
+    style={
+      Object {
+        "marginLeft": -20,
+        "marginTop": 27,
+      }
+    }
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
+          "fontSize": 30,
+        },
+        Object {
+          "color": "#E4F96A",
+          "marginBottom": 12,
+          "marginTop": 50,
+        },
+      ]
+    }
+  >
     New Alarm:
   </Text>
   <Text
@@ -162,7 +332,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
 </View>
 `;
 
-exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state set 1`] = `
+exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loading 1`] = `
 <View
   style={
     Array [
@@ -216,7 +386,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     Destination
   </Text>
   <Autocomplete
-    autoCompleteValue="Middleton, WI"
+    autoCompleteValue=""
     onDestChange={[Function]}
   />
   <Text
@@ -251,7 +421,6 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
         "marginBottom": 24,
       }
     }
-    value="30"
   />
   <Text
     style={
@@ -282,7 +451,6 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
         "marginBottom": 24,
       }
     }
-    value="8:05 PM"
   />
   <Text
     style={
@@ -308,6 +476,10 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
       }
     }
     onChangeDay={[Function]}
+  />
+  <ActivityIndicator
+    color="#E4F96A"
+    size="large"
   />
   <View
     style={

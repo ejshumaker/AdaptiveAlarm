@@ -128,6 +128,7 @@ describe('Alarm Item', () => {
       navigate={navigate}
       alarm={alarm}
     />);
+
     toggleAlarmMock.mockImplementation(() => new Promise(resolve => resolve()));
     wrapper.find('Switch').simulate(
       'valueChange',
