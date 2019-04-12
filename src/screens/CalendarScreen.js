@@ -4,70 +4,86 @@
 */
 
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import moment from 'moment';
 import { Calendar, Permissions } from 'expo';
 import { GlobalStyles, Colors } from '../constants';
 import { Buttons } from '../components';
 
 // eslint-disable-next-line
 export default class CalendarScreen extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      startLoc: '',
-      eventStart: '',
-    };
-  }
-
-  async getStartTime() {
-    let timeUTC = 0;
+  async getStartTimeAndLocation(dayStart, dayEnd) {
+    let destinationLoc = '';
+    let arrivalTime = 0;
     await Permissions.askAsync('calendar');
     const cals = await Calendar.getCalendarsAsync();
     // get all device calendar ids
     const data = cals.filter(item => item).map(({ id }) => ({ id }));
-    const tomorrowMorning = new Date();
-    const timeZoneOffset = (tomorrowMorning.getTimezoneOffset() / 60);
-    tomorrowMorning.setDate(tomorrowMorning.getDate() + 1);
-    // tomorrowMorning.setHours((0 - timeZoneOffset), 0, 0, 0);
-    tomorrowMorning.setHours(0, 0, 0, 0);
-    const tomorrowNight = new Date();
-    tomorrowNight.setDate(tomorrowNight.getDate() + 1);
-    // tomorrowNight.setHours((23 - timeZoneOffset), 59, 59, 0);
-    tomorrowNight.setHours(23, 59, 59, 0);
     // check all events for the following day and return earliest event start time
-    Calendar.getEventsAsync(data, tomorrowMorning, tomorrowNight).then((response) => {
-      // parse String to get in UTC format
-      const location = response[0].location;
-      this.setState({ startLoc: location });
-      const startTime = response[0].startDate;
-      const date = String(startTime).split('.');
-      timeUTC = Date.parse(date[0]);
-      this.setState({ eventStart: timeUTC });
+    await Calendar.getEventsAsync(data, dayStart, dayEnd).then((response) => {
+      if (response.length > 0) {
+        const { location } = response[0];
+        if (location === '') {
+          destinationLoc = undefined;
+        } else {
+          destinationLoc = location;
+        }
+        arrivalTime = response[0].startDate;
+        arrivalTime = moment(arrivalTime).format('hh:mma');
+      } else {
+        destinationLoc = undefined;
+        arrivalTime = undefined;
+      }
+    });
+    return { destinationLoc, arrivalTime };
+  }
+
+  async getNextEvents() {
+    const d = new Date();
+    const currDayOfWeek = d.getDay();
+    const dayArray = [];
+    for (let i = 0; i < 7; i += 1) {
+      const dayStart = new Date();
+      dayStart.setDate(dayStart.getDate() + (i - currDayOfWeek));
+      dayStart.setHours(0, 0, 0, 0);
+      const dayEnd = new Date();
+      dayEnd.setDate(dayEnd.getDate() + (i - currDayOfWeek));
+      dayEnd.setHours(23, 59, 59, 0);
+      // eslint-disable-next-line
+      await this.getStartTimeAndLocation(dayStart, dayEnd).then((response) => {
+        const { destinationLoc } = response;
+        const { arrivalTime } = response;
+        // if no start time or location, set this array index to undefined
+        if ((destinationLoc === undefined) || (arrivalTime === undefined)) {
+          dayArray.push(undefined);
+        } else {
+          dayArray.push({ destinationLoc, arrivalTime });
+        }
+      });
+    }
+    return dayArray;
+  }
+
+  async getArray() {
+    // eslint-disable-next-line
+    console.log('====== LOGGING ARRAY ========');
+    await this.getNextEvents().then((dayArray) => {
+      for (let i = 0; i < 7; i += 1) {
+        // eslint-disable-next-line
+        console.log(dayArray[i]);
+      }
     });
   }
 
   render() {
-    const {
-      eventStart,
-      startLoc,
-    } = this.state;
     return (
       <View style={[GlobalStyles.centerChildrenXY, { margin: 20 }]}>
         <Buttons
-          title="Get Next Start Time"
+          title="Get Next Event"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
-          onPress={() => this.getStartTime()}
+          onPress={() => this.getArray()}
         />
-        <Text style={GlobalStyles.input}>
-          {/* eslint-disable-next-line */}
-          Next Event Start Time: { eventStart }
-        </Text>
-        <Text style={GlobalStyles.input}>
-          {/* eslint-disable-next-line */}
-          Next Event Location: { startLoc }
-        </Text>
       </View>
     );
   }
