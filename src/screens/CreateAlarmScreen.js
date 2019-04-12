@@ -200,12 +200,12 @@ class CreateAlarmScreen extends Component {
         />
         <Picker
           selectedValue={soundIndex}
-          style={{ height: 60, width: '100%', marginBottom: 20, color: Colors.primary }}
+          style={{
+            height: 60, width: '100%', marginBottom: 20, color: Colors.primary,
+          }}
           itemStyle={{ color: Colors.primary }}
           onValueChange={(itemValue, itemIndex) => {
-            console.log('BEFORE: currSoundIndex:', itemIndex);
             this.setState({ soundIndex: String(itemIndex) });
-            console.log('AFTER: currSoundIndex:', itemIndex);
           }
         }
         >
