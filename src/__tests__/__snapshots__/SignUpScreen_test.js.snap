@@ -7,6 +7,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
       Object {
         "backgroundColor": undefined,
         "flex": 1,
+        "height": "95%",
       },
       Object {
         "justifyContent": "center",
@@ -286,6 +287,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot loading 1`] = `
       Object {
         "backgroundColor": undefined,
         "flex": 1,
+        "height": "95%",
       },
       Object {
         "justifyContent": "center",
@@ -569,6 +571,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot not loading 1`] = `
       Object {
         "backgroundColor": undefined,
         "flex": 1,
+        "height": "95%",
       },
       Object {
         "justifyContent": "center",
