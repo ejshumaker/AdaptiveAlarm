@@ -30,14 +30,13 @@ export function userCreateAlarm(payload) {
     }),
   })
     .then(() => {
-      const alarm = User.getNextAlarm();
-      dispatch(alarmCalculateTime(alarm));
+      dispatch(alarmCalculateTime());
       if (navigate) navigate('Main');
     })
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
-export function userSetAlarmStatus(alarmId, status, navigate) {
+export function userSetAlarmStatus(alarmId, status) {
   return (dispatch) => {
     dispatch({
       type: 'USER_SET_ALARM_STATUS',
@@ -76,25 +75,12 @@ export function userDeleteAlarm(alarmId) {
  * and updates the store to reflect
  * @param  {Number} uid
  */
-export function userFetch(uid, navigate) {
+export function userFetch(uid) {
   return dispatch => dispatch({
     type: 'USER_FETCH',
     payload: User.fetch(uid),
   })
-    .then(() => {
-      const alarm = User.getNextAlarm();
-      if (alarm !== undefined) {
-        dispatch(alarmCalculateTime(
-          alarm,
-          navigate,
-        ));
-      } else {
-        dispatch({
-          type: 'ALARM_SET_ACTIVE_STATUS',
-          payload: false,
-        });
-      }
-    });
+    .then(() => { dispatch(alarmCalculateTime()); });
 }
 
 /**

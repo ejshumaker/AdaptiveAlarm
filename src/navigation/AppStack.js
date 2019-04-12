@@ -10,6 +10,7 @@ import MainScreen from '../screens/MainScreen';
 import DayPickerTestScreen from '../screens/DayPickerTestScreen';
 import AutocompleteScreen from '../screens/AutocompleteScreen';
 import AccountScreen from '../screens/AccountScreen';
+import AlarmListScreen from '../screens/AlarmListScreen';
 
 export default createStackNavigator(
   {
@@ -22,6 +23,13 @@ export default createStackNavigator(
     },
     CreateAlarm: {
       screen: CreateAlarmScreen,
+      navigationOptions: () => ({
+        title: 'Create Alarm',
+        header: null,
+      }),
+    },
+    AlarmList: {
+      screen: AlarmListScreen,
       navigationOptions: () => ({
         title: 'Create Alarm',
         header: null,

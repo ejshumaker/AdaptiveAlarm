@@ -24,6 +24,7 @@ class MainScreen extends Component {
     const hour = !loading ? moment(alarmTime).format('hh') : '0';
     const min = !loading ? moment(alarmTime).format('mm') : '00';
     const meridian = !loading ? moment(alarmTime).format('a') : '- -';
+    const date = !loading ? moment(alarmTime).format('dddd, MMM. Do') : '';
     return (
       <View>
         <Text style={
@@ -50,6 +51,12 @@ class MainScreen extends Component {
             {' '}
             {meridian}
           </Text>
+        </Text>
+        <Text style={
+          [GlobalStyles.h5, { color: Colors.white, marginLeft: 8 }]
+        }
+        >
+          {date}
         </Text>
       </View>
     );

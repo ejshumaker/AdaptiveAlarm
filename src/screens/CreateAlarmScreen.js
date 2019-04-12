@@ -110,7 +110,7 @@ class CreateAlarmScreen extends Component {
   onDestChange(key, value) {
     // parent class change handler is always called with field name and value
     this.setState({
-      workAddress: value,
+      workAddress: value, // TODO: why do we not use the key value pairing? -- weinoh
     });
   }
 
@@ -135,7 +135,7 @@ class CreateAlarmScreen extends Component {
     const { navigate } = navigation;
 
     return (
-      <View style={[GlobalStyles.container, { padding: 48 }]}>
+      <View style={[GlobalStyles.container, { padding: 48, justifyContent: 'space-between' }]}>
         <CloseIcon
           style={{ marginLeft: -20, marginTop: 27 }}
           onPress={() => {
@@ -164,7 +164,7 @@ class CreateAlarmScreen extends Component {
           ref={(input) => { this.readyTimeInput = input; }}
           onSubmitEditing={() => this.arrivalTimeInput.focus()}
           onChangeText={text => this.setState({ readyTime: text })}
-          placeholder="(30)"
+          placeholder="(30 min)"
           placeholderTextColor={Colors.darkGray}
         />
         <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
