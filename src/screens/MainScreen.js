@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
+import { Font } from 'expo';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -13,6 +14,18 @@ import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
 
 class MainScreen extends Component {
+  state = {
+    fontLoaded: false
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "RNSMiles-Black": require("../assets/fonts/RNSMiles-Black.otf"),
+      "RNSMiles-Bold": require("../assets/fonts/RNSMiles-Bold.otf")
+    });
+    this.setState({ fontLoaded: true });
+  }
+
   hasAlarmView() {
     const {
       // values
@@ -26,22 +39,22 @@ class MainScreen extends Component {
     return (
       <View>
         <Text style={
-          [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary, marginTop: 40 }]
+          [GlobalStyles.margin, { fontFamily: "RNSMiles-Black", fontSize: 30, color: Colors.primary, marginTop: 40 }]
         }
         >
           {'PREDICTED:'}
         </Text>
         <Text
           style={[
-            { alignItems: 'center', color: Colors.white, fontSize: 70 },
+            { fontFamily: "RNSMiles-Black", alignItems: 'center', color: Colors.white, fontSize: 70 },
           ]}
         >
-          <Text style={[{ fontWeight: 'bold' }]}>
+          <Text>
             {hour}
             {':'}
             {min}
           </Text>
-          <Text style={[{ fontSize: 40, textTransform: 'uppercase', fontWeight: '500' }]}>
+          <Text style={[{ fontSize: 40, textTransform: 'uppercase', fontFamily: "RNSMiles-Bold" }]}>
             {' '}
             {meridian}
           </Text>
@@ -56,12 +69,12 @@ class MainScreen extends Component {
     return (
       <View>
         <Text style={
-          [GlobalStyles.h2, { color: Colors.primary, marginVertical: 48 }]
+          { fontFamily: "RNSMiles-Black", fontSize: 30, color: Colors.primary, marginVertical: 48 }
         }
         >
           {'NO ALARM SET'}
         </Text>
-      </View>
+      </View >
     );
   }
 
@@ -70,6 +83,7 @@ class MainScreen extends Component {
     const self = this;
     return (
       <View style={{ marginVertical: 48 }}>
+        <StatusBar barStyle="light-content" />
         <AnalogClock
           minuteHandLength={105}
           minuteHandColor={Colors.white}

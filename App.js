@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, YellowBox } from 'react-native';
 import { Provider } from 'react-redux';
+import { Font } from 'expo';
 import firebase from 'firebase';
 import _ from 'lodash';
 // Import custom modules below npm packages & libraries
@@ -40,7 +41,20 @@ firebase.initializeApp(fbConfig);
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { fontLoaded: false };
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "RNSMiles-Black": require("./src/assets/fonts/RNSMiles-Black.otf"),
+      "RNSMiles-Bold": require("./src/assets/fonts/RNSMiles-Bold.otf"),
+      "RNSMiles-XBold": require("./src/assets/fonts/RNSMiles-XBold.otf"),
+      "RNSMiles-Medium": require("./src/assets/fonts/RNSMiles-Medium.otf"),
+      "RNSMiles-Regular": require("./src/assets/fonts/RNSMiles-Regular.otf"),
+      "RNSMiles-Thin": require("./src/assets/fonts/RNSMiles-Thin.otf"),
+      "RNSMiles-Light": require("./src/assets/fonts/RNSMiles-Light.otf")
+    });
+    this.setState({ fontLoaded: true });
   }
 
   render() {

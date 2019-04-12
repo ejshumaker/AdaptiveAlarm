@@ -1,15 +1,28 @@
 import React from "react";
 import styled from "styled-components";
+import { Font } from "expo";
 import PropTypes from "prop-types";
 import { TouchableOpacity } from "react-native";
 
 class Buttons extends React.Component {
+  state = {
+    fontLoaded: false
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "RNSMiles-Black": require("../assets/fonts/RNSMiles-Black.otf"),
+      "RNSMiles-XBold": require("../assets/fonts/RNSMiles-Bold.otf")
+    });
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     const { title, onPress, textColor, backgroundColor } = this.props;
     return (
       <TouchableOpacity onPress={() => onPress()}>
         <Button style={{ backgroundColor: backgroundColor }}>
-          <Text style={{ color: textColor }}>{title}</Text>
+          <Text style={{ fontFamily: "RNSMiles-XBold", color: textColor }}>{title}</Text>
         </Button>
       </TouchableOpacity>
     );
