@@ -26,7 +26,7 @@ import {
 } from '../components';
 import { CloseIcon } from '../icons/close';
 import { DropdownIcon } from '../icons/dropdown';
-import { userUpdateAlarm, userDeleteAlarm } from '../store/actions/userActions';
+import { userUpdateAlarm, userDeleteAlarm, userFetch } from '../store/actions/userActions';
 import {
   Colors,
   GlobalStyles,
@@ -156,7 +156,7 @@ class CreateAlarmScreen extends Component {
   }
 
   async onCreateCalendarAlarms() {
-    const { createAlarm, navigation } = this.props;
+    const { fetchData, createAlarm, navigation } = this.props;
     const { navigate } = navigation;
     const {
       days,
@@ -187,6 +187,7 @@ class CreateAlarmScreen extends Component {
           });
         }
       }
+      fetchData();
     });
   }
 
@@ -428,6 +429,7 @@ CreateAlarmScreen.propTypes = {
     navigate: PropTypes.func.isRequired,
   }).isRequired,
   // Redux dispatch
+  fetchData: PropTypes.func.isRequired,
   createAlarm: PropTypes.func.isRequired,
   deleteAlarm: PropTypes.func.isRequired,
   // Redux state
@@ -456,6 +458,7 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
+  fetchData: () => { dispatch(userFetch()); },
   createAlarm: (payload) => { dispatch(userUpdateAlarm(payload)); },
   deleteAlarm: (alarmId) => { dispatch(userDeleteAlarm(alarmId)); },
 });
