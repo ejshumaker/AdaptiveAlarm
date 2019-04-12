@@ -101,21 +101,21 @@ class AccountScreen extends Component {
         justifyContent: 'space-between',
         borderBottomWidth: 0.5,
         borderBottomColor: Colors.white,
-        marginVertical: 4,
-        height: 40,
+        marginVertical: 8,
+        height: 45,
         width: '90%',
       },
       infoColumn: {
         // flex: 0.5,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        marginVertical: 6,
+        marginBottom: 11,
       },
       dataColumn: {
         // flex: 0.5,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        marginVertical: 6,
+        marginBottom: 11,
       },
       signOutButton: {
         width: '80%',
@@ -135,7 +135,7 @@ class AccountScreen extends Component {
           }}
         />
         <View style={{ alignItems: 'center' }}>
-          <View style={[styles.titleView]}>
+          <View style={[styles.titleView, { alignItems: 'center' }]}>
             <Text style={[
               GlobalStyles.h2,
               {

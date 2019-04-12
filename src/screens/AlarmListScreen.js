@@ -52,7 +52,7 @@ class AlarmListScreen extends Component {
             },
           ]}
         >
-        ALARMS:
+          ALL ALARMS:
         </Text>
         {this.loader()}
 
@@ -64,6 +64,7 @@ class AlarmListScreen extends Component {
               alarmId={Object.keys(alarms)[index]}
               toggleAlarm={toggleAlarm}
               navigate={navigate}
+
             />
           )}
           keyExtractor={(item, index) => String(index)}

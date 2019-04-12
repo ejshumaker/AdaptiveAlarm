@@ -46,7 +46,7 @@ class CreateAlarmScreen extends Component {
         sun: false,
       },
       alarmId: undefined,
-      pageTitle: 'New Alarm:',
+      pageTitle: 'NEW ALARM:',
     };
 
     this.onDestChange = this.onDestChange.bind(this);
@@ -67,7 +67,7 @@ class CreateAlarmScreen extends Component {
         readyTime: alarm.timeToGetReady,
         workAddress: alarm.destinationLoc,
         arrivalTime: alarm.arrivalTime,
-        pageTitle: 'Edit Alarm:',
+        pageTitle: 'EDIT ALARM:',
         days: alarm.days,
       });
     }
@@ -194,7 +194,7 @@ class CreateAlarmScreen extends Component {
     } = this.state;
 
     return (
-      <View style={[GlobalStyles.container, { paddingHorizontal: 48, paddingVertical: '10%' }]}>
+      <View style={[GlobalStyles.container, { padding: 40 }]}>
         <CloseIcon
           style={{ marginLeft: -20, marginTop: 27 }}
           onPress={() => {
@@ -227,7 +227,7 @@ class CreateAlarmScreen extends Component {
           ref={(input) => { this.readyTimeInput = input; }}
           onSubmitEditing={() => this.arrivalTimeInput.focus()}
           onChangeText={text => this.setState({ readyTime: text })}
-          placeholder="(30 min)"
+          placeholder="30 min"
           placeholderTextColor={Colors.darkGray}
           value={readyTime}
         />
@@ -239,7 +239,7 @@ class CreateAlarmScreen extends Component {
           ref={(input) => { this.arrivalTimeInput = input; }}
           onSubmitEditing={() => null}
           onChangeText={text => this.setState({ arrivalTime: text })}
-          placeholder="(8:00 AM)"
+          placeholder="8:00 AM"
           placeholderTextColor={Colors.darkGray}
           value={arrivalTime}
         />

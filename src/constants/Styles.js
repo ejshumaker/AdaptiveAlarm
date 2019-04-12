@@ -49,7 +49,8 @@ export default StyleSheet.create({
   h4: {
     color: Colors.white,
     fontSize: 14,
-    fontWeight: '500',
+    fontFamily: 'RNSMiles-Medium',
+
   },
   h5: {
     fontSize: 14,
@@ -58,7 +59,7 @@ export default StyleSheet.create({
   list: {
     color: Colors.white,
     fontSize: 48,
-    fontWeight: 'bold',
+    fontFamily: 'RNSMiles-Bold',
   },
   paragraph: {
     color: Colors.white,
@@ -69,6 +70,16 @@ export default StyleSheet.create({
     color: Colors.white,
     fontSize: 18,
     fontFamily: 'RNSMiles-Medium',
+  },
+  month: {
+    color: Colors.white,
+    fontSize: 18,
+    fontFamily: 'RNSMiles-Black',
+  },
+  date: {
+    color: Colors.white,
+    fontSize: 18,
+    fontFamily: 'RNSMiles-Regular',
   },
   meridian: {
     color: Colors.white,
@@ -85,7 +96,7 @@ export default StyleSheet.create({
     fontSize: 14,
     fontFamily: 'RNSMiles-Medium',
     borderBottomWidth: 0.5,
-    borderBottomColor: Colors.primary,
+    borderBottomColor: Colors.white,
     color: Colors.white,
     marginBottom: 24,
   },

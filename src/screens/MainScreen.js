@@ -23,18 +23,20 @@ class MainScreen extends Component {
     const hour = !loading ? moment(alarmTime).format('hh') : '0';
     const min = !loading ? moment(alarmTime).format('mm') : '00';
     const meridian = !loading ? moment(alarmTime).format('a') : '- -';
-    const date = !loading ? moment(alarmTime).format('dddd, MMM. Do') : '';
+    const month = !loading ? moment(alarmTime).format('MMM') : '';
+    const day = !loading ? moment(alarmTime).format('D, dddd') : '';
+
     return (
       <View>
         <Text style={
-          [GlobalStyles.h2, { color: Colors.primary, marginTop: 40 }]
+          [GlobalStyles.h2, { color: Colors.primary, marginTop: '10%' }]
         }
         >
           {loading ? 'CALCULATING...' : 'PREDICTED:'}
         </Text>
         <Text
           style={
-            [GlobalStyles.h1, { alignItems: 'center', color: Colors.white, fontSize: 70 }]
+            [GlobalStyles.h1, { color: Colors.white, fontSize: 70 }]
           }
         >
           <Text>
@@ -48,10 +50,16 @@ class MainScreen extends Component {
           </Text>
         </Text>
         <Text style={
-          [GlobalStyles.h4, { color: Colors.white, marginLeft: 8 }]
+          [GlobalStyles.month, { color: Colors.white, marginLeft: 130 }]
         }
         >
-          {date}
+          <Text>
+            {month.toUpperCase()}
+            {' '}
+          </Text>
+          <Text style={[GlobalStyles.date]}>
+            {day}
+          </Text>
         </Text>
       </View>
     );
@@ -76,7 +84,7 @@ class MainScreen extends Component {
     // eslint-disable-next-line no-unused-vars
     const self = this;
     return (
-      <View style={{ marginVertical: 48 }}>
+      <View style={{ marginVertical: '10%' }}>
         <StatusBar barStyle="light-content" />
         <AnalogClock
           minuteHandLength={105}
@@ -142,7 +150,7 @@ class MainScreen extends Component {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: 75,
+        marginTop: '20%',
         paddingHorizontal: 28,
       }}
       >
