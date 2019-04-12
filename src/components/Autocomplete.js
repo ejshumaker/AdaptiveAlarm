@@ -42,7 +42,6 @@ class Autocomplete extends Component {
 
   componentWillMount() {
     const { autoCompleteValue } = this.props;
-    console.log('Autocomplete value:' + autoCompleteValue);
     this.setState({ autoCompleteValue });
   }
 
@@ -80,7 +79,7 @@ class Autocomplete extends Component {
         }) => (
           <Fragment>
             <View style={[GlobalStyles.centerChildrenXY, {
-              flex: 1, zIndex: 4, justifyContent: 'flex-start',
+              zIndex: 4, justifyContent: 'flex-start',
             }]}
             >
               <View
@@ -95,6 +94,7 @@ class Autocomplete extends Component {
               >
                 <SearchIcon style={{ marginLeft: 13, marginTop: 8 }} />
                 <TextInput
+                  keyboardAppearance="dark"
                   style={GlobalStyles.destinationInput}
                   value={autoCompleteValue || inputValue}
                   onChangeText={(text) => {
@@ -102,7 +102,7 @@ class Autocomplete extends Component {
                     handleTextChange(text);
                   }}
                   placeholder="Enter Destination"
-                  placeholderTextColor={Colors.white}
+                  placeholderTextColor={Colors.gray}
                 />
                 <CloseIcon
                   style={{ marginTop: 8, marginRight: 13 }}
@@ -123,7 +123,7 @@ class Autocomplete extends Component {
                   borderBottomLeftRadius: 8,
                   borderBottomRightRadius: 8,
                   zIndex: 4,
-                  marginTop: -4.5,
+                  marginTop: -10,
                 }}
               >
                 {locationResults.map((el, i) => (
@@ -141,7 +141,9 @@ class Autocomplete extends Component {
                 ))}
               </View>
               <Image
-                style={{ marginTop: 12, height: 10 }}
+                style={{
+                  marginTop: 60, height: 10, position: 'absolute', zIndex: 2,
+                }}
                 source={googleStamp}
                 resizeMode="contain"
               />

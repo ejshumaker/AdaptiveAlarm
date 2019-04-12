@@ -71,7 +71,7 @@ class CreateAlarmScreen extends Component {
         arrivalTime: alarm.arrivalTime,
         pageTitle: 'Edit Alarm:',
         days: alarm.days,
-      }, () => { console.log(`In setState: ${alarmId}`); });
+      });
     }
   }
 
@@ -149,7 +149,7 @@ class CreateAlarmScreen extends Component {
     } = this.state;
 
     return (
-      <View style={[GlobalStyles.container, { padding: 48, justifyContent: 'space-between' }]}>
+      <View style={[GlobalStyles.container, { paddingHorizontal: 48, paddingVertical: '10%' }]}>
         <CloseIcon
           style={{ marginLeft: -20, marginTop: 27 }}
           onPress={() => {
@@ -162,7 +162,7 @@ class CreateAlarmScreen extends Component {
             {
               color: Colors.primary,
               marginBottom: 48,
-              marginTop: 40,
+              marginTop: 50,
             },
           ]}
         >
@@ -175,6 +175,7 @@ class CreateAlarmScreen extends Component {
         />
         <Text style={[GlobalStyles.subtitle]}>Routine Time</Text>
         <TextInput
+          keyboardAppearance="dark"
           style={GlobalStyles.input}
           returnKeyType="next"
           keyboardType="numeric"
@@ -187,6 +188,7 @@ class CreateAlarmScreen extends Component {
         />
         <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
         <TextInput
+          keyboardAppearance="dark"
           style={GlobalStyles.input}
           returnKeyType="next"
           ref={(input) => { this.arrivalTimeInput = input; }}
@@ -212,7 +214,7 @@ class CreateAlarmScreen extends Component {
           <Picker.Item label="Alarm Sound 3" value="2" itemStyle={{ color: Colors.primary }} />
           <Picker.Item label="Alarm Sound 4" value="3" itemStyle={{ color: Colors.primary }} />
         </Picker>
-        <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
+        <Text style={GlobalStyles.subtitle}>Recurring</Text>
         <DayPicker
           onChangeDay={this.onDayChange}
           days={days}

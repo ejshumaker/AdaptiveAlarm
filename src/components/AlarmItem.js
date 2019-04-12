@@ -10,6 +10,29 @@ import {
 import PropTypes from 'prop-types';
 import { GlobalStyles, Colors } from '../constants';
 
+const styles = StyleSheet.create({
+  alarmRow: {
+    // flex: 8,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomWidth: 0.5,
+    borderBottomColor: Colors.white,
+    marginVertical: 0,
+    width: '100%',
+  },
+  alarmInfoColumn: {
+    // flex: 0.5,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    marginVertical: 8,
+  },
+  switchColumn: {
+    margin: 0,
+    marginRight: 13,
+    justifyContent: 'space-around',
+  },
+});
+
 class AlarmItem extends Component {
   // on press we should call the navigator to go to the edit alarm page.
   handlePress = async () => {
@@ -38,8 +61,8 @@ class AlarmItem extends Component {
 
   displayDays() {
     const { alarm } = this.props;
-    const { days } = alarm;
-
+    let { days } = alarm;
+    days = days || {};
     let dayString = '';
 
     if (days.sun) dayString += ' S';
@@ -93,34 +116,7 @@ class AlarmItem extends Component {
   }
 }
 
-// STYLESHEET FOR USER PROFILE
-const styles = StyleSheet.create({
-  alarmRow: {
-    // flex: 8,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderBottomWidth: 0.5,
-    borderBottomColor: Colors.white,
-    marginVertical: 0,
-    width: '100%',
-  },
-  alarmInfoColumn: {
-    // flex: 0.5,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    marginVertical: 8,
-  },
-  switchColumn: {
-    margin: 0,
-    marginRight: 13,
-    justifyContent: 'space-around',
-  },
-});
-
-
 export default AlarmItem;
-
-// TODO: how to reference props correctly here ?
 
 AlarmItem.propTypes = {
   toggleAlarm: PropTypes.func.isRequired,

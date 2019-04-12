@@ -4,8 +4,6 @@ import {
   View,
   ActivityIndicator,
   Text,
-  ScrollView,
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -46,7 +44,7 @@ class SignUpScreen extends React.Component {
   render() {
     const { createAccount, navigation, errorMessage } = this.props;
     return (
-      <View style={[GlobalStyles.container, { padding: 48 }]}>
+      <View style={[GlobalStyles.container, { justifyContent: 'center', padding: 48 }]}>
         <StatusBar barStyle="light-content" />
         <Text
           style={[
@@ -77,6 +75,7 @@ class SignUpScreen extends React.Component {
         >
           <EmailIcon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
+            keyboardAppearance="dark"
             onChangeText={value => this.onChangeText('email', value)}
             style={GlobalStyles.destinationInput}
             placeholder="Email"
@@ -95,6 +94,7 @@ class SignUpScreen extends React.Component {
         >
           <PersonIcon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
+            keyboardAppearance="dark"
             onChangeText={value => this.onChangeText('userName', value)}
             style={GlobalStyles.destinationInput}
             placeholder="Username"
@@ -113,6 +113,7 @@ class SignUpScreen extends React.Component {
         >
           <KeyIcon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
+            keyboardAppearance="dark"
             onChangeText={value => this.onChangeText('password', value)}
             style={GlobalStyles.destinationInput}
             secureTextEntry
@@ -132,6 +133,7 @@ class SignUpScreen extends React.Component {
         >
           <Number1Icon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
+            keyboardAppearance="dark"
             onChangeText={value => this.onChangeText('firstName', value)}
             style={GlobalStyles.destinationInput}
             placeholder="First Name"
@@ -149,6 +151,7 @@ class SignUpScreen extends React.Component {
         >
           <Number2Icon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
+            keyboardAppearance="dark"
             onChangeText={value => this.onChangeText('lastName', value)}
             style={GlobalStyles.destinationInput}
             placeholder="Last Name"
