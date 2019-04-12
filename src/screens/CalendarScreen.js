@@ -4,7 +4,7 @@
 */
 
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import moment from 'moment';
 import { Calendar, Permissions } from 'expo';
 import { GlobalStyles, Colors } from '../constants';
@@ -15,7 +15,11 @@ export default class CalendarScreen extends Component {
   async getStartTimeAndLocation(dayStart, dayEnd) {
     let destinationLoc = '';
     let arrivalTime = 0;
-    await Permissions.askAsync('calendar');
+    await Permissions.askAsync('calendar').then((response) => {
+      if (response.status !== 'granted') {
+        Alert.alert('Permission to access calendar was denied.');
+      }
+    });
     const cals = await Calendar.getCalendarsAsync();
     // get all device calendar ids
     const data = cals.filter(item => item).map(({ id }) => ({ id }));
