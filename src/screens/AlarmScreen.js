@@ -18,7 +18,8 @@ const sound2 = require('../assets/sounds/alarm2.mp3');
 const sound3 = require('../assets/sounds/alarm3.mp3');
 const sound4 = require('../assets/sounds/alarm4.mp3');
 
-const sounds = [sound1, sound2, sound3, sound4];
+// sound1 appears twice to set it to default in case user does not select a sound
+const sounds = [sound1, sound1, sound2, sound3, sound4];
 
 class AlarmScreen extends Component {
   constructor() {

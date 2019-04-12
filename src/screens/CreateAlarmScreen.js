@@ -16,6 +16,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import RNPickerSelect from 'react-native-picker-select';
 import {
   DayPicker,
   Buttons,
@@ -28,6 +29,7 @@ import {
   Colors,
   GlobalStyles,
 } from '../constants';
+
 
 class CreateAlarmScreen extends Component {
   constructor() {
@@ -148,6 +150,29 @@ class CreateAlarmScreen extends Component {
       soundIndex,
     } = this.state;
 
+    const sounds = [
+      {
+        label: 'Alarm Sound 1',
+        value: '1',
+        color: Colors.darkGray,
+      },
+      {
+        label: 'Alarm Sound 2',
+        value: '2',
+        color: Colors.darkGray,
+      },
+      {
+        label: 'Alarm Sound 3',
+        value: '3',
+        color: Colors.darkGray,
+      },
+      {
+        label: 'Alarm Sound 4',
+        value: '4',
+        color: Colors.darkGray,
+      },
+    ];
+
     return (
       <View style={[GlobalStyles.container, { paddingHorizontal: 48, paddingVertical: '10%' }]}>
         <CloseIcon
@@ -198,22 +223,22 @@ class CreateAlarmScreen extends Component {
           placeholderTextColor={Colors.darkGray}
           value={arrivalTime}
         />
-        <Picker
-          selectedValue={soundIndex}
-          style={{
-            height: 60, width: '100%', marginBottom: 20, color: Colors.primary,
+        <Text style={GlobalStyles.subtitle}>Alarm Sound</Text>
+        <RNPickerSelect
+          placeholder={{
+            label: 'Select Alarm Sound',
+            value: null,
+            color: Colors.darkGray,
           }}
-          itemStyle={{ color: Colors.primary }}
+          items={sounds}
+          value={soundIndex}
+          useNativeAndroidPickerStyle={false}
+          textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
           onValueChange={(itemValue, itemIndex) => {
             this.setState({ soundIndex: String(itemIndex) });
           }
         }
-        >
-          <Picker.Item label="Alarm Sound 1" value="0" itemStyle={{ color: Colors.primary }} />
-          <Picker.Item label="Alarm Sound 2" value="1" itemStyle={{ color: Colors.primary }} />
-          <Picker.Item label="Alarm Sound 3" value="2" itemStyle={{ color: Colors.primary }} />
-          <Picker.Item label="Alarm Sound 4" value="3" itemStyle={{ color: Colors.primary }} />
-        </Picker>
+        />
         <Text style={GlobalStyles.subtitle}>Recurring</Text>
         <DayPicker
           onChangeDay={this.onDayChange}
