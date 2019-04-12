@@ -245,12 +245,6 @@ class CreateAlarmScreen extends Component {
         {this.loader()}
         <View style={{ justifyContent: 'space-between' }}>
 
-          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Recurring</Text>
-          <DayPicker
-            onChangeDay={this.onDayChange}
-            days={days}
-          />
-
 
           <Text style={[GlobalStyles.subtitle, { marginVertical: 0 }]}>Destination</Text>
           <Autocomplete
@@ -303,6 +297,15 @@ class CreateAlarmScreen extends Component {
             }
         }
           />
+
+
+          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Recurring</Text>
+          <DayPicker
+            onChangeDay={this.onDayChange}
+            days={days}
+          />
+
+
           <View style={{ alignItems: 'center', marginTop: 30 }}>
             <Buttons
               title="Save Alarm"
