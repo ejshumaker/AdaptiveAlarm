@@ -49,12 +49,13 @@ describe('User.js -> Create Alarm tests', () => {
     mockSet.mockImplementation(() => new Promise((resolve) => {
       resolve();
     }));
-    const result = await User.createAlarm(payload);
+    const result = await User.updateAlarm(payload);
     expect(result).toEqual({
       destinationLoc: 'Madison, WI',
       arrivalTime: new Date(2019, 3, 26, 10, 0, 0),
       timeToGetReady: 30,
       days: ['Mon', 'Tues', 'Sun'],
+      isActive: true,
       alarmId: 12345,
     });
   });
@@ -74,13 +75,14 @@ describe('User.js -> Create Alarm tests', () => {
     mockSet.mockImplementation(() => new Promise((resolve) => {
       resolve();
     }));
-    const result = await User.createAlarm(payload);
+    const result = await User.updateAlarm(payload);
     expect(result).toEqual({
       destinationLoc: 'Middleton, WI',
       arrivalTime: new Date(2019, 4, 26, 10, 0, 0),
       timeToGetReady: 20,
       days: ['Mon', 'Thurs', 'Sun'],
       alarmId: 1245,
+      isActive: false,
     });
   });
 
@@ -98,7 +100,7 @@ describe('User.js -> Create Alarm tests', () => {
       push: mockPush,
     }));
     try {
-      await User.createAlarm(payload);
+      await User.updateAlarm(payload);
     } catch (e) {
       expect(e).toEqual(Error('set failed'));
     }

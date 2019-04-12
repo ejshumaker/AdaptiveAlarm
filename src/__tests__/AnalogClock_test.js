@@ -29,6 +29,19 @@ describe('Analog Clock tests', () => {
     });
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('test clock time without curved hands', () => {
+    wrapper.setState({
+      min: 0,
+      hour: 0,
+    });
+    wrapper.setProps({
+      minuteHandCurved: false,
+      hourHandCurved: false,
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   it('test clock time is advanced by timer', () => {
     wrapper.setState({
       min: 0,
