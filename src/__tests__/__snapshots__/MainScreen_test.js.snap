@@ -188,8 +188,9 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
         style={
           Array [
             Object {
-              "fontFamily": "RNSMiles-XBold",
+              "color": "#DDDDDD",
               "fontSize": 14,
+              "fontWeight": "500",
             },
             Object {
               "color": "#DDDDDD",
@@ -300,7 +301,7 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
           ]
         }
       >
-        Calculating...
+        CALCULATING...
       </Text>
       <Text
         style={
@@ -342,8 +343,9 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
         style={
           Array [
             Object {
-              "fontFamily": "RNSMiles-XBold",
+              "color": "#DDDDDD",
               "fontSize": 14,
+              "fontWeight": "500",
             },
             Object {
               "color": "#DDDDDD",

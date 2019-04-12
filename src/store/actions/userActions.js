@@ -3,6 +3,7 @@
  * they call the API's and set their up arguments
  * @eschirtz 03-02-19
  */
+import { auth } from 'firebase';
 import User from '../../custom_modules/User';
 import { alarmCalculateTime } from './alarmActions';
 
@@ -40,6 +41,19 @@ export function userSetAlarmStatus(alarmId, status) {
 }
 
 /**
+ * Fetches the user's data from Firebase
+ * and updates the store to reflect
+ * @param  {Number} uid
+ */
+export function userFetch() {
+  return dispatch => dispatch({
+    type: 'USER_FETCH',
+    payload: User.fetch(),
+  })
+    .then(() => { dispatch(alarmCalculateTime()); });
+}
+
+/**
  * Deletes alarm from firebase
  */
 export function userDeleteAlarm(alarmId) {
@@ -49,27 +63,9 @@ export function userDeleteAlarm(alarmId) {
       payload: User.deleteAlarm(alarmId),
     })
       .then(() => {
-        dispatch({
-          type: 'ALARM_SET_ARMED_STATUS',
-          payload: {
-            armed: false,
-            currentAlarmId: undefined,
-          },
-        });
+        dispatch(userFetch());
       });
   };
-}
-/**
- * Fetches the user's data from Firebase
- * and updates the store to reflect
- * @param  {Number} uid
- */
-export function userFetch(uid) {
-  return dispatch => dispatch({
-    type: 'USER_FETCH',
-    payload: User.fetch(uid),
-  })
-    .then(() => { dispatch(alarmCalculateTime()); });
 }
 
 /**

@@ -31,11 +31,22 @@ describe('SignIn Screen', () => {
       // Redux state
       errorMessage=""
     />);
+    wrapper2 = shallow(<SignInScreen
+      navigation={navigation}
+      signIn={mockSignInfn}
+      loading
+      // Redux state
+      errorMessage=""
+    />);
     jest.clearAllMocks();
   });
 
-  it('test SignIn screen matches snapshot', () => {
+  it('test SignIn screen matches snapshot not loading', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('test SignIn screen matches snapshot loading', () => {
+    expect(wrapper2).toMatchSnapshot();
   });
 
   it('test SignIn screen matches snapshot after state set', () => {
@@ -58,14 +69,37 @@ describe('SignIn Screen', () => {
     expect(mockSignInfn.mock.calls.length).toBe(1);
   });
 
+  it('should navigate to the sign up page', () => {
+    wrapper.setState({
+      password: 'testPass',
+      email: 'tsteiner@wisc.edu',
+    });
+    wrapper.find('[title="Sign Up"]').simulate(
+      'press',
+      { preventDefault() {} },
+    );
+    expect(navigation.navigate.mock.calls.length).toBe(1);
+  });
+
 
   it('changing email input should change the state\'s value', () => {
     wrapper.setState({
       password: 'testPass',
       email: 'tsteiner4@wisc.edu',
     });
+    expect.assertions(1);
     wrapper.find('TextInput').at(0).simulate('ChangeText', 'Hello');
     expect(wrapper.state('email')).toEqual('Hello');
+  });
+
+  it('Changing password input should change the state\'s value', () => {
+    wrapper.setState({
+      password: 'testPass',
+      email: 'tsteiner4@wisc.edu',
+    });
+    expect.assertions(1);
+    wrapper.find('TextInput').at(1).simulate('ChangeText', 'Swizzle');
+    expect(wrapper.state('password')).toEqual('Swizzle');
   });
 
   /* Tests still needed

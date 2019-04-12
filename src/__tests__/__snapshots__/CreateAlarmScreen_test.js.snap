@@ -34,7 +34,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
         },
         Object {
           "color": "#E4F96A",
-          "marginBottom": 48,
+          "marginBottom": 12,
           "marginTop": 50,
         },
       ]
@@ -196,7 +196,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
         },
         Object {
           "color": "#E4F96A",
-          "marginBottom": 48,
+          "marginBottom": 12,
           "marginTop": 50,
         },
       ]
