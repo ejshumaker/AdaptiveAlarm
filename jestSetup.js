@@ -9,7 +9,7 @@ const { JSDOM } = require('jsdom');
 
 jest.mock('expo', () => ({
   Permissions: {
-    askAsync: jest.fn(),
+    askAsync: jest.fn(() => console.log('askAsync')),
   },
   Location: {
     getCurrentPositionAsync: jest.fn(),

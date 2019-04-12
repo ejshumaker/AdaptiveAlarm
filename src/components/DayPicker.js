@@ -4,13 +4,9 @@ import {
   View, Text, TouchableOpacity, StyleSheet,
 } from 'react-native';
 import styled from 'styled-components';
-import { Colors } from '../constants';
+import { GlobalStyles, Colors } from '../constants';
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -33,6 +29,21 @@ class DayPicker extends PureComponent {
       saButton: false,
     };
     this.updateOnPress = this.updateOnPress.bind(this);
+  }
+
+  componentWillMount() {
+    let { days } = this.props;
+    days = days || {};
+
+    this.setState({
+      sButton: days.sun,
+      mButton: days.mon,
+      tButton: days.tue,
+      wButton: days.wed,
+      thButton: days.thu,
+      fButton: days.fri,
+      saButton: days.sat,
+    });
   }
 
   updateOnPress(type) {
@@ -114,7 +125,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     sButton ? Colors.black : Colors.white,
@@ -135,7 +146,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     mButton ? Colors.black : Colors.white,
@@ -156,7 +167,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     tButton ? Colors.black : Colors.white,
@@ -177,7 +188,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     wButton ? Colors.black : Colors.white,
@@ -198,7 +209,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     thButton ? Colors.black : Colors.white,
@@ -219,7 +230,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     fButton ? Colors.black : Colors.white,
@@ -240,7 +251,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     saButton ? Colors.black : Colors.white,
@@ -258,6 +269,8 @@ class DayPicker extends PureComponent {
 
 DayPicker.propTypes = {
   onChangeDay: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  days: PropTypes.object.isRequired,
 };
 
 const Circle = styled.View`

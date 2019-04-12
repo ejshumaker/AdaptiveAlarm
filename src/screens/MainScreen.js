@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -11,6 +11,7 @@ import { GlobalStyles, Colors } from '../constants';
 
 import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
+import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
   hasAlarmView() {
@@ -18,9 +19,7 @@ class MainScreen extends Component {
       // values
       alarmTime,
       loading,
-      armed,
     } = this.props;
-
     const hour = !loading ? moment(alarmTime).format('hh') : '0';
     const min = !loading ? moment(alarmTime).format('mm') : '00';
     const meridian = !loading ? moment(alarmTime).format('a') : '- -';
@@ -28,32 +27,28 @@ class MainScreen extends Component {
     return (
       <View>
         <Text style={
-          [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary, marginTop: 40 }]
+          [GlobalStyles.h2, { color: Colors.primary, marginTop: 40 }]
         }
         >
-          {loading ? 'Calculating...' : 'PREDICTED:'}
+          {loading ? 'CALCULATING...' : 'PREDICTED:'}
         </Text>
         <Text
-          style={[
-            {
-              alignItems: 'center',
-              color: armed ? Colors.white : Colors.darkGray,
-              fontSize: 70,
-            },
-          ]}
+          style={
+            [GlobalStyles.h1, { alignItems: 'center', color: Colors.white, fontSize: 70 }]
+          }
         >
-          <Text style={[{ fontWeight: 'bold' }]}>
+          <Text>
             {hour}
             {':'}
             {min}
           </Text>
-          <Text style={[{ fontSize: 40, textTransform: 'uppercase', fontWeight: '500' }]}>
+          <Text style={[GlobalStyles.meridian]}>
             {' '}
-            {meridian}
+            {meridian.toUpperCase()}
           </Text>
         </Text>
         <Text style={
-          [GlobalStyles.h5, { color: Colors.white, marginLeft: 8 }]
+          [GlobalStyles.h4, { color: Colors.white, marginLeft: 8 }]
         }
         >
           {date}
@@ -71,7 +66,7 @@ class MainScreen extends Component {
           [GlobalStyles.h2, { color: Colors.primary, marginVertical: 48 }]
         }
         >
-          {'NO ALARMS'}
+          {'NO ALARMS SET'}
         </Text>
       </View>
     );
@@ -82,6 +77,7 @@ class MainScreen extends Component {
     const self = this;
     return (
       <View style={{ marginVertical: 48 }}>
+        <StatusBar barStyle="light-content" />
         <AnalogClock
           minuteHandLength={105}
           minuteHandColor={Colors.white}
@@ -113,7 +109,7 @@ class MainScreen extends Component {
           onPress={() => dismissAlarm(alarmId)}
         />
         <Buttons
-          title="Development Page"
+          title="Dev Page"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
           onPress={() => navigate('Home')}
@@ -130,7 +126,7 @@ class MainScreen extends Component {
     return (
       <View>
         <Buttons
-          title="Development Page"
+          title="Dev Page"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
           onPress={() => navigate('Home')}
@@ -150,6 +146,12 @@ class MainScreen extends Component {
         paddingHorizontal: 28,
       }}
       >
+        <MenuIcon
+          style={{}}
+          onPress={() => {
+            navigation.navigate('AlarmList');
+          }}
+        />
         <UserIcon
           style={{}}
           onPress={() => {
@@ -204,14 +206,12 @@ MainScreen.propTypes = {
   alarmTime: PropTypes.number,
   alarmId: PropTypes.string,
   loading: PropTypes.bool,
-  armed: PropTypes.bool,
 };
 
 MainScreen.defaultProps = {
   alarmTime: -1,
   alarmId: undefined,
   loading: true,
-  armed: false,
 };
 
 const mapStateToProps = state => ({

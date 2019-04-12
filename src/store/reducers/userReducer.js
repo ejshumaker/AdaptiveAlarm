@@ -43,8 +43,8 @@ const userReducer = (state = initialUserState, action) => {
       if (alarms === undefined) {
         alarms = {}; // create an empty object
       }
-      const { key } = action.payload;
-      alarms[key] = action.payload;
+      const { alarmId } = action.payload;
+      alarms[alarmId] = action.payload;
       state = {
         ...state,
         alarms,

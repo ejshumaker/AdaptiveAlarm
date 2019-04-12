@@ -10,7 +10,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 jest.setTimeout(10000);
 let wrapper = null;
-
+jest.useFakeTimers();
 describe('Analog Clock tests', () => {
   beforeAll(() => {
     wrapper = mount(<AnalogClock />);
@@ -29,6 +29,31 @@ describe('Analog Clock tests', () => {
     });
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('test clock time without curved hands', () => {
+    wrapper.setState({
+      min: 0,
+      hour: 0,
+    });
+    wrapper.setProps({
+      minuteHandCurved: false,
+      hourHandCurved: false,
+    });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('test clock time is advanced by timer', () => {
+    wrapper.setState({
+      min: 0,
+      hour: 0,
+    });
+    jest.advanceTimersByTime(1000);
+    expect(setInterval).toHaveBeenCalledTimes(1);
+    jest.advanceTimersByTime(59000);
+    expect(setInterval).toHaveBeenCalledTimes(1);
+    expect(wrapper).toMatchSnapshot();
+  });
+
   afterAll(() => {
     wrapper.unmount();
   });

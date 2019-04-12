@@ -5,7 +5,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js"
+    "test": "node ./node_modules/jest/bin/jest.js --coverage"
   },
   "jest": {
     "automock": false,
@@ -73,5 +73,10 @@
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6"
   },
-  "private": true
+  "private": true,
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  }
 }

@@ -5,7 +5,6 @@
  */
 import { auth, database } from 'firebase';
 import moment from 'moment';
-import { Calendar, Permissions } from 'expo';
 import store from '../store';
 
 const DAY_MAP = {
@@ -77,7 +76,7 @@ function getNextAlarm() {
  * @param  {[Object]} payload [description]
  * @return {[Promise]}         [description]
  */
-function createAlarm(payload) {
+function updateAlarm(payload) {
   const {
     destinationLoc,
     arrivalTime,
@@ -85,16 +84,18 @@ function createAlarm(payload) {
     days,
     isActive,
   } = payload;
+  let { alarmId } = payload;
   const { uid } = auth().currentUser;
   return new Promise((resolve, reject) => {
-    const alarmKey = database().ref(`users/${uid}/alarms/`).push().key;
-    database().ref(`users/${uid}/alarms/${alarmKey}`)
+    if (alarmId === undefined) alarmId = database().ref(`users/${uid}/alarms/`).push().key;
+    database().ref(`users/${uid}/alarms/${alarmId}`)
       .set({
         destinationLoc,
         arrivalTime,
         timeToGetReady,
         days,
         isActive,
+        alarmId,
       })
       .then(() => {
         resolve({
@@ -103,7 +104,7 @@ function createAlarm(payload) {
           timeToGetReady,
           days,
           isActive,
-          alarmId: alarmKey,
+          alarmId,
         });
       })
       .catch(error => reject(error));
@@ -223,73 +224,6 @@ function signOut() {
   });
 }
 
-/**
- * Helper function of getNextEvents. Checks the user's calendar
- * on the specified day and returns the first event's location
- * and start time.
- * @return destinationLoc, arrivalTime
- */
-async function getStartTimeAndLocation(dayStart, dayEnd) {
-  let destinationLoc = '';
-  let arrivalTime = 0;
-  await Permissions.askAsync('calendar');
-  const cals = await Calendar.getCalendarsAsync();
-  // get all device calendar ids
-  const data = cals.filter(item => item).map(({ id }) => ({ id }));
-  // check all events for the following day and return earliest event start time
-  await Calendar.getEventsAsync(data, dayStart, dayEnd).then((response) => {
-    if (response.length > 0) {
-      const { location } = response[0];
-      if (location === '') {
-        destinationLoc = undefined;
-      } else {
-        destinationLoc = location;
-      }
-      arrivalTime = response[0].startDate;
-      arrivalTime = moment(arrivalTime).format('hh:mma');
-    } else {
-      destinationLoc = undefined;
-      arrivalTime = undefined;
-    }
-  });
-  return { destinationLoc, arrivalTime };
-}
-
-/**
- * Gets the user's calendar events for the
- * current week. Finds the first event of
- * each day and adds it to an array containing
- * each day's arrivalTime and destinationLoc.
- * Index 0 is Sunday, index 6 is Saturday.
- * @return dayArray
- */
-// eslint-disable-next-line
-async function getNextEvents() {
-  const d = new Date();
-  const currDayOfWeek = d.getDay();
-  const dayArray = [];
-  for (let i = 0; i < 7; i += 1) {
-    const dayStart = new Date();
-    dayStart.setDate(dayStart.getDate() + (i - currDayOfWeek));
-    dayStart.setHours(0, 0, 0, 0);
-    const dayEnd = new Date();
-    dayEnd.setDate(dayEnd.getDate() + (i - currDayOfWeek));
-    dayEnd.setHours(23, 59, 59, 0);
-    // eslint-disable-next-line
-    await getStartTimeAndLocation(dayStart, dayEnd).then((response) => {
-      const { destinationLoc } = response;
-      const { arrivalTime } = response;
-      // if no start time or location, set this array index to undefined
-      if ((destinationLoc === undefined) || (arrivalTime === undefined)) {
-        dayArray.push(undefined);
-      } else {
-        dayArray.push({ destinationLoc, arrivalTime });
-      }
-    });
-  }
-  return dayArray;
-}
-
 export default {
-  setAlarmStatus, signIn, createAccount, signOut, fetch, createAlarm, deleteAlarm, getNextAlarm,
+  setAlarmStatus, signIn, createAccount, signOut, fetch, updateAlarm, deleteAlarm, getNextAlarm,
 };

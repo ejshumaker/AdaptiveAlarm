@@ -20,8 +20,9 @@ describe('CreateAlarm Screen', () => {
   let wrapper;
   // our mock login function to replace the one provided by mapDispatchToProps
   const mockcreateAlarmfn = jest.fn();
-  const navigation = { navigate: jest.fn() };
-  const time = new Date(2019, 4, 26, 10, 0, 0);
+  const getParamMock = jest.fn();
+  const navigation = { navigate: jest.fn(), getParam: getParamMock };
+  const time = '8:05 PM';
 
   beforeEach(() => {
     // pass the mock function as the login prop
@@ -38,8 +39,8 @@ describe('CreateAlarm Screen', () => {
 
   it('test CreateAlarm screen matches snapshot after state set', () => {
     wrapper.setState({
-      readyTime: 30,
-      arrivalTime: time.getTime(),
+      readyTime: '30',
+      arrivalTime: time,
       workAddress: 'Middleton, WI',
     });
     expect(wrapper).toMatchSnapshot();
@@ -47,11 +48,11 @@ describe('CreateAlarm Screen', () => {
 
   it('should call the create alarm action', () => {
     wrapper.setState({
-      readyTime: 30,
-      arrivalTime: time.getTime(),
+      readyTime: '30',
+      arrivalTime: time,
       workAddress: 'Middleton, WI',
     });
-    wrapper.find('[title="Create Alarm"]').simulate(
+    wrapper.find('[title="Save Alarm"]').simulate(
       'press',
       { preventDefault() {} },
     );

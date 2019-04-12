@@ -22,7 +22,7 @@ import {
   Autocomplete,
 } from '../components';
 import { CloseIcon } from '../icons/close';
-import { userCreateAlarm } from '../store/actions/userActions';
+import { userUpdateAlarm, userDeleteAlarm } from '../store/actions/userActions';
 
 import {
   Colors,
@@ -45,17 +45,39 @@ class CreateAlarmScreen extends Component {
         sat: false,
         sun: false,
       },
+      alarmId: undefined,
+      pageTitle: 'New Alarm:',
     };
 
     this.onDestChange = this.onDestChange.bind(this);
     this.onDayChange = this.onDayChange.bind(this);
   }
 
+  componentWillMount() {
+    const { navigation } = this.props;
+    let { alarms } = this.props;
+    alarms = alarms || {};
+    const alarmId = navigation.getParam('alarmId', undefined);
+
+    if (alarmId !== undefined) {
+      const alarm = alarms[alarmId];
+
+      this.setState({
+        alarmId,
+        readyTime: alarm.timeToGetReady,
+        workAddress: alarm.destinationLoc,
+        arrivalTime: alarm.arrivalTime,
+        pageTitle: 'Edit Alarm:',
+        days: alarm.days,
+      });
+    }
+  }
+
   onCreateAlarm() {
     const { createAlarm, navigation } = this.props;
     const { navigate } = navigation;
     const {
-      arrivalTime, readyTime, workAddress, days,
+      arrivalTime, readyTime, workAddress, days, alarmId,
     } = this.state;
     // validate and format
     if (!readyTime || !arrivalTime || !workAddress) {
@@ -64,6 +86,10 @@ class CreateAlarmScreen extends Component {
     }
     if (!Number(readyTime)) {
       Alert.alert('Time to get ready must be a number!');
+      return;
+    }
+    if (this.noRepeats()) {
+      Alert.alert('Must select at least one day for alarm');
       return;
     }
     try {
@@ -82,6 +108,7 @@ class CreateAlarmScreen extends Component {
         destinationLoc: workAddress,
         days,
         navigate,
+        alarmId,
       });
     } catch (error) {
       Alert.alert(error);
@@ -101,6 +128,51 @@ class CreateAlarmScreen extends Component {
     });
   }
 
+  /* eslint-disable class-methods-use-this */
+  onDelete(alarmId) {
+    const { deleteAlarm, navigation } = this.props;
+    Alert.alert(
+      'Delete Alarm?',
+      'By pressing "OK" you will PERMANENTLY delete your alarm',
+      [
+        { text: 'Go Back', style: 'cancel' },
+        {
+          text: 'OK',
+          style: 'negative',
+          onPress: () => {
+            deleteAlarm(alarmId);
+            navigation.navigate('Main');
+          },
+        },
+      ],
+    );
+  }
+
+  noRepeats() {
+    const { days } = this.state;
+    let noRepeat = true;
+    Object.keys(days).forEach((day) => {
+      noRepeat = days[day] ? false : noRepeat;
+    });
+    return noRepeat;
+  }
+
+  deleteButton() {
+    const { navigation } = this.props;
+    const alarmId = navigation.getParam('alarmId', undefined);
+    if (alarmId) {
+      return (
+        <Buttons
+          title="Delete Alarm"
+          backgroundColor={Colors.error}
+          textColor={Colors.black}
+          onPress={() => this.onDelete(alarmId)}
+        />
+      );
+    }
+    return null;
+  }
+
   loader() {
     const { loading } = this.props;
     if (loading) {
@@ -108,15 +180,21 @@ class CreateAlarmScreen extends Component {
     } return null;
   }
 
-
   render() {
     const {
       navigation,
     } = this.props;
     const { navigate } = navigation;
+    const {
+      readyTime,
+      arrivalTime,
+      pageTitle,
+      workAddress,
+      days,
+    } = this.state;
 
     return (
-      <View style={[GlobalStyles.container, { padding: 48, justifyContent: 'space-between' }]}>
+      <View style={[GlobalStyles.container, { paddingHorizontal: 48, paddingVertical: '10%' }]}>
         <CloseIcon
           style={{ marginLeft: -20, marginTop: 27 }}
           onPress={() => {
@@ -128,17 +206,21 @@ class CreateAlarmScreen extends Component {
             GlobalStyles.h2,
             {
               color: Colors.primary,
-              marginBottom: 48,
-              marginTop: 40,
+              marginBottom: 12,
+              marginTop: 50,
             },
           ]}
         >
-          NEW ALARM:
+          {pageTitle}
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
-        <Autocomplete onDestChange={this.onDestChange} />
+        <Autocomplete
+          onDestChange={this.onDestChange}
+          autoCompleteValue={workAddress}
+        />
         <Text style={[GlobalStyles.subtitle]}>Routine Time</Text>
         <TextInput
+          keyboardAppearance="dark"
           style={GlobalStyles.input}
           returnKeyType="next"
           keyboardType="numeric"
@@ -147,9 +229,11 @@ class CreateAlarmScreen extends Component {
           onChangeText={text => this.setState({ readyTime: text })}
           placeholder="(30 min)"
           placeholderTextColor={Colors.darkGray}
+          value={readyTime}
         />
         <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
         <TextInput
+          keyboardAppearance="dark"
           style={GlobalStyles.input}
           returnKeyType="next"
           ref={(input) => { this.arrivalTimeInput = input; }}
@@ -157,19 +241,22 @@ class CreateAlarmScreen extends Component {
           onChangeText={text => this.setState({ arrivalTime: text })}
           placeholder="(8:00 AM)"
           placeholderTextColor={Colors.darkGray}
+          value={arrivalTime}
         />
-        <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
+        <Text style={GlobalStyles.subtitle}>Recurring</Text>
         <DayPicker
           onChangeDay={this.onDayChange}
+          days={days}
         />
         {this.loader()}
         <View style={{ alignItems: 'center' }}>
           <Buttons
-            title="Create Alarm"
+            title="Save Alarm"
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => { this.onCreateAlarm(); }}
           />
+          {this.deleteButton()}
         </View>
       </View>
     );
@@ -182,8 +269,15 @@ CreateAlarmScreen.propTypes = {
   }).isRequired,
   // Redux dispatch
   createAlarm: PropTypes.func.isRequired,
+  deleteAlarm: PropTypes.func.isRequired,
   // Redux state
   loading: PropTypes.bool.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  alarms: PropTypes.object,
+};
+
+CreateAlarmScreen.defaultProps = {
+  alarms: {},
 };
 
 /**
@@ -193,6 +287,7 @@ CreateAlarmScreen.propTypes = {
  */
 const mapStateToProps = state => ({
   loading: state.user.loading,
+  alarms: state.user.alarms,
 });
 
 /**
@@ -201,7 +296,8 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
-  createAlarm: (payload) => { dispatch(userCreateAlarm(payload)); },
+  createAlarm: (payload) => { dispatch(userUpdateAlarm(payload)); },
+  deleteAlarm: (alarmId) => { dispatch(userDeleteAlarm(alarmId)); },
 });
 
 export { CreateAlarmScreen };
