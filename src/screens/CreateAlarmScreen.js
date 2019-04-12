@@ -15,8 +15,9 @@ import {
 import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import RNPickerSelect from 'react-native-picker-select';
+import sounds from '../assets/sounds';
+
 import {
   DayPicker,
   Buttons,
@@ -25,7 +26,6 @@ import {
 import { CloseIcon } from '../icons/close';
 import { DropdownIcon } from '../icons/dropdown';
 import { userUpdateAlarm, userDeleteAlarm } from '../store/actions/userActions';
-
 import {
   Colors,
   GlobalStyles,
@@ -73,6 +73,7 @@ class CreateAlarmScreen extends Component {
         arrivalTime: alarm.arrivalTime,
         pageTitle: 'EDIT ALARM:',
         days: alarm.days,
+        soundIndex: alarm.soundIndex,
       });
     }
   }
@@ -199,28 +200,28 @@ class CreateAlarmScreen extends Component {
       soundIndex,
     } = this.state;
 
-    const sounds = [
-      {
-        label: 'Alarm Sound 1',
-        value: '1',
-        color: Colors.darkGray,
-      },
-      {
-        label: 'Alarm Sound 2',
-        value: '2',
-        color: Colors.darkGray,
-      },
-      {
-        label: 'Alarm Sound 3',
-        value: '3',
-        color: Colors.darkGray,
-      },
-      {
-        label: 'Alarm Sound 4',
-        value: '4',
-        color: Colors.darkGray,
-      },
-    ];
+    // const sounds = [
+    //   {
+    //     label: 'Classic',
+    //     value: '1',
+    //     color: Colors.darkGray,
+    //   },
+    //   {
+    //     label: 'Amber',
+    //     value: '2',
+    //     color: Colors.darkGray,
+    //   },
+    //   {
+    //     label: 'Old Town Road',
+    //     value: '3',
+    //     color: Colors.darkGray,
+    //   },
+    //   {
+    //     label: 'Big Ol\'e Chicken',
+    //     value: '4',
+    //     color: Colors.darkGray,
+    //   },
+    // ];
 
     return (
       <View style={[GlobalStyles.container, { justifyContent: 'space-around', paddingHorizontal: 48, paddingVertical: '10%' }]}>
@@ -288,7 +289,7 @@ class CreateAlarmScreen extends Component {
             }}
             items={sounds}
             value={soundIndex}
-            useNativeAndroidPickerStyle={false}
+            useNativeAndroidPickerStyle
             style={{ iconContainer: { top: 10 } }}
             textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
             Icon={() => <DropdownIcon />}

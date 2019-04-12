@@ -4,22 +4,12 @@ import { View, Text } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Audio } from 'expo';
-import { alarmOff } from '../store/actions/alarmActions';
 
+import sounds from '../assets/sounds';
 import { GlobalStyles, Colors } from '../constants';
 
 import { Buttons } from '../components';
 import { RightIcon } from '../icons/right';
-
-
-// alarm sounds imported
-const sound1 = require('../assets/sounds/alarm1.mp3');
-const sound2 = require('../assets/sounds/alarm2.mp3');
-const sound3 = require('../assets/sounds/alarm3.mp3');
-const sound4 = require('../assets/sounds/alarm4.mp3');
-
-// sound1 appears twice to set it to default in case user does not select a sound
-const sounds = [sound1, sound1, sound2, sound3, sound4];
 
 class AlarmScreen extends Component {
   constructor() {
@@ -48,7 +38,6 @@ class AlarmScreen extends Component {
     this.getSoundLoaded();
     const { navigation } = this.props;
     const { addListener } = navigation;
-    // const self = this;
 
     this.listeners = [
       addListener('didFocus', () => {
@@ -67,7 +56,8 @@ class AlarmScreen extends Component {
   getSoundLoaded = async () => {
     const { load } = this.state;
     const { alarm } = this.props;
-    const { soundIndex } = alarm;
+    let { soundIndex } = alarm;
+    soundIndex = soundIndex || 1; // default on undefined
     console.log('======================');
     console.log('soundIndex:', soundIndex);
     console.log('alarm:', JSON.stringify(alarm));
@@ -77,7 +67,7 @@ class AlarmScreen extends Component {
 
       if (load === true) {
         // const soundIndex = 3;
-        await this.sound.loadAsync(sounds[soundIndex]);
+        await this.sound.loadAsync(sounds[soundIndex - 1].audio);
         this.setState({ load: false });
       }
       this.playSound();
@@ -142,12 +132,6 @@ const mapStateToProps = state => ({
   alarm: state.alarm,
 });
 
-const mapDispatchToProps = dispatch => ({
-  turnAlarmOff: (navigate) => {
-    dispatch(alarmOff(navigate('Main')));
-  },
-});
-
 AlarmScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
@@ -156,4 +140,4 @@ AlarmScreen.propTypes = {
 };
 
 export { AlarmScreen };
-export default connect(mapStateToProps, mapDispatchToProps)(AlarmScreen);
+export default connect(mapStateToProps)(AlarmScreen);
