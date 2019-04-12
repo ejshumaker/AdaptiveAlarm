@@ -49,7 +49,7 @@ class CreateAlarmScreen extends Component {
         sun: false,
       },
       alarmId: undefined,
-      pageTitle: 'New Alarm:',
+      pageTitle: 'NEW ALARM:',
     };
 
     this.onDestChange = this.onDestChange.bind(this);
@@ -71,7 +71,7 @@ class CreateAlarmScreen extends Component {
         readyTime: alarm.timeToGetReady,
         workAddress: alarm.destinationLoc,
         arrivalTime: alarm.arrivalTime,
-        pageTitle: 'Edit Alarm:',
+        pageTitle: 'EDIT ALARM:',
         days: alarm.days,
       });
     }
@@ -176,7 +176,7 @@ class CreateAlarmScreen extends Component {
     return (
       <View style={[GlobalStyles.container, { justifyContent: 'space-around', paddingHorizontal: 48, paddingVertical: '10%' }]}>
         <CloseIcon
-          style={{ marginLeft: -20, marginTop: 10 }}
+          style={{ marginLeft: -20, marginTop: 27 }}
           onPress={() => {
             navigate('Main');
           }}
@@ -186,8 +186,8 @@ class CreateAlarmScreen extends Component {
             GlobalStyles.h2,
             {
               color: Colors.primary,
-              marginBottom: 20,
-              marginTop: 10,
+              marginBottom: 48,
+              marginTop: 40,
             },
           ]}
         >
