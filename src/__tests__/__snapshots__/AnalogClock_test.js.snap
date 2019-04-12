@@ -1,5 +1,136 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Analog Clock tests test clock time is advanced by timer 1`] = `
+<AnalogClock
+  backgroundImage="./img/clockBack.png"
+  clockBorderWidth={7}
+  clockSize={270}
+  hourHandColor="black"
+  hourHandCurved={false}
+  hourHandLength={70}
+  hourHandOffset={0}
+  hourHandWidth={5.5}
+  minuteHandColor="black"
+  minuteHandCurved={false}
+  minuteHandLength={100}
+  minuteHandOffset={0}
+  minuteHandWidth={5}
+  secondHandColor="black"
+  secondHandCurved={false}
+  secondHandLength={120}
+  secondHandOffset={0}
+  secondHandWidth={2}
+>
+  <View
+    style={
+      Object {
+        "borderColor": "#DDDDDD",
+        "borderRadius": 135,
+        "borderWidth": 7,
+        "height": 270,
+        "position": "relative",
+        "width": 270,
+      }
+    }
+  >
+    <react-native-mock>
+      <View
+        style={
+          Object {
+            "bottom": -7,
+            "height": 270,
+            "position": "absolute",
+            "right": -7,
+            "width": 270,
+          }
+        }
+      >
+        <react-native-mock>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "black",
+                  "borderBottomLeftRadius": 0,
+                  "borderTopLeftRadius": 0,
+                  "height": 0,
+                  "left": 135,
+                  "marginLeft": -35,
+                  "marginVertical": -5.5,
+                  "paddingLeft": 70,
+                  "paddingVertical": 5.5,
+                  "position": "absolute",
+                  "top": 135,
+                  "width": 0,
+                },
+                Object {
+                  "transform": Array [
+                    Object {
+                      "rotate": "0deg",
+                    },
+                    Object {
+                      "translateX": -35,
+                    },
+                  ],
+                },
+              ]
+            }
+          >
+            <react-native-mock />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "black",
+                  "borderTopLeftRadius": 0,
+                  "borderTopRightRadius": 0,
+                  "height": 0,
+                  "left": 135,
+                  "marginHorizontal": -5,
+                  "marginTop": -50,
+                  "paddingHorizontal": 5,
+                  "paddingTop": 100,
+                  "position": "absolute",
+                  "top": 135,
+                  "width": 0,
+                },
+                Object {
+                  "transform": Array [
+                    Object {
+                      "rotate": "0deg",
+                    },
+                    Object {
+                      "translateY": -50,
+                    },
+                  ],
+                },
+              ]
+            }
+          >
+            <react-native-mock />
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": undefined,
+                "borderRadius": NaN,
+                "height": undefined,
+                "left": NaN,
+                "top": NaN,
+                "width": undefined,
+              }
+            }
+          >
+            <react-native-mock />
+          </View>
+        </react-native-mock>
+      </View>
+    </react-native-mock>
+  </View>
+</AnalogClock>
+`;
+
 exports[`Analog Clock tests test clock time is shown for 00:00 1`] = `
 <AnalogClock
   backgroundImage="./img/clockBack.png"
@@ -230,6 +361,137 @@ exports[`Analog Clock tests test clock time is shown for 12:15 1`] = `
                   "transform": Array [
                     Object {
                       "rotate": "15deg",
+                    },
+                    Object {
+                      "translateY": -50,
+                    },
+                  ],
+                },
+              ]
+            }
+          >
+            <react-native-mock />
+          </View>
+          <View
+            style={
+              Object {
+                "backgroundColor": undefined,
+                "borderRadius": NaN,
+                "height": undefined,
+                "left": NaN,
+                "top": NaN,
+                "width": undefined,
+              }
+            }
+          >
+            <react-native-mock />
+          </View>
+        </react-native-mock>
+      </View>
+    </react-native-mock>
+  </View>
+</AnalogClock>
+`;
+
+exports[`Analog Clock tests test clock time without curved hands 1`] = `
+<AnalogClock
+  backgroundImage="./img/clockBack.png"
+  clockBorderWidth={7}
+  clockSize={270}
+  hourHandColor="black"
+  hourHandCurved={false}
+  hourHandLength={70}
+  hourHandOffset={0}
+  hourHandWidth={5.5}
+  minuteHandColor="black"
+  minuteHandCurved={false}
+  minuteHandLength={100}
+  minuteHandOffset={0}
+  minuteHandWidth={5}
+  secondHandColor="black"
+  secondHandCurved={false}
+  secondHandLength={120}
+  secondHandOffset={0}
+  secondHandWidth={2}
+>
+  <View
+    style={
+      Object {
+        "borderColor": "#DDDDDD",
+        "borderRadius": 135,
+        "borderWidth": 7,
+        "height": 270,
+        "position": "relative",
+        "width": 270,
+      }
+    }
+  >
+    <react-native-mock>
+      <View
+        style={
+          Object {
+            "bottom": -7,
+            "height": 270,
+            "position": "absolute",
+            "right": -7,
+            "width": 270,
+          }
+        }
+      >
+        <react-native-mock>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "black",
+                  "borderBottomLeftRadius": 0,
+                  "borderTopLeftRadius": 0,
+                  "height": 0,
+                  "left": 135,
+                  "marginLeft": -35,
+                  "marginVertical": -5.5,
+                  "paddingLeft": 70,
+                  "paddingVertical": 5.5,
+                  "position": "absolute",
+                  "top": 135,
+                  "width": 0,
+                },
+                Object {
+                  "transform": Array [
+                    Object {
+                      "rotate": "0deg",
+                    },
+                    Object {
+                      "translateX": -35,
+                    },
+                  ],
+                },
+              ]
+            }
+          >
+            <react-native-mock />
+          </View>
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "black",
+                  "borderTopLeftRadius": 0,
+                  "borderTopRightRadius": 0,
+                  "height": 0,
+                  "left": 135,
+                  "marginHorizontal": -5,
+                  "marginTop": -50,
+                  "paddingHorizontal": 5,
+                  "paddingTop": 100,
+                  "position": "absolute",
+                  "top": 135,
+                  "width": 0,
+                },
+                Object {
+                  "transform": Array [
+                    Object {
+                      "rotate": "0deg",
                     },
                     Object {
                       "translateY": -50,

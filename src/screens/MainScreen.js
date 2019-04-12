@@ -20,7 +20,6 @@ class MainScreen extends Component {
       alarmTime,
       loading,
     } = this.props;
-
     const hour = !loading ? moment(alarmTime).format('hh') : '0';
     const min = !loading ? moment(alarmTime).format('mm') : '00';
     const meridian = !loading ? moment(alarmTime).format('a') : '- -';
@@ -31,7 +30,7 @@ class MainScreen extends Component {
           [GlobalStyles.h2, { color: Colors.primary, marginTop: 40 }]
         }
         >
-          {loading ? 'Calculating...' : 'PREDICTED:'}
+          {loading ? 'CALCULATING...' : 'PREDICTED:'}
         </Text>
         <Text
           style={
@@ -49,7 +48,7 @@ class MainScreen extends Component {
           </Text>
         </Text>
         <Text style={
-          [GlobalStyles.h5, { color: Colors.white, marginLeft: 8 }]
+          [GlobalStyles.h4, { color: Colors.white, marginLeft: 8 }]
         }
         >
           {date}
@@ -110,7 +109,7 @@ class MainScreen extends Component {
           onPress={() => dismissAlarm(alarmId)}
         />
         <Buttons
-          title="DEV PAGE"
+          title="Dev Page"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
           onPress={() => navigate('Home')}
