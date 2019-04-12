@@ -126,7 +126,9 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
   >
     Recurring (beta)
   </Text>
-  <DayPicker />
+  <DayPicker
+    onChangeDay={[Function]}
+  />
   <View
     style={
       Object {
@@ -270,7 +272,9 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
   >
     Recurring (beta)
   </Text>
-  <DayPicker />
+  <DayPicker
+    onChangeDay={[Function]}
+  />
   <View
     style={
       Object {

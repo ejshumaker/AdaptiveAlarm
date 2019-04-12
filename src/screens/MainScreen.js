@@ -6,7 +6,7 @@ import moment from 'moment';
 import AnalogClock from '../components/AnalogClock';
 import Buttons from '../components/Buttons';
 
-import { userDeleteAlarm } from '../store/actions/userActions';
+import { userSetAlarmStatus } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
 
 import { AddIcon } from '../icons/add';
@@ -18,22 +18,28 @@ class MainScreen extends Component {
       // values
       alarmTime,
       loading,
+      armed,
     } = this.props;
 
-    const hour = !loading && alarmTime !== -1 ? moment(alarmTime).format('hh') : '0';
-    const min = !loading && alarmTime !== -1 ? moment(alarmTime).format('mm') : '00';
-    const meridian = !loading && alarmTime !== -1 ? moment(alarmTime).format('a') : '- -';
+    const hour = !loading ? moment(alarmTime).format('hh') : '0';
+    const min = !loading ? moment(alarmTime).format('mm') : '00';
+    const meridian = !loading ? moment(alarmTime).format('a') : '- -';
+    const date = !loading ? moment(alarmTime).format('dddd, MMM. Do') : '';
     return (
       <View>
         <Text style={
           [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary, marginTop: 40 }]
         }
         >
-          {'PREDICTED:'}
+          {loading ? 'Calculating...' : 'PREDICTED:'}
         </Text>
         <Text
           style={[
-            { alignItems: 'center', color: Colors.white, fontSize: 70 },
+            {
+              alignItems: 'center',
+              color: armed ? Colors.white : Colors.darkGray,
+              fontSize: 70,
+            },
           ]}
         >
           <Text style={[{ fontWeight: 'bold' }]}>
@@ -45,6 +51,12 @@ class MainScreen extends Component {
             {' '}
             {meridian}
           </Text>
+        </Text>
+        <Text style={
+          [GlobalStyles.h5, { color: Colors.white, marginLeft: 8 }]
+        }
+        >
+          {date}
         </Text>
       </View>
     );
@@ -59,7 +71,7 @@ class MainScreen extends Component {
           [GlobalStyles.h2, { color: Colors.primary, marginVertical: 48 }]
         }
         >
-          {'NO ALARM SET'}
+          {'NO ALARMS'}
         </Text>
       </View>
     );
@@ -87,17 +99,18 @@ class MainScreen extends Component {
     // eslint-disable-next-line no-unused-vars
     const self = this;
     const {
-      deleteAlarm,
+      dismissAlarm,
       navigation,
+      alarmId,
     } = this.props;
     const { navigate } = navigation;
     return (
       <View>
         <Buttons
-          title="DELETE"
+          title="DISMISS"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
-          onPress={() => deleteAlarm()}
+          onPress={() => dismissAlarm(alarmId)}
         />
         <Buttons
           title="Development Page"
@@ -155,10 +168,10 @@ class MainScreen extends Component {
 
   render() {
     const {
-      alarmActive,
+      alarmId,
+      loading,
     } = this.props;
-
-    if (alarmActive) {
+    if (alarmId !== undefined || loading) {
       return (
         <View>
           {this.menu()}
@@ -187,26 +200,29 @@ MainScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  deleteAlarm: PropTypes.func.isRequired,
+  dismissAlarm: PropTypes.func.isRequired,
   alarmTime: PropTypes.number,
-  alarmActive: PropTypes.bool,
+  alarmId: PropTypes.string,
   loading: PropTypes.bool,
+  armed: PropTypes.bool,
 };
 
 MainScreen.defaultProps = {
   alarmTime: -1,
-  alarmActive: true,
-  loading: false,
+  alarmId: undefined,
+  loading: true,
+  armed: false,
 };
 
 const mapStateToProps = state => ({
   alarmTime: state.alarm.time,
-  alarmActive: state.alarm.active,
+  alarmId: state.alarm.currentAlarmId,
   loading: state.alarm.loading,
+  armed: state.alarm.armed,
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteAlarm: (alarmId) => { dispatch(userDeleteAlarm(alarmId)); },
+  dismissAlarm: (alarmId) => { dispatch(userSetAlarmStatus(alarmId, false)); },
 });
 
 export { MainScreen };
