@@ -79,7 +79,7 @@ export default class CalendarScreen extends Component {
     return (
       <View style={[GlobalStyles.centerChildrenXY, { margin: 20 }]}>
         <Buttons
-          title="Get Next Event"
+          title="Get Next Events"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
           onPress={() => this.getArray()}

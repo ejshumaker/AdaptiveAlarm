@@ -163,7 +163,37 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate('AlarmList')}
         />
+        <Button
+          title="Alarm"
+          color={Colors.darkGray}
+          onPress={() => navigate('Alarm')}
+        />
+        {/* Temporary button to navigate to DayPicker, TODO: Remove */}
+        <Button
+          title="DayPicker"
+          color={Colors.darkGray}
+          onPress={() => navigate('DayPicker')}
+        />
+        {/* Temporary button to navigate to AutoComplete, TODO: Remove */}
+        <Button
+          title="AutoComplete"
+          color={Colors.darkGray}
+          onPress={() => navigate('AutoComplete')}
+        />
+        {/* Temporary button to navigate to Account Screen, TODO: Remove */}
+        <Button
+          title="Account"
+          color={Colors.darkGray}
+          onPress={() => navigate('Account')}
+        />
+        {/* Temporary button to navigate to Alarm List Screen, TODO: Remove */}
+        <Button
+          title="Alarm List"
+          color={Colors.darkGray}
+          onPress={() => navigate('AlarmList')}
+        />
         <View style={{ height: 8, width: 8 }} />
+        <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
         <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
       </View>
     );
