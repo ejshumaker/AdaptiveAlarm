@@ -20,16 +20,6 @@ class AlarmListScreen extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   const { alarms } = this.props;
-  //   console.log('PRINTING OUT ALL ALARMS ON COMPONENT MOUNT:');
-  //   console.log(JSON.stringify(Object.values(alarms)));
-  //   console.log('DONE PRINTING OUT ALL ALARMS ON COMPONENT MOUNT');
-  //   // alarms.forEach((alarm) => {
-  //   //   console.log(JSON.stringify(alarm));
-  //   // });
-  // }
-
   // Loading icon !
   loader() {
     const { loading } = this.props;
@@ -69,23 +59,12 @@ class AlarmListScreen extends Component {
         <FlatList
           data={Object.values(alarms)}
           renderItem={({ item, index }) => (
-            // <Text style={{ color: 'white' }}>
-            //   {item.arrivalTime}
-            // </Text>
-            // TODO: figure out props to pass down.
             <AlarmItem
               alarm={item}
               alarmId={Object.keys(alarms)[index]}
               toggleAlarm={toggleAlarm}
               navigate={navigate}
             />
-            // <TouchableWithoutFeedback onPress={() => this._editAlarm(item.id)}>
-            //   <ListItem
-            //     title={item.name}
-            //     subtitle={`${item.semester} ${item.year}`}
-            //     rightIcon={item.address}
-            //   />
-            // </TouchableWithoutFeedback>
           )}
           keyExtractor={(item, index) => String(index)}
         />
