@@ -72,7 +72,7 @@ class MainScreen extends Component {
           [GlobalStyles.h2, { color: Colors.primary, marginVertical: 48 }]
         }
         >
-          {'NO ALARMS'}
+          {'NO ALARMS SET'}
         </Text>
       </View>
     );

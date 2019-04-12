@@ -61,13 +61,6 @@ class CreateAlarmScreen extends Component {
     const alarmId = navigation.getParam('alarmId', undefined);
 
     if (alarmId !== undefined) {
-      // days.mon = alarm.mon;
-      // days.tue = alarm.tue;
-      // days.wed = alarm.wed;
-      // days.thu = alarm.thu;
-      // days.fri = alarm.fri;
-      // days.sat = alarm.sat;
-      // days.sun = alarm.sun;
       const alarm = alarms[alarmId];
 
       this.setState({
@@ -85,7 +78,7 @@ class CreateAlarmScreen extends Component {
     const { createAlarm, navigation } = this.props;
     const { navigate } = navigation;
     const {
-      arrivalTime, readyTime, workAddress, days,
+      arrivalTime, readyTime, workAddress, days, alarmId,
     } = this.state;
     // validate and format
     if (!readyTime || !arrivalTime || !workAddress) {
@@ -112,6 +105,7 @@ class CreateAlarmScreen extends Component {
         destinationLoc: workAddress,
         days,
         navigate,
+        alarmId,
       });
     } catch (error) {
       Alert.alert(error);
@@ -227,7 +221,11 @@ CreateAlarmScreen.propTypes = {
   // Redux state
   loading: PropTypes.bool.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
-  alarms: PropTypes.object.isRequired,
+  alarms: PropTypes.object,
+};
+
+CreateAlarmScreen.defaultProps = {
+  alarms: {},
 };
 
 /**
