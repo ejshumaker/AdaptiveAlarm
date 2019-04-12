@@ -22,7 +22,7 @@ import {
   Autocomplete,
 } from '../components';
 import { CloseIcon } from '../icons/close';
-import { userUpdateAlarm } from '../store/actions/userActions';
+import { userUpdateAlarm, userDeleteAlarm } from '../store/actions/userActions';
 
 import {
   Colors,
@@ -128,6 +128,26 @@ class CreateAlarmScreen extends Component {
     });
   }
 
+  /* eslint-disable class-methods-use-this */
+  onDelete(alarmId) {
+    const { deleteAlarm, navigation } = this.props;
+    Alert.alert(
+      'Delete Alarm?',
+      'By pressing "OK" you will PERMANENTLY delete your alarm',
+      [
+        { text: 'Go Back', style: 'cancel' },
+        {
+          text: 'OK',
+          style: 'negative',
+          onPress: () => {
+            deleteAlarm(alarmId);
+            navigation.navigate('Main');
+          },
+        },
+      ],
+    );
+  }
+
   noRepeats() {
     const { days } = this.state;
     let noRepeat = true;
@@ -135,6 +155,22 @@ class CreateAlarmScreen extends Component {
       noRepeat = days[day] ? false : noRepeat;
     });
     return noRepeat;
+  }
+
+  deleteButton() {
+    const { navigation } = this.props;
+    const alarmId = navigation.getParam('alarmId', undefined);
+    if (alarmId) {
+      return (
+        <Buttons
+          title="Delete Alarm"
+          backgroundColor={Colors.error}
+          textColor={Colors.black}
+          onPress={() => this.onDelete(alarmId)}
+        />
+      );
+    }
+    return null;
   }
 
   loader() {
@@ -170,7 +206,7 @@ class CreateAlarmScreen extends Component {
             GlobalStyles.h2,
             {
               color: Colors.primary,
-              marginBottom: 48,
+              marginBottom: 12,
               marginTop: 50,
             },
           ]}
@@ -220,6 +256,7 @@ class CreateAlarmScreen extends Component {
             textColor={Colors.black}
             onPress={() => { this.onCreateAlarm(); }}
           />
+          {this.deleteButton()}
         </View>
       </View>
     );
@@ -232,6 +269,7 @@ CreateAlarmScreen.propTypes = {
   }).isRequired,
   // Redux dispatch
   createAlarm: PropTypes.func.isRequired,
+  deleteAlarm: PropTypes.func.isRequired,
   // Redux state
   loading: PropTypes.bool.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
@@ -259,6 +297,7 @@ const mapStateToProps = state => ({
  */
 const mapDispatchToProps = dispatch => ({
   createAlarm: (payload) => { dispatch(userUpdateAlarm(payload)); },
+  deleteAlarm: (alarmId) => { dispatch(userDeleteAlarm(alarmId)); },
 });
 
 export { CreateAlarmScreen };

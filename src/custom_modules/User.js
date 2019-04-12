@@ -5,7 +5,6 @@
  */
 import { auth, database } from 'firebase';
 import moment from 'moment';
-import { Calendar, Permissions } from 'expo';
 import store from '../store';
 
 const DAY_MAP = {

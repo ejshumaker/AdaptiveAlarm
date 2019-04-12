@@ -30,7 +30,7 @@ class MainScreen extends Component {
           [GlobalStyles.h2, { color: Colors.primary, marginTop: 40 }]
         }
         >
-          {loading ? 'Calculating...' : 'PREDICTED:'}
+          {loading ? 'CALCULATING...' : 'PREDICTED:'}
         </Text>
         <Text
           style={
@@ -48,7 +48,7 @@ class MainScreen extends Component {
           </Text>
         </Text>
         <Text style={
-          [GlobalStyles.h5, { color: Colors.white, marginLeft: 8 }]
+          [GlobalStyles.h4, { color: Colors.white, marginLeft: 8 }]
         }
         >
           {date}
