@@ -7,9 +7,9 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "justifyContent": "center",
       },
       Object {
+        "justifyContent": "center",
         "padding": 48,
       },
     ]
@@ -23,8 +23,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
           "fontSize": 30,
-          "fontWeight": "bold",
         },
         Object {
           "color": "#E4F96A",
@@ -40,8 +40,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 18,
-          "fontWeight": "300",
         },
         Object {
           "color": "#fa0505",
@@ -70,6 +70,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Email"
       placeholderTextColor="#AAAAAA"
@@ -78,7 +79,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -109,6 +111,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Username"
       placeholderTextColor="#AAAAAA"
@@ -117,7 +120,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -148,6 +152,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Password"
       placeholderTextColor="#AAAAAA"
@@ -157,7 +162,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -188,6 +194,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="First Name"
       placeholderTextColor="#AAAAAA"
@@ -196,7 +203,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -226,6 +234,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Last Name"
       placeholderTextColor="#AAAAAA"
@@ -234,7 +243,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot 1`] = `
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -276,9 +286,9 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "justifyContent": "center",
       },
       Object {
+        "justifyContent": "center",
         "padding": 48,
       },
     ]
@@ -292,8 +302,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
           "fontSize": 30,
-          "fontWeight": "bold",
         },
         Object {
           "color": "#E4F96A",
@@ -309,8 +319,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 18,
-          "fontWeight": "300",
         },
         Object {
           "color": "#fa0505",
@@ -339,6 +349,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Email"
       placeholderTextColor="#AAAAAA"
@@ -347,7 +358,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -378,6 +390,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Username"
       placeholderTextColor="#AAAAAA"
@@ -386,7 +399,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -417,6 +431,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Password"
       placeholderTextColor="#AAAAAA"
@@ -426,7 +441,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -457,6 +473,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="First Name"
       placeholderTextColor="#AAAAAA"
@@ -465,7 +482,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -495,6 +513,7 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Last Name"
       placeholderTextColor="#AAAAAA"
@@ -503,7 +522,8 @@ exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] =
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,

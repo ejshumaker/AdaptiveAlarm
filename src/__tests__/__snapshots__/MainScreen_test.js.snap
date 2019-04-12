@@ -40,8 +40,8 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
           Array [
             Object {
               "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
               "fontSize": 30,
-              "fontWeight": "bold",
             },
             Object {
               "color": "#E4F96A",
@@ -60,6 +60,9 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
         }
       }
     >
+      <StatusBar
+        barStyle="light-content"
+      />
       <AnalogClock
         backgroundImage="./img/clockBack.png"
         clockBorderWidth={7}
@@ -86,7 +89,7 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
         backgroundColor="#505050"
         onPress={[Function]}
         textColor="#DDDDDD"
-        title="Development Page"
+        title="Dev Page"
       />
     </View>
   </View>
@@ -133,11 +136,8 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
           Array [
             Object {
               "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
               "fontSize": 30,
-              "fontWeight": "bold",
-            },
-            Object {
-              "margin": 8,
             },
             Object {
               "color": "#E4F96A",
@@ -152,22 +152,19 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
         style={
           Array [
             Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 70,
+            },
+            Object {
               "alignItems": "center",
-              "color": "#505050",
+              "color": "#DDDDDD",
               "fontSize": 70,
             },
           ]
         }
       >
-        <Text
-          style={
-            Array [
-              Object {
-                "fontWeight": "bold",
-              },
-            ]
-          }
-        >
+        <Text>
           10
           :
           00
@@ -176,21 +173,24 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
           style={
             Array [
               Object {
-                "fontSize": 40,
-                "fontWeight": "500",
-                "textTransform": "uppercase",
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Bold",
+                "fontSize": 36,
               },
             ]
           }
         >
            
-          am
+          AM
         </Text>
       </Text>
       <Text
         style={
           Array [
-            undefined,
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
             Object {
               "color": "#DDDDDD",
               "marginLeft": 8,
@@ -208,6 +208,9 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
         }
       }
     >
+      <StatusBar
+        barStyle="light-content"
+      />
       <AnalogClock
         backgroundImage="./img/clockBack.png"
         clockBorderWidth={7}
@@ -240,7 +243,7 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
         backgroundColor="#505050"
         onPress={[Function]}
         textColor="#DDDDDD"
-        title="Development Page"
+        title="Dev Page"
       />
     </View>
   </View>
@@ -287,11 +290,8 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
           Array [
             Object {
               "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
               "fontSize": 30,
-              "fontWeight": "bold",
-            },
-            Object {
-              "margin": 8,
             },
             Object {
               "color": "#E4F96A",
@@ -306,22 +306,19 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
         style={
           Array [
             Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 70,
+            },
+            Object {
               "alignItems": "center",
-              "color": "#505050",
+              "color": "#DDDDDD",
               "fontSize": 70,
             },
           ]
         }
       >
-        <Text
-          style={
-            Array [
-              Object {
-                "fontWeight": "bold",
-              },
-            ]
-          }
-        >
+        <Text>
           0
           :
           00
@@ -330,9 +327,9 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
           style={
             Array [
               Object {
-                "fontSize": 40,
-                "fontWeight": "500",
-                "textTransform": "uppercase",
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Bold",
+                "fontSize": 36,
               },
             ]
           }
@@ -344,7 +341,10 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
       <Text
         style={
           Array [
-            undefined,
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
             Object {
               "color": "#DDDDDD",
               "marginLeft": 8,
@@ -360,6 +360,9 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
         }
       }
     >
+      <StatusBar
+        barStyle="light-content"
+      />
       <AnalogClock
         backgroundImage="./img/clockBack.png"
         clockBorderWidth={7}
@@ -392,7 +395,7 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
         backgroundColor="#505050"
         onPress={[Function]}
         textColor="#DDDDDD"
-        title="Development Page"
+        title="Dev Page"
       />
     </View>
   </View>

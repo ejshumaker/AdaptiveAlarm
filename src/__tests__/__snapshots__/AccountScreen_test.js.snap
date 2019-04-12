@@ -38,8 +38,8 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
           Array [
             Object {
               "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
               "fontSize": 30,
-              "fontWeight": "bold",
             },
             Object {
               "color": "#E4F96A",
@@ -82,8 +82,8 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             Array [
               Object {
                 "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Black",
                 "fontSize": 30,
-                "fontWeight": "bold",
               },
               Object {
                 "color": "#DDDDDD",
@@ -137,8 +137,8 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
               ]
             }
@@ -160,8 +160,8 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
                 Object {
                   "color": "#E4F96A",
@@ -202,8 +202,8 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
               ]
             }
@@ -225,8 +225,8 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
                 Object {
                   "color": "#E4F96A",
@@ -267,8 +267,8 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
               ]
             }
@@ -290,8 +290,8 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
                 Object {
                   "color": "#E4F96A",
@@ -369,8 +369,8 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
           Array [
             Object {
               "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
               "fontSize": 30,
-              "fontWeight": "bold",
             },
             Object {
               "color": "#E4F96A",
@@ -417,8 +417,8 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             Array [
               Object {
                 "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Black",
                 "fontSize": 30,
-                "fontWeight": "bold",
               },
               Object {
                 "color": "#DDDDDD",
@@ -472,8 +472,8 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
               ]
             }
@@ -495,8 +495,8 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
                 Object {
                   "color": "#E4F96A",
@@ -537,8 +537,8 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
               ]
             }
@@ -560,8 +560,8 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
                 Object {
                   "color": "#E4F96A",
@@ -602,8 +602,8 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
               ]
             }
@@ -625,8 +625,8 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
               Array [
                 Object {
                   "color": "#DDDDDD",
+                  "fontFamily": "RNSMiles-Medium",
                   "fontSize": 18,
-                  "fontWeight": "300",
                 },
                 Object {
                   "color": "#E4F96A",

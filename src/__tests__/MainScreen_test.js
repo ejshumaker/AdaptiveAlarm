@@ -128,7 +128,7 @@ describe('Main Screen', () => {
   });
 
 
-  it('Development page pressed with alarms', () => {
+  it('Dev page pressed with alarms', () => {
     wrapper = shallow(<MainScreen
       navigation={navigation}
       dismissAlarm={mockDismissAlarmfn}
@@ -137,7 +137,7 @@ describe('Main Screen', () => {
       loading={false}
       alarmId="1"
     />);
-    wrapper.find('[title="Development Page"]').simulate(
+    wrapper.find('[title="Dev Page"]').simulate(
       'press',
       { preventDefault() {} },
     );
@@ -145,7 +145,7 @@ describe('Main Screen', () => {
     expect(navigation.navigate.mock.calls[0][0]).toEqual('Home');
   });
 
-  it('Development page pressed with no alarms', () => {
+  it('Dev page pressed with no alarms', () => {
     wrapper = shallow(<MainScreen
       navigation={navigation}
       dismissAlarm={mockDismissAlarmfn}
@@ -153,7 +153,7 @@ describe('Main Screen', () => {
       alarmActive
       loading={false}
     />);
-    wrapper.find('[title="Development Page"]').simulate(
+    wrapper.find('[title="Dev Page"]').simulate(
       'press',
       { preventDefault() {} },
     );

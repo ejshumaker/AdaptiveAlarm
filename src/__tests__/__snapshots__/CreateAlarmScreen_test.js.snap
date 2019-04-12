@@ -7,11 +7,10 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "justifyContent": "center",
       },
       Object {
-        "justifyContent": "space-between",
-        "padding": 48,
+        "paddingHorizontal": 48,
+        "paddingVertical": "10%",
       },
     ]
   }
@@ -30,13 +29,13 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
           "fontSize": 30,
-          "fontWeight": "bold",
         },
         Object {
           "color": "#E4F96A",
           "marginBottom": 48,
-          "marginTop": 40,
+          "marginTop": 50,
         },
       ]
     }
@@ -47,8 +46,8 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     style={
       Object {
         "color": "#DDDDDD",
-        "fontSize": 14,
-        "fontWeight": "200",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 18,
       }
     }
   >
@@ -63,8 +62,8 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
       Array [
         Object {
           "color": "#DDDDDD",
-          "fontSize": 14,
-          "fontWeight": "200",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 18,
         },
       ]
     }
@@ -72,6 +71,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     Routine Time
   </Text>
   <TextInput
+    keyboardAppearance="dark"
     keyboardType="numeric"
     onChangeText={[Function]}
     onSubmitEditing={[Function]}
@@ -81,9 +81,10 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     style={
       Object {
         "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 2,
+        "borderBottomWidth": 0.5,
         "color": "#DDDDDD",
-        "fontSize": 18,
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 14,
         "height": 50,
         "marginBottom": 24,
       }
@@ -93,14 +94,15 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     style={
       Object {
         "color": "#DDDDDD",
-        "fontSize": 14,
-        "fontWeight": "200",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 18,
       }
     }
   >
     Arrival Time
   </Text>
   <TextInput
+    keyboardAppearance="dark"
     onChangeText={[Function]}
     onSubmitEditing={[Function]}
     placeholder="(8:00 AM)"
@@ -109,9 +111,10 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     style={
       Object {
         "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 2,
+        "borderBottomWidth": 0.5,
         "color": "#DDDDDD",
-        "fontSize": 18,
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 14,
         "height": 50,
         "marginBottom": 24,
       }
@@ -121,12 +124,12 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     style={
       Object {
         "color": "#DDDDDD",
-        "fontSize": 14,
-        "fontWeight": "200",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 18,
       }
     }
   >
-    Recurring (beta)
+    Recurring
   </Text>
   <DayPicker
     days={
@@ -166,11 +169,10 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "justifyContent": "center",
       },
       Object {
-        "justifyContent": "space-between",
-        "padding": 48,
+        "paddingHorizontal": 48,
+        "paddingVertical": "10%",
       },
     ]
   }
@@ -189,13 +191,13 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
           "fontSize": 30,
-          "fontWeight": "bold",
         },
         Object {
           "color": "#E4F96A",
           "marginBottom": 48,
-          "marginTop": 40,
+          "marginTop": 50,
         },
       ]
     }
@@ -206,8 +208,8 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     style={
       Object {
         "color": "#DDDDDD",
-        "fontSize": 14,
-        "fontWeight": "200",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 18,
       }
     }
   >
@@ -222,8 +224,8 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
       Array [
         Object {
           "color": "#DDDDDD",
-          "fontSize": 14,
-          "fontWeight": "200",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 18,
         },
       ]
     }
@@ -231,6 +233,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     Routine Time
   </Text>
   <TextInput
+    keyboardAppearance="dark"
     keyboardType="numeric"
     onChangeText={[Function]}
     onSubmitEditing={[Function]}
@@ -240,9 +243,10 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     style={
       Object {
         "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 2,
+        "borderBottomWidth": 0.5,
         "color": "#DDDDDD",
-        "fontSize": 18,
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 14,
         "height": 50,
         "marginBottom": 24,
       }
@@ -253,14 +257,15 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     style={
       Object {
         "color": "#DDDDDD",
-        "fontSize": 14,
-        "fontWeight": "200",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 18,
       }
     }
   >
     Arrival Time
   </Text>
   <TextInput
+    keyboardAppearance="dark"
     onChangeText={[Function]}
     onSubmitEditing={[Function]}
     placeholder="(8:00 AM)"
@@ -269,9 +274,10 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     style={
       Object {
         "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 2,
+        "borderBottomWidth": 0.5,
         "color": "#DDDDDD",
-        "fontSize": 18,
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 14,
         "height": 50,
         "marginBottom": 24,
       }
@@ -282,12 +288,12 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     style={
       Object {
         "color": "#DDDDDD",
-        "fontSize": 14,
-        "fontWeight": "200",
+        "fontFamily": "RNSMiles-Medium",
+        "fontSize": 18,
       }
     }
   >
-    Recurring (beta)
+    Recurring
   </Text>
   <DayPicker
     days={
