@@ -14,10 +14,14 @@ Enzyme.configure({ adapter: new Adapter() });
 jest.setTimeout(10000);
 let wrapper = null;
 const onDestChangeMock = jest.fn();
+const acValMock = jest.fn();
 
 describe('Autocomplete tests', () => {
   beforeEach(() => {
-    wrapper = shallow(<Autocomplete onDestChange={onDestChangeMock} />);
+    wrapper = shallow(<Autocomplete
+      autoCompleteValue={acValMock}
+      onDestChange={onDestChangeMock}
+    />);
     wrapper = wrapper.find('GoogleAutoComplete').dive();
   });
 
