@@ -59,9 +59,8 @@ class CreateAlarmScreen extends Component {
     let { alarms } = this.props;
     alarms = alarms || {};
     const alarmId = navigation.getParam('alarmId', undefined);
-    const alarm = alarms[alarmId];
 
-    if (alarm !== undefined) {
+    if (alarmId !== undefined) {
       // days.mon = alarm.mon;
       // days.tue = alarm.tue;
       // days.wed = alarm.wed;
@@ -69,6 +68,7 @@ class CreateAlarmScreen extends Component {
       // days.fri = alarm.fri;
       // days.sat = alarm.sat;
       // days.sun = alarm.sun;
+      const alarm = alarms[alarmId];
 
       this.setState({
         alarmId,
