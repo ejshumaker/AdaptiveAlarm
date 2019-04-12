@@ -11,7 +11,14 @@ import { GlobalStyles, Colors } from '../constants';
 import { Buttons } from '../components';
 import { RightIcon } from '../icons/right';
 
-const beepAlarm = require('../constants/alarm.mp3');
+
+// alarm sounds imported
+const sound1 = require('../assets/sounds/alarm1.mp3');
+const sound2 = require('../assets/sounds/alarm2.mp3');
+const sound3 = require('../assets/sounds/alarm3.mp3');
+const sound4 = require('../assets/sounds/alarm4.mp3');
+
+const sounds = [sound1, sound2, sound3, sound4];
 
 class AlarmScreen extends Component {
   constructor() {
@@ -62,7 +69,8 @@ class AlarmScreen extends Component {
       if (this.sound == null) this.sound = new Audio.Sound();
 
       if (load === true) {
-        await this.sound.loadAsync(beepAlarm);
+        const soundIndex = 3;
+        await this.sound.loadAsync(sounds[soundIndex]);
         this.setState({ load: false });
       }
       this.playSound();
@@ -115,6 +123,10 @@ class AlarmScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  alarm: state.alarm,
+});
 
 const mapDispatchToProps = dispatch => ({
   turnAlarmOff: (navigate) => {
