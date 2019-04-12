@@ -46,7 +46,7 @@ export default StyleSheet.create({
   /* Text */
   h1: {
     color: Colors.white,
-    fontSize: 60,
+    fontSize: 70,
     fontFamily: 'RNSMiles-Black',
   },
   h2: {
@@ -54,11 +54,7 @@ export default StyleSheet.create({
     fontSize: 30,
     fontFamily: 'RNSMiles-Black',
   },
-  h21: {
-    color: Colors.white,
-    fontSize: 36,
-    fontFamily: 'RNSMiles-Bold',
-  },
+
   h3: {
     color: Colors.white,
     fontSize: 24,
@@ -88,6 +84,11 @@ export default StyleSheet.create({
     fontSize: 18,
     fontFamily: 'RNSMiles-Medium',
   },
+  meridian: {
+    color: Colors.white,
+    fontSize: 36,
+    fontFamily: 'RNSMiles-Bold',
+  },
   /* Utility styles */
   margin: {
     margin: defaultMargin,
@@ -105,7 +106,7 @@ export default StyleSheet.create({
   destinationInput: {
     borderRadius: 8,
     borderColor: Colors.darkGray,
-    color: Colors.darkGray,
+    color: Colors.gray,
     fontSize: 14,
     fontFamily: 'RNSMiles-Medium',
     width: 200,
@@ -118,6 +119,7 @@ export default StyleSheet.create({
   searchSuggestions: {
     color: Colors.darkGray,
     fontSize: 14,
+    fontFamily: 'RNSMiles-Medium',
     width: '90%',
     height: 55,
     padding: 10,

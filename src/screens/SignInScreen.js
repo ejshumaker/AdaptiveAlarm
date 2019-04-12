@@ -39,7 +39,7 @@ class SignInScreen extends React.Component {
     const { signIn, navigation, errorMessage } = this.props;
     const { email, password } = this.state;
     return (
-      <View style={[GlobalStyles.container, { padding: 48 }]}>
+      <View style={[GlobalStyles.container, { justifyContent: 'center', padding: 48 }]}>
         <StatusBar barStyle="light-content" />
         <Text
           style={[

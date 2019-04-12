@@ -157,7 +157,7 @@ class CreateAlarmScreen extends Component {
             onPress={() => { this.onCreate(); }}
           />
         </View>
-      </View >
+      </View>
     );
   }
 }

@@ -14,17 +14,6 @@ import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
 
 class MainScreen extends Component {
-  state = {
-    fontLoaded: false
-  };
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      "RNSMiles-Black": require("../assets/fonts/RNSMiles-Black.otf"),
-      "RNSMiles-Bold": require("../assets/fonts/RNSMiles-Bold.otf")
-    });
-    this.setState({ fontLoaded: true });
-  }
 
   hasAlarmView() {
     const {
@@ -39,14 +28,14 @@ class MainScreen extends Component {
     return (
       <View>
         <Text style={
-          [GlobalStyles.margin, { fontFamily: "RNSMiles-Black", fontSize: 30, color: Colors.primary, marginTop: 40 }]
+          [GlobalStyles.h2, { color: Colors.primary, marginTop: 40 }]
         }
         >
           {'PREDICTED:'}
         </Text>
         <Text
           style={
-            { fontFamily: "RNSMiles-Black", alignItems: 'center', color: Colors.white, fontSize: 70 }
+            [GlobalStyles.h1, { alignItems: 'center', color: Colors.white, fontSize: 70 }]
           }
         >
           <Text>
@@ -54,12 +43,12 @@ class MainScreen extends Component {
             {':'}
             {min}
           </Text>
-          <Text style={[GlobalStyles.h21, { textTransform: 'uppercase' }]}>
+          <Text style={[GlobalStyles.meridian]}>
             {' '}
-            {meridian}
+            {meridian.toUpperCase()}
           </Text>
         </Text>
-      </View >
+      </View>
     );
   }
 
@@ -69,7 +58,7 @@ class MainScreen extends Component {
     return (
       <View>
         <Text style={
-          { fontFamily: "RNSMiles-Black", fontSize: 30, color: Colors.primary, marginVertical: 48 }
+          [GlobalStyles.h2, { color: Colors.primary, marginVertical: 48 }]
         }
         >
           {'NO ALARM SET'}
@@ -114,7 +103,7 @@ class MainScreen extends Component {
           onPress={() => deleteAlarm()}
         />
         <Buttons
-          title="Development Page"
+          title="DEVELOPMENT PAGE"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
           onPress={() => navigate('Home')}

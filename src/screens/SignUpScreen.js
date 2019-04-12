@@ -46,7 +46,7 @@ class SignUpScreen extends React.Component {
   render() {
     const { createAccount, navigation, errorMessage } = this.props;
     return (
-      <View style={[GlobalStyles.container, { padding: 48 }]}>
+      <View style={[GlobalStyles.container, { justifyContent: 'center', padding: 48 }]}>
         <StatusBar barStyle="light-content" />
         <Text
           style={[

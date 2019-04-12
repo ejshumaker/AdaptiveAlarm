@@ -135,7 +135,7 @@ class Autocomplete extends Component {
                   ))}
                 </View>
                 <Image
-                  style={{ marginTop: 12, height: 10 }}
+                  style={{ marginTop: 60, height: 10, position: 'absolute', zIndex: 2 }}
                   source={googleStamp}
                   resizeMode="contain"
                 />
