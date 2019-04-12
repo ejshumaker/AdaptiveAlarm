@@ -179,7 +179,7 @@ class HomeScreen extends Component {
         <Button
           title="CreateAlarm"
           color={Colors.darkGray}
-          onPress={() => navigate('CreateAlarm', { alarmId: '-LcCkjYezPvKi-Mbmiz6' })}
+          onPress={() => navigate('CreateAlarm', { alarmId: '-LcEGKWnQEdU04AWZgBP' })}
         />
         {/* Temporary button to navigate to Alarm List Screen, TODO: Remove */}
         <Button

@@ -60,7 +60,7 @@ class CreateAlarmScreen extends Component {
     alarms = alarms || {};
     const alarmId = navigation.getParam('alarmId', undefined);
     const alarm = alarms[alarmId];
-    console.log(alarm);
+    console.log('Top level days: ' + days);
 
     if (alarm !== undefined) {
       days.mon = alarm.mon;
@@ -139,13 +139,18 @@ class CreateAlarmScreen extends Component {
     } return null;
   }
 
-
   render() {
     const {
       navigation,
     } = this.props;
     const { navigate } = navigation;
-    const { readyTime, arrivalTime, pageTitle } = this.state;
+    const {
+      readyTime,
+      arrivalTime,
+      pageTitle,
+      workAddress,
+      days,
+    } = this.state;
 
     return (
       <View style={[GlobalStyles.container, { padding: 48, justifyContent: 'space-between' }]}>
@@ -170,6 +175,7 @@ class CreateAlarmScreen extends Component {
         <Text style={GlobalStyles.subtitle}>Destination</Text>
         <Autocomplete
           onDestChange={this.onDestChange}
+          autoCompleteValue={workAddress}
         />
         <Text style={[GlobalStyles.subtitle]}>Routine Time</Text>
         <TextInput
@@ -197,11 +203,12 @@ class CreateAlarmScreen extends Component {
         <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
         <DayPicker
           onChangeDay={this.onDayChange}
+          days={days}
         />
         {this.loader()}
         <View style={{ alignItems: 'center' }}>
           <Buttons
-            title="Create Alarm"
+            title="Save Alarm"
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => { this.onCreateAlarm(); }}

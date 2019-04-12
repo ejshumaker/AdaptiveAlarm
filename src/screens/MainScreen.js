@@ -159,7 +159,7 @@ class MainScreen extends Component {
         <AddIcon
           style={{}}
           onPress={() => {
-            navigation.navigate('CreateAlarm', { alarmId: '-LcCkjYezPvKi-Mbmiz6' });
+            navigation.navigate('CreateAlarm', { alarmId: '-LcEGKWnQEdU04AWZgBP' });
           }}
         />
       </View>
