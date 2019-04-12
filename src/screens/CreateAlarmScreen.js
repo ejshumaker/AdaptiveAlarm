@@ -45,7 +45,8 @@ class CreateAlarmScreen extends Component {
         sat: false,
         sun: false,
       },
-      alarmId: undefined, // TODO: undefined
+      alarmId: undefined,
+      pageTitle: 'New Alarm:',
     };
 
     this.onDestChange = this.onDestChange.bind(this);
@@ -54,20 +55,31 @@ class CreateAlarmScreen extends Component {
 
   componentWillMount() {
     const { days } = this.state;
-    days.mon = true;
-    days.tue = false;
-    days.wed = false;
-    days.thu = false;
-    days.fri = false;
-    days.sat = false;
-    days.sun = false;
+    const { navigation } = this.props;
+    let { alarms } = this.props;
+    alarms = alarms || {};
+    const alarmId = navigation.getParam('alarmId', undefined);
+    const alarm = alarms[alarmId];
+    console.log(alarm);
 
-    this.setState({
-      alarmId: '',
-      readyTime: '',
-      workAddress: '',
-      days,
-    }, () => { console.log(`In setState: ${this.state.alarmId}`); });
+    if (alarm !== undefined) {
+      days.mon = alarm.mon;
+      days.tue = alarm.tue;
+      days.wed = alarm.wed;
+      days.thu = alarm.thu;
+      days.fri = alarm.fri;
+      days.sat = alarm.sat;
+      days.sun = alarm.sun;
+
+      this.setState({
+        alarmId,
+        readyTime: alarm.timeToGetReady,
+        workAddress: alarm.destinationLoc,
+        arrivalTime: alarm.arrivalTime,
+        pageTitle: 'Edit Alarm:',
+        days,
+      }, () => { console.log(`In setState: ${this.state.alarmId}`); });
+    }
   }
 
   onCreateAlarm() {
@@ -133,6 +145,7 @@ class CreateAlarmScreen extends Component {
       navigation,
     } = this.props;
     const { navigate } = navigation;
+    const { readyTime, arrivalTime, pageTitle } = this.state;
 
     return (
       <View style={[GlobalStyles.container, { padding: 48, justifyContent: 'space-between' }]}>
@@ -152,10 +165,12 @@ class CreateAlarmScreen extends Component {
             },
           ]}
         >
-        NEW ALARM:
+          {pageTitle}
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
-        <Autocomplete onDestChange={this.onDestChange} />
+        <Autocomplete
+          onDestChange={this.onDestChange}
+        />
         <Text style={[GlobalStyles.subtitle]}>Routine Time</Text>
         <TextInput
           style={GlobalStyles.input}
@@ -166,6 +181,7 @@ class CreateAlarmScreen extends Component {
           onChangeText={text => this.setState({ readyTime: text })}
           placeholder="(30 min)"
           placeholderTextColor={Colors.darkGray}
+          value={readyTime}
         />
         <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
         <TextInput
@@ -176,6 +192,7 @@ class CreateAlarmScreen extends Component {
           onChangeText={text => this.setState({ arrivalTime: text })}
           placeholder="(8:00 AM)"
           placeholderTextColor={Colors.darkGray}
+          value={arrivalTime}
         />
         <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
         <DayPicker
@@ -203,6 +220,8 @@ CreateAlarmScreen.propTypes = {
   createAlarm: PropTypes.func.isRequired,
   // Redux state
   loading: PropTypes.bool.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  alarms: PropTypes.object.isRequired,
 };
 
 /**
@@ -212,6 +231,7 @@ CreateAlarmScreen.propTypes = {
  */
 const mapStateToProps = state => ({
   loading: state.user.loading,
+  alarms: state.user.alarms,
 });
 
 /**
