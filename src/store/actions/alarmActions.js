@@ -1,5 +1,5 @@
-import moment from 'moment';
 import Alarm from '../../custom_modules/Alarm';
+import User from '../../custom_modules/User';
 
 /**
   * Calculates the alarm time using the google maps api and input from
@@ -7,33 +7,41 @@ import Alarm from '../../custom_modules/Alarm';
   * then subtracts the time to get ready.
   * @tsteiner4 3-9-2019
   */
-export function alarmCalculateTime(alarm) {
-  const {
-    destinationLoc,
-    timeToGetReady,
-    arrivalTime,
-    alarmId,
-    isActive,
-  } = alarm;
-  const date = new Date(moment(arrivalTime, 'LT')); // parse into date
-  return dispatch => dispatch({
-    type: 'ALARM_SET_TIME',
-    payload: Alarm.getAlarmTime(
+export function alarmCalculateTime() {
+  const alarm = User.getNextAlarm();
+  if (alarm !== undefined) {
+    const {
       destinationLoc,
       timeToGetReady,
-      date.getTime(),
-    ),
-  })
-    .then((resp) => {
-      Alarm.armAlarm(resp.value);
-      dispatch({
-        type: 'ALARM_SET_ARMED_STATUS',
-        payload: {
-          armed: isActive,
-          currentAlarmId: alarmId,
-        },
+      alarmId,
+      alarmUTC,
+    } = alarm;
+    return dispatch => dispatch({
+      type: 'ALARM_SET_TIME',
+      payload: Alarm.getAlarmTime(
+        destinationLoc,
+        timeToGetReady,
+        alarmUTC,
+      ),
+    })
+      .then((resp) => {
+        Alarm.armAlarm(resp.value);
+        dispatch({
+          type: 'ALARM_SET_ARMED_STATUS',
+          payload: {
+            armed: true,
+            currentAlarmId: alarmId,
+          },
+        });
       });
-    });
+  }
+  return dispatch => dispatch({
+    type: 'ALARM_SET_ARMED_STATUS',
+    payload: {
+      armed: false,
+      currentAlarmId: undefined,
+    },
+  });
 }
 
 // stub
