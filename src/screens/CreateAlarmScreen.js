@@ -22,7 +22,7 @@ import {
   Autocomplete,
 } from '../components';
 import { CloseIcon } from '../icons/close';
-import { userCreateAlarm } from '../store/actions/userActions';
+import { userUpdateAlarm } from '../store/actions/userActions';
 
 import {
   Colors,
@@ -45,17 +45,40 @@ class CreateAlarmScreen extends Component {
         sat: false,
         sun: false,
       },
+      alarmId: undefined,
+      pageTitle: 'New Alarm:',
     };
 
     this.onDestChange = this.onDestChange.bind(this);
     this.onDayChange = this.onDayChange.bind(this);
   }
 
+  componentWillMount() {
+    // const { days } = this.state;
+    const { navigation } = this.props;
+    let { alarms } = this.props;
+    alarms = alarms || {};
+    const alarmId = navigation.getParam('alarmId', undefined);
+
+    if (alarmId !== undefined) {
+      const alarm = alarms[alarmId];
+
+      this.setState({
+        alarmId,
+        readyTime: alarm.timeToGetReady,
+        workAddress: alarm.destinationLoc,
+        arrivalTime: alarm.arrivalTime,
+        pageTitle: 'Edit Alarm:',
+        days: alarm.days,
+      }, () => { console.log(`In setState: ${this.state.alarmId}`); });
+    }
+  }
+
   onCreateAlarm() {
     const { createAlarm, navigation } = this.props;
     const { navigate } = navigation;
     const {
-      arrivalTime, readyTime, workAddress, days,
+      arrivalTime, readyTime, workAddress, days, alarmId,
     } = this.state;
     // validate and format
     if (!readyTime || !arrivalTime || !workAddress) {
@@ -82,6 +105,7 @@ class CreateAlarmScreen extends Component {
         destinationLoc: workAddress,
         days,
         navigate,
+        alarmId,
       });
     } catch (error) {
       Alert.alert(error);
@@ -108,12 +132,18 @@ class CreateAlarmScreen extends Component {
     } return null;
   }
 
-
   render() {
     const {
       navigation,
     } = this.props;
     const { navigate } = navigation;
+    const {
+      readyTime,
+      arrivalTime,
+      pageTitle,
+      workAddress,
+      days,
+    } = this.state;
 
     return (
       <View style={[GlobalStyles.container, { padding: 48, justifyContent: 'space-between' }]}>
@@ -133,10 +163,13 @@ class CreateAlarmScreen extends Component {
             },
           ]}
         >
-          NEW ALARM:
+          {pageTitle}
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
-        <Autocomplete onDestChange={this.onDestChange} />
+        <Autocomplete
+          onDestChange={this.onDestChange}
+          autoCompleteValue={workAddress}
+        />
         <Text style={[GlobalStyles.subtitle]}>Routine Time</Text>
         <TextInput
           style={GlobalStyles.input}
@@ -147,6 +180,7 @@ class CreateAlarmScreen extends Component {
           onChangeText={text => this.setState({ readyTime: text })}
           placeholder="(30 min)"
           placeholderTextColor={Colors.darkGray}
+          value={readyTime}
         />
         <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
         <TextInput
@@ -157,15 +191,17 @@ class CreateAlarmScreen extends Component {
           onChangeText={text => this.setState({ arrivalTime: text })}
           placeholder="(8:00 AM)"
           placeholderTextColor={Colors.darkGray}
+          value={arrivalTime}
         />
         <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
         <DayPicker
           onChangeDay={this.onDayChange}
+          days={days}
         />
         {this.loader()}
         <View style={{ alignItems: 'center' }}>
           <Buttons
-            title="Create Alarm"
+            title="Save Alarm"
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => { this.onCreateAlarm(); }}
@@ -184,6 +220,12 @@ CreateAlarmScreen.propTypes = {
   createAlarm: PropTypes.func.isRequired,
   // Redux state
   loading: PropTypes.bool.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  alarms: PropTypes.object,
+};
+
+CreateAlarmScreen.defaultProps = {
+  alarms: {},
 };
 
 /**
@@ -193,6 +235,7 @@ CreateAlarmScreen.propTypes = {
  */
 const mapStateToProps = state => ({
   loading: state.user.loading,
+  alarms: state.user.alarms,
 });
 
 /**
@@ -201,7 +244,7 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
-  createAlarm: (payload) => { dispatch(userCreateAlarm(payload)); },
+  createAlarm: (payload) => { dispatch(userUpdateAlarm(payload)); },
 });
 
 export { CreateAlarmScreen };

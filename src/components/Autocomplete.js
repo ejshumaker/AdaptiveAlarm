@@ -25,6 +25,7 @@ const API_KEY = 'AIzaSyBpwrz2oV29sjAAKj2l6BIb6l5luzDIsIw';
 class Autocomplete extends Component {
   static propTypes = {
     onDestChange: PropTypes.func.isRequired,
+    autoCompleteValue: PropTypes.string.isRequired,
   };
 
   constructor() {
@@ -34,11 +35,16 @@ class Autocomplete extends Component {
       destination: '', // eslint-disable-line react/no-unused-state
       lat: '', // eslint-disable-line react/no-unused-state
       lng: '', // eslint-disable-line react/no-unused-state
-      autoCompleteValue: '',
+      autoCompleteValue: undefined,
     };
     this.updateDest = this.updateDest.bind(this);
   }
 
+  componentWillMount() {
+    const { autoCompleteValue } = this.props;
+    console.log('Autocomplete value:' + autoCompleteValue);
+    this.setState({ autoCompleteValue });
+  }
 
   onAutoCompleteInput = (autoCompleteValue) => {
     this.setState({ autoCompleteValue });

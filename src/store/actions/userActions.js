@@ -11,21 +11,12 @@ import { alarmCalculateTime } from './alarmActions';
  * returns a new alarm with associated key
  * @param  {[Object]} payload
  */
-export function userCreateAlarm(payload) {
-  const {
-    destinationLoc,
-    timeToGetReady,
-    arrivalTime,
-    days,
-    navigate,
-  } = payload;
+export function userUpdateAlarm(payload) {
+  const { navigate } = payload;
   return dispatch => dispatch({
     type: 'USER_CREATE_ALARM',
-    payload: User.createAlarm({
-      destinationLoc,
-      timeToGetReady,
-      arrivalTime,
-      days,
+    payload: User.updateAlarm({
+      ...payload,
       isActive: true, // default new to active
     }),
   })
@@ -43,9 +34,7 @@ export function userSetAlarmStatus(alarmId, status) {
       payload: User.setAlarmStatus(alarmId, status),
     })
       .then(() => {
-      // get new "nextAlarm"
-        const alarm = User.getNextAlarm();
-        dispatch(alarmCalculateTime(alarm));
+        dispatch(alarmCalculateTime());
       });
   };
 }

@@ -5,6 +5,7 @@
  */
 import { auth, database } from 'firebase';
 import moment from 'moment';
+import { Calendar, Permissions } from 'expo';
 import store from '../store';
 
 const DAY_MAP = {
@@ -76,7 +77,7 @@ function getNextAlarm() {
  * @param  {[Object]} payload [description]
  * @return {[Promise]}         [description]
  */
-function createAlarm(payload) {
+function updateAlarm(payload) {
   const {
     destinationLoc,
     arrivalTime,
@@ -84,16 +85,18 @@ function createAlarm(payload) {
     days,
     isActive,
   } = payload;
+  let { alarmId } = payload;
   const { uid } = auth().currentUser;
   return new Promise((resolve, reject) => {
-    const alarmKey = database().ref(`users/${uid}/alarms/`).push().key;
-    database().ref(`users/${uid}/alarms/${alarmKey}`)
+    if (alarmId === undefined) alarmId = database().ref(`users/${uid}/alarms/`).push().key;
+    database().ref(`users/${uid}/alarms/${alarmId}`)
       .set({
         destinationLoc,
         arrivalTime,
         timeToGetReady,
         days,
         isActive,
+        alarmId,
       })
       .then(() => {
         resolve({
@@ -102,7 +105,7 @@ function createAlarm(payload) {
           timeToGetReady,
           days,
           isActive,
-          alarmId: alarmKey,
+          alarmId,
         });
       })
       .catch(error => reject(error));
@@ -223,5 +226,5 @@ function signOut() {
 }
 
 export default {
-  setAlarmStatus, signIn, createAccount, signOut, fetch, createAlarm, deleteAlarm, getNextAlarm,
+  setAlarmStatus, signIn, createAccount, signOut, fetch, updateAlarm, deleteAlarm, getNextAlarm,
 };

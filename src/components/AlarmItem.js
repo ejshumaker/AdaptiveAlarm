@@ -57,7 +57,7 @@ class AlarmItem extends Component {
 
   render() {
     const { alarm } = this.props;
-
+    if (alarm === undefined) return null;
     return (
       <TouchableOpacity onPress={this.handlePress}>
         <View
