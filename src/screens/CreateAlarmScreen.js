@@ -54,22 +54,21 @@ class CreateAlarmScreen extends Component {
   }
 
   componentWillMount() {
-    const { days } = this.state;
+    // const { days } = this.state;
     const { navigation } = this.props;
     let { alarms } = this.props;
     alarms = alarms || {};
     const alarmId = navigation.getParam('alarmId', undefined);
     const alarm = alarms[alarmId];
-    console.log('Top level days: ' + days);
 
     if (alarm !== undefined) {
-      days.mon = alarm.mon;
-      days.tue = alarm.tue;
-      days.wed = alarm.wed;
-      days.thu = alarm.thu;
-      days.fri = alarm.fri;
-      days.sat = alarm.sat;
-      days.sun = alarm.sun;
+      // days.mon = alarm.mon;
+      // days.tue = alarm.tue;
+      // days.wed = alarm.wed;
+      // days.thu = alarm.thu;
+      // days.fri = alarm.fri;
+      // days.sat = alarm.sat;
+      // days.sun = alarm.sun;
 
       this.setState({
         alarmId,
@@ -77,7 +76,7 @@ class CreateAlarmScreen extends Component {
         workAddress: alarm.destinationLoc,
         arrivalTime: alarm.arrivalTime,
         pageTitle: 'Edit Alarm:',
-        days,
+        days: alarm.days,
       }, () => { console.log(`In setState: ${this.state.alarmId}`); });
     }
   }

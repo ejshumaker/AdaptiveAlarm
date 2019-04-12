@@ -36,8 +36,18 @@ class DayPicker extends PureComponent {
   }
 
   componentWillMount() {
-    const { days } = this.props;
-    console.log(days);
+    let { days } = this.props;
+    days = days || {};
+
+    this.setState({
+      sButton: days.sun,
+      mButton: days.mon,
+      tButton: days.tue,
+      wButton: days.wed,
+      thButton: days.thu,
+      fButton: days.fri,
+      saButton: days.sat,
+    });
   }
 
   updateOnPress(type) {
