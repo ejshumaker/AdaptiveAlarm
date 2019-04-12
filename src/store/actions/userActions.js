@@ -11,46 +11,50 @@ import { alarmCalculateTime } from './alarmActions';
  * returns a new alarm with associated key
  * @param  {[Object]} payload
  */
-export function userCreateAlarm(payload) {
-  const {
-    destinationLoc,
-    timeToGetReady,
-    arrivalTime,
-    navigate,
-  } = payload;
+export function userUpdateAlarm(payload) {
+  const { navigate } = payload;
   return dispatch => dispatch({
     type: 'USER_CREATE_ALARM',
-    payload: User.createAlarm({
-      destinationLoc,
-      timeToGetReady,
-      arrivalTime,
+    payload: User.updateAlarm({
+      ...payload,
+      isActive: true, // default new to active
     }),
   })
     .then(() => {
-      dispatch(alarmCalculateTime(
-        destinationLoc,
-        timeToGetReady,
-        arrivalTime,
-        navigate, // pass along the navigation
-      ));
+      dispatch(alarmCalculateTime());
       if (navigate) navigate('Main');
     })
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
+export function userSetAlarmStatus(alarmId, status) {
+  return (dispatch) => {
+    dispatch({
+      type: 'USER_SET_ALARM_STATUS',
+      payload: User.setAlarmStatus(alarmId, status),
+    })
+      .then(() => {
+        dispatch(alarmCalculateTime());
+      });
+  };
+}
+
 /**
  * Deletes alarm from firebase
  */
-export function userDeleteAlarm(alarmId, uid) {
+export function userDeleteAlarm(alarmId) {
   return (dispatch) => {
     dispatch({
       type: 'USER_DELETE_ALARM',
-      payload: User.deleteAlarm(alarmId, uid),
+      payload: User.deleteAlarm(alarmId),
     })
       .then(() => {
         dispatch({
-          type: 'ALARM_SET_ACTIVE_STATUS',
-          payload: false,
+          type: 'ALARM_SET_ARMED_STATUS',
+          payload: {
+            armed: false,
+            currentAlarmId: undefined,
+          },
         });
       });
   };
@@ -60,32 +64,12 @@ export function userDeleteAlarm(alarmId, uid) {
  * and updates the store to reflect
  * @param  {Number} uid
  */
-export function userFetch(uid, navigate) {
+export function userFetch(uid) {
   return dispatch => dispatch({
     type: 'USER_FETCH',
     payload: User.fetch(uid),
   })
-    .then((resp) => {
-      const { alarms } = resp.value;
-      if (alarms && alarms.alarm1) {
-        const {
-          destinationLoc,
-          timeToGetReady,
-          arrivalTime,
-        } = resp.value.alarms.alarm1; // "alarm1" is temporary!!!
-        dispatch(alarmCalculateTime(
-          destinationLoc,
-          timeToGetReady,
-          arrivalTime,
-          navigate,
-        ));
-      } else {
-        dispatch({
-          type: 'ALARM_SET_ACTIVE_STATUS',
-          payload: false,
-        });
-      }
-    });
+    .then(() => { dispatch(alarmCalculateTime()); });
 }
 
 /**

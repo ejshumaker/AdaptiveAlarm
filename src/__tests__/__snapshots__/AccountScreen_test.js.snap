@@ -1,0 +1,797 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Account Screen test account screen matches snapshot done loading 1`] = `
+<View
+  style={
+    Object {
+      "justifyContent": "space-around",
+    }
+  }
+>
+  <CloseIcon
+    onPress={[Function]}
+    style={
+      Object {
+        "marginLeft": 28,
+        "marginTop": 75,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "marginBottom": 10,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontSize": 30,
+              "fontWeight": "bold",
+            },
+            Object {
+              "color": "#E4F96A",
+              "marginTop": 40,
+            },
+          ]
+        }
+      >
+        PROFILE:
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "margin": 10,
+              "width": "80%",
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 75,
+              "height": 150,
+              "margin": 20,
+              "width": 150,
+            }
+          }
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontSize": 30,
+                "fontWeight": "bold",
+              },
+              Object {
+                "color": "#DDDDDD",
+              },
+            ]
+          }
+        >
+          Tristan
+           
+          Steiner
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "space-between",
+            "width": "95%",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Routine Time
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No routine set
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Work Address
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No destination set
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Work Time
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No time set
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Alarms
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No days set
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "height": 80,
+            "justifyContent": "space-around",
+            "marginBottom": 50,
+            "marginTop": 40,
+            "width": "80%",
+          },
+          Object {
+            "alignItems": "center",
+          },
+        ]
+      }
+    >
+      <Buttons
+        backgroundColor="#505050"
+        onPress={[MockFunction]}
+        textColor="#DDDDDD"
+        title="Sign Out"
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Account Screen test account screen matches snapshot not done loading 1`] = `
+<View
+  style={
+    Object {
+      "justifyContent": "space-around",
+    }
+  }
+>
+  <CloseIcon
+    onPress={[Function]}
+    style={
+      Object {
+        "marginLeft": 28,
+        "marginTop": 75,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "marginBottom": 10,
+          },
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontSize": 30,
+              "fontWeight": "bold",
+            },
+            Object {
+              "color": "#E4F96A",
+              "marginTop": 40,
+            },
+          ]
+        }
+      >
+        PROFILE:
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "justifyContent": "center",
+              "margin": 10,
+              "width": "80%",
+            },
+          ]
+        }
+      >
+        <Image
+          source={
+            Object {
+              "uri": "https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 75,
+              "height": 150,
+              "margin": 20,
+              "width": 150,
+            }
+          }
+        />
+        <ActivityIndicator
+          color="#E4F96A"
+          size="large"
+        />
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontSize": 30,
+                "fontWeight": "bold",
+              },
+              Object {
+                "color": "#DDDDDD",
+              },
+            ]
+          }
+        >
+          Tristan
+           
+          Steiner
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "justifyContent": "space-between",
+            "width": "95%",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Routine Time
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No routine set
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Work Address
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No destination set
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Work Time
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No time set
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "#DDDDDD",
+              "borderBottomWidth": 0.5,
+              "flexDirection": "row",
+              "height": 40,
+              "justifyContent": "space-between",
+              "marginVertical": 4,
+              "width": "90%",
+            },
+          ]
+        }
+      >
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+              ]
+            }
+          >
+            Alarms
+          </Text>
+        </View>
+        <View
+          style={
+            Object {
+              "flexDirection": "column",
+              "justifyContent": "flex-end",
+              "marginVertical": 6,
+            }
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#DDDDDD",
+                  "fontSize": 18,
+                  "fontWeight": "300",
+                },
+                Object {
+                  "color": "#E4F96A",
+                },
+              ]
+            }
+          >
+            No days set
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "height": 80,
+            "justifyContent": "space-around",
+            "marginBottom": 50,
+            "marginTop": 40,
+            "width": "80%",
+          },
+          Object {
+            "alignItems": "center",
+          },
+        ]
+      }
+    >
+      <Buttons
+        backgroundColor="#505050"
+        onPress={[MockFunction]}
+        textColor="#DDDDDD"
+        title="Sign Out"
+      />
+    </View>
+  </View>
+</View>
+`;

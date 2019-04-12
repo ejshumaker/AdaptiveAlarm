@@ -8,6 +8,7 @@ import { auth } from 'firebase';
 import PropTypes from 'prop-types';
 
 import { userFetch } from '../store/actions/userActions';
+import Alarm from '../custom_modules/Alarm';
 import { GlobalStyles, Colors } from '../constants';
 
 class AuthLoadingScreen extends React.Component {
@@ -19,7 +20,8 @@ class AuthLoadingScreen extends React.Component {
   // Fetch the token from storage then navigate to our appropriate place
   bootstrapAsync = async () => {
     const { navigation, fetchUser } = this.props;
-
+    // TODO: REMOVE THIS HACK!!! @eschirtz
+    Alarm.initArmAlarm(navigation.navigate);
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     auth().onAuthStateChanged((user) => {
@@ -59,4 +61,5 @@ const mapDispatchToProps = dispatch => ({
   fetchUser: (user, navigate) => { dispatch(userFetch(user, navigate)); },
 });
 
+export { AuthLoadingScreen };
 export default connect(mapStateToProps, mapDispatchToProps)(AuthLoadingScreen);

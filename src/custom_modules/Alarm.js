@@ -1,6 +1,5 @@
 import { Location, Permissions } from 'expo';
 
-const MILS_PER_HOUR = 3600000;
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
 
@@ -46,7 +45,7 @@ async function getCurrentLocation() {
     Permissions.askAsync(Permissions.LOCATION)
       .then((response) => {
         if (response.status !== 'granted') {
-          console.log('Permission to access location was denied');
+          console.error('Permission to access location was denied');
           reject();
         } else {
         // const location = await Location.getCurrentPositionAsync({});
@@ -54,20 +53,43 @@ async function getCurrentLocation() {
             .then((location) => {
               const lat = location.coords.latitude;
               const lng = location.coords.longitude;
-              console.log(`{lat: ${lat}, lng: ${lng}}`);
               resolve(`${lat}, ${lng}`);
             });
         }
       });
   });
 }
-
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
+async function getAlarmTimeFromLocation(startLoc, destinationLoc, timeToGetReady, arrivalTime) {
+  const loops = 4;
+  return new Promise((resolve) => {
+    getRouteTime(startLoc, destinationLoc, arrivalTime)
+      .then(async (re) => {
+        let duration = re;
+
+        let departureTime = arrivalTime;
+        let i = 0;
+        while (Math.abs(departureTime + (duration * MILS_PER_MIN)
+        - arrivalTime) > 6 * MILS_PER_MIN && i < loops) {
+          departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
+          await getRouteTime(startLoc, destinationLoc, departureTime)
+            .then((resp) => {
+              duration = resp;
+            });
+          i += 1;
+        }
+        resolve(departureTime - timeToGetReady * MILS_PER_MIN);
+      });
+  });
+}
+
+
 async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
-  console.log(destinationLoc);
-  console.log(timeToGetReady);
-  console.log(arrivalTime);
+  console.log('-- Calculating Alarm Time --');
+  console.log(`\tDestination: ${destinationLoc}`);
+  console.log(`\tRoutine Time: ${timeToGetReady}`);
+  console.log(`\tArrival Time: ${new Date(arrivalTime)}`);
   const loops = 4;
   return new Promise((resolve) => {
     getCurrentLocation()
@@ -97,14 +119,28 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
 function triggerNavigate(navigate) {
   navigate('Alarm');
 }
-async function armAlarm(alarmTime, navigate) {
+let timeoutRef;
+let navigateRef; // hacky way to let navigation persist
+/**
+ * Given an exact time in UTC, armAlarm sets up
+ * the actual alarm/timers required to fire off alarm
+ * @param  {Time_UTC} alarmTime
+ * @param  {Navigation} navigate
+ * @return {[type]}           [description]
+ */
+async function armAlarm(alarmTime) {
+  if (timeoutRef) clearTimeout(timeoutRef);
   const date = new Date();
   const current = date.getTime(); // get current time
-  let difference = alarmTime - current;
-  console.log(difference);
-  if (difference < 0) difference = 0;
-  console.log(`${difference / (MILS_PER_HOUR)} Hours`);
-  setTimeout(() => triggerNavigate(navigate), difference);
+  const difference = alarmTime - current;
+  if (difference < 0) console.log('** Alarm fired after desired time **\n** Should still be before arrival time **');
+  timeoutRef = setTimeout(() => triggerNavigate(navigateRef), difference);
 }
 
-export default { getAlarmTime, armAlarm };
+function initArmAlarm(navigate) {
+  navigateRef = navigate;
+}
+
+export default {
+  getAlarmTime, initArmAlarm, armAlarm, getAlarmTimeFromLocation,
+};

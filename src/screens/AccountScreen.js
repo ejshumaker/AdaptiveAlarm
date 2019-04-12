@@ -11,10 +11,8 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
 import { userSignOut } from '../store/actions/userActions';
-import { alarmCalculateTime } from '../store/actions/alarmActions';
 
 import {
   Colors,
@@ -47,14 +45,16 @@ class AccountScreen extends Component {
       firstName, // Redux store
       lastName,
       alarms,
+      alarmId,
     } = this.props;
 
     // destructure alarms
-    const alarm = alarms.alarm1 || {};
+    const alarm = alarms[alarmId] || {};
     const {
       destinationLoc,
       arrivalTime,
       timeToGetReady,
+      days,
     } = alarm;
 
     const timeToGetReadyString = timeToGetReady
@@ -65,10 +65,13 @@ class AccountScreen extends Component {
     const shortDestinationLoc = destinationLoc
       ? `${destinationLoc.substring(0, stringLength)}...`
       : 'No destination set';
-    const workTime = arrivalTime
-      ? moment(arrivalTime).format('hh:mm a')
-      : 'No time set';
 
+    let dayString = '';
+    if (days !== undefined) {
+      Object.keys(days).forEach((key) => {
+        if (days[key]) dayString = dayString.concat(`${key} `);
+      });
+    } else dayString = 'No days set';
 
     // STYLESHEET FOR USER PROFILE
     const styles = StyleSheet.create({
@@ -90,7 +93,7 @@ class AccountScreen extends Component {
       userinfopane: {
         width: '95%',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
       },
       profileRow: {
         // flex: 8,
@@ -131,7 +134,6 @@ class AccountScreen extends Component {
             navigation.navigate('Main');
           }}
         />
-        {/* VIEW FOR TITLE ! "YOUR PROFILE" */}
         <View style={{ alignItems: 'center' }}>
           <View style={[styles.titleView]}>
             <Text style={[
@@ -144,43 +146,24 @@ class AccountScreen extends Component {
             >
               {title}
             </Text>
-
-
-            {/* VIEW FOR IMAGE OF USER */}
             <View style={[styles.imageView]}>
-
-
-              {/* TODO: Replace with Icon ! */}
               <Image
                 source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png' }}
                 style={styles.usericon}
               />
-              { /* LOADING ICON FUNCTION */}
               {this.loader()}
-
-              { /* DISPLAY USER'S NAME BELOW IMAGE */}
               <Text style={[GlobalStyles.h2, { color: Colors.white }]}>
                 {firstName}
                 {' '}
                 {lastName}
               </Text>
             </View>
-            {/* END -- VIEW FOR IMAGE OF USER */}
-
           </View>
-          { /* END -- VIEW FOR TITLE */}
-
-          {/* VIEW FOR USER INFO */}
           <View style={[styles.userinfopane]}>
-
-
-            {/* VIEW FOR USER'S ROUTINE TIME */}
             <View style={[styles.profileRow]}>
-
               <View style={styles.infoColumn}>
                 <Text style={[GlobalStyles.paragraph]}>Routine Time</Text>
               </View>
-
               <View style={styles.dataColumn}>
                 <Text style={[
                   GlobalStyles.paragraph,
@@ -193,15 +176,10 @@ class AccountScreen extends Component {
                 </Text>
               </View>
             </View>
-            {/* END --  VIEW FOR USER'S ROUTINE TIME */}
-
-            {/* VIEW FOR USER'S HOME ADDRESS */}
             <View style={[styles.profileRow]}>
-
               <View style={styles.infoColumn}>
                 <Text style={[GlobalStyles.paragraph]}>Work Address</Text>
               </View>
-
               <View style={styles.dataColumn}>
                 <Text style={[
                   GlobalStyles.paragraph,
@@ -213,18 +191,11 @@ class AccountScreen extends Component {
                   {shortDestinationLoc}
                 </Text>
               </View>
-
             </View>
-            {/* END --  VIEW FOR USER'S HOME ADDRESS */}
-
-
-            {/* VIEW FOR USER'S WORK ADDRESS */}
             <View style={[styles.profileRow]}>
-
               <View style={styles.infoColumn}>
                 <Text style={[GlobalStyles.paragraph]}>Work Time</Text>
               </View>
-
               <View style={styles.dataColumn}>
                 <Text style={[
                   GlobalStyles.paragraph,
@@ -233,18 +204,11 @@ class AccountScreen extends Component {
                   },
                 ]}
                 >
-                  {workTime}
+                  {arrivalTime || 'No time set'}
                 </Text>
               </View>
             </View>
-            {/* END -- VIEW FOR USER'S WORK ADDRESS */}
-
-
           </View>
-          {/* END -- VIEW FOR USER'S INFO */}
-
-
-          {/* VIEW FOR SIGN OUT BUTTON */}
           <View style={[styles.signOutButton, { alignItems: 'center' }]}>
             <Buttons
               title="Sign Out"
@@ -253,12 +217,9 @@ class AccountScreen extends Component {
               onPress={signOut}
             />
           </View>
-          {/* END -- VIEW FOR SIGN OUT BUTTON */}
-
         </View>
       </View>
     );
-    // END RENDER, ABOVE IS CLOSING VIEW TAG.
   }
 }
 
@@ -271,6 +232,7 @@ AccountScreen.propTypes = {
   lastName: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   alarms: PropTypes.object, // eslint-disable-line
+  alarmId: PropTypes.string,
   // Redux dispatch
   signOut: PropTypes.func.isRequired,
 };
@@ -279,6 +241,7 @@ AccountScreen.defaultProps = {
   firstName: '',
   lastName: '',
   alarms: {},
+  alarmId: undefined,
 };
 
 /**
@@ -291,9 +254,8 @@ const mapStateToProps = state => ({
   lastName: state.user.lastName,
   email: state.user.email,
   alarms: state.user.alarms,
-  errorMessage: state.user.errorMessage,
+  alarmId: state.alarm.currentAlarmId,
   loading: state.user.loadingFetch,
-  alarmTime: state.alarm.time,
 });
 
 /**
@@ -303,7 +265,7 @@ const mapStateToProps = state => ({
  */
 const mapDispatchToProps = dispatch => ({
   signOut: () => { dispatch(userSignOut()); },
-  calculateTime: (time) => { dispatch(alarmCalculateTime(time)); },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountScreen);
+export { AccountScreen };

@@ -43,8 +43,8 @@ const userReducer = (state = initialUserState, action) => {
       if (alarms === undefined) {
         alarms = {}; // create an empty object
       }
-      const { key } = action.payload;
-      alarms[key] = action.payload;
+      const { alarmId } = action.payload;
+      alarms[alarmId] = action.payload;
       state = {
         ...state,
         alarms,
@@ -85,6 +85,17 @@ const userReducer = (state = initialUserState, action) => {
         errorMessage: undefined,
         error: action.error,
         loading: false,
+      };
+      break;
+    }
+    // Alarm status
+    case 'USER_SET_ALARM_STATUS_FULFILLED': {
+      const { alarmId, status } = action.payload;
+      const alarms = { ...state.alarms }; // make a copy
+      alarms[alarmId].isActive = status;
+      state = {
+        ...state,
+        alarms,
       };
       break;
     }
@@ -166,12 +177,6 @@ const userReducer = (state = initialUserState, action) => {
         lastName: action.payload.lastName,
         userName: action.payload.userName,
         email: action.payload.email,
-      };
-      break;
-    case 'USER_SET_AGE':
-      state = {
-        ...state,
-        age: action.payload,
       };
       break;
     default:

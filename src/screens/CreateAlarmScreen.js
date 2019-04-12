@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, TextInput, ActivityIndicator, Alert
+  View, Text, TextInput, ActivityIndicator, Alert,
 } from 'react-native';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -22,7 +22,7 @@ import {
   Autocomplete,
 } from '../components';
 import { CloseIcon } from '../icons/close';
-import { userCreateAlarm } from '../store/actions/userActions';
+import { userUpdateAlarm } from '../store/actions/userActions';
 
 import {
   Colors,
@@ -36,24 +36,50 @@ class CreateAlarmScreen extends Component {
       readyTime: undefined,
       arrivalTime: undefined,
       workAddress: '',
+      days: {
+        mon: false,
+        tue: false,
+        wed: false,
+        thu: false,
+        fri: false,
+        sat: false,
+        sun: false,
+      },
+      alarmId: undefined,
+      pageTitle: 'New Alarm:',
     };
 
     this.onDestChange = this.onDestChange.bind(this);
+    this.onDayChange = this.onDayChange.bind(this);
   }
 
-  onDestChange(key, value) {
-    console.log('-------- INSIDE ONCHANGE -----------');
-    console.log(key, value);
-    // parent class change handler is always called with field name and value
-    this.setState({
-      workAddress: value,
-    });
+  componentWillMount() {
+    // const { days } = this.state;
+    const { navigation } = this.props;
+    let { alarms } = this.props;
+    alarms = alarms || {};
+    const alarmId = navigation.getParam('alarmId', undefined);
+
+    if (alarmId !== undefined) {
+      const alarm = alarms[alarmId];
+
+      this.setState({
+        alarmId,
+        readyTime: alarm.timeToGetReady,
+        workAddress: alarm.destinationLoc,
+        arrivalTime: alarm.arrivalTime,
+        pageTitle: 'Edit Alarm:',
+        days: alarm.days,
+      }, () => { console.log(`In setState: ${this.state.alarmId}`); });
+    }
   }
 
-  onCreate() {
+  onCreateAlarm() {
     const { createAlarm, navigation } = this.props;
     const { navigate } = navigation;
-    const { arrivalTime, readyTime, workAddress } = this.state;
+    const {
+      arrivalTime, readyTime, workAddress, days, alarmId,
+    } = this.state;
     // validate and format
     if (!readyTime || !arrivalTime || !workAddress) {
       Alert.alert('Please make sure you have filled out all fields');
@@ -65,21 +91,38 @@ class CreateAlarmScreen extends Component {
     }
     try {
       const momentString = moment(arrivalTime, 'LT');
-      const date = new Date(momentString);
+      const momentDate = moment(momentString);
+      const arrivalTimeString = `${momentDate.format('hh')}:${momentDate.format('mm')}${momentDate.format('a')}`;
+      const date = new Date(momentString); // used to calculate initial alarm estimate
       // eslint-disable-next-line
       if (isNaN(date.getTime())) {
         Alert.alert('Please double check your time of arrival');
         return;
       }
       createAlarm({
-        arrivalTime: date.getTime(),
+        arrivalTime: arrivalTimeString,
         timeToGetReady: readyTime,
         destinationLoc: workAddress,
+        days,
         navigate,
+        alarmId,
       });
     } catch (error) {
       Alert.alert(error);
     }
+  }
+
+  onDestChange(key, value) {
+    // parent class change handler is always called with field name and value
+    this.setState({
+      workAddress: value, // TODO: why do we not use the key value pairing? -- weinoh
+    });
+  }
+
+  onDayChange(days) {
+    this.setState({
+      days,
+    });
   }
 
   loader() {
@@ -89,18 +132,17 @@ class CreateAlarmScreen extends Component {
     } return null;
   }
 
-
   render() {
     const {
-      createAlarm,
       navigation,
     } = this.props;
     const { navigate } = navigation;
-
     const {
       readyTime,
       arrivalTime,
+      pageTitle,
       workAddress,
+      days,
     } = this.state;
 
     return (
@@ -121,25 +163,29 @@ class CreateAlarmScreen extends Component {
             },
           ]}
         >
-          NEW ALARM:
+          {pageTitle}
         </Text>
         <Text style={GlobalStyles.subtitle}>Destination</Text>
-        <Autocomplete onDestChange={this.onDestChange} />
+        <Autocomplete
+          onDestChange={this.onDestChange}
+          autoCompleteValue={workAddress}
+        />
         <Text style={[GlobalStyles.subtitle]}>Routine Time</Text>
         <TextInput
-          keyboardAppearance={'dark'}
+          keyboardAppearance="dark"
           style={GlobalStyles.input}
           returnKeyType="next"
           keyboardType="numeric"
           ref={(input) => { this.readyTimeInput = input; }}
           onSubmitEditing={() => this.arrivalTimeInput.focus()}
           onChangeText={text => this.setState({ readyTime: text })}
-          placeholder="(30)"
+          placeholder="(30 min)"
           placeholderTextColor={Colors.darkGray}
+          value={readyTime}
         />
         <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
         <TextInput
-          keyboardAppearance={'dark'}
+          keyboardAppearance="dark"
           style={GlobalStyles.input}
           returnKeyType="next"
           ref={(input) => { this.arrivalTimeInput = input; }}
@@ -147,16 +193,20 @@ class CreateAlarmScreen extends Component {
           onChangeText={text => this.setState({ arrivalTime: text })}
           placeholder="(8:00 AM)"
           placeholderTextColor={Colors.darkGray}
+          value={arrivalTime}
         />
         <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
-        <DayPicker />
+        <DayPicker
+          onChangeDay={this.onDayChange}
+          days={days}
+        />
         {this.loader()}
         <View style={{ alignItems: 'center' }}>
           <Buttons
-            title="Create Alarm"
+            title="Save Alarm"
             backgroundColor={Colors.primary}
             textColor={Colors.black}
-            onPress={() => { this.onCreate(); }}
+            onPress={() => { this.onCreateAlarm(); }}
           />
         </View>
       </View>
@@ -172,6 +222,12 @@ CreateAlarmScreen.propTypes = {
   createAlarm: PropTypes.func.isRequired,
   // Redux state
   loading: PropTypes.bool.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  alarms: PropTypes.object,
+};
+
+CreateAlarmScreen.defaultProps = {
+  alarms: {},
 };
 
 /**
@@ -181,6 +237,7 @@ CreateAlarmScreen.propTypes = {
  */
 const mapStateToProps = state => ({
   loading: state.user.loading,
+  alarms: state.user.alarms,
 });
 
 /**
@@ -189,7 +246,8 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
-  createAlarm: (payload) => { dispatch(userCreateAlarm(payload)); },
+  createAlarm: (payload) => { dispatch(userUpdateAlarm(payload)); },
 });
 
+export { CreateAlarmScreen };
 export default connect(mapStateToProps, mapDispatchToProps)(CreateAlarmScreen);
