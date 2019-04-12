@@ -7,6 +7,7 @@ import User from '../../custom_modules/User';
   * then subtracts the time to get ready.
   * @tsteiner4 3-9-2019
   */
+/* eslint-disable import/prefer-default-export */
 export function alarmCalculateTime() {
   const alarm = User.getNextAlarm();
   if (alarm !== undefined) {
@@ -49,9 +50,11 @@ export function alarmCalculateTime() {
 }
 
 // stub
+/*
 export function foo() {
   return {
     type: 'FOO',
     payload: null,
   };
 }
+*/

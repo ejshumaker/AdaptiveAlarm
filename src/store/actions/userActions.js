@@ -22,6 +22,7 @@ export function userUpdateAlarm(payload) {
     }),
   })
     .then(() => {
+      console.log('here');
       dispatch(alarmCalculateTime());
       if (navigate) navigate('Main');
     })
