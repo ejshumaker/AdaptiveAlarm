@@ -14,7 +14,7 @@ Enzyme.configure({ adapter: new Adapter() });
 jest.setTimeout(10000);
 let wrapper = null;
 const onDestChangeMock = jest.fn();
-const acValMock = jest.fn();
+const acValMock = 'test';
 
 describe('Autocomplete tests', () => {
   beforeEach(() => {
@@ -29,11 +29,13 @@ describe('Autocomplete tests', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  // it('autocomplete on text input', () => {
-  //   wrapper.find('CloseIcon').simulate('press',
-  //     { preventDefault() {} });
-  //   expect(onDestChangeMock).toHaveBeenCalledTimes(1);
-  // });
+  it('autocomplete on text input', () => {
+    expect.assertions(1);
+    wrapper.find('CloseIcon').simulate('press',
+      { preventDefault() {} });
+    wrapper.find('TextInput').at(0).simulate('ChangeText', 'newVal');
+    expect(wrapper.state('autoCompleteValue')).toEqual(undefined);
+  });
 
   afterAll(() => {
     wrapper.unmount();

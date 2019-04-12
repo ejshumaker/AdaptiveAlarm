@@ -1,0 +1,407 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DayPicker tests no days 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        S
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        M
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        T
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        W
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        Th
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        F
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        Sa
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+</View>
+`;
+
+exports[`DayPicker tests test daypicker matches snapshot 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+    }
+  }
+>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        S
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        M
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        T
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        W
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        Th
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#E4F96A",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#13151A",
+            },
+          ]
+        }
+      >
+        F
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <Styled(View)
+      style={
+        Object {
+          "backgroundColor": "#505050",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "RNSMiles-XBold",
+              "fontSize": 14,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        Sa
+      </Text>
+    </Styled(View)>
+  </TouchableOpacity>
+</View>
+`;

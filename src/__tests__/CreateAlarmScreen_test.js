@@ -46,6 +46,9 @@ describe('CreateAlarm Screen', () => {
   }));
   jest.spyOn(Alert, 'alert');
 
+  beforeAll(() => {
+    Alert.alert = jest.fn();
+  });
   beforeEach(() => {
     // pass the mock function as the login prop
     jest.clearAllMocks();
@@ -176,7 +179,7 @@ describe('CreateAlarm Screen', () => {
     expect(mockcreateAlarmfn).toHaveBeenCalledTimes(0);
   });
 
-  it('state is changed from autoCompleteValue', () => {
+  it('text input new ready time', () => {
     getParamMock.mockImplementation(() => 1);
     days = {
       sun: true,
@@ -202,13 +205,11 @@ describe('CreateAlarm Screen', () => {
       alarms={{ 1: alarm }}
     />);
 
-    wrapper.find('Autocomplete').simulate(
-      'DestChange', 'newDest',
-    );
-    expect(wrapper.state('workAddress')).toEqual('newDest');
+    wrapper.find('TextInput').at(0).simulate('ChangeText', '123');
+    expect(wrapper.state('readyTime')).toEqual('123');
   });
 
-  it('should call the create alarm action', () => {
+  it('text input new arrival time', () => {
     getParamMock.mockImplementation(() => 1);
     days = {
       sun: true,
@@ -234,10 +235,39 @@ describe('CreateAlarm Screen', () => {
       alarms={{ 1: alarm }}
     />);
 
-    wrapper.find('[title="Save Alarm"]').simulate(
+    wrapper.find('TextInput').at(1).simulate('ChangeText', 'test');
+    expect(wrapper.state('arrivalTime')).toEqual('test');
+    wrapper.find('TextInput').at(1).simulate('SubmitEditing', { preventDefault() {} });
+  });
+
+  it('check delete alarm is called', () => {
+    days = {
+      sun: false,
+      mon: true,
+      tue: false,
+      wed: false,
+      thu: true,
+      fri: false,
+      sat: false,
+    };
+    alarm = {
+      arrivalTime: '8:00 AM',
+      destinationLoc: 'Middleton, WI',
+      timeToGetReady: '30',
+      isActive: true,
+      days,
+    };
+    wrapper = shallow(<CreateAlarmScreen
+      navigation={navigation}
+      createAlarm={mockcreateAlarmfn}
+      loading={false}
+      deleteAlarm={deleteAlarmMock}
+      alarms={{ 1: alarm }}
+    />);
+    wrapper.find('[title="Delete Alarm"]').simulate(
       'press',
       { preventDefault() {} },
     );
-    expect(mockcreateAlarmfn.mock.calls.length).toBe(1);
+    expect(Alert.alert).toHaveBeenCalledTimes(1);
   });
 });

@@ -105,4 +105,32 @@ describe('User.js -> Create Alarm tests', () => {
       expect(e).toEqual(Error('set failed'));
     }
   });
+
+
+  test('create alarm with alarm id', async () => {
+    payload = {
+      destinationLoc: 'Middleton, WI',
+      arrivalTime: new Date(2019, 4, 26, 10, 0, 0),
+      timeToGetReady: 20,
+      days: ['Mon', 'Thurs', 'Sun'],
+      isActive: false,
+      alarmId: 1245,
+    };
+
+    mockPush.mockImplementation(() => ({
+      key: 1245,
+    }));
+    mockSet.mockImplementation(() => new Promise((resolve) => {
+      resolve();
+    }));
+    const result = await User.updateAlarm(payload);
+    expect(result).toEqual({
+      destinationLoc: 'Middleton, WI',
+      arrivalTime: new Date(2019, 4, 26, 10, 0, 0),
+      timeToGetReady: 20,
+      days: ['Mon', 'Thurs', 'Sun'],
+      alarmId: 1245,
+      isActive: false,
+    });
+  });
 });

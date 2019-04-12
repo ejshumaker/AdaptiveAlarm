@@ -33,7 +33,7 @@ describe('SignUp Screen', () => {
     />);
     wrapper2 = shallow(<SignUpScreen
       navigation={navigation}
-      signIn={mockSignUpfn}
+      createAccount={mockSignUpfn}
       loading
       // Redux state
       errorMessage=""

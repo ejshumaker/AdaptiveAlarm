@@ -60,6 +60,7 @@ function getNextAlarm() {
     earliestAlarmId = closestSoFar ? ids[i] : earliestAlarmId;
   }
   const earliestAlarm = alarms[earliestAlarmId];
+
   if (earliestAlarmId !== undefined) {
     return {
       ...earliestAlarm,
