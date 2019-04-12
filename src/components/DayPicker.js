@@ -35,6 +35,21 @@ class DayPicker extends PureComponent {
     this.updateOnPress = this.updateOnPress.bind(this);
   }
 
+  componentWillMount() {
+    let { days } = this.props;
+    days = days || {};
+
+    this.setState({
+      sButton: days.sun,
+      mButton: days.mon,
+      tButton: days.tue,
+      wButton: days.wed,
+      thButton: days.thu,
+      fButton: days.fri,
+      saButton: days.sat,
+    });
+  }
+
   updateOnPress(type) {
     const { onChangeDay } = this.props;
     const {
@@ -258,6 +273,8 @@ class DayPicker extends PureComponent {
 
 DayPicker.propTypes = {
   onChangeDay: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  days: PropTypes.object.isRequired,
 };
 
 const Circle = styled.View`
