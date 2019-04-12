@@ -3,13 +3,9 @@ import {
   View, Text, TouchableOpacity, StyleSheet,
 } from 'react-native';
 import styled from 'styled-components';
-import { Colors } from '../constants';
+import { GlobalStyles, Colors } from '../constants';
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -119,7 +115,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     sButton === 'S' ? Colors.black : Colors.white,
@@ -140,7 +136,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     mButton === 'M' ? Colors.black : Colors.white,
@@ -161,7 +157,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     tButton === 'T' ? Colors.black : Colors.white,
@@ -182,7 +178,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     wButton === 'W' ? Colors.black : Colors.white,
@@ -203,7 +199,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     thButton === 'Th' ? Colors.black : Colors.white,
@@ -224,7 +220,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     fButton === 'F' ? Colors.black : Colors.white,
@@ -245,7 +241,7 @@ class DayPicker extends PureComponent {
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
                     saButton === 'Sa' ? Colors.black : Colors.white,

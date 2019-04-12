@@ -45,21 +45,21 @@ class MainScreen extends Component {
           {'PREDICTED:'}
         </Text>
         <Text
-          style={[
-            { fontFamily: "RNSMiles-Black", alignItems: 'center', color: Colors.white, fontSize: 70 },
-          ]}
+          style={
+            { fontFamily: "RNSMiles-Black", alignItems: 'center', color: Colors.white, fontSize: 70 }
+          }
         >
           <Text>
             {hour}
             {':'}
             {min}
           </Text>
-          <Text style={[{ fontSize: 40, textTransform: 'uppercase', fontFamily: "RNSMiles-Bold" }]}>
+          <Text style={[GlobalStyles.h21, { textTransform: 'uppercase' }]}>
             {' '}
             {meridian}
           </Text>
         </Text>
-      </View>
+      </View >
     );
   }
 

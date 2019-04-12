@@ -96,7 +96,7 @@ class Autocomplete extends Component {
                       handleTextChange(text);
                     }}
                     placeholder="Enter Destination"
-                    placeholderTextColor={Colors.white}
+                    placeholderTextColor={Colors.gray}
                   />
                   <CloseIcon
                     style={{ marginTop: 8, marginRight: 13 }}

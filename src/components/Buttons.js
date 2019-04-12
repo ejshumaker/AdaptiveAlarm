@@ -46,7 +46,6 @@ const Button = styled.View`
 
 const Text = styled.Text`
   font-size: 14px;
-  font-weight: bold;
   text-align: center;
   text-transform: uppercase;
 `;
