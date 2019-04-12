@@ -70,7 +70,7 @@ class CreateAlarmScreen extends Component {
         arrivalTime: alarm.arrivalTime,
         pageTitle: 'Edit Alarm:',
         days: alarm.days,
-      }, () => { console.log(`In setState: ${this.state.alarmId}`); });
+      });
     }
   }
 
@@ -195,7 +195,7 @@ class CreateAlarmScreen extends Component {
           placeholderTextColor={Colors.darkGray}
           value={arrivalTime}
         />
-        <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
+        <Text style={GlobalStyles.subtitle}>Recurring</Text>
         <DayPicker
           onChangeDay={this.onDayChange}
           days={days}

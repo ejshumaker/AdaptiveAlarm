@@ -4,8 +4,6 @@ import {
   View,
   ActivityIndicator,
   Text,
-  ScrollView,
-  SafeAreaView,
   StatusBar,
 } from 'react-native';
 import { connect } from 'react-redux';

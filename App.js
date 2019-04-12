@@ -39,32 +39,39 @@ firebase.initializeApp(fbConfig);
  * @eschirtz 03-01-19
  */
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { fontLoaded: false };
+  constructor() {
+    super();
+    this.state = {
+      fontLoaded: false,
+    };
   }
 
   async componentDidMount() {
+    /* eslint-disable global-require */
     await Font.loadAsync({
-      "RNSMiles-Black": require("./src/assets/fonts/RNSMiles-Black.otf"),
-      "RNSMiles-Bold": require("./src/assets/fonts/RNSMiles-Bold.otf"),
-      "RNSMiles-XBold": require("./src/assets/fonts/RNSMiles-XBold.otf"),
-      "RNSMiles-Medium": require("./src/assets/fonts/RNSMiles-Medium.otf"),
-      "RNSMiles-Regular": require("./src/assets/fonts/RNSMiles-Regular.otf"),
-      "RNSMiles-Thin": require("./src/assets/fonts/RNSMiles-Thin.otf"),
-      "RNSMiles-Light": require("./src/assets/fonts/RNSMiles-Light.otf")
+      'RNSMiles-Black': require('./src/assets/fonts/RNSMiles-Black.otf'),
+      'RNSMiles-Bold': require('./src/assets/fonts/RNSMiles-Bold.otf'),
+      'RNSMiles-XBold': require('./src/assets/fonts/RNSMiles-XBold.otf'),
+      'RNSMiles-Medium': require('./src/assets/fonts/RNSMiles-Medium.otf'),
+      'RNSMiles-Regular': require('./src/assets/fonts/RNSMiles-Regular.otf'),
+      'RNSMiles-Thin': require('./src/assets/fonts/RNSMiles-Thin.otf'),
+      'RNSMiles-Light': require('./src/assets/fonts/RNSMiles-Light.otf'),
     });
     this.setState({ fontLoaded: true });
   }
 
   render() {
-    return (
-      <View style={GlobalStyles.container}>
-        <Provider store={store}>
-          <AppContainer />
-        </Provider>
-      </View>
-    );
+    const { fontLoaded } = this.state;
+    if (fontLoaded) {
+      return (
+        <View style={GlobalStyles.container}>
+          <Provider store={store}>
+            <AppContainer />
+          </Provider>
+        </View>
+      );
+    }
+    return null;
   }
 }
 

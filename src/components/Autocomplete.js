@@ -42,7 +42,6 @@ class Autocomplete extends Component {
 
   componentWillMount() {
     const { autoCompleteValue } = this.props;
-    console.log('Autocomplete value:' + autoCompleteValue);
     this.setState({ autoCompleteValue });
   }
 
@@ -78,77 +77,79 @@ class Autocomplete extends Component {
           isSearching,
           clearSearchs,
         }) => (
-            <Fragment>
-              <View style={[GlobalStyles.centerChildrenXY, {
-                zIndex: 4, justifyContent: 'flex-start',
-              }]}
+          <Fragment>
+            <View style={[GlobalStyles.centerChildrenXY, {
+              zIndex: 4, justifyContent: 'flex-start',
+            }]}
+            >
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  width: '100%',
+                  backgroundColor: Colors.darkGray,
+                  borderRadius: 8,
+                  marginVertical: 8,
+                }}
               >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    width: '100%',
-                    backgroundColor: Colors.darkGray,
-                    borderRadius: 8,
-                    marginVertical: 8,
+                <SearchIcon style={{ marginLeft: 13, marginTop: 8 }} />
+                <TextInput
+                  keyboardAppearance="dark"
+                  style={GlobalStyles.destinationInput}
+                  value={autoCompleteValue || inputValue}
+                  onChangeText={(text) => {
+                    this.updateDest('autoCompleteValue', text);
+                    handleTextChange(text);
                   }}
-                >
-                  <SearchIcon style={{ marginLeft: 13, marginTop: 8 }} />
-                  <TextInput
-                    keyboardAppearance={'dark'}
-                    style={GlobalStyles.destinationInput}
-                    value={autoCompleteValue || inputValue}
-                    onChangeText={(text) => {
-                      this.updateDest('autoCompleteValue', text);
-                      handleTextChange(text);
-                    }}
-                    placeholder="Enter Destination"
-                    placeholderTextColor={Colors.gray}
-                  />
-                  <CloseIcon
-                    style={{ marginTop: 8, marginRight: 13 }}
-                    onPress={() => {
-                      this.updateDest('autoCompleteValue', null);
-                      handleTextChange('');
-                      clearSearchs();
-                    }}
-                  />
-                </View>
-                {isSearching && (
-                  <ActivityIndicator size="large" color={Colors.gray} />
-                )}
-                <View
-                  style={{
-                    backgroundColor: Colors.gray,
-                    width: '100%',
-                    borderBottomLeftRadius: 8,
-                    borderBottomRightRadius: 8,
-                    zIndex: 4,
-                    marginTop: -10,
+                  placeholder="Enter Destination"
+                  placeholderTextColor={Colors.gray}
+                />
+                <CloseIcon
+                  style={{ marginTop: 8, marginRight: 13 }}
+                  onPress={() => {
+                    this.updateDest('autoCompleteValue', null);
+                    handleTextChange('');
+                    clearSearchs();
                   }}
-                >
-                  {locationResults.map((el, i) => (
-
-
-                    <LocationItem
-                      style={[GlobalStyles.searchSuggestions, { zIndex: 4 }]}
-                      {...el}
-                      fetchDetails={fetchDetails}
-                      updateDest={this.updateDest}
-                      onAutoCompleteInput={this.onAutoCompleteInput}
-                      resetSearch={clearSearchs}
-                      key={String(i)}
-                    />
-                  ))}
-                </View>
-                <Image
-                  style={{ marginTop: 60, height: 10, position: 'absolute', zIndex: 2 }}
-                  source={googleStamp}
-                  resizeMode="contain"
                 />
               </View>
-            </Fragment>
-          )}
+              {isSearching && (
+              <ActivityIndicator size="large" color={Colors.gray} />
+              )}
+              <View
+                style={{
+                  backgroundColor: Colors.gray,
+                  width: '100%',
+                  borderBottomLeftRadius: 8,
+                  borderBottomRightRadius: 8,
+                  zIndex: 4,
+                  marginTop: -10,
+                }}
+              >
+                {locationResults.map((el, i) => (
+
+
+                  <LocationItem
+                    style={[GlobalStyles.searchSuggestions, { zIndex: 4 }]}
+                    {...el}
+                    fetchDetails={fetchDetails}
+                    updateDest={this.updateDest}
+                    onAutoCompleteInput={this.onAutoCompleteInput}
+                    resetSearch={clearSearchs}
+                    key={String(i)}
+                  />
+                ))}
+              </View>
+              <Image
+                style={{
+                  marginTop: 60, height: 10, position: 'absolute', zIndex: 2,
+                }}
+                source={googleStamp}
+                resizeMode="contain"
+              />
+            </View>
+          </Fragment>
+        )}
       </GoogleAutoComplete>
     );
   }

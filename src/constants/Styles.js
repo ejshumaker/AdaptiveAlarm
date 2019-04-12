@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { Font } from 'expo';
 import Colors from './Colors';
 
 // Constants
@@ -20,19 +19,6 @@ export default StyleSheet.create({
    * @eschirtz 03-01-19
    */
   /* Layouts */
-
-  async componentDidMount() {
-    await Font.loadAsync({
-      "RNSMiles-Black": require("../assets/fonts/RNSMiles-Black.otf"),
-      "RNSMiles-Bold": require("../assets/fonts/RNSMiles-Bold.otf"),
-      "RNSMiles-XBold": require("../assets/fonts/RNSMiles-XBold.otf"),
-      "RNSMiles-Medium": require("../assets/fonts/RNSMiles-Medium.otf"),
-      "RNSMiles-Regular": require("../assets/fonts/RNSMiles-Regular.otf"),
-      "RNSMiles-Thin": require("../assets/fonts/RNSMiles-Thin.otf"),
-      "RNSMiles-Light": require("../assets/fonts/RNSMiles-Light.otf")
-    });
-    this.setState({ fontLoaded: true });
-  },
 
   container: {
     flex: 1,
