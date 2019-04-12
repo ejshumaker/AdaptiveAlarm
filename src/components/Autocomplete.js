@@ -49,7 +49,7 @@ class Autocomplete extends Component {
     this.setState({
       [key]: value,
     });
-
+    // passed in as a prop
     if (key === 'destination') onDestChange('workAddress', value);
   }
 

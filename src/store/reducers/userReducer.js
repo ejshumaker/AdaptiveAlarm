@@ -88,6 +88,17 @@ const userReducer = (state = initialUserState, action) => {
       };
       break;
     }
+    // Alarm status
+    case 'USER_SET_ALARM_STATUS_FULFILLED': {
+      const { alarmId, status } = action.payload;
+      const alarms = { ...state.alarms }; // make a copy
+      alarms[alarmId].isActive = status;
+      state = {
+        ...state,
+        alarms,
+      };
+      break;
+    }
     // SIGN IN //
     case 'USER_SIGN_IN_PENDING':
       state = { ...state, loading: true };
@@ -166,12 +177,6 @@ const userReducer = (state = initialUserState, action) => {
         lastName: action.payload.lastName,
         userName: action.payload.userName,
         email: action.payload.email,
-      };
-      break;
-    case 'USER_SET_AGE':
-      state = {
-        ...state,
-        age: action.payload,
       };
       break;
     default:
