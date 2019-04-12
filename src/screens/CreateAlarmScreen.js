@@ -127,6 +127,7 @@ class CreateAlarmScreen extends Component {
         <Autocomplete onDestChange={this.onDestChange} />
         <Text style={[GlobalStyles.subtitle]}>Routine Time</Text>
         <TextInput
+          keyboardAppearance={'dark'}
           style={GlobalStyles.input}
           returnKeyType="next"
           keyboardType="numeric"
@@ -138,6 +139,7 @@ class CreateAlarmScreen extends Component {
         />
         <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
         <TextInput
+          keyboardAppearance={'dark'}
           style={GlobalStyles.input}
           returnKeyType="next"
           ref={(input) => { this.arrivalTimeInput = input; }}

@@ -89,6 +89,7 @@ class Autocomplete extends Component {
                 >
                   <SearchIcon style={{ marginLeft: 13, marginTop: 8 }} />
                   <TextInput
+                    keyboardAppearance={'dark'}
                     style={GlobalStyles.destinationInput}
                     value={autoCompleteValue || inputValue}
                     onChangeText={(text) => {

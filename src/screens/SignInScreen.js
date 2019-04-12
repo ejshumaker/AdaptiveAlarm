@@ -69,6 +69,7 @@ class SignInScreen extends React.Component {
         >
           <EmailIcon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
+            keyboardAppearance={'dark'}
             onChangeText={value => this.onChangeText("email", value)}
             style={GlobalStyles.destinationInput}
             placeholder="Email"
@@ -86,6 +87,7 @@ class SignInScreen extends React.Component {
         >
           <KeyIcon style={{ marginLeft: 13, marginTop: 7 }} />
           <TextInput
+            keyboardAppearance={'dark'}
             onChangeText={value => this.onChangeText("password", value)}
             style={GlobalStyles.destinationInput}
             secureTextEntry
