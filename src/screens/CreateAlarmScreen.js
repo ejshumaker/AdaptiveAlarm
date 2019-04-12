@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, TextInput, ActivityIndicator, Alert, Picker,
+  View, Text, TextInput, ActivityIndicator, Alert, ScrollView, TouchableOpacity,
 } from 'react-native';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -22,6 +22,8 @@ import {
   DayPicker,
   Buttons,
   Autocomplete,
+  StatusBarBackground,
+  BottomBarBackground,
 } from '../components';
 import { CloseIcon } from '../icons/close';
 import { DropdownIcon } from '../icons/dropdown';
@@ -30,7 +32,6 @@ import {
   Colors,
   GlobalStyles,
 } from '../constants';
-
 
 class CreateAlarmScreen extends Component {
   constructor() {
@@ -82,8 +83,12 @@ class CreateAlarmScreen extends Component {
     const { createAlarm, navigation } = this.props;
     const { navigate } = navigation;
     const {
-      arrivalTime, readyTime, workAddress, days, alarmId, soundIndex,
+      arrivalTime, readyTime, workAddress, days, alarmId,
     } = this.state;
+    let {
+      soundIndex,
+    } = this.state;
+    soundIndex = soundIndex || 1; // default
     // validate and format
     if (!readyTime || !arrivalTime || !workAddress) {
       Alert.alert('Please make sure you have filled out all fields');
@@ -186,11 +191,29 @@ class CreateAlarmScreen extends Component {
     } return null;
   }
 
-  render() {
+  menu() {
     const {
       navigation,
     } = this.props;
     const { navigate } = navigation;
+    return (
+      <View style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 12,
+      }}
+      >
+        <TouchableOpacity
+          onPress={() => { navigate('Main'); }}
+        >
+          <CloseIcon />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  render() {
     const {
       readyTime,
       arrivalTime,
@@ -200,59 +223,32 @@ class CreateAlarmScreen extends Component {
       soundIndex,
     } = this.state;
 
-    // const sounds = [
-    //   {
-    //     label: 'Classic',
-    //     value: '1',
-    //     color: Colors.darkGray,
-    //   },
-    //   {
-    //     label: 'Amber',
-    //     value: '2',
-    //     color: Colors.darkGray,
-    //   },
-    //   {
-    //     label: 'Old Town Road',
-    //     value: '3',
-    //     color: Colors.darkGray,
-    //   },
-    //   {
-    //     label: 'Big Ol\'e Chicken',
-    //     value: '4',
-    //     color: Colors.darkGray,
-    //   },
-    // ];
-
     return (
-      <View style={[GlobalStyles.container, { justifyContent: 'space-around', paddingHorizontal: 48, paddingVertical: '10%' }]}>
-        <CloseIcon
-          style={{ marginLeft: -20, marginTop: 27 }}
-          onPress={() => {
-            navigate('Main');
-          }}
-        />
-        <Text
-          style={[
-            GlobalStyles.h2,
-            {
-              color: Colors.primary,
-              marginBottom: 48,
-              marginTop: 40,
-            },
-          ]}
+      <View>
+        <StatusBarBackground />
+        {this.menu()}
+        <ScrollView
+          contentContainerStyle={{ paddingHorizontal: 48 }}
         >
-          {pageTitle}
-        </Text>
-        {this.loader()}
-        <View style={{ justifyContent: 'space-between' }}>
 
-
+          <Text
+            style={[
+              GlobalStyles.h2,
+              {
+                color: Colors.primary,
+                marginBottom: 48,
+                marginTop: 24,
+              },
+            ]}
+          >
+            {pageTitle}
+          </Text>
+          {this.loader()}
           <Text style={[GlobalStyles.subtitle, { marginVertical: 0 }]}>Destination</Text>
           <Autocomplete
             onDestChange={this.onDestChange}
             autoCompleteValue={workAddress}
           />
-
           <Text style={[GlobalStyles.subtitle, { marginTop: 8 }]}>Routine Time</Text>
           <TextInput
             keyboardAppearance="dark"
@@ -266,7 +262,6 @@ class CreateAlarmScreen extends Component {
             placeholderTextColor={Colors.darkGray}
             value={readyTime}
           />
-
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Arrival Time</Text>
           <TextInput
             keyboardAppearance="dark"
@@ -279,7 +274,6 @@ class CreateAlarmScreen extends Component {
             placeholderTextColor={Colors.darkGray}
             value={arrivalTime}
           />
-
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Alarm Sound</Text>
           <RNPickerSelect
             placeholder={{
@@ -298,24 +292,22 @@ class CreateAlarmScreen extends Component {
             }
         }
           />
-
-
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Recurring</Text>
           <DayPicker
             onChangeDay={this.onDayChange}
             days={days}
           />
-
-
-          <View style={{ alignItems: 'center', marginTop: 30 }}>
+          <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
             <Buttons
               title="Save Alarm"
               backgroundColor={Colors.primary}
               textColor={Colors.black}
               onPress={() => { this.onCreateAlarm(); }}
             />
+            {this.deleteButton()}
           </View>
-        </View>
+          <BottomBarBackground />
+        </ScrollView>
       </View>
     );
   }
