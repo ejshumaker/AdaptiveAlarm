@@ -11,42 +11,30 @@ import { alarmCalculateTime } from './alarmActions';
  * returns a new alarm with associated key
  * @param  {[Object]} payload
  */
-export function userCreateAlarm(payload) {
-  const {
-    destinationLoc,
-    timeToGetReady,
-    arrivalTime,
-    days,
-    navigate,
-  } = payload;
+export function userUpdateAlarm(payload) {
+  const { navigate } = payload;
   return dispatch => dispatch({
     type: 'USER_CREATE_ALARM',
-    payload: User.createAlarm({
-      destinationLoc,
-      timeToGetReady,
-      arrivalTime,
-      days,
+    payload: User.updateAlarm({
+      ...payload,
       isActive: true, // default new to active
     }),
   })
     .then(() => {
-      const alarm = User.getNextAlarm();
-      dispatch(alarmCalculateTime(alarm));
+      dispatch(alarmCalculateTime());
       if (navigate) navigate('Main');
     })
     .catch(error => console.log(error)); // eslint-disable-line
 }
 
-export function userSetAlarmStatus(alarmId, status, navigate) {
+export function userSetAlarmStatus(alarmId, status) {
   return (dispatch) => {
     dispatch({
       type: 'USER_SET_ALARM_STATUS',
       payload: User.setAlarmStatus(alarmId, status),
     })
       .then(() => {
-      // get new "nextAlarm"
-        const alarm = User.getNextAlarm();
-        dispatch(alarmCalculateTime(alarm));
+        dispatch(alarmCalculateTime());
       });
   };
 }
@@ -76,25 +64,12 @@ export function userDeleteAlarm(alarmId) {
  * and updates the store to reflect
  * @param  {Number} uid
  */
-export function userFetch(uid, navigate) {
+export function userFetch(uid) {
   return dispatch => dispatch({
     type: 'USER_FETCH',
     payload: User.fetch(uid),
   })
-    .then(() => {
-      const alarm = User.getNextAlarm();
-      if (alarm !== undefined) {
-        dispatch(alarmCalculateTime(
-          alarm,
-          navigate,
-        ));
-      } else {
-        dispatch({
-          type: 'ALARM_SET_ACTIVE_STATUS',
-          payload: false,
-        });
-      }
-    });
+    .then(() => { dispatch(alarmCalculateTime()); });
 }
 
 /**

@@ -11,6 +11,7 @@ import { GlobalStyles, Colors } from '../constants';
 
 import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
+import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
   hasAlarmView() {
@@ -24,6 +25,7 @@ class MainScreen extends Component {
     const hour = !loading ? moment(alarmTime).format('hh') : '0';
     const min = !loading ? moment(alarmTime).format('mm') : '00';
     const meridian = !loading ? moment(alarmTime).format('a') : '- -';
+    const date = !loading ? moment(alarmTime).format('dddd, MMM. Do') : '';
     return (
       <View>
         <Text style={
@@ -51,6 +53,12 @@ class MainScreen extends Component {
             {meridian}
           </Text>
         </Text>
+        <Text style={
+          [GlobalStyles.h5, { color: Colors.white, marginLeft: 8 }]
+        }
+        >
+          {date}
+        </Text>
       </View>
     );
   }
@@ -64,7 +72,7 @@ class MainScreen extends Component {
           [GlobalStyles.h2, { color: Colors.primary, marginVertical: 48 }]
         }
         >
-          {'NO ALARMS'}
+          {'NO ALARMS SET'}
         </Text>
       </View>
     );
@@ -143,6 +151,12 @@ class MainScreen extends Component {
         paddingHorizontal: 28,
       }}
       >
+        <MenuIcon
+          style={{}}
+          onPress={() => {
+            navigation.navigate('AlarmList');
+          }}
+        />
         <UserIcon
           style={{}}
           onPress={() => {

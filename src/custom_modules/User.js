@@ -4,18 +4,71 @@
  * state updates.
  */
 import { auth, database } from 'firebase';
+import moment from 'moment';
+import { Calendar, Permissions } from 'expo';
 import store from '../store';
+
+const DAY_MAP = {
+  sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6,
+};
 
 function getNextAlarm() {
   const state = store.getState();
   const { alarms } = state.user;
-  const ids = Object.keys(alarms);
+  if (alarms === undefined) return undefined;
+  const currentDay = moment().days();
+  console.log('-- Getting Next Alarm --');
+  console.log(`\tToday is ${moment().day(currentDay).format('dddd, MMMM Do, h:mm a')}`);
+  let earliestAlarmTime = Number.MAX_SAFE_INTEGER;
+  let earliestAlarmId;
+  let ids = alarms !== undefined ? Object.keys(alarms) : [];
+  ids = ids.filter(id => alarms[id].isActive);
   for (let i = 0; i < ids.length; i += 1) {
-    const alarmId = ids[i];
-    const alarm = alarms[alarmId];
-    return { ...alarm, alarmId };
+    const alarm = alarms[ids[i]];
+    // find next day of week
+    let nextDayNumber = Number.MAX_SAFE_INTEGER;
+    const days = alarm.days || {};
+    Object.entries(days)
+      .filter(entry => entry[1]) // check that alarm is triggered for that day
+      .forEach((entry) => {
+        const day = entry[0];
+        let dayNumber = DAY_MAP[day];
+        // If day is earlier within the week, rollover to next week
+        dayNumber = currentDay <= dayNumber ? dayNumber : dayNumber + 7;
+        // If day is same, check if time is earlier
+        if (dayNumber === currentDay) {
+          const alarmMoment = moment(alarm.arrivalTime, 'LT');
+          const currentMoment = moment();
+          const isBefore = alarmMoment.isBefore(currentMoment);
+          console.log(alarmMoment.format('\tdddd, MMMM Do, h:mm a'));
+          if (isBefore) {
+            console.log('\tis before');
+            dayNumber += 7; // add a week if alarm has already passed
+          } else {
+            console.log('\tis after');
+          }
+          console.log(currentMoment.format('\tdddd, MMMM Do, h:mm a'));
+        }
+
+        // Find the nearest day, ie the lowest number
+        nextDayNumber = dayNumber < nextDayNumber ? dayNumber : nextDayNumber;
+      });
+    const day = moment(alarm.arrivalTime, 'LT');
+    day.day(nextDayNumber);
+    console.log(`\tAlarm #${i} goes off ${day.format('dddd, MMMM Do, h:mm a')}`);
+    const closestSoFar = day.utc() < earliestAlarmTime;
+    earliestAlarmTime = closestSoFar ? day.utc() : earliestAlarmTime;
+    earliestAlarmId = closestSoFar ? ids[i] : earliestAlarmId;
   }
-  return undefined;
+  const earliestAlarm = alarms[earliestAlarmId];
+  if (earliestAlarmId !== undefined) {
+    return {
+      ...earliestAlarm,
+      alarmId: earliestAlarmId,
+      alarmUTC: earliestAlarmTime, // package the actual date & time
+    };
+  }
+  return undefined; // TODO: WTF IS THIS
 }
 /**
  * Calculates alarm time from user entered information
@@ -24,7 +77,7 @@ function getNextAlarm() {
  * @param  {[Object]} payload [description]
  * @return {[Promise]}         [description]
  */
-function createAlarm(payload) {
+function updateAlarm(payload) {
   const {
     destinationLoc,
     arrivalTime,
@@ -32,16 +85,18 @@ function createAlarm(payload) {
     days,
     isActive,
   } = payload;
+  let { alarmId } = payload;
   const { uid } = auth().currentUser;
   return new Promise((resolve, reject) => {
-    const alarmKey = database().ref(`users/${uid}/alarms/`).push().key;
-    database().ref(`users/${uid}/alarms/${alarmKey}`)
+    if (alarmId === undefined) alarmId = database().ref(`users/${uid}/alarms/`).push().key;
+    database().ref(`users/${uid}/alarms/${alarmId}`)
       .set({
         destinationLoc,
         arrivalTime,
         timeToGetReady,
         days,
         isActive,
+        alarmId,
       })
       .then(() => {
         resolve({
@@ -49,7 +104,8 @@ function createAlarm(payload) {
           arrivalTime,
           timeToGetReady,
           days,
-          alarmId: alarmKey,
+          isActive,
+          alarmId,
         });
       })
       .catch(error => reject(error));
@@ -76,7 +132,7 @@ function deleteAlarm(alarmId) {
 
 /**
  * Deletes an alarm from firebase
- * @param {[alarmId]}
+ * @param {[alarmId, status]}
  */
 function setAlarmStatus(alarmId, status) {
   const { uid } = auth().currentUser;
@@ -170,5 +226,5 @@ function signOut() {
 }
 
 export default {
-  setAlarmStatus, signIn, createAccount, signOut, fetch, createAlarm, deleteAlarm, getNextAlarm,
+  setAlarmStatus, signIn, createAccount, signOut, fetch, updateAlarm, deleteAlarm, getNextAlarm,
 };

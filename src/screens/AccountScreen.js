@@ -134,7 +134,6 @@ class AccountScreen extends Component {
             navigation.navigate('Main');
           }}
         />
-        {/* VIEW FOR TITLE ! "YOUR PROFILE" */}
         <View style={{ alignItems: 'center' }}>
           <View style={[styles.titleView]}>
             <Text style={[
@@ -147,43 +146,24 @@ class AccountScreen extends Component {
             >
               {title}
             </Text>
-
-
-            {/* VIEW FOR IMAGE OF USER */}
             <View style={[styles.imageView]}>
-
-
-              {/* TODO: Replace with Icon ! */}
               <Image
                 source={{ uri: 'https://reactnativecode.com/wp-content/uploads/2018/01/2_img.png' }}
                 style={styles.usericon}
               />
-              { /* LOADING ICON FUNCTION */}
               {this.loader()}
-
-              { /* DISPLAY USER'S NAME BELOW IMAGE */}
               <Text style={[GlobalStyles.h2, { color: Colors.white }]}>
                 {firstName}
                 {' '}
                 {lastName}
               </Text>
             </View>
-            {/* END -- VIEW FOR IMAGE OF USER */}
-
           </View>
-          { /* END -- VIEW FOR TITLE */}
-
-          {/* VIEW FOR USER INFO */}
           <View style={[styles.userinfopane]}>
-
-
-            {/* VIEW FOR USER'S ROUTINE TIME */}
             <View style={[styles.profileRow]}>
-
               <View style={styles.infoColumn}>
                 <Text style={[GlobalStyles.paragraph]}>Routine Time</Text>
               </View>
-
               <View style={styles.dataColumn}>
                 <Text style={[
                   GlobalStyles.paragraph,
@@ -196,15 +176,10 @@ class AccountScreen extends Component {
                 </Text>
               </View>
             </View>
-            {/* END --  VIEW FOR USER'S ROUTINE TIME */}
-
-            {/* VIEW FOR USER'S HOME ADDRESS */}
             <View style={[styles.profileRow]}>
-
               <View style={styles.infoColumn}>
                 <Text style={[GlobalStyles.paragraph]}>Work Address</Text>
               </View>
-
               <View style={styles.dataColumn}>
                 <Text style={[
                   GlobalStyles.paragraph,
@@ -216,18 +191,11 @@ class AccountScreen extends Component {
                   {shortDestinationLoc}
                 </Text>
               </View>
-
             </View>
-            {/* END --  VIEW FOR USER'S HOME ADDRESS */}
-
-
-            {/* VIEW FOR USER'S WORK ADDRESS */}
             <View style={[styles.profileRow]}>
-
               <View style={styles.infoColumn}>
                 <Text style={[GlobalStyles.paragraph]}>Work Time</Text>
               </View>
-
               <View style={styles.dataColumn}>
                 <Text style={[
                   GlobalStyles.paragraph,
@@ -240,34 +208,7 @@ class AccountScreen extends Component {
                 </Text>
               </View>
             </View>
-
-            {/* VIEW FOR ALARM DAYS */}
-            <View style={[styles.profileRow]}>
-
-              <View style={styles.infoColumn}>
-                <Text style={[GlobalStyles.paragraph]}>Alarms</Text>
-              </View>
-
-              <View style={styles.dataColumn}>
-                <Text style={[
-                  GlobalStyles.paragraph,
-                  {
-                    color: Colors.primary,
-                  },
-                ]}
-                >
-                  {dayString}
-                </Text>
-              </View>
-            </View>
-            {/* END -- VIEW FOR USER'S WORK ADDRESS */}
-
-
           </View>
-          {/* END -- VIEW FOR USER'S INFO */}
-
-
-          {/* VIEW FOR SIGN OUT BUTTON */}
           <View style={[styles.signOutButton, { alignItems: 'center' }]}>
             <Buttons
               title="Sign Out"
@@ -276,12 +217,9 @@ class AccountScreen extends Component {
               onPress={signOut}
             />
           </View>
-          {/* END -- VIEW FOR SIGN OUT BUTTON */}
-
         </View>
       </View>
     );
-    // END RENDER, ABOVE IS CLOSING VIEW TAG.
   }
 }
 

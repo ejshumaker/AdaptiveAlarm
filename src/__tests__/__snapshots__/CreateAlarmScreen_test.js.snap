@@ -10,6 +10,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
         "justifyContent": "center",
       },
       Object {
+        "justifyContent": "space-between",
         "padding": 48,
       },
     ]
@@ -40,7 +41,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
       ]
     }
   >
-    NEW ALARM:
+    New Alarm:
   </Text>
   <Text
     style={
@@ -54,6 +55,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     Destination
   </Text>
   <Autocomplete
+    autoCompleteValue=""
     onDestChange={[Function]}
   />
   <Text
@@ -73,7 +75,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     keyboardType="numeric"
     onChangeText={[Function]}
     onSubmitEditing={[Function]}
-    placeholder="(30)"
+    placeholder="(30 min)"
     placeholderTextColor="#505050"
     returnKeyType="next"
     style={
@@ -127,6 +129,17 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     Recurring (beta)
   </Text>
   <DayPicker
+    days={
+      Object {
+        "fri": false,
+        "mon": false,
+        "sat": false,
+        "sun": false,
+        "thu": false,
+        "tue": false,
+        "wed": false,
+      }
+    }
     onChangeDay={[Function]}
   />
   <View
@@ -140,7 +153,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
       backgroundColor="#E4F96A"
       onPress={[Function]}
       textColor="#13151A"
-      title="Create Alarm"
+      title="Save Alarm"
     />
   </View>
 </View>
@@ -156,6 +169,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
         "justifyContent": "center",
       },
       Object {
+        "justifyContent": "space-between",
         "padding": 48,
       },
     ]
@@ -186,7 +200,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
       ]
     }
   >
-    NEW ALARM:
+    New Alarm:
   </Text>
   <Text
     style={
@@ -200,6 +214,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     Destination
   </Text>
   <Autocomplete
+    autoCompleteValue="Middleton, WI"
     onDestChange={[Function]}
   />
   <Text
@@ -219,7 +234,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     keyboardType="numeric"
     onChangeText={[Function]}
     onSubmitEditing={[Function]}
-    placeholder="(30)"
+    placeholder="(30 min)"
     placeholderTextColor="#505050"
     returnKeyType="next"
     style={
@@ -232,6 +247,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
         "marginBottom": 24,
       }
     }
+    value="30"
   />
   <Text
     style={
@@ -260,6 +276,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
         "marginBottom": 24,
       }
     }
+    value="8:05 PM"
   />
   <Text
     style={
@@ -273,6 +290,17 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
     Recurring (beta)
   </Text>
   <DayPicker
+    days={
+      Object {
+        "fri": false,
+        "mon": false,
+        "sat": false,
+        "sun": false,
+        "thu": false,
+        "tue": false,
+        "wed": false,
+      }
+    }
     onChangeDay={[Function]}
   />
   <View
@@ -286,7 +314,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot after state
       backgroundColor="#E4F96A"
       onPress={[Function]}
       textColor="#13151A"
-      title="Create Alarm"
+      title="Save Alarm"
     />
   </View>
 </View>

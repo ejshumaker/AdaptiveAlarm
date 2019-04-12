@@ -1,6 +1,5 @@
 import { Location, Permissions } from 'expo';
 
-const MILS_PER_HOUR = 3600000;
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
 
@@ -57,7 +56,6 @@ async function getCurrentLocation() {
             .then((location) => {
               const lat = location.coords.latitude;
               const lng = location.coords.longitude;
-              console.log(`{lat: ${lat}, lng: ${lng}}`);
               resolve(`${lat}, ${lng}`);
             })
             .catch((e) => {
@@ -125,7 +123,7 @@ async function armAlarm(alarmTime) {
   const date = new Date();
   const current = date.getTime(); // get current time
   const difference = alarmTime - current;
-  if (difference < 0) console.warn('Alarm should have gone off, check alarm calculation!');
+  if (difference < 0) console.log('** Alarm fired after desired time **\n** Should still be before arrival time **');
   timeoutRef = setTimeout(() => triggerNavigate(exportFunctions.navigateRef), difference);
 }
 

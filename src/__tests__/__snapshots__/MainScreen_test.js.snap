@@ -13,6 +13,10 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
       }
     }
   >
+    <MenuIcon
+      onPress={[Function]}
+      style={Object {}}
+    />
     <UserIcon
       onPress={[Function]}
       style={Object {}}
@@ -46,7 +50,7 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
           ]
         }
       >
-        NO ALARMS
+        NO ALARMS SET
       </Text>
     </View>
     <View
@@ -102,6 +106,10 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
       }
     }
   >
+    <MenuIcon
+      onPress={[Function]}
+      style={Object {}}
+    />
     <UserIcon
       onPress={[Function]}
       style={Object {}}
@@ -179,6 +187,19 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
           am
         </Text>
       </Text>
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#DDDDDD",
+              "marginLeft": 8,
+            },
+          ]
+        }
+      >
+        Sunday, May. 26th
+      </Text>
     </View>
     <View
       style={
@@ -239,6 +260,10 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
       }
     }
   >
+    <MenuIcon
+      onPress={[Function]}
+      style={Object {}}
+    />
     <UserIcon
       onPress={[Function]}
       style={Object {}}
@@ -316,6 +341,17 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
           - -
         </Text>
       </Text>
+      <Text
+        style={
+          Array [
+            undefined,
+            Object {
+              "color": "#DDDDDD",
+              "marginLeft": 8,
+            },
+          ]
+        }
+      />
     </View>
     <View
       style={

@@ -16,10 +16,10 @@ describe('Arm Alarm Tests', () => {
     }
   };
   const mockNav = jest.fn();
-  Alarm.initArmAlarm(mockNav);
+
 
   beforeEach(() => {
-
+    Alarm.initArmAlarm(mockNav);
   });
 
   test('arm alarm with alarmtime', async () => {
