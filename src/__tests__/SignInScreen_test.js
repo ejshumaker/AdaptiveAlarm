@@ -31,6 +31,7 @@ describe('SignIn Screen', () => {
       // Redux state
       errorMessage=""
     />);
+    jest.clearAllMocks();
   });
 
   it('test SignIn screen matches snapshot', () => {
@@ -56,4 +57,21 @@ describe('SignIn Screen', () => {
     );
     expect(mockSignInfn.mock.calls.length).toBe(1);
   });
+
+
+  it('changing email input should change the state\'s value', () => {
+    wrapper.setState({
+      password: 'testPass',
+      email: 'tsteiner4@wisc.edu',
+    });
+    wrapper.find('TextInput').at(0).simulate('ChangeText', 'Hello');
+    expect(wrapper.state('email')).toEqual('Hello');
+  });
+
+  /* Tests still needed
+  change text on password input value
+  Sign up button press
+  Snapshot when loading is true
+
+  */
 });

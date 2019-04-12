@@ -62,4 +62,11 @@ describe('SignUp Screen', () => {
     );
     expect(mockSignUpfn.mock.calls.length).toBe(1);
   });
+
+  /* Tests still needed
+  change text on password input value
+  Sign up button press
+  Snapshot when loading is true
+
+  */
 });

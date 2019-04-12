@@ -39,7 +39,7 @@ describe('User.js -> Create Alarm tests', () => {
   };
 
   beforeEach(() => {
-
+    jest.clearAllMocks();
   });
 
   test('create alarm successfully', async () => {
@@ -71,10 +71,7 @@ describe('User.js -> Create Alarm tests', () => {
     mockPush.mockImplementation(() => ({
       key: 1245,
     }));
-    mockSet.mockImplementation(string => new Promise((resolve) => {
-      if ((string) === ('users/1234/alarms/undefined')) {
-        reject(Error('push failed'));
-      }
+    mockSet.mockImplementation(() => new Promise((resolve) => {
       resolve();
     }));
     const result = await User.createAlarm(payload);
@@ -87,31 +84,18 @@ describe('User.js -> Create Alarm tests', () => {
     });
   });
 
-  test('create alarm push failure', async () => {
-    expect.assertions(1);
-    mockPush.mockImplementation(() => (Error('push failed')));
-    mockRef.mockImplementation(string => new Promise((resolve) => {
-      console.log(string);
-      if ((string) === ('users/1234/alarms/undefined')) {
-        reject(Error('push failed'));
-      }
-      resolve();
-    }));
-    mockSet.mockImplementation(() => new Promise((resolve) => {
-      resolve();
-    }));
-    try {
-      await User.createAlarm(payload);
-    } catch (e) {
-      expect(e).toEqual(Error('push failed'));
-    }
-  });
 
   test('create alarm set failure', async () => {
     expect.assertions(1);
-    mockPush.mockImplementation(() => (Error('push failed')));
+    mockPush.mockImplementation(() => ({
+      key: 12345,
+    }));
     mockSet.mockImplementation(() => new Promise((resolve, reject) => {
       reject(Error('set failed'));
+    }));
+    mockRef.mockImplementation(() => ({
+      set: mockSet,
+      push: mockPush,
     }));
     try {
       await User.createAlarm(payload);
