@@ -10,7 +10,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, TextInput, ActivityIndicator, Alert,
+  View, Text, TextInput, ActivityIndicator, Alert, Picker,
 } from 'react-native';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -35,6 +35,7 @@ class CreateAlarmScreen extends Component {
     this.state = {
       readyTime: undefined,
       arrivalTime: undefined,
+      soundIndex: 2,
       workAddress: '',
       days: {
         mon: false,
@@ -70,7 +71,7 @@ class CreateAlarmScreen extends Component {
         arrivalTime: alarm.arrivalTime,
         pageTitle: 'Edit Alarm:',
         days: alarm.days,
-      }, () => { console.log(`In setState: ${this.state.alarmId}`); });
+      }, () => { console.log(`In setState: ${alarmId}`); });
     }
   }
 
@@ -78,7 +79,7 @@ class CreateAlarmScreen extends Component {
     const { createAlarm, navigation } = this.props;
     const { navigate } = navigation;
     const {
-      arrivalTime, readyTime, workAddress, days, alarmId,
+      arrivalTime, readyTime, workAddress, days, alarmId, soundIndex,
     } = this.state;
     // validate and format
     if (!readyTime || !arrivalTime || !workAddress) {
@@ -106,6 +107,7 @@ class CreateAlarmScreen extends Component {
         days,
         navigate,
         alarmId,
+        soundIndex,
       });
     } catch (error) {
       Alert.alert(error);
@@ -143,6 +145,7 @@ class CreateAlarmScreen extends Component {
       pageTitle,
       workAddress,
       days,
+      soundIndex,
     } = this.state;
 
     return (
@@ -193,6 +196,22 @@ class CreateAlarmScreen extends Component {
           placeholderTextColor={Colors.darkGray}
           value={arrivalTime}
         />
+        <Picker
+          selectedValue={soundIndex}
+          style={{ height: 60, width: '100%', marginBottom: 20, color: Colors.primary }}
+          itemStyle={{ color: Colors.primary }}
+          onValueChange={(itemValue, itemIndex) => {
+            console.log('BEFORE: currSoundIndex:', itemIndex);
+            this.setState({ soundIndex: String(itemIndex) });
+            console.log('AFTER: currSoundIndex:', itemIndex);
+          }
+        }
+        >
+          <Picker.Item label="Alarm Sound 1" value="0" itemStyle={{ color: Colors.primary }} />
+          <Picker.Item label="Alarm Sound 2" value="1" itemStyle={{ color: Colors.primary }} />
+          <Picker.Item label="Alarm Sound 3" value="2" itemStyle={{ color: Colors.primary }} />
+          <Picker.Item label="Alarm Sound 4" value="3" itemStyle={{ color: Colors.primary }} />
+        </Picker>
         <Text style={GlobalStyles.subtitle}>Recurring (beta)</Text>
         <DayPicker
           onChangeDay={this.onDayChange}

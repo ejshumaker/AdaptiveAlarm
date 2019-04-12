@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Audio } from 'expo';
-// import { alarmOff } from '../store/actions/alarmActions';
+import { alarmOff } from '../store/actions/alarmActions';
 
 import { GlobalStyles, Colors } from '../constants';
 
@@ -65,11 +65,16 @@ class AlarmScreen extends Component {
 
   getSoundLoaded = async () => {
     const { load } = this.state;
+    const { alarm } = this.props;
+    const { soundIndex } = alarm;
+    console.log('======================');
+    console.log('soundIndex:', soundIndex);
+
     try {
       if (this.sound == null) this.sound = new Audio.Sound();
 
       if (load === true) {
-        const soundIndex = 3;
+        // const soundIndex = 3;
         await this.sound.loadAsync(sounds[soundIndex]);
         this.setState({ load: false });
       }
@@ -124,6 +129,13 @@ class AlarmScreen extends Component {
   }
 }
 
+AlarmScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  alarm: PropTypes.object.isRequired, // eslint-disable-line
+};
+
 const mapStateToProps = state => ({
   alarm: state.alarm,
 });
@@ -142,4 +154,4 @@ AlarmScreen.propTypes = {
 };
 
 export { AlarmScreen };
-export default connect(null, mapDispatchToProps)(AlarmScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AlarmScreen);
