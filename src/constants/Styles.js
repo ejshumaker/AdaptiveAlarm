@@ -25,6 +25,12 @@ export default StyleSheet.create({
     backgroundColor: Colors.backgroundColor,
     height: '95%',
   },
+  menu: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 24,
+  },
   centerChildrenXY: {
     flex: 1,
     alignItems: 'center',

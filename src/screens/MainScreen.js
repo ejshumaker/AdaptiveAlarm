@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import {
+  View, Text, StatusBar, TouchableOpacity,
+} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import AnalogClock from '../components/AnalogClock';
-import Buttons from '../components/Buttons';
+import { Buttons, StatusBarBackground } from '../components';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
@@ -28,6 +30,7 @@ class MainScreen extends Component {
 
     return (
       <View>
+        <StatusBarBackground />
         <Text style={
           [GlobalStyles.h2, { color: Colors.primary, marginTop: '10%' }]
         }
@@ -145,33 +148,24 @@ class MainScreen extends Component {
 
   menu() {
     const { navigation } = this.props;
+    const { navigate } = navigation;
     return (
-      <View style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: '20%',
-        paddingHorizontal: 28,
-      }}
-      >
-        <MenuIcon
-          style={{}}
-          onPress={() => {
-            navigation.navigate('AlarmList');
-          }}
-        />
-        <UserIcon
-          style={{}}
-          onPress={() => {
-            navigation.navigate('Account');
-          }}
-        />
-        <AddIcon
-          style={{}}
-          onPress={() => {
-            navigation.navigate('CreateAlarm');
-          }}
-        />
+      <View style={GlobalStyles.menu}>
+        <TouchableOpacity
+          onPress={() => { navigate('AlarmList'); }}
+        >
+          <MenuIcon />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { navigate('Account'); }}
+        >
+          <UserIcon />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { navigate('CreateAlarm'); }}
+        >
+          <AddIcon />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -184,6 +178,7 @@ class MainScreen extends Component {
     if (alarmId !== undefined || loading) {
       return (
         <View>
+          <StatusBarBackground />
           {this.menu()}
           <View style={{ alignItems: 'center', width: '100%' }}>
             {this.hasAlarmView()}
@@ -195,6 +190,7 @@ class MainScreen extends Component {
     }
     return (
       <View>
+        <StatusBarBackground />
         {this.menu()}
         <View style={{ alignItems: 'center', width: '100%' }}>
           {this.hasNoAlarmView()}
