@@ -109,7 +109,7 @@ class MainScreen extends Component {
           onPress={() => dismissAlarm(alarmId)}
         />
         <Buttons
-          title="DEV PAGE"
+          title="Dev Page"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
           onPress={() => navigate('Home')}

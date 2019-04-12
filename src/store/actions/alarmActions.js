@@ -16,12 +16,16 @@ export function alarmCalculateTime() {
       alarmId,
       alarmUTC,
     } = alarm;
+    const loopLimit = 4;
+    const arrivalTimeBuffer = 6;
     return dispatch => dispatch({
       type: 'ALARM_SET_TIME',
       payload: Alarm.getAlarmTime(
         destinationLoc,
         timeToGetReady,
         alarmUTC,
+        loopLimit,
+        arrivalTimeBuffer,
       ),
     })
       .then((resp) => {

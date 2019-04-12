@@ -7,9 +7,9 @@ exports[`SignIn Screen test SignIn screen matches snapshot 1`] = `
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "justifyContent": "center",
       },
       Object {
+        "justifyContent": "center",
         "padding": 48,
       },
     ]
@@ -23,8 +23,8 @@ exports[`SignIn Screen test SignIn screen matches snapshot 1`] = `
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
           "fontSize": 30,
-          "fontWeight": "bold",
         },
         Object {
           "color": "#E4F96A",
@@ -40,8 +40,8 @@ exports[`SignIn Screen test SignIn screen matches snapshot 1`] = `
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 18,
-          "fontWeight": "300",
         },
         Object {
           "color": "#fa0505",
@@ -70,6 +70,7 @@ exports[`SignIn Screen test SignIn screen matches snapshot 1`] = `
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Email"
       placeholderTextColor="#AAAAAA"
@@ -78,7 +79,8 @@ exports[`SignIn Screen test SignIn screen matches snapshot 1`] = `
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -108,6 +110,7 @@ exports[`SignIn Screen test SignIn screen matches snapshot 1`] = `
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Password"
       placeholderTextColor="#AAAAAA"
@@ -117,7 +120,8 @@ exports[`SignIn Screen test SignIn screen matches snapshot 1`] = `
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -159,9 +163,9 @@ exports[`SignIn Screen test SignIn screen matches snapshot after state set 1`] =
       Object {
         "backgroundColor": undefined,
         "flex": 1,
-        "justifyContent": "center",
       },
       Object {
+        "justifyContent": "center",
         "padding": 48,
       },
     ]
@@ -175,8 +179,8 @@ exports[`SignIn Screen test SignIn screen matches snapshot after state set 1`] =
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
           "fontSize": 30,
-          "fontWeight": "bold",
         },
         Object {
           "color": "#E4F96A",
@@ -192,8 +196,8 @@ exports[`SignIn Screen test SignIn screen matches snapshot after state set 1`] =
       Array [
         Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 18,
-          "fontWeight": "300",
         },
         Object {
           "color": "#fa0505",
@@ -222,6 +226,7 @@ exports[`SignIn Screen test SignIn screen matches snapshot after state set 1`] =
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Email"
       placeholderTextColor="#AAAAAA"
@@ -230,7 +235,8 @@ exports[`SignIn Screen test SignIn screen matches snapshot after state set 1`] =
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
-          "color": "#DDDDDD",
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,
@@ -260,6 +266,7 @@ exports[`SignIn Screen test SignIn screen matches snapshot after state set 1`] =
       }
     />
     <TextInput
+      keyboardAppearance="dark"
       onChangeText={[Function]}
       placeholder="Password"
       placeholderTextColor="#AAAAAA"
@@ -269,7 +276,324 @@ exports[`SignIn Screen test SignIn screen matches snapshot after state set 1`] =
           "backgroundColor": "#505050",
           "borderColor": "#505050",
           "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginTop": 60,
+      }
+    }
+  >
+    <Buttons
+      backgroundColor="#E4F96A"
+      onPress={[Function]}
+      textColor="#13151A"
+      title="Sign In"
+    />
+    <Buttons
+      backgroundColor="#505050"
+      onPress={[Function]}
+      textColor="#DDDDDD"
+      title="Sign Up"
+    />
+  </View>
+</View>
+`;
+
+exports[`SignIn Screen test SignIn screen matches snapshot loading 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": undefined,
+        "flex": 1,
+      },
+      Object {
+        "justifyContent": "center",
+        "padding": 48,
+      },
+    ]
+  }
+>
+  <StatusBar
+    barStyle="light-content"
+  />
+  <Text
+    style={
+      Array [
+        Object {
           "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
+          "fontSize": 30,
+        },
+        Object {
+          "color": "#E4F96A",
+          "textAlign": "left",
+        },
+      ]
+    }
+  >
+    SIGN IN:
+  </Text>
+  <ActivityIndicator
+    color="#E4F96A"
+    size="large"
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 18,
+        },
+        Object {
+          "color": "#fa0505",
+          "marginVertical": 24,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <EmailIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Email"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+      }
+    }
+  >
+    <KeyIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Password"
+      placeholderTextColor="#AAAAAA"
+      secureTextEntry={true}
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginTop": 60,
+      }
+    }
+  >
+    <Buttons
+      backgroundColor="#E4F96A"
+      onPress={[Function]}
+      textColor="#13151A"
+      title="Sign In"
+    />
+    <Buttons
+      backgroundColor="#505050"
+      onPress={[Function]}
+      textColor="#DDDDDD"
+      title="Sign Up"
+    />
+  </View>
+</View>
+`;
+
+exports[`SignIn Screen test SignIn screen matches snapshot not loading 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": undefined,
+        "flex": 1,
+      },
+      Object {
+        "justifyContent": "center",
+        "padding": 48,
+      },
+    ]
+  }
+>
+  <StatusBar
+    barStyle="light-content"
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
+          "fontSize": 30,
+        },
+        Object {
+          "color": "#E4F96A",
+          "textAlign": "left",
+        },
+      ]
+    }
+  >
+    SIGN IN:
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 18,
+        },
+        Object {
+          "color": "#fa0505",
+          "marginVertical": 24,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <EmailIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Email"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+      }
+    }
+  >
+    <KeyIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Password"
+      placeholderTextColor="#AAAAAA"
+      secureTextEntry={true}
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
           "height": 40,
           "marginLeft": 0,

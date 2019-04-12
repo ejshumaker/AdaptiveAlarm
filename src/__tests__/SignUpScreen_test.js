@@ -31,10 +31,21 @@ describe('SignUp Screen', () => {
       // Redux state
       errorMessage=""
     />);
+    wrapper2 = shallow(<SignUpScreen
+      navigation={navigation}
+      signIn={mockSignUpfn}
+      loading
+      // Redux state
+      errorMessage=""
+    />);
   });
 
-  it('test SignUp screen matches snapshot', () => {
+  it('test SignUp screen matches snapshot not loading', () => {
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('test SignUp screen matches snapshot loading', () => {
+    expect(wrapper2).toMatchSnapshot();
   });
 
   it('test SignUp screen matches snapshot after state set', () => {
@@ -62,4 +73,73 @@ describe('SignUp Screen', () => {
     );
     expect(mockSignUpfn.mock.calls.length).toBe(1);
   });
+
+  it('should navigate to the sign in page', () => {
+    wrapper.setState({
+      password: 'testPass',
+      email: 'tsteiner@wisc.edu',
+    });
+    wrapper.find('[title="Sign In"]').simulate(
+      'press',
+      { preventDefault() {} },
+    );
+    expect(navigation.navigate.mock.calls.length).toBe(1);
+  });
+
+  it('Changing that silly email input should change the state\'s value', () => {
+    wrapper.setState({
+      password: 'testPass',
+      email: 'tsteiner4@wisc.edu',
+    });
+    expect.assertions(1);
+    wrapper.find('TextInput').at(0).simulate('ChangeText', 'Swole');
+    expect(wrapper.state('email')).toEqual('Swole');
+  });
+
+  it('Changing user name input should change the state\'s value', () => {
+    wrapper.setState({
+      password: 'testPass',
+      email: 'tsteiner4@wisc.edu',
+    });
+    expect.assertions(1);
+    wrapper.find('TextInput').at(1).simulate('ChangeText', 'Slapstick');
+    expect(wrapper.state('userName')).toEqual('Slapstick');
+  });
+
+  it('Changing password input should change the state\'s value', () => {
+    wrapper.setState({
+      password: 'testPass',
+      email: 'tsteiner4@wisc.edu',
+    });
+    expect.assertions(1);
+    wrapper.find('TextInput').at(2).simulate('ChangeText', 'Spirit');
+    expect(wrapper.state('password')).toEqual('Spirit');
+  });
+
+  it('Changing first name input should change the state\'s value', () => {
+    wrapper.setState({
+      password: 'testPass',
+      email: 'tsteiner4@wisc.edu',
+    });
+    expect.assertions(1);
+    wrapper.find('TextInput').at(3).simulate('ChangeText', 'slack');
+    expect(wrapper.state('firstName')).toEqual('slack');
+  });
+
+  it('Changing password input should change the state\'s value', () => {
+    wrapper.setState({
+      password: 'testPass',
+      email: 'tsteiner4@wisc.edu',
+    });
+    expect.assertions(1);
+    wrapper.find('TextInput').at(4).simulate('ChangeText', 'Stammer');
+    expect(wrapper.state('lastName')).toEqual('Stammer');
+  });
+
+  /* Tests still needed
+  change text on password input value
+  Sign up button press
+  Snapshot when loading is true
+
+  */
 });
