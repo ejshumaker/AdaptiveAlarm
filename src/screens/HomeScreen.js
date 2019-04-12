@@ -151,7 +151,18 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate('Main')}
         />
-        {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
+        {/* Temporary button to navigate to Calendar, TODO: Remove */}
+        <Button
+          title="Calendar"
+          color={Colors.darkGray}
+          onPress={() => navigate('Calendar')}
+        />
+        {/* Temporary button to navigate to Alarm List Screen, TODO: Remove */}
+        <Button
+          title="Alarm List"
+          color={Colors.darkGray}
+          onPress={() => navigate('AlarmList')}
+        />
         <Button
           title="Alarm"
           color={Colors.darkGray}
@@ -188,6 +199,7 @@ class HomeScreen extends Component {
           onPress={() => navigate('AlarmList')}
         />
         <View style={{ height: 8, width: 8 }} />
+        <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
         <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
       </View>
     );
