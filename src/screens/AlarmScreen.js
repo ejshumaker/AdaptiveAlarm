@@ -69,6 +69,7 @@ class AlarmScreen extends Component {
     const { soundIndex } = alarm;
     console.log('======================');
     console.log('soundIndex:', soundIndex);
+    console.log('alarm:', JSON.stringify(alarm));
 
     try {
       if (this.sound == null) this.sound = new Audio.Sound();

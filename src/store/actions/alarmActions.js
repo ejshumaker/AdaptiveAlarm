@@ -15,6 +15,7 @@ export function alarmCalculateTime() {
       timeToGetReady,
       alarmId,
       alarmUTC,
+      soundIndex,
     } = alarm;
     return dispatch => dispatch({
       type: 'ALARM_SET_TIME',
@@ -31,6 +32,7 @@ export function alarmCalculateTime() {
           payload: {
             armed: true,
             currentAlarmId: alarmId,
+            soundIndex,
           },
         });
       });
