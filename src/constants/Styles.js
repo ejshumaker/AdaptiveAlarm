@@ -23,6 +23,7 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundColor,
+    height: '95%',
   },
   centerChildrenXY: {
     flex: 1,

@@ -62,21 +62,25 @@ class Autocomplete extends Component {
   render() {
     const { autoCompleteValue } = this.state;
     return (
-      <GoogleAutoComplete
-        apiKey={API_KEY}
-        debounce={1000}
-        radius="50000"
-        minLength={3}
-        queryTypes="establishment"
+      <View style={{
+        height: '8%', marginBottom: 24, marginTop: 10, zIndex: 4, elevation: 4,
+      }}
       >
-        {({
-          inputValue,
-          handleTextChange,
-          locationResults,
-          fetchDetails,
-          isSearching,
-          clearSearchs,
-        }) => (
+        <GoogleAutoComplete
+          apiKey={API_KEY}
+          debounce={1000}
+          radius="50000"
+          minLength={3}
+          queryTypes="establishment"
+        >
+          {({
+            inputValue,
+            handleTextChange,
+            locationResults,
+            fetchDetails,
+            isSearching,
+            clearSearchs,
+          }) => (
             <Fragment>
               <View style={[GlobalStyles.centerChildrenXY, {
                 zIndex: 4, justifyContent: 'flex-start',
@@ -150,7 +154,8 @@ class Autocomplete extends Component {
               </View>
             </Fragment>
           )}
-      </GoogleAutoComplete>
+        </GoogleAutoComplete>
+      </View>
     );
   }
 }
