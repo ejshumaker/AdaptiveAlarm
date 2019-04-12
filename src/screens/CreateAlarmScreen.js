@@ -174,9 +174,9 @@ class CreateAlarmScreen extends Component {
     ];
 
     return (
-      <View style={[GlobalStyles.container, { paddingHorizontal: 48, paddingVertical: '10%' }]}>
+      <View style={[GlobalStyles.container, { justifyContent: 'space-around', paddingHorizontal: 48, paddingVertical: '10%' }]}>
         <CloseIcon
-          style={{ marginLeft: -20, marginTop: 27 }}
+          style={{ marginLeft: -20, marginTop: 10 }}
           onPress={() => {
             navigate('Main');
           }}
@@ -186,72 +186,80 @@ class CreateAlarmScreen extends Component {
             GlobalStyles.h2,
             {
               color: Colors.primary,
-              marginBottom: 48,
-              marginTop: 50,
+              marginBottom: 20,
+              marginTop: 10,
             },
           ]}
         >
           {pageTitle}
         </Text>
-        <Text style={GlobalStyles.subtitle}>Destination</Text>
-        <Autocomplete
-          onDestChange={this.onDestChange}
-          autoCompleteValue={workAddress}
-        />
-        <Text style={[GlobalStyles.subtitle]}>Routine Time</Text>
-        <TextInput
-          keyboardAppearance="dark"
-          style={GlobalStyles.input}
-          returnKeyType="next"
-          keyboardType="numeric"
-          ref={(input) => { this.readyTimeInput = input; }}
-          onSubmitEditing={() => this.arrivalTimeInput.focus()}
-          onChangeText={text => this.setState({ readyTime: text })}
-          placeholder="(30 min)"
-          placeholderTextColor={Colors.darkGray}
-          value={readyTime}
-        />
-        <Text style={GlobalStyles.subtitle}>Arrival Time</Text>
-        <TextInput
-          keyboardAppearance="dark"
-          style={GlobalStyles.input}
-          returnKeyType="next"
-          ref={(input) => { this.arrivalTimeInput = input; }}
-          onSubmitEditing={() => null}
-          onChangeText={text => this.setState({ arrivalTime: text })}
-          placeholder="(8:00 AM)"
-          placeholderTextColor={Colors.darkGray}
-          value={arrivalTime}
-        />
-        <Text style={GlobalStyles.subtitle}>Alarm Sound</Text>
-        <RNPickerSelect
-          placeholder={{
-            label: 'Select Alarm Sound',
-            value: null,
-            color: Colors.darkGray,
-          }}
-          items={sounds}
-          value={soundIndex}
-          useNativeAndroidPickerStyle={false}
-          textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
-          onValueChange={(itemValue, itemIndex) => {
-            this.setState({ soundIndex: String(itemIndex) });
-          }
-        }
-        />
-        <Text style={GlobalStyles.subtitle}>Recurring</Text>
-        <DayPicker
-          onChangeDay={this.onDayChange}
-          days={days}
-        />
         {this.loader()}
-        <View style={{ alignItems: 'center' }}>
-          <Buttons
-            title="Save Alarm"
-            backgroundColor={Colors.primary}
-            textColor={Colors.black}
-            onPress={() => { this.onCreateAlarm(); }}
+        <View style={{ justifyContent: 'space-between' }}>
+
+          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Recurring</Text>
+          <DayPicker
+            onChangeDay={this.onDayChange}
+            days={days}
           />
+
+
+          <Text style={[GlobalStyles.subtitle, { marginVertical: 0 }]}>Destination</Text>
+          <Autocomplete
+            onDestChange={this.onDestChange}
+            autoCompleteValue={workAddress}
+          />
+
+          <Text style={[GlobalStyles.subtitle, { marginTop: 8 }]}>Routine Time</Text>
+          <TextInput
+            keyboardAppearance="dark"
+            style={GlobalStyles.input}
+            returnKeyType="next"
+            keyboardType="numeric"
+            ref={(input) => { this.readyTimeInput = input; }}
+            onSubmitEditing={() => this.arrivalTimeInput.focus()}
+            onChangeText={text => this.setState({ readyTime: text })}
+            placeholder="(30 min)"
+            placeholderTextColor={Colors.darkGray}
+            value={readyTime}
+          />
+
+          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Arrival Time</Text>
+          <TextInput
+            keyboardAppearance="dark"
+            style={GlobalStyles.input}
+            returnKeyType="next"
+            ref={(input) => { this.arrivalTimeInput = input; }}
+            onSubmitEditing={() => null}
+            onChangeText={text => this.setState({ arrivalTime: text })}
+            placeholder="(8:00 AM)"
+            placeholderTextColor={Colors.darkGray}
+            value={arrivalTime}
+          />
+
+          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Alarm Sound</Text>
+          <RNPickerSelect
+            placeholder={{
+              label: 'Select Alarm Sound',
+              value: null,
+              color: Colors.darkGray,
+            }}
+            items={sounds}
+            value={soundIndex}
+            useNativeAndroidPickerStyle={false}
+            textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ soundIndex: String(itemIndex) });
+            }
+        }
+          />
+          <View style={{ alignItems: 'center', marginTop: 30 }}>
+            <Buttons
+              title="Save Alarm"
+              backgroundColor={Colors.primary}
+              textColor={Colors.black}
+              onPress={() => { this.onCreateAlarm(); }}
+            />
+          </View>
         </View>
       </View>
     );

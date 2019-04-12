@@ -33,7 +33,7 @@ const Button = styled.View`
   height: 40px;
   border-radius: 8px;
   justify-content: center;
-  margin-bottom: 21px;
+  margin-bottom: 10px;
 `;
 
 const Text = styled.Text`
