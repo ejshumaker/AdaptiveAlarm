@@ -19,10 +19,10 @@ export default StyleSheet.create({
    * @eschirtz 03-01-19
    */
   /* Layouts */
+
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundColor,
-    justifyContent: 'center',
   },
   centerChildrenXY: {
     flex: 1,
@@ -32,14 +32,15 @@ export default StyleSheet.create({
   /* Text */
   h1: {
     color: Colors.white,
-    fontSize: 60,
-    fontWeight: 'bold',
+    fontSize: 70,
+    fontFamily: 'RNSMiles-Black',
   },
   h2: {
     color: Colors.white,
     fontSize: 30,
-    fontWeight: 'bold',
+    fontFamily: 'RNSMiles-Black',
   },
+
   h3: {
     color: Colors.white,
     fontSize: 24,
@@ -50,6 +51,10 @@ export default StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
   },
+  h5: {
+    fontSize: 14,
+    fontFamily: 'RNSMiles-XBold',
+  },
   list: {
     color: Colors.white,
     fontSize: 48,
@@ -58,12 +63,17 @@ export default StyleSheet.create({
   paragraph: {
     color: Colors.white,
     fontSize: 18,
-    fontWeight: '300',
+    fontFamily: 'RNSMiles-Medium',
   },
   subtitle: {
     color: Colors.white,
-    fontSize: 14,
-    fontWeight: '200',
+    fontSize: 18,
+    fontFamily: 'RNSMiles-Medium',
+  },
+  meridian: {
+    color: Colors.white,
+    fontSize: 36,
+    fontFamily: 'RNSMiles-Bold',
   },
   /* Utility styles */
   margin: {
@@ -72,8 +82,9 @@ export default StyleSheet.create({
   /* Text input styling */
   input: {
     height: 50,
-    fontSize: 18,
-    borderBottomWidth: 2,
+    fontSize: 14,
+    fontFamily: 'RNSMiles-Medium',
+    borderBottomWidth: 0.5,
     borderBottomColor: Colors.primary,
     color: Colors.white,
     marginBottom: 24,
@@ -81,8 +92,9 @@ export default StyleSheet.create({
   destinationInput: {
     borderRadius: 8,
     borderColor: Colors.darkGray,
-    color: Colors.white,
+    color: Colors.gray,
     fontSize: 14,
+    fontFamily: 'RNSMiles-Medium',
     width: 200,
     height: 40,
     marginLeft: 0,
@@ -93,6 +105,7 @@ export default StyleSheet.create({
   searchSuggestions: {
     color: Colors.darkGray,
     fontSize: 14,
+    fontFamily: 'RNSMiles-Medium',
     width: '90%',
     height: 55,
     padding: 10,

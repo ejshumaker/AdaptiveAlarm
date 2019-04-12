@@ -73,5 +73,10 @@
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6"
   },
-  "private": true
+  "private": true,
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  }
 }

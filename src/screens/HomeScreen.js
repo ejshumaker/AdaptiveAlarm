@@ -16,8 +16,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { userSignOut } from '../store/actions/userActions';
-import Alarm from '../custom_modules/Alarm';
-
 import { Colors, GlobalStyles } from '../constants';
 
 class HomeScreen extends Component {
@@ -53,7 +51,6 @@ class HomeScreen extends Component {
     const { navigate } = navigation;
 
     // destructure alarms
-    console.log(alarms);
     const alarm = alarms.alarm1 || {};
     const {
       destinationLoc,
