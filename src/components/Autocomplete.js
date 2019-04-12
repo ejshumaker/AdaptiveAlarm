@@ -62,7 +62,10 @@ class Autocomplete extends Component {
   render() {
     const { autoCompleteValue } = this.state;
     return (
-      <View style={{ height: '8%', marginBottom: 24, marginTop: 10 }}>
+      <View style={{
+        height: '8%', marginBottom: 24, marginTop: 10, zIndex: 4, elevation: 4,
+      }}
+      >
         <GoogleAutoComplete
           apiKey={API_KEY}
           debounce={1000}
