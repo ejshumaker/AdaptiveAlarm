@@ -102,7 +102,7 @@ describe('Main Screen', () => {
       loading={false}
       alarmId="1"
     />);
-    wrapper.find('UserIcon').simulate(
+    wrapper.find('TouchableOpacity').at(1).simulate(
       'press',
       { preventDefault() {} },
     );
@@ -119,7 +119,7 @@ describe('Main Screen', () => {
       loading={false}
       alarmId="1"
     />);
-    wrapper.find('AddIcon').simulate(
+    wrapper.find('TouchableOpacity').at(2).simulate(
       'press',
       { preventDefault() {} },
     );

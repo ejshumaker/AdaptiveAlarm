@@ -1,46 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Location Item tests press it 1`] = `
-<TouchableOpacity
-  onPress={[Function]}
->
-  <View
-    style={
-      Object {
-        "borderTopColor": "#505050",
-        "borderTopWidth": 0.5,
-        "flexDirection": "row",
-        "width": "100%",
-      }
-    }
-  >
-    <LocationIcon
-      style={
-        Object {
-          "marginLeft": 13,
-          "marginTop": 14,
-        }
-      }
-    />
-    <Text
-      style={
-        Object {
-          "color": "#505050",
-          "fontFamily": "RNSMiles-Medium",
-          "fontSize": 14,
-          "height": 55,
-          "padding": 10,
-          "paddingRight": 15,
-          "width": "90%",
-        }
-      }
-    >
-      desc
-    </Text>
-  </View>
-</TouchableOpacity>
-`;
-
 exports[`Location Item tests test LocationItem matches snapshot 1`] = `
 <TouchableOpacity
   onPress={[Function]}

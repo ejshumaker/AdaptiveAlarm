@@ -1,24 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Alarm Screen test Alarm screen matches snapshot time 1 1`] = `
-<View
-  style={
-    Object {
-      "marginTop": 75,
-    }
-  }
->
+<View>
+  <StatusBarBackground />
   <View
     style={
-      Object {
-        "alignItems": "flex-end",
-        "marginRight": 28,
-      }
+      Array [
+        Object {
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 24,
+          "padding": 24,
+        },
+      ]
     }
   >
-    <RightIcon
+    <TouchableOpacity
       onPress={[Function]}
-    />
+    >
+      <CloseIcon />
+    </TouchableOpacity>
   </View>
   <View
     style={
@@ -66,24 +68,26 @@ exports[`Alarm Screen test Alarm screen matches snapshot time 1 1`] = `
 `;
 
 exports[`Alarm Screen test Alarm screen matches snapshot time 2 1`] = `
-<View
-  style={
-    Object {
-      "marginTop": 75,
-    }
-  }
->
+<View>
+  <StatusBarBackground />
   <View
     style={
-      Object {
-        "alignItems": "flex-end",
-        "marginRight": 28,
-      }
+      Array [
+        Object {
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 24,
+          "padding": 24,
+        },
+      ]
     }
   >
-    <RightIcon
+    <TouchableOpacity
       onPress={[Function]}
-    />
+    >
+      <CloseIcon />
+    </TouchableOpacity>
   </View>
   <View
     style={

@@ -9,7 +9,8 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "padding": 12,
+        "marginBottom": 24,
+        "padding": 24,
       }
     }
   >
@@ -37,13 +38,28 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
           Object {
             "color": "#E4F96A",
             "marginBottom": 48,
-            "marginTop": 24,
           },
         ]
       }
     >
       EDIT ALARM:
     </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "left",
+          "justifyContent": "space-between",
+          "marginBottom": 12,
+        }
+      }
+    >
+      <Buttons
+        backgroundColor="#E4F96A"
+        onPress={[Function]}
+        textColor="#13151A"
+        title="Import Calendar?"
+      />
+    </View>
     <Text
       style={
         Array [
@@ -90,7 +106,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
       returnKeyType="next"
       style={
         Object {
-          "borderBottomColor": "#E4F96A",
+          "borderBottomColor": "#DDDDDD",
           "borderBottomWidth": 0.5,
           "color": "#DDDDDD",
           "fontFamily": "RNSMiles-Medium",
@@ -126,7 +142,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
       returnKeyType="next"
       style={
         Object {
-          "borderBottomColor": "#E4F96A",
+          "borderBottomColor": "#DDDDDD",
           "borderBottomWidth": 0.5,
           "color": "#DDDDDD",
           "fontFamily": "RNSMiles-Medium",
@@ -187,7 +203,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
         Object {
           "color": "#505050",
           "style": Object {
-            "borderBottomColor": "#E4F96A",
+            "borderBottomColor": "#DDDDDD",
             "borderBottomWidth": 0.5,
             "color": "#DDDDDD",
             "fontFamily": "RNSMiles-Medium",
@@ -265,7 +281,8 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "padding": 12,
+        "marginBottom": 24,
+        "padding": 24,
       }
     }
   >
@@ -293,13 +310,28 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
           Object {
             "color": "#E4F96A",
             "marginBottom": 48,
-            "marginTop": 24,
           },
         ]
       }
     >
       NEW ALARM:
     </Text>
+    <View
+      style={
+        Object {
+          "alignItems": "left",
+          "justifyContent": "space-between",
+          "marginBottom": 12,
+        }
+      }
+    >
+      <Buttons
+        backgroundColor="#E4F96A"
+        onPress={[Function]}
+        textColor="#13151A"
+        title="Import Calendar?"
+      />
+    </View>
     <Text
       style={
         Array [
@@ -346,7 +378,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
       returnKeyType="next"
       style={
         Object {
-          "borderBottomColor": "#E4F96A",
+          "borderBottomColor": "#DDDDDD",
           "borderBottomWidth": 0.5,
           "color": "#DDDDDD",
           "fontFamily": "RNSMiles-Medium",
@@ -381,7 +413,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
       returnKeyType="next"
       style={
         Object {
-          "borderBottomColor": "#E4F96A",
+          "borderBottomColor": "#DDDDDD",
           "borderBottomWidth": 0.5,
           "color": "#DDDDDD",
           "fontFamily": "RNSMiles-Medium",
@@ -441,7 +473,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
         Object {
           "color": "#505050",
           "style": Object {
-            "borderBottomColor": "#E4F96A",
+            "borderBottomColor": "#DDDDDD",
             "borderBottomWidth": 0.5,
             "color": "#DDDDDD",
             "fontFamily": "RNSMiles-Medium",
@@ -514,7 +546,8 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "padding": 12,
+        "marginBottom": 24,
+        "padding": 24,
       }
     }
   >
@@ -542,7 +575,6 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
           Object {
             "color": "#E4F96A",
             "marginBottom": 48,
-            "marginTop": 24,
           },
         ]
       }
@@ -553,6 +585,22 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
       color="#E4F96A"
       size="large"
     />
+    <View
+      style={
+        Object {
+          "alignItems": "left",
+          "justifyContent": "space-between",
+          "marginBottom": 12,
+        }
+      }
+    >
+      <Buttons
+        backgroundColor="#E4F96A"
+        onPress={[Function]}
+        textColor="#13151A"
+        title="Import Calendar?"
+      />
+    </View>
     <Text
       style={
         Array [
@@ -599,7 +647,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
       returnKeyType="next"
       style={
         Object {
-          "borderBottomColor": "#E4F96A",
+          "borderBottomColor": "#DDDDDD",
           "borderBottomWidth": 0.5,
           "color": "#DDDDDD",
           "fontFamily": "RNSMiles-Medium",
@@ -634,7 +682,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
       returnKeyType="next"
       style={
         Object {
-          "borderBottomColor": "#E4F96A",
+          "borderBottomColor": "#DDDDDD",
           "borderBottomWidth": 0.5,
           "color": "#DDDDDD",
           "fontFamily": "RNSMiles-Medium",
@@ -694,7 +742,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
         Object {
           "color": "#505050",
           "style": Object {
-            "borderBottomColor": "#E4F96A",
+            "borderBottomColor": "#DDDDDD",
             "borderBottomWidth": 0.5,
             "color": "#DDDDDD",
             "fontFamily": "RNSMiles-Medium",
