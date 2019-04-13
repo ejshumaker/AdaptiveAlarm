@@ -69,6 +69,8 @@ class AlarmListScreen extends Component {
           {this.loader()}
 
           <FlatList
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
             data={Object.values(alarms)}
             renderItem={({ item, index }) => (
               <AlarmItem
