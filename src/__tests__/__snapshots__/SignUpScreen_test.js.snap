@@ -1,0 +1,845 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUp Screen test SignUp screen matches snapshot after state set 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": undefined,
+        "flex": 1,
+        "height": "95%",
+      },
+      Object {
+        "justifyContent": "center",
+        "padding": 48,
+      },
+    ]
+  }
+>
+  <StatusBar
+    barStyle="light-content"
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
+          "fontSize": 30,
+        },
+        Object {
+          "color": "#E4F96A",
+          "textAlign": "left",
+        },
+      ]
+    }
+  >
+    SIGN UP:
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 18,
+        },
+        Object {
+          "color": "#fa0505",
+          "marginVertical": 24,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <EmailIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Email"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <PersonIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Username"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <KeyIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Password"
+      placeholderTextColor="#AAAAAA"
+      secureTextEntry={true}
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <Number1Icon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="First Name"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+      }
+    }
+  >
+    <Number2Icon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Last Name"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginTop": 60,
+      }
+    }
+  >
+    <Buttons
+      backgroundColor="#E4F96A"
+      onPress={[Function]}
+      textColor="#13151A"
+      title="Sign Up"
+    />
+    <Buttons
+      backgroundColor="#505050"
+      onPress={[Function]}
+      textColor="#DDDDDD"
+      title="Sign In"
+    />
+  </View>
+</View>
+`;
+
+exports[`SignUp Screen test SignUp screen matches snapshot loading 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": undefined,
+        "flex": 1,
+        "height": "95%",
+      },
+      Object {
+        "justifyContent": "center",
+        "padding": 48,
+      },
+    ]
+  }
+>
+  <StatusBar
+    barStyle="light-content"
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
+          "fontSize": 30,
+        },
+        Object {
+          "color": "#E4F96A",
+          "textAlign": "left",
+        },
+      ]
+    }
+  >
+    SIGN UP:
+  </Text>
+  <ActivityIndicator
+    color="#E4F96A"
+    size="large"
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 18,
+        },
+        Object {
+          "color": "#fa0505",
+          "marginVertical": 24,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <EmailIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Email"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <PersonIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Username"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <KeyIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Password"
+      placeholderTextColor="#AAAAAA"
+      secureTextEntry={true}
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <Number1Icon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="First Name"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+      }
+    }
+  >
+    <Number2Icon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Last Name"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginTop": 60,
+      }
+    }
+  >
+    <Buttons
+      backgroundColor="#E4F96A"
+      onPress={[Function]}
+      textColor="#13151A"
+      title="Sign Up"
+    />
+    <Buttons
+      backgroundColor="#505050"
+      onPress={[Function]}
+      textColor="#DDDDDD"
+      title="Sign In"
+    />
+  </View>
+</View>
+`;
+
+exports[`SignUp Screen test SignUp screen matches snapshot not loading 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": undefined,
+        "flex": 1,
+        "height": "95%",
+      },
+      Object {
+        "justifyContent": "center",
+        "padding": 48,
+      },
+    ]
+  }
+>
+  <StatusBar
+    barStyle="light-content"
+  />
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Black",
+          "fontSize": 30,
+        },
+        Object {
+          "color": "#E4F96A",
+          "textAlign": "left",
+        },
+      ]
+    }
+  >
+    SIGN UP:
+  </Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 18,
+        },
+        Object {
+          "color": "#fa0505",
+          "marginVertical": 24,
+        },
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <EmailIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Email"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <PersonIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Username"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <KeyIcon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Password"
+      placeholderTextColor="#AAAAAA"
+      secureTextEntry={true}
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+        "marginBottom": 30,
+      }
+    }
+  >
+    <Number1Icon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="First Name"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#505050",
+        "borderRadius": 8,
+        "flexDirection": "row",
+        "height": 40,
+      }
+    }
+  >
+    <Number2Icon
+      style={
+        Object {
+          "marginLeft": 13,
+          "marginTop": 7,
+        }
+      }
+    />
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      placeholder="Last Name"
+      placeholderTextColor="#AAAAAA"
+      style={
+        Object {
+          "backgroundColor": "#505050",
+          "borderColor": "#505050",
+          "borderRadius": 8,
+          "color": "#AAAAAA",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 40,
+          "marginLeft": 0,
+          "marginRight": 5,
+          "padding": 10,
+          "width": 200,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginTop": 60,
+      }
+    }
+  >
+    <Buttons
+      backgroundColor="#E4F96A"
+      onPress={[Function]}
+      textColor="#13151A"
+      title="Sign Up"
+    />
+    <Buttons
+      backgroundColor="#505050"
+      onPress={[Function]}
+      textColor="#DDDDDD"
+      title="Sign In"
+    />
+  </View>
+</View>
+`;

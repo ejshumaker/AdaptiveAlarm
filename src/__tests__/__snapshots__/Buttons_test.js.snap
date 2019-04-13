@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buttons tests test Buttons matches snapshot 1`] = `
+<Buttons
+  backgroundColor="w"
+  onPress={[MockFunction]}
+  textColor="b"
+  title="test"
+>
+  <TouchableOpacity
+    onPress={[Function]}
+  >
+    <react-native-mock>
+      <Styled(View)
+        style={
+          Object {
+            "backgroundColor": "w",
+          }
+        }
+      >
+        <StyledNativeComponent
+          forwardedComponent={
+            Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "AccessibilityComponentType": Array [
+                "none",
+                "button",
+                "radiobutton_checked",
+                "radiobutton_unchecked",
+              ],
+              "AccessibilityTraits": Array [
+                "none",
+                "button",
+                "link",
+                "header",
+                "search",
+                "image",
+                "selected",
+                "plays",
+                "key",
+                "text",
+                "summary",
+                "disabled",
+                "frequentUpdates",
+                "startsMedia",
+                "adjustable",
+                "allowsDirectInteraction",
+                "pageTurn",
+              ],
+              "attrs": Array [],
+              "displayName": "Styled(View)",
+              "forceTouchAvailable": false,
+              "inlineStyle": InlineStyle {
+                "rules": Array [
+                  "
+  width: 186px;
+  height: 40px;
+  border-radius: 8px;
+  justify-content: center;
+  margin-bottom: 10px;
+",
+                ],
+              },
+              "render": [Function],
+              "styledComponentId": "StyledNativeComponent",
+              "target": [Function],
+              "withComponent": [Function],
+            }
+          }
+          forwardedRef={null}
+          style={
+            Object {
+              "backgroundColor": "w",
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "borderRadius": 8,
+                  "height": 40,
+                  "justifyContent": "center",
+                  "marginBottom": 10,
+                  "width": 186,
+                },
+                Object {
+                  "backgroundColor": "w",
+                },
+              ]
+            }
+          >
+            <react-native-mock>
+              <Styled(Text)
+                style={
+                  Object {
+                    "color": "b",
+                    "fontFamily": "RNSMiles-XBold",
+                  }
+                }
+              >
+                <StyledNativeComponent
+                  forwardedComponent={
+                    Object {
+                      "$$typeof": Symbol(react.forward_ref),
+                      "attrs": Array [],
+                      "displayName": "Styled(Text)",
+                      "inlineStyle": InlineStyle {
+                        "rules": Array [
+                          "
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+",
+                        ],
+                      },
+                      "render": [Function],
+                      "styledComponentId": "StyledNativeComponent",
+                      "target": [Function],
+                      "withComponent": [Function],
+                    }
+                  }
+                  forwardedRef={null}
+                  style={
+                    Object {
+                      "color": "b",
+                      "fontFamily": "RNSMiles-XBold",
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      Array [
+                        Object {
+                          "fontSize": 14,
+                          "textAlign": "center",
+                          "textTransform": "uppercase",
+                        },
+                        Object {
+                          "color": "b",
+                          "fontFamily": "RNSMiles-XBold",
+                        },
+                      ]
+                    }
+                  >
+                    <react-native-mock>
+                      TEST
+                    </react-native-mock>
+                  </Text>
+                </StyledNativeComponent>
+              </Styled(Text)>
+            </react-native-mock>
+          </View>
+        </StyledNativeComponent>
+      </Styled(View)>
+    </react-native-mock>
+  </TouchableOpacity>
+</Buttons>
+`;
