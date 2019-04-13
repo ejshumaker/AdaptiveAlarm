@@ -144,7 +144,7 @@ class AccountScreen extends Component {
     });
 
     return (
-      <View style={{ justifyContent: 'space-around' }}>
+      <View>
         <StatusBarBackground />
         {this.menu()}
         <View style={{ alignItems: 'center' }}>
