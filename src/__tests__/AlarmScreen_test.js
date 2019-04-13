@@ -9,7 +9,7 @@ import { AlarmScreen } from '../screens/AlarmScreen';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-jest.mock('../constants/alarm.mp3', () => jest.fn());
+jest.mock('../assets/sounds/', () => jest.fn());
 
 describe('Alarm Screen', () => {
   let wrapper;

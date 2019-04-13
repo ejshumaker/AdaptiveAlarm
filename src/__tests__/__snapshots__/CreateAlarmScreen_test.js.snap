@@ -1,499 +1,759 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
-<View
-  style={
-    Array [
-      Object {
-        "backgroundColor": undefined,
-        "flex": 1,
-      },
-      Object {
-        "paddingHorizontal": 48,
-        "paddingVertical": "10%",
-      },
-    ]
-  }
->
-  <CloseIcon
-    onPress={[Function]}
-    style={
-      Object {
-        "marginLeft": -20,
-        "marginTop": 27,
-      }
-    }
-  />
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#DDDDDD",
-          "fontFamily": "RNSMiles-Black",
-          "fontSize": 30,
-        },
-        Object {
-          "color": "#E4F96A",
-          "marginBottom": 12,
-          "marginTop": 50,
-        },
-      ]
-    }
-  >
-    Edit Alarm:
-  </Text>
-  <Text
-    style={
-      Object {
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 18,
-      }
-    }
-  >
-    Destination
-  </Text>
-  <Autocomplete
-    autoCompleteValue="Middleton, WI"
-    onDestChange={[Function]}
-  />
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#DDDDDD",
-          "fontFamily": "RNSMiles-Medium",
-          "fontSize": 18,
-        },
-      ]
-    }
-  >
-    Routine Time
-  </Text>
-  <TextInput
-    keyboardAppearance="dark"
-    keyboardType="numeric"
-    onChangeText={[Function]}
-    onSubmitEditing={[Function]}
-    placeholder="(30 min)"
-    placeholderTextColor="#505050"
-    returnKeyType="next"
-    style={
-      Object {
-        "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 0.5,
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 14,
-        "height": 50,
-        "marginBottom": 24,
-      }
-    }
-    value="30"
-  />
-  <Text
-    style={
-      Object {
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 18,
-      }
-    }
-  >
-    Arrival Time
-  </Text>
-  <TextInput
-    keyboardAppearance="dark"
-    onChangeText={[Function]}
-    onSubmitEditing={[Function]}
-    placeholder="(8:00 AM)"
-    placeholderTextColor="#505050"
-    returnKeyType="next"
-    style={
-      Object {
-        "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 0.5,
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 14,
-        "height": 50,
-        "marginBottom": 24,
-      }
-    }
-    value="8:00 AM"
-  />
-  <Text
-    style={
-      Object {
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 18,
-      }
-    }
-  >
-    Recurring
-  </Text>
-  <DayPicker
-    days={
-      Object {
-        "fri": true,
-        "mon": false,
-        "sat": false,
-        "sun": true,
-        "thu": false,
-        "tue": true,
-        "wed": true,
-      }
-    }
-    onChangeDay={[Function]}
-  />
+<View>
+  <StatusBarBackground />
   <View
     style={
       Object {
-        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 12,
       }
     }
   >
-    <Buttons
-      backgroundColor="#E4F96A"
+    <TouchableOpacity
       onPress={[Function]}
-      textColor="#13151A"
-      title="Save Alarm"
-    />
-    <Buttons
-      backgroundColor="#fa0505"
-      onPress={[Function]}
-      textColor="#13151A"
-      title="Delete Alarm"
-    />
+    >
+      <CloseIcon />
+    </TouchableOpacity>
   </View>
+  <ScrollView
+    contentContainerStyle={
+      Object {
+        "paddingHorizontal": 48,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Black",
+            "fontSize": 30,
+          },
+          Object {
+            "color": "#E4F96A",
+            "marginBottom": 48,
+            "marginTop": 24,
+          },
+        ]
+      }
+    >
+      EDIT ALARM:
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginVertical": 0,
+          },
+        ]
+      }
+    >
+      Destination
+    </Text>
+    <Autocomplete
+      autoCompleteValue="Middleton, WI"
+      onDestChange={[Function]}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 8,
+          },
+        ]
+      }
+    >
+      Routine Time
+    </Text>
+    <TextInput
+      keyboardAppearance="dark"
+      keyboardType="numeric"
+      onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      placeholder="(30 min)"
+      placeholderTextColor="#505050"
+      returnKeyType="next"
+      style={
+        Object {
+          "borderBottomColor": "#E4F96A",
+          "borderBottomWidth": 0.5,
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 50,
+          "marginBottom": 24,
+        }
+      }
+      value="30"
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Arrival Time
+    </Text>
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      placeholder="(8:00 AM)"
+      placeholderTextColor="#505050"
+      returnKeyType="next"
+      style={
+        Object {
+          "borderBottomColor": "#E4F96A",
+          "borderBottomWidth": 0.5,
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 50,
+          "marginBottom": 24,
+        }
+      }
+      value="8:00 AM"
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Alarm Sound
+    </Text>
+    <RNPickerSelect
+      Icon={[Function]}
+      disabled={false}
+      doneText="Done"
+      hideDoneBar={false}
+      itemKey={null}
+      items={Array []}
+      modalProps={Object {}}
+      onClose={null}
+      onDonePress={null}
+      onDownArrow={null}
+      onOpen={null}
+      onUpArrow={null}
+      onValueChange={[Function]}
+      pickerProps={Object {}}
+      placeholder={
+        Object {
+          "color": "#505050",
+          "label": "Select Alarm Sound",
+          "value": null,
+        }
+      }
+      placeholderTextColor="#C7C7CD"
+      style={
+        Object {
+          "iconContainer": Object {
+            "top": 10,
+          },
+        }
+      }
+      textInputProps={
+        Object {
+          "color": "#505050",
+          "style": Object {
+            "borderBottomColor": "#E4F96A",
+            "borderBottomWidth": 0.5,
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 14,
+            "height": 50,
+            "marginBottom": 24,
+          },
+        }
+      }
+      useNativeAndroidPickerStyle={true}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Recurring
+    </Text>
+    <DayPicker
+      days={
+        Object {
+          "fri": true,
+          "mon": false,
+          "sat": false,
+          "sun": true,
+          "thu": false,
+          "tue": true,
+          "wed": true,
+        }
+      }
+      onChangeDay={[Function]}
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Buttons
+        backgroundColor="#E4F96A"
+        onPress={[Function]}
+        textColor="#13151A"
+        title="Save Alarm"
+      />
+      <Buttons
+        backgroundColor="#fa0505"
+        onPress={[Function]}
+        textColor="#13151A"
+        title="Delete Alarm"
+      />
+    </View>
+    <BottomBarBackground />
+  </ScrollView>
 </View>
 `;
 
 exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 1`] = `
-<View
-  style={
-    Array [
-      Object {
-        "backgroundColor": undefined,
-        "flex": 1,
-      },
-      Object {
-        "paddingHorizontal": 48,
-        "paddingVertical": "10%",
-      },
-    ]
-  }
->
-  <CloseIcon
-    onPress={[Function]}
-    style={
-      Object {
-        "marginLeft": -20,
-        "marginTop": 27,
-      }
-    }
-  />
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#DDDDDD",
-          "fontFamily": "RNSMiles-Black",
-          "fontSize": 30,
-        },
-        Object {
-          "color": "#E4F96A",
-          "marginBottom": 12,
-          "marginTop": 50,
-        },
-      ]
-    }
-  >
-    New Alarm:
-  </Text>
-  <Text
-    style={
-      Object {
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 18,
-      }
-    }
-  >
-    Destination
-  </Text>
-  <Autocomplete
-    autoCompleteValue=""
-    onDestChange={[Function]}
-  />
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#DDDDDD",
-          "fontFamily": "RNSMiles-Medium",
-          "fontSize": 18,
-        },
-      ]
-    }
-  >
-    Routine Time
-  </Text>
-  <TextInput
-    keyboardAppearance="dark"
-    keyboardType="numeric"
-    onChangeText={[Function]}
-    onSubmitEditing={[Function]}
-    placeholder="(30 min)"
-    placeholderTextColor="#505050"
-    returnKeyType="next"
-    style={
-      Object {
-        "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 0.5,
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 14,
-        "height": 50,
-        "marginBottom": 24,
-      }
-    }
-  />
-  <Text
-    style={
-      Object {
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 18,
-      }
-    }
-  >
-    Arrival Time
-  </Text>
-  <TextInput
-    keyboardAppearance="dark"
-    onChangeText={[Function]}
-    onSubmitEditing={[Function]}
-    placeholder="(8:00 AM)"
-    placeholderTextColor="#505050"
-    returnKeyType="next"
-    style={
-      Object {
-        "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 0.5,
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 14,
-        "height": 50,
-        "marginBottom": 24,
-      }
-    }
-  />
-  <Text
-    style={
-      Object {
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 18,
-      }
-    }
-  >
-    Recurring
-  </Text>
-  <DayPicker
-    days={
-      Object {
-        "fri": false,
-        "mon": false,
-        "sat": false,
-        "sun": false,
-        "thu": false,
-        "tue": false,
-        "wed": false,
-      }
-    }
-    onChangeDay={[Function]}
-  />
+<View>
+  <StatusBarBackground />
   <View
     style={
       Object {
-        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 12,
       }
     }
   >
-    <Buttons
-      backgroundColor="#E4F96A"
+    <TouchableOpacity
       onPress={[Function]}
-      textColor="#13151A"
-      title="Save Alarm"
-    />
+    >
+      <CloseIcon />
+    </TouchableOpacity>
   </View>
+  <ScrollView
+    contentContainerStyle={
+      Object {
+        "paddingHorizontal": 48,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Black",
+            "fontSize": 30,
+          },
+          Object {
+            "color": "#E4F96A",
+            "marginBottom": 48,
+            "marginTop": 24,
+          },
+        ]
+      }
+    >
+      NEW ALARM:
+    </Text>
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginVertical": 0,
+          },
+        ]
+      }
+    >
+      Destination
+    </Text>
+    <Autocomplete
+      autoCompleteValue=""
+      onDestChange={[Function]}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 8,
+          },
+        ]
+      }
+    >
+      Routine Time
+    </Text>
+    <TextInput
+      keyboardAppearance="dark"
+      keyboardType="numeric"
+      onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      placeholder="(30 min)"
+      placeholderTextColor="#505050"
+      returnKeyType="next"
+      style={
+        Object {
+          "borderBottomColor": "#E4F96A",
+          "borderBottomWidth": 0.5,
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 50,
+          "marginBottom": 24,
+        }
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Arrival Time
+    </Text>
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      placeholder="(8:00 AM)"
+      placeholderTextColor="#505050"
+      returnKeyType="next"
+      style={
+        Object {
+          "borderBottomColor": "#E4F96A",
+          "borderBottomWidth": 0.5,
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 50,
+          "marginBottom": 24,
+        }
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Alarm Sound
+    </Text>
+    <RNPickerSelect
+      Icon={[Function]}
+      disabled={false}
+      doneText="Done"
+      hideDoneBar={false}
+      itemKey={null}
+      items={Array []}
+      modalProps={Object {}}
+      onClose={null}
+      onDonePress={null}
+      onDownArrow={null}
+      onOpen={null}
+      onUpArrow={null}
+      onValueChange={[Function]}
+      pickerProps={Object {}}
+      placeholder={
+        Object {
+          "color": "#505050",
+          "label": "Select Alarm Sound",
+          "value": null,
+        }
+      }
+      placeholderTextColor="#C7C7CD"
+      style={
+        Object {
+          "iconContainer": Object {
+            "top": 10,
+          },
+        }
+      }
+      textInputProps={
+        Object {
+          "color": "#505050",
+          "style": Object {
+            "borderBottomColor": "#E4F96A",
+            "borderBottomWidth": 0.5,
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 14,
+            "height": 50,
+            "marginBottom": 24,
+          },
+        }
+      }
+      useNativeAndroidPickerStyle={true}
+      value={2}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Recurring
+    </Text>
+    <DayPicker
+      days={
+        Object {
+          "fri": false,
+          "mon": false,
+          "sat": false,
+          "sun": false,
+          "thu": false,
+          "tue": false,
+          "wed": false,
+        }
+      }
+      onChangeDay={[Function]}
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Buttons
+        backgroundColor="#E4F96A"
+        onPress={[Function]}
+        textColor="#13151A"
+        title="Save Alarm"
+      />
+    </View>
+    <BottomBarBackground />
+  </ScrollView>
 </View>
 `;
 
 exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loading 1`] = `
-<View
-  style={
-    Array [
-      Object {
-        "backgroundColor": undefined,
-        "flex": 1,
-      },
-      Object {
-        "paddingHorizontal": 48,
-        "paddingVertical": "10%",
-      },
-    ]
-  }
->
-  <CloseIcon
-    onPress={[Function]}
-    style={
-      Object {
-        "marginLeft": -20,
-        "marginTop": 27,
-      }
-    }
-  />
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#DDDDDD",
-          "fontFamily": "RNSMiles-Black",
-          "fontSize": 30,
-        },
-        Object {
-          "color": "#E4F96A",
-          "marginBottom": 12,
-          "marginTop": 50,
-        },
-      ]
-    }
-  >
-    New Alarm:
-  </Text>
-  <Text
-    style={
-      Object {
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 18,
-      }
-    }
-  >
-    Destination
-  </Text>
-  <Autocomplete
-    autoCompleteValue=""
-    onDestChange={[Function]}
-  />
-  <Text
-    style={
-      Array [
-        Object {
-          "color": "#DDDDDD",
-          "fontFamily": "RNSMiles-Medium",
-          "fontSize": 18,
-        },
-      ]
-    }
-  >
-    Routine Time
-  </Text>
-  <TextInput
-    keyboardAppearance="dark"
-    keyboardType="numeric"
-    onChangeText={[Function]}
-    onSubmitEditing={[Function]}
-    placeholder="(30 min)"
-    placeholderTextColor="#505050"
-    returnKeyType="next"
-    style={
-      Object {
-        "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 0.5,
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 14,
-        "height": 50,
-        "marginBottom": 24,
-      }
-    }
-  />
-  <Text
-    style={
-      Object {
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 18,
-      }
-    }
-  >
-    Arrival Time
-  </Text>
-  <TextInput
-    keyboardAppearance="dark"
-    onChangeText={[Function]}
-    onSubmitEditing={[Function]}
-    placeholder="(8:00 AM)"
-    placeholderTextColor="#505050"
-    returnKeyType="next"
-    style={
-      Object {
-        "borderBottomColor": "#E4F96A",
-        "borderBottomWidth": 0.5,
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 14,
-        "height": 50,
-        "marginBottom": 24,
-      }
-    }
-  />
-  <Text
-    style={
-      Object {
-        "color": "#DDDDDD",
-        "fontFamily": "RNSMiles-Medium",
-        "fontSize": 18,
-      }
-    }
-  >
-    Recurring
-  </Text>
-  <DayPicker
-    days={
-      Object {
-        "fri": false,
-        "mon": false,
-        "sat": false,
-        "sun": false,
-        "thu": false,
-        "tue": false,
-        "wed": false,
-      }
-    }
-    onChangeDay={[Function]}
-  />
-  <ActivityIndicator
-    color="#E4F96A"
-    size="large"
-  />
+<View>
+  <StatusBarBackground />
   <View
     style={
       Object {
-        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 12,
       }
     }
   >
-    <Buttons
-      backgroundColor="#E4F96A"
+    <TouchableOpacity
       onPress={[Function]}
-      textColor="#13151A"
-      title="Save Alarm"
-    />
+    >
+      <CloseIcon />
+    </TouchableOpacity>
   </View>
+  <ScrollView
+    contentContainerStyle={
+      Object {
+        "paddingHorizontal": 48,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Black",
+            "fontSize": 30,
+          },
+          Object {
+            "color": "#E4F96A",
+            "marginBottom": 48,
+            "marginTop": 24,
+          },
+        ]
+      }
+    >
+      NEW ALARM:
+    </Text>
+    <ActivityIndicator
+      color="#E4F96A"
+      size="large"
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginVertical": 0,
+          },
+        ]
+      }
+    >
+      Destination
+    </Text>
+    <Autocomplete
+      autoCompleteValue=""
+      onDestChange={[Function]}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 8,
+          },
+        ]
+      }
+    >
+      Routine Time
+    </Text>
+    <TextInput
+      keyboardAppearance="dark"
+      keyboardType="numeric"
+      onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      placeholder="(30 min)"
+      placeholderTextColor="#505050"
+      returnKeyType="next"
+      style={
+        Object {
+          "borderBottomColor": "#E4F96A",
+          "borderBottomWidth": 0.5,
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 50,
+          "marginBottom": 24,
+        }
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Arrival Time
+    </Text>
+    <TextInput
+      keyboardAppearance="dark"
+      onChangeText={[Function]}
+      onSubmitEditing={[Function]}
+      placeholder="(8:00 AM)"
+      placeholderTextColor="#505050"
+      returnKeyType="next"
+      style={
+        Object {
+          "borderBottomColor": "#E4F96A",
+          "borderBottomWidth": 0.5,
+          "color": "#DDDDDD",
+          "fontFamily": "RNSMiles-Medium",
+          "fontSize": 14,
+          "height": 50,
+          "marginBottom": 24,
+        }
+      }
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Alarm Sound
+    </Text>
+    <RNPickerSelect
+      Icon={[Function]}
+      disabled={false}
+      doneText="Done"
+      hideDoneBar={false}
+      itemKey={null}
+      items={Array []}
+      modalProps={Object {}}
+      onClose={null}
+      onDonePress={null}
+      onDownArrow={null}
+      onOpen={null}
+      onUpArrow={null}
+      onValueChange={[Function]}
+      pickerProps={Object {}}
+      placeholder={
+        Object {
+          "color": "#505050",
+          "label": "Select Alarm Sound",
+          "value": null,
+        }
+      }
+      placeholderTextColor="#C7C7CD"
+      style={
+        Object {
+          "iconContainer": Object {
+            "top": 10,
+          },
+        }
+      }
+      textInputProps={
+        Object {
+          "color": "#505050",
+          "style": Object {
+            "borderBottomColor": "#E4F96A",
+            "borderBottomWidth": 0.5,
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 14,
+            "height": 50,
+            "marginBottom": 24,
+          },
+        }
+      }
+      useNativeAndroidPickerStyle={true}
+      value={2}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Recurring
+    </Text>
+    <DayPicker
+      days={
+        Object {
+          "fri": false,
+          "mon": false,
+          "sat": false,
+          "sun": false,
+          "thu": false,
+          "tue": false,
+          "wed": false,
+        }
+      }
+      onChangeDay={[Function]}
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Buttons
+        backgroundColor="#E4F96A"
+        onPress={[Function]}
+        textColor="#13151A"
+        title="Save Alarm"
+      />
+    </View>
+    <BottomBarBackground />
+  </ScrollView>
 </View>
 `;

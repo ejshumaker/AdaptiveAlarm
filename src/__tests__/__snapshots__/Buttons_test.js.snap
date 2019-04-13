@@ -57,7 +57,7 @@ exports[`Buttons tests test Buttons matches snapshot 1`] = `
   height: 40px;
   border-radius: 8px;
   justify-content: center;
-  margin-bottom: 21px;
+  margin-bottom: 10px;
 ",
                 ],
               },
@@ -81,7 +81,7 @@ exports[`Buttons tests test Buttons matches snapshot 1`] = `
                   "borderRadius": 8,
                   "height": 40,
                   "justifyContent": "center",
-                  "marginBottom": 21,
+                  "marginBottom": 10,
                   "width": 186,
                 },
                 Object {

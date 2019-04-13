@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Status Bar tests test StatusBarBackground matches snapshot 1`] = `
+<StatusBarBackground
+  backgroundColor="w"
+  onPress={[MockFunction]}
+  textColor="b"
+  title="test"
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "rgba(255,255,255,0)",
+          "height": 18,
+        },
+        Object {},
+      ]
+    }
+  >
+    <react-native-mock />
+  </View>
+</StatusBarBackground>
+`;

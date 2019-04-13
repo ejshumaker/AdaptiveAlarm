@@ -15,6 +15,7 @@ jest.mock('firebase', () => ({
 }));
 
 Enzyme.configure({ adapter: new Adapter() });
+jest.mock('../assets/sounds/', () => []);
 
 
 describe('CreateAlarm Screen', () => {

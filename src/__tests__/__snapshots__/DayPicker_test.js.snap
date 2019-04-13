@@ -3,12 +3,20 @@
 exports[`DayPicker tests no days 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "flexDirection": "row",
-      "justifyContent": "center",
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+      },
+      Object {
+        "alignItems": "center",
+        "height": 60,
+        "justifyContent": "space-around",
+        "marginVertical": 24,
+      },
+    ]
   }
 >
   <TouchableOpacity
@@ -206,12 +214,20 @@ exports[`DayPicker tests no days 1`] = `
 exports[`DayPicker tests test daypicker matches snapshot 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "flex": 1,
-      "flexDirection": "row",
-      "justifyContent": "center",
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+      },
+      Object {
+        "alignItems": "center",
+        "height": 60,
+        "justifyContent": "space-around",
+        "marginVertical": 24,
+      },
+    ]
   }
 >
   <TouchableOpacity
