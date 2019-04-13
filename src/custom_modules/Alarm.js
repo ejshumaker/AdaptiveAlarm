@@ -1,6 +1,5 @@
 import { Location, Permissions } from 'expo';
 
-const MILS_PER_HOUR = 3600000;
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
 
@@ -24,11 +23,13 @@ async function getRouteTime(startLoc, destinationLoc, departureTime) {
         if (json.rows.length) {
           if (json.rows[0].elements[0].duration_in_traffic) {
             resolve(json.rows[0].elements[0].duration_in_traffic.value / SECS_PER_MIN);
-          } else {
+          } else if (json.rows[0].elements[0].duration) {
             resolve(json.rows[0].elements[0].duration.value / SECS_PER_MIN);
+          } else {
+            reject(Error('no elements in rows'));
           }
         } else {
-          reject();
+          reject(Error('error no rows'));
         }
       })
       .catch((err) => {
@@ -36,6 +37,7 @@ async function getRouteTime(startLoc, destinationLoc, departureTime) {
           'react-native-maps-directions Error on GMAPS route request',
           err,
         );
+        reject(err);
       });
   });
 }
@@ -47,72 +49,59 @@ async function getCurrentLocation() {
       .then((response) => {
         if (response.status !== 'granted') {
           console.log('Permission to access location was denied');
-          reject();
+          reject(Error('Permission to access location was denied'));
         } else {
         // const location = await Location.getCurrentPositionAsync({});
           Location.getCurrentPositionAsync({})
             .then((location) => {
               const lat = location.coords.latitude;
               const lng = location.coords.longitude;
-              console.log(`{lat: ${lat}, lng: ${lng}}`);
               resolve(`${lat}, ${lng}`);
+            })
+            .catch((e) => {
+              reject(e);
             });
         }
+      })
+      .catch((e) => {
+        reject(e);
       });
   });
 }
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-async function getAlarmTimeFromLocation(startLoc, destinationLoc, timeToGetReady, arrivalTime) {
-  const loops = 4;
-  return new Promise((resolve) => {
-    getRouteTime(startLoc, destinationLoc, arrivalTime)
-      .then(async (re) => {
-        let duration = re;
-
-        let departureTime = arrivalTime;
-        let i = 0;
-        while (Math.abs(departureTime + (duration * MILS_PER_MIN)
-        - arrivalTime) > 6 * MILS_PER_MIN && i < loops) {
-          departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
-          await getRouteTime(startLoc, destinationLoc, departureTime)
-            .then((resp) => {
-              duration = resp;
-            });
-          i += 1;
-        }
-        resolve(departureTime - timeToGetReady * MILS_PER_MIN);
-      });
-  });
-}
-
-
-async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
-  console.log(destinationLoc);
-  console.log(timeToGetReady);
-  console.log(arrivalTime);
-  const loops = 4;
-  return new Promise((resolve) => {
-    getCurrentLocation()
+async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit) {
+  const loops = loopLimit;
+  const timeRange = timeLimit;
+  return new Promise((resolve, reject) => {
+    exportFunctions.getCurrentLocation()
       .then((response) => {
         const startLoc = response;
-
         getRouteTime(startLoc, destinationLoc, arrivalTime)
           .then(async (re) => {
             let duration = re;
             let departureTime = arrivalTime;
             let i = 0;
             while (Math.abs(departureTime + (duration * MILS_PER_MIN)
-        - arrivalTime) > 6 * MILS_PER_MIN && i < loops) {
+        - arrivalTime) > timeRange * MILS_PER_MIN && i < loops) {
               departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
               await getRouteTime(startLoc, destinationLoc, departureTime)
                 .then((resp) => {
                   duration = resp;
+                })
+                .catch((e) => {
+                  reject(e);
                 });
               i += 1;
             }
             resolve(departureTime - timeToGetReady * MILS_PER_MIN);
+          })
+          .catch((e) => {
+            reject(e);
           });
+      })
+      .catch((e) => {
+        reject(e);
       });
   });
 }
@@ -120,14 +109,31 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime) {
 function triggerNavigate(navigate) {
   navigate('Alarm');
 }
-async function armAlarm(alarmTime, navigate) {
+let timeoutRef;
+let navigateRef; // hacky way to let navigation persist
+/**
+ * Given an exact time in UTC, armAlarm sets up
+ * the actual alarm/timers required to fire off alarm
+ * @param  {Time_UTC} alarmTime
+ * @param  {Navigation} navigate
+ * @return {[type]}           [description]
+ */
+async function armAlarm(alarmTime) {
+  if (timeoutRef) clearTimeout(timeoutRef);
   const date = new Date();
   const current = date.getTime(); // get current time
-  let difference = alarmTime - current;
-  console.log(difference);
-  if (difference < 0) difference = 0;
-  console.log(`${difference / (MILS_PER_HOUR)} Hours`);
-  setTimeout(() => triggerNavigate(navigate), difference);
+  const difference = alarmTime - current;
+  if (difference < 0) console.log('** Alarm fired after desired time **\n** Should still be before arrival time **');
+  timeoutRef = setTimeout(() => triggerNavigate(exportFunctions.navigateRef), difference);
 }
 
-export default { getAlarmTime, armAlarm, getAlarmTimeFromLocation };
+function initArmAlarm(navigate) {
+  exportFunctions.navigateRef = navigate;
+}
+
+
+const exportFunctions = {
+  navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime,
+};
+
+export default exportFunctions;

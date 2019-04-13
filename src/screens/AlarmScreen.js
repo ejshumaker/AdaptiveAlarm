@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Audio } from 'expo';
-import { alarmOff } from '../store/actions/alarmActions';
 
+import sounds from '../assets/sounds';
 import { GlobalStyles, Colors } from '../constants';
 
-import { Buttons } from '../components';
-import { RightIcon } from '../icons/right';
+import { Buttons, StatusBarBackground } from '../components';
+import { CloseIcon } from '../icons/close';
 
 class AlarmScreen extends Component {
   constructor() {
@@ -36,8 +36,8 @@ class AlarmScreen extends Component {
     });
 
     this.getSoundLoaded();
-    const { addListener } = this.props.navigation;
-    const self = this;
+    const { navigation } = this.props;
+    const { addListener } = navigation;
 
     this.listeners = [
       addListener('didFocus', () => {
@@ -54,12 +54,20 @@ class AlarmScreen extends Component {
 
 
   getSoundLoaded = async () => {
+    const { load } = this.state;
+    const { alarm } = this.props;
+    let { soundIndex } = alarm;
+    soundIndex = soundIndex || 1; // default on undefined
+    console.log('======================');
+    console.log('soundIndex:', soundIndex);
+    console.log('alarm:', JSON.stringify(alarm));
+
     try {
-      if (this.sound == null) {
-        this.sound = new Audio.Sound();
-      }
-      if (this.state.load === true) {
-        await this.sound.loadAsync(require('../constants/alarm.mp3'));
+      if (this.sound == null) this.sound = new Audio.Sound();
+
+      if (load === true) {
+        // const soundIndex = 3;
+        await this.sound.loadAsync(sounds[soundIndex - 1].audio);
         this.setState({ load: false });
       }
       this.playSound();
@@ -75,10 +83,29 @@ class AlarmScreen extends Component {
     }
   }
 
-
+  // check if it's been loaded
   stopSound = async (navigate) => {
-    await this.sound.stopAsync();
-    navigate('Main');
+    const { load } = this.state;
+    if (!load) {
+      await this.sound.stopAsync();
+      navigate('Main');
+    }
+  }
+
+  menu() {
+    const {
+      navigation,
+    } = this.props;
+    const { navigate } = navigation;
+    return (
+      <View style={[GlobalStyles.menu]}>
+        <TouchableOpacity
+          onPress={() => { this.stopSound(navigate); }}
+        >
+          <CloseIcon />
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   render() {
@@ -86,13 +113,9 @@ class AlarmScreen extends Component {
     const { navigation } = this.props;
     const { navigate } = navigation;
     return (
-      <View style={{ marginTop: 75 }}>
-        <View style={{ alignItems: 'flex-end', marginRight: 28 }}>
-          <RightIcon onPress={() => {
-            navigation.navigate('Main');
-          }}
-          />
-        </View>
+      <View>
+        <StatusBarBackground />
+        {this.menu()}
         <View style={{ alignItems: 'center', marginTop: 200 }}>
           <Text style={[GlobalStyles.h1, GlobalStyles.margin, { color: Colors.primary }]}>
             {time}
@@ -110,10 +133,15 @@ class AlarmScreen extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  turnAlarmOff: (navigate) => {
-    dispatch(alarmOff(navigate('Main')));
-  },
+AlarmScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  alarm: PropTypes.object.isRequired, // eslint-disable-line
+};
+
+const mapStateToProps = state => ({
+  alarm: state.alarm,
 });
 
 AlarmScreen.propTypes = {
@@ -124,4 +152,4 @@ AlarmScreen.propTypes = {
 };
 
 export { AlarmScreen };
-export default connect(null, mapDispatchToProps)(AlarmScreen);
+export default connect(mapStateToProps)(AlarmScreen);

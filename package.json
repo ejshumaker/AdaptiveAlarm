@@ -5,7 +5,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "node ./node_modules/jest/bin/jest.js"
+    "test": "node ./node_modules/jest/bin/jest.js --coverage"
   },
   "jest": {
     "automock": false,
@@ -49,6 +49,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-maps": "^0.23.0",
     "react-native-mock-render": "^0.1.2",
+    "react-native-picker-select": "^6.1.0",
     "react-navigation": "^3.3.2",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
@@ -73,5 +74,10 @@
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6"
   },
-  "private": true
+  "private": true,
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  }
 }

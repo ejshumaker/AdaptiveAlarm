@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import {
+  View, Text, StatusBar, TouchableOpacity,
+} from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import AnalogClock from '../components/AnalogClock';
-import Buttons from '../components/Buttons';
+import { Buttons, StatusBarBackground } from '../components';
 
-import { userDeleteAlarm } from '../store/actions/userActions';
+import { userSetAlarmStatus } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
 
 import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
+import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
   hasAlarmView() {
@@ -19,31 +22,45 @@ class MainScreen extends Component {
       alarmTime,
       loading,
     } = this.props;
+    const hour = !loading ? moment(alarmTime).format('hh') : '0';
+    const min = !loading ? moment(alarmTime).format('mm') : '00';
+    const meridian = !loading ? moment(alarmTime).format('a') : '- -';
+    const month = !loading ? moment(alarmTime).format('MMM') : '';
+    const day = !loading ? moment(alarmTime).format('D, dddd') : '';
 
-    const hour = !loading && alarmTime !== -1 ? moment(alarmTime).format('hh') : '0';
-    const min = !loading && alarmTime !== -1 ? moment(alarmTime).format('mm') : '00';
-    const meridian = !loading && alarmTime !== -1 ? moment(alarmTime).format('a') : '- -';
     return (
       <View>
         <Text style={
-          [GlobalStyles.h2, GlobalStyles.margin, { color: Colors.primary, marginTop: 40 }]
+          [GlobalStyles.h2, { color: Colors.primary }]
         }
         >
-          {'PREDICTED:'}
+          {loading ? 'CALCULATING...' : 'PREDICTED:'}
         </Text>
         <Text
-          style={[
-            { alignItems: 'center', color: Colors.white, fontSize: 70 },
-          ]}
+          style={
+            [GlobalStyles.h1, { color: Colors.white, fontSize: 70 }]
+          }
         >
-          <Text style={[{ fontWeight: 'bold' }]}>
+          <Text>
             {hour}
             {':'}
             {min}
           </Text>
-          <Text style={[{ fontSize: 40, textTransform: 'uppercase', fontWeight: '500' }]}>
+          <Text style={[GlobalStyles.meridian]}>
             {' '}
-            {meridian}
+            {meridian.toUpperCase()}
+          </Text>
+        </Text>
+        <Text style={
+          [GlobalStyles.month, { color: Colors.white, marginLeft: 130 }]
+        }
+        >
+          <Text>
+            {month.toUpperCase()}
+            {' '}
+          </Text>
+          <Text style={[GlobalStyles.date]}>
+            {day}
           </Text>
         </Text>
       </View>
@@ -59,7 +76,7 @@ class MainScreen extends Component {
           [GlobalStyles.h2, { color: Colors.primary, marginVertical: 48 }]
         }
         >
-          {'NO ALARM SET'}
+          {'NO ALARMS SET'}
         </Text>
       </View>
     );
@@ -69,7 +86,8 @@ class MainScreen extends Component {
     // eslint-disable-next-line no-unused-vars
     const self = this;
     return (
-      <View style={{ marginVertical: 48 }}>
+      <View style={{ marginVertical: '10%' }}>
+        <StatusBar barStyle="light-content" />
         <AnalogClock
           minuteHandLength={105}
           minuteHandColor={Colors.white}
@@ -87,20 +105,21 @@ class MainScreen extends Component {
     // eslint-disable-next-line no-unused-vars
     const self = this;
     const {
-      deleteAlarm,
+      dismissAlarm,
       navigation,
+      alarmId,
     } = this.props;
     const { navigate } = navigation;
     return (
       <View>
         <Buttons
-          title="DELETE"
+          title="DISMISS"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
-          onPress={() => deleteAlarm()}
+          onPress={() => dismissAlarm(alarmId)}
         />
         <Buttons
-          title="Development Page"
+          title="Dev Page"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
           onPress={() => navigate('Home')}
@@ -117,7 +136,7 @@ class MainScreen extends Component {
     return (
       <View>
         <Buttons
-          title="Development Page"
+          title="Dev Page"
           backgroundColor={Colors.darkGray}
           textColor={Colors.white}
           onPress={() => navigate('Home')}
@@ -128,39 +147,37 @@ class MainScreen extends Component {
 
   menu() {
     const { navigation } = this.props;
+    const { navigate } = navigation;
     return (
-      <View style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 75,
-        paddingHorizontal: 28,
-      }}
-      >
-        <UserIcon
-          style={{}}
-          onPress={() => {
-            navigation.navigate('Account');
-          }}
-        />
-        <AddIcon
-          style={{}}
-          onPress={() => {
-            navigation.navigate('CreateAlarm');
-          }}
-        />
+      <View style={GlobalStyles.menu}>
+        <TouchableOpacity
+          onPress={() => { navigate('AlarmList'); }}
+        >
+          <MenuIcon />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { navigate('Account'); }}
+        >
+          <UserIcon />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { navigate('CreateAlarm'); }}
+        >
+          <AddIcon />
+        </TouchableOpacity>
       </View>
     );
   }
 
   render() {
     const {
-      alarmActive,
+      alarmId,
+      loading,
     } = this.props;
-
-    if (alarmActive) {
+    if (alarmId !== undefined || loading) {
       return (
         <View>
+          <StatusBarBackground />
           {this.menu()}
           <View style={{ alignItems: 'center', width: '100%' }}>
             {this.hasAlarmView()}
@@ -172,6 +189,7 @@ class MainScreen extends Component {
     }
     return (
       <View>
+        <StatusBarBackground />
         {this.menu()}
         <View style={{ alignItems: 'center', width: '100%' }}>
           {this.hasNoAlarmView()}
@@ -187,26 +205,27 @@ MainScreen.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  deleteAlarm: PropTypes.func.isRequired,
+  dismissAlarm: PropTypes.func.isRequired,
   alarmTime: PropTypes.number,
-  alarmActive: PropTypes.bool,
+  alarmId: PropTypes.string,
   loading: PropTypes.bool,
 };
 
 MainScreen.defaultProps = {
   alarmTime: -1,
-  alarmActive: true,
-  loading: false,
+  alarmId: undefined,
+  loading: true,
 };
 
 const mapStateToProps = state => ({
   alarmTime: state.alarm.time,
-  alarmActive: state.alarm.active,
+  alarmId: state.alarm.currentAlarmId,
   loading: state.alarm.loading,
+  armed: state.alarm.armed,
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteAlarm: (alarmId) => { dispatch(userDeleteAlarm(alarmId)); },
+  dismissAlarm: (alarmId) => { dispatch(userSetAlarmStatus(alarmId, false)); },
 });
 
 export { MainScreen };

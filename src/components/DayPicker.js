@@ -1,15 +1,12 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import {
   View, Text, TouchableOpacity, StyleSheet,
 } from 'react-native';
 import styled from 'styled-components';
-import { Colors } from '../constants';
+import { GlobalStyles, Colors } from '../constants';
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
   container: {
     flex: 1,
     alignItems: 'center',
@@ -23,18 +20,34 @@ class DayPicker extends PureComponent {
   constructor() {
     super();
     this.state = {
-      sButton: null,
-      mButton: null,
-      tButton: null,
-      wButton: null,
-      thButton: null,
-      fButton: null,
-      saButton: null,
+      sButton: false,
+      mButton: false,
+      tButton: false,
+      wButton: false,
+      thButton: false,
+      fButton: false,
+      saButton: false,
     };
     this.updateOnPress = this.updateOnPress.bind(this);
   }
 
+  componentWillMount() {
+    let { days } = this.props;
+    days = days || {};
+
+    this.setState({
+      sButton: days.sun,
+      mButton: days.mon,
+      tButton: days.tue,
+      wButton: days.wed,
+      thButton: days.thu,
+      fButton: days.fri,
+      saButton: days.sat,
+    });
+  }
+
   updateOnPress(type) {
+    const { onChangeDay } = this.props;
     const {
       sButton,
       mButton,
@@ -44,58 +57,51 @@ class DayPicker extends PureComponent {
       fButton,
       saButton,
     } = this.state;
+    // temporarily store, so can use callback of setState
+    let mon = mButton;
+    let tue = tButton;
+    let wed = wButton;
+    let thu = thButton;
+    let fri = fButton;
+    let sat = saButton;
+    let sun = sButton;
     switch (type) {
       case 'S':
-        if (sButton === 'S') {
-          this.setState({ sButton: 'default' });
-        } else {
-          this.setState({ sButton: type });
-        }
+        sun = !sButton;
         break;
       case 'M':
-        if (mButton === 'M') {
-          this.setState({ mButton: 'default' });
-        } else {
-          this.setState({ mButton: type });
-        }
+        mon = !mButton;
         break;
       case 'T':
-        if (tButton === 'T') {
-          this.setState({ tButton: 'default' });
-        } else {
-          this.setState({ tButton: type });
-        }
+        tue = !tButton;
         break;
       case 'W':
-        if (wButton === 'W') {
-          this.setState({ wButton: 'default' });
-        } else {
-          this.setState({ wButton: type });
-        }
+        wed = !wButton;
         break;
       case 'Th':
-        if (thButton === 'Th') {
-          this.setState({ thButton: 'default' });
-        } else {
-          this.setState({ thButton: type });
-        }
+        thu = !thButton;
         break;
       case 'F':
-        if (fButton === 'F') {
-          this.setState({ fButton: 'default' });
-        } else {
-          this.setState({ fButton: type });
-        }
+        fri = !fButton;
         break;
       case 'Sa':
-        if (saButton === 'Sa') {
-          this.setState({ saButton: 'default' });
-        } else {
-          this.setState({ saButton: type });
-        }
+        sat = !saButton;
         break;
       default:
     }
+    this.setState({
+      mButton: mon,
+      tButton: tue,
+      wButton: wed,
+      thButton: thu,
+      fButton: fri,
+      saButton: sat,
+      sButton: sun,
+    }, () => {
+      onChangeDay({
+        mon, tue, wed, thu, fri, sat, sun,
+      });
+    });
   }
 
   render() {
@@ -109,20 +115,23 @@ class DayPicker extends PureComponent {
       saButton,
     } = this.state;
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {
+        height: 60, alignItems: 'center', justifyContent: 'space-around', marginVertical: 24,
+      }]}
+      >
         <TouchableOpacity onPress={() => this.updateOnPress('S')}>
           <Circle
             style={{
               backgroundColor:
-                sButton === 'S' ? Colors.primary : Colors.darkGray,
+                sButton ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
-                    sButton === 'S' ? Colors.black : Colors.white,
+                    sButton ? Colors.black : Colors.white,
                 },
               ]}
             >
@@ -135,15 +144,15 @@ class DayPicker extends PureComponent {
           <Circle
             style={{
               backgroundColor:
-                mButton === 'M' ? Colors.primary : Colors.darkGray,
+                mButton ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
-                    mButton === 'M' ? Colors.black : Colors.white,
+                    mButton ? Colors.black : Colors.white,
                 },
               ]}
             >
@@ -156,15 +165,15 @@ class DayPicker extends PureComponent {
           <Circle
             style={{
               backgroundColor:
-                tButton === 'T' ? Colors.primary : Colors.darkGray,
+                tButton ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
-                    tButton === 'T' ? Colors.black : Colors.white,
+                    tButton ? Colors.black : Colors.white,
                 },
               ]}
             >
@@ -177,15 +186,15 @@ class DayPicker extends PureComponent {
           <Circle
             style={{
               backgroundColor:
-                wButton === 'W' ? Colors.primary : Colors.darkGray,
+                wButton ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
-                    wButton === 'W' ? Colors.black : Colors.white,
+                    wButton ? Colors.black : Colors.white,
                 },
               ]}
             >
@@ -198,15 +207,15 @@ class DayPicker extends PureComponent {
           <Circle
             style={{
               backgroundColor:
-                thButton === 'Th' ? Colors.primary : Colors.darkGray,
+                thButton ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
-                    thButton === 'Th' ? Colors.black : Colors.white,
+                    thButton ? Colors.black : Colors.white,
                 },
               ]}
             >
@@ -219,15 +228,15 @@ class DayPicker extends PureComponent {
           <Circle
             style={{
               backgroundColor:
-                fButton === 'F' ? Colors.primary : Colors.darkGray,
+                fButton ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
-                    fButton === 'F' ? Colors.black : Colors.white,
+                    fButton ? Colors.black : Colors.white,
                 },
               ]}
             >
@@ -240,15 +249,15 @@ class DayPicker extends PureComponent {
           <Circle
             style={{
               backgroundColor:
-                saButton === 'Sa' ? Colors.primary : Colors.darkGray,
+                saButton ? Colors.primary : Colors.darkGray,
             }}
           >
             <Text
               style={[
-                styles.text,
+                GlobalStyles.h5,
                 {
                   color:
-                    saButton === 'Sa' ? Colors.black : Colors.white,
+                    saButton ? Colors.black : Colors.white,
                 },
               ]}
             >
@@ -260,6 +269,12 @@ class DayPicker extends PureComponent {
     );
   }
 }
+
+DayPicker.propTypes = {
+  onChangeDay: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  days: PropTypes.object.isRequired,
+};
 
 const Circle = styled.View`
   width: 35px;

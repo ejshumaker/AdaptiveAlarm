@@ -16,9 +16,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { userSignOut } from '../store/actions/userActions';
-import { alarmCalculateTime } from '../store/actions/alarmActions';
-import Alarm from '../custom_modules/Alarm';
-
 import { Colors, GlobalStyles } from '../constants';
 
 class HomeScreen extends Component {
@@ -54,7 +51,6 @@ class HomeScreen extends Component {
     const { navigate } = navigation;
 
     // destructure alarms
-    console.log(alarms);
     const alarm = alarms.alarm1 || {};
     const {
       destinationLoc,
@@ -152,7 +148,18 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate('Main')}
         />
-        {/* Temporary button to navigate to AlarmScreen, TODO: Remove */}
+        {/* Temporary button to navigate to Calendar, TODO: Remove */}
+        <Button
+          title="Calendar"
+          color={Colors.darkGray}
+          onPress={() => navigate('Calendar')}
+        />
+        {/* Temporary button to navigate to Alarm List Screen, TODO: Remove */}
+        <Button
+          title="Alarm List"
+          color={Colors.darkGray}
+          onPress={() => navigate('AlarmList')}
+        />
         <Button
           title="Alarm"
           color={Colors.darkGray}
@@ -176,12 +183,20 @@ class HomeScreen extends Component {
           color={Colors.darkGray}
           onPress={() => navigate('Account')}
         />
+        {/* Temporary button to navigate to EditAlarm, TODO: Remove */}
         <Button
-          title="Arm Alarm"
+          title="CreateAlarm"
           color={Colors.darkGray}
-          onPress={() => Alarm.armAlarm(this.props.navigation.navigate)}
+          onPress={() => navigate('CreateAlarm', { alarmId: '-LcEGKWnQEdU04AWZgBP' })}
+        />
+        {/* Temporary button to navigate to Alarm List Screen, TODO: Remove */}
+        <Button
+          title="Alarm List"
+          color={Colors.darkGray}
+          onPress={() => navigate('AlarmList')}
         />
         <View style={{ height: 8, width: 8 }} />
+        <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
         <Button title="Sign Out" color={Colors.darkGray} onPress={signOut} />
       </View>
     );
@@ -241,9 +256,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   signOut: () => {
     dispatch(userSignOut());
-  },
-  calculateTime: (time) => {
-    dispatch(alarmCalculateTime(time));
   },
 });
 

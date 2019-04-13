@@ -8,7 +8,8 @@
 
 const initialAlarmState = {
   time: undefined,
-  active: true,
+  currentAlarmId: undefined,
+  armed: false,
   loading: false,
 };
 const alarmReducer = (state = initialAlarmState, action) => {
@@ -17,12 +18,12 @@ const alarmReducer = (state = initialAlarmState, action) => {
       state = {
         ...state,
         loading: true,
-        active: true, // for iteration 1 only!
       };
       break;
     case 'ALARM_SET_TIME_REJECTED':
       state = {
         ...state,
+        time: -1,
         loading: false,
       };
       break;
@@ -33,10 +34,12 @@ const alarmReducer = (state = initialAlarmState, action) => {
         loading: false,
       };
       break;
-    case 'ALARM_SET_ACTIVE_STATUS':
+    case 'ALARM_SET_ARMED_STATUS':
       state = {
         ...state,
-        active: action.payload,
+        armed: action.payload.armed,
+        soundIndex: action.payload.soundIndex,
+        currentAlarmId: action.payload.currentAlarmId,
       };
       break;
     default:
