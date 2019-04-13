@@ -231,7 +231,6 @@ class CreateAlarmScreen extends Component {
               {
                 color: Colors.primary,
                 marginBottom: 48,
-                marginTop: 24,
               },
             ]}
           >

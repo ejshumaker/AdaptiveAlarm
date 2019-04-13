@@ -87,7 +87,7 @@ class AlarmItem extends Component {
           <View style={styles.alarmInfoColumn}>
             <Text
               style={[GlobalStyles.list,
-              { color: alarm.isActive ? Colors.white : Colors.darkGray }]}
+                { color: alarm.isActive ? Colors.white : Colors.darkGray }]}
             >
               {alarm.arrivalTime}
             </Text>

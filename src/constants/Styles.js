@@ -30,6 +30,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 24,
+    marginBottom: 24,
   },
   centerChildrenXY: {
     flex: 1,

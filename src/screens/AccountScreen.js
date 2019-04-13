@@ -7,10 +7,11 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Image, StyleSheet, ActivityIndicator,
+  View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { StatusBarBackground } from '../components';
 
 import { userSignOut } from '../store/actions/userActions';
 
@@ -35,6 +36,22 @@ class AccountScreen extends Component {
     if (loading) {
       return <ActivityIndicator color={Colors.primary} size="large" />;
     } return null;
+  }
+
+  menu() {
+    const {
+      navigation,
+    } = this.props;
+    const { navigate } = navigation;
+    return (
+      <View style={GlobalStyles.menu}>
+        <TouchableOpacity
+          onPress={() => { navigate('Main'); }}
+        >
+          <CloseIcon />
+        </TouchableOpacity>
+      </View>
+    );
   }
 
   render() {
@@ -128,19 +145,14 @@ class AccountScreen extends Component {
 
     return (
       <View style={{ justifyContent: 'space-around' }}>
-        <CloseIcon
-          style={{ marginLeft: 28, marginTop: 75 }}
-          onPress={() => {
-            navigation.navigate('Main');
-          }}
-        />
+        <StatusBarBackground />
+        {this.menu()}
         <View style={{ alignItems: 'center' }}>
           <View style={[styles.titleView, { alignItems: 'center' }]}>
             <Text style={[
               GlobalStyles.h2,
               {
                 color: Colors.primary,
-                marginTop: 40,
               },
             ]}
             >

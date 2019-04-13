@@ -30,9 +30,8 @@ class MainScreen extends Component {
 
     return (
       <View>
-        <StatusBarBackground />
         <Text style={
-          [GlobalStyles.h2, { color: Colors.primary, marginTop: '10%' }]
+          [GlobalStyles.h2, { color: Colors.primary }]
         }
         >
           {loading ? 'CALCULATING...' : 'PREDICTED:'}
