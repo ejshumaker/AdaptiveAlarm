@@ -160,6 +160,23 @@ class CreateAlarmScreen extends Component {
     );
   }
 
+  onCalendarButton() {
+    Alert.alert(
+      'Import Clalendar?',
+      'By pressing import we will make alarms for the next seven days based on the first events in your calendar.',
+      [
+        { text: 'Go Back', style: 'cancel' },
+        {
+          text: 'Import',
+          style: 'positive',
+          onPress: () => {
+            this.onCreateCalendarAlarms();
+          },
+        },
+      ],
+    );
+  }
+
   async onCreateCalendarAlarms() {
     const { fetchData, createAlarm, navigation } = this.props;
     const { navigate } = navigation;
@@ -226,6 +243,7 @@ class CreateAlarmScreen extends Component {
     return { destinationLoc, arrivalTime };
   }
 
+
   async getNextEvents() {
     const d = new Date();
     const currDayOfWeek = d.getDay();
@@ -259,6 +277,22 @@ class CreateAlarmScreen extends Component {
       noRepeat = days[day] ? false : noRepeat;
     });
     return noRepeat;
+  }
+
+  calendarButton() {
+    return (Platform.OS === 'ios')
+      ? (
+        <View style={{ alignItems: 'left', justifyContent: 'space-between', marginBottom: 12 }}>
+          <Buttons
+            title="Import Calendar?"
+            backgroundColor={Colors.primary}
+            textColor={Colors.black}
+            onPress={() => { this.onCalendarButton(); }}
+          />
+        </View>
+      ) : (
+        null
+      );
   }
 
   deleteButton() {
@@ -330,20 +364,7 @@ class CreateAlarmScreen extends Component {
             {pageTitle}
           </Text>
           {this.loader()}
-          { (Platform.OS === 'ios')
-            ? (
-              <View style={{ alignItems: 'center', justifyContent: 'space-between' }}>
-                <Buttons
-                  title="Import Calendar Alarms"
-                  backgroundColor={Colors.primary}
-                  textColor={Colors.black}
-                  onPress={() => { this.onCreateCalendarAlarms(); }}
-                />
-              </View>
-            ) : (
-              null
-            )
-          }
+          { this.calendarButton() }
           <Text style={[GlobalStyles.subtitle, { marginVertical: 0 }]}>Destination</Text>
           <Autocomplete
             onDestChange={this.onDestChange}
