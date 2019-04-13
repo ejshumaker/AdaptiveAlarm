@@ -15,8 +15,6 @@ const styles = StyleSheet.create({
     // flex: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderBottomWidth: 0.5,
-    borderBottomColor: Colors.white,
     marginVertical: 0,
     width: '100%',
   },
@@ -25,10 +23,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     marginVertical: 8,
+    marginBottom: 20,
   },
   switchColumn: {
     margin: 0,
-    marginRight: 13,
     justifyContent: 'space-around',
   },
 });
@@ -65,13 +63,13 @@ class AlarmItem extends Component {
     days = days || {};
     let dayString = '';
 
-    if (days.sun) dayString += ' S';
-    if (days.mon) dayString += ' M';
-    if (days.tue) dayString += ' T';
-    if (days.wed) dayString += ' W';
-    if (days.thu) dayString += ' Th';
-    if (days.fri) dayString += ' F';
-    if (days.sat) dayString += ' Sa';
+    if (days.sun) dayString += ' S,';
+    if (days.mon) dayString += ' M,';
+    if (days.tue) dayString += ' T,';
+    if (days.wed) dayString += ' W,';
+    if (days.thu) dayString += ' Th,';
+    if (days.fri) dayString += ' F,';
+    if (days.sat) dayString += ' Sa,';
 
     if (dayString === '') dayString = ' None';
 
@@ -88,16 +86,16 @@ class AlarmItem extends Component {
         >
           <View style={styles.alarmInfoColumn}>
             <Text
-              style={[GlobalStyles.h2,
+              style={[GlobalStyles.list,
                 { color: alarm.isActive ? Colors.white : Colors.darkGray }]}
             >
               {alarm.arrivalTime}
             </Text>
             <View style={{ marginTop: 5, flexDirection: 'row' }}>
               <Text style={[GlobalStyles.paragraph, { justifyContent: 'flex-start', color: alarm.isActive ? Colors.white : Colors.darkGray }]}>
-              Repeat:
+                Repeat:
               </Text>
-              <Text style={[GlobalStyles.paragraph, { justifyContent: 'flex-end', color: alarm.isActive ? Colors.primary : Colors.darkGray, fontWeight: 'bold' }]}>
+              <Text style={[GlobalStyles.paragraph, { justifyContent: 'flex-end', color: alarm.isActive ? Colors.primary : Colors.darkGray, fontFamily: 'RNSMiles-XBold' }]}>
                 {this.displayDays()}
               </Text>
             </View>

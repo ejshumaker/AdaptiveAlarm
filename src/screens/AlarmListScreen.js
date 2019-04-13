@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  View, Text, FlatList, ActivityIndicator,
+  View, Text, FlatList, ActivityIndicator, TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { GlobalStyles, Colors } from '../constants';
 
-import { AlarmItem } from '../components';
+import { AlarmItem, StatusBarBackground } from '../components';
 import { CloseIcon } from '../icons/close';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
@@ -29,46 +29,61 @@ class AlarmListScreen extends Component {
     return null;
   }
 
+  menu() {
+    const {
+      navigation,
+    } = this.props;
+    const { navigate } = navigation;
+    return (
+      <View style={GlobalStyles.menu}>
+        <TouchableOpacity
+          onPress={() => { navigate('Main'); }}
+        >
+          <CloseIcon />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
 
   render() {
     const { alarms, toggleAlarm, navigation } = this.props;
     const { navigate } = navigation;
 
     return (
-      <View style={[GlobalStyles.container, { padding: 48 }]}>
-        <CloseIcon
-          style={{ marginLeft: -20, marginTop: 27 }}
-          onPress={() => {
-            navigate('Main');
-          }}
-        />
-        <Text
-          style={[
-            GlobalStyles.h2,
-            {
-              color: Colors.primary,
-              marginBottom: 48,
-              marginTop: 40,
-            },
-          ]}
-        >
-        ALARMS:
-        </Text>
-        {this.loader()}
+      <View style={{ flex: 1 }}>
+        <StatusBarBackground />
+        {this.menu()}
+        <View style={[GlobalStyles.container, { paddingHorizontal: 48 }]}>
+          <Text
+            style={[
+              GlobalStyles.h2,
+              {
+                color: Colors.primary,
+                marginBottom: 48,
+              },
+            ]}
+          >
+          ALL ALARMS:
+          </Text>
+          {this.loader()}
 
-        <FlatList
-          data={Object.values(alarms)}
-          renderItem={({ item, index }) => (
-            <AlarmItem
-              alarm={item}
-              alarmId={Object.keys(alarms)[index]}
-              toggleAlarm={toggleAlarm}
-              navigate={navigate}
-            />
-          )}
-          keyExtractor={(item, index) => String(index)}
-        />
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            data={Object.values(alarms)}
+            renderItem={({ item, index }) => (
+              <AlarmItem
+                alarm={item}
+                alarmId={Object.keys(alarms)[index]}
+                toggleAlarm={toggleAlarm}
+                navigate={navigate}
+              />
+            )}
+            keyExtractor={(item, index) => String(index)}
+          />
 
+        </View>
       </View>
     );
   }

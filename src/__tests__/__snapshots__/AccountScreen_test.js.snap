@@ -1,22 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Account Screen test account screen matches snapshot done loading 1`] = `
-<View
-  style={
-    Object {
-      "justifyContent": "space-around",
-    }
-  }
->
-  <CloseIcon
-    onPress={[Function]}
+<View>
+  <StatusBarBackground />
+  <View
     style={
       Object {
-        "marginLeft": 28,
-        "marginTop": 75,
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 24,
+        "padding": 24,
       }
     }
-  />
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <CloseIcon />
+    </TouchableOpacity>
+  </View>
   <View
     style={
       Object {
@@ -29,6 +32,9 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
         Array [
           Object {
             "marginBottom": 10,
+          },
+          Object {
+            "alignItems": "center",
           },
         ]
       }
@@ -43,7 +49,6 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             },
             Object {
               "color": "#E4F96A",
-              "marginTop": 40,
             },
           ]
         }
@@ -115,9 +120,9 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               "borderBottomColor": "#DDDDDD",
               "borderBottomWidth": 0.5,
               "flexDirection": "row",
-              "height": 40,
+              "height": 45,
               "justifyContent": "space-between",
-              "marginVertical": 4,
+              "marginVertical": 8,
               "width": "90%",
             },
           ]
@@ -128,7 +133,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -151,7 +156,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -180,9 +185,9 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               "borderBottomColor": "#DDDDDD",
               "borderBottomWidth": 0.5,
               "flexDirection": "row",
-              "height": 40,
+              "height": 45,
               "justifyContent": "space-between",
-              "marginVertical": 4,
+              "marginVertical": 8,
               "width": "90%",
             },
           ]
@@ -193,7 +198,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -216,7 +221,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -245,9 +250,9 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               "borderBottomColor": "#DDDDDD",
               "borderBottomWidth": 0.5,
               "flexDirection": "row",
-              "height": 40,
+              "height": 45,
               "justifyContent": "space-between",
-              "marginVertical": 4,
+              "marginVertical": 8,
               "width": "90%",
             },
           ]
@@ -258,7 +263,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -281,7 +286,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -332,22 +337,25 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
 `;
 
 exports[`Account Screen test account screen matches snapshot not done loading 1`] = `
-<View
-  style={
-    Object {
-      "justifyContent": "space-around",
-    }
-  }
->
-  <CloseIcon
-    onPress={[Function]}
+<View>
+  <StatusBarBackground />
+  <View
     style={
       Object {
-        "marginLeft": 28,
-        "marginTop": 75,
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 24,
+        "padding": 24,
       }
     }
-  />
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <CloseIcon />
+    </TouchableOpacity>
+  </View>
   <View
     style={
       Object {
@@ -360,6 +368,9 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
         Array [
           Object {
             "marginBottom": 10,
+          },
+          Object {
+            "alignItems": "center",
           },
         ]
       }
@@ -374,7 +385,6 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             },
             Object {
               "color": "#E4F96A",
-              "marginTop": 40,
             },
           ]
         }
@@ -450,9 +460,9 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
               "borderBottomColor": "#DDDDDD",
               "borderBottomWidth": 0.5,
               "flexDirection": "row",
-              "height": 40,
+              "height": 45,
               "justifyContent": "space-between",
-              "marginVertical": 4,
+              "marginVertical": 8,
               "width": "90%",
             },
           ]
@@ -463,7 +473,7 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -486,7 +496,7 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -515,9 +525,9 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
               "borderBottomColor": "#DDDDDD",
               "borderBottomWidth": 0.5,
               "flexDirection": "row",
-              "height": 40,
+              "height": 45,
               "justifyContent": "space-between",
-              "marginVertical": 4,
+              "marginVertical": 8,
               "width": "90%",
             },
           ]
@@ -528,7 +538,7 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -551,7 +561,7 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -580,9 +590,9 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
               "borderBottomColor": "#DDDDDD",
               "borderBottomWidth": 0.5,
               "flexDirection": "row",
-              "height": 40,
+              "height": 45,
               "justifyContent": "space-between",
-              "marginVertical": 4,
+              "marginVertical": 8,
               "width": "90%",
             },
           ]
@@ -593,7 +603,7 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >
@@ -616,7 +626,7 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             Object {
               "flexDirection": "column",
               "justifyContent": "flex-end",
-              "marginVertical": 6,
+              "marginBottom": 11,
             }
           }
         >

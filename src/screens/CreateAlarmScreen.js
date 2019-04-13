@@ -290,13 +290,7 @@ class CreateAlarmScreen extends Component {
     } = this.props;
     const { navigate } = navigation;
     return (
-      <View style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 12,
-      }}
-      >
+      <View style={GlobalStyles.menu}>
         <TouchableOpacity
           onPress={() => { navigate('Main'); }}
         >
@@ -330,7 +324,6 @@ class CreateAlarmScreen extends Component {
               {
                 color: Colors.primary,
                 marginBottom: 48,
-                marginTop: 24,
               },
             ]}
           >

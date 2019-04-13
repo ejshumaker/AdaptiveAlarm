@@ -118,7 +118,7 @@ class Autocomplete extends Component {
                   />
                 </View>
                 {isSearching && (
-                <ActivityIndicator size="large" color={Colors.gray} />
+                  <ActivityIndicator size="large" color={Colors.gray} />
                 )}
                 <View
                   style={{

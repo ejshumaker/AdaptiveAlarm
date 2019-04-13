@@ -2,29 +2,33 @@
 
 exports[`Main Screen test Main screen matches snapshot 1`] = `
 <View>
+  <StatusBarBackground />
   <View
     style={
       Object {
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "marginTop": 75,
-        "paddingHorizontal": 28,
+        "marginBottom": 24,
+        "padding": 24,
       }
     }
   >
-    <MenuIcon
+    <TouchableOpacity
       onPress={[Function]}
-      style={Object {}}
-    />
-    <UserIcon
+    >
+      <MenuIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
-      style={Object {}}
-    />
-    <AddIcon
+    >
+      <UserIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
-      style={Object {}}
-    />
+    >
+      <AddIcon />
+    </TouchableOpacity>
   </View>
   <View
     style={
@@ -56,7 +60,7 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
     <View
       style={
         Object {
-          "marginVertical": 48,
+          "marginVertical": "10%",
         }
       }
     >
@@ -98,29 +102,33 @@ exports[`Main Screen test Main screen matches snapshot 1`] = `
 
 exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = `
 <View>
+  <StatusBarBackground />
   <View
     style={
       Object {
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "marginTop": 75,
-        "paddingHorizontal": 28,
+        "marginBottom": 24,
+        "padding": 24,
       }
     }
   >
-    <MenuIcon
+    <TouchableOpacity
       onPress={[Function]}
-      style={Object {}}
-    />
-    <UserIcon
+    >
+      <MenuIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
-      style={Object {}}
-    />
-    <AddIcon
+    >
+      <UserIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
-      style={Object {}}
-    />
+    >
+      <AddIcon />
+    </TouchableOpacity>
   </View>
   <View
     style={
@@ -141,7 +149,6 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
             },
             Object {
               "color": "#E4F96A",
-              "marginTop": 40,
             },
           ]
         }
@@ -157,7 +164,6 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
               "fontSize": 70,
             },
             Object {
-              "alignItems": "center",
               "color": "#DDDDDD",
               "fontSize": 70,
             },
@@ -189,23 +195,39 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
           Array [
             Object {
               "color": "#DDDDDD",
-              "fontSize": 14,
-              "fontWeight": "500",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 18,
             },
             Object {
               "color": "#DDDDDD",
-              "marginLeft": 8,
+              "marginLeft": 130,
             },
           ]
         }
       >
-        Sunday, May. 26th
+        <Text>
+          MAY
+           
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Regular",
+                "fontSize": 18,
+              },
+            ]
+          }
+        >
+          26, Sunday
+        </Text>
       </Text>
     </View>
     <View
       style={
         Object {
-          "marginVertical": 48,
+          "marginVertical": "10%",
         }
       }
     >
@@ -253,29 +275,33 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
 
 exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
 <View>
+  <StatusBarBackground />
   <View
     style={
       Object {
         "display": "flex",
         "flexDirection": "row",
         "justifyContent": "space-between",
-        "marginTop": 75,
-        "paddingHorizontal": 28,
+        "marginBottom": 24,
+        "padding": 24,
       }
     }
   >
-    <MenuIcon
+    <TouchableOpacity
       onPress={[Function]}
-      style={Object {}}
-    />
-    <UserIcon
+    >
+      <MenuIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
-      style={Object {}}
-    />
-    <AddIcon
+    >
+      <UserIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
       onPress={[Function]}
-      style={Object {}}
-    />
+    >
+      <AddIcon />
+    </TouchableOpacity>
   </View>
   <View
     style={
@@ -296,7 +322,6 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
             },
             Object {
               "color": "#E4F96A",
-              "marginTop": 40,
             },
           ]
         }
@@ -312,7 +337,6 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
               "fontSize": 70,
             },
             Object {
-              "alignItems": "center",
               "color": "#DDDDDD",
               "fontSize": 70,
             },
@@ -344,21 +368,36 @@ exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
           Array [
             Object {
               "color": "#DDDDDD",
-              "fontSize": 14,
-              "fontWeight": "500",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 18,
             },
             Object {
               "color": "#DDDDDD",
-              "marginLeft": 8,
+              "marginLeft": 130,
             },
           ]
         }
-      />
+      >
+        <Text>
+           
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Regular",
+                "fontSize": 18,
+              },
+            ]
+          }
+        />
+      </Text>
     </View>
     <View
       style={
         Object {
-          "marginVertical": 48,
+          "marginVertical": "10%",
         }
       }
     >
