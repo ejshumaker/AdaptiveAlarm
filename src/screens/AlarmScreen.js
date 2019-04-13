@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Audio } from 'expo';
@@ -8,8 +8,8 @@ import { Audio } from 'expo';
 import sounds from '../assets/sounds';
 import { GlobalStyles, Colors } from '../constants';
 
-import { Buttons } from '../components';
-import { RightIcon } from '../icons/right';
+import { Buttons, StatusBarBackground } from '../components';
+import { CloseIcon } from '../icons/close';
 
 class AlarmScreen extends Component {
   constructor() {
@@ -92,18 +92,30 @@ class AlarmScreen extends Component {
     }
   }
 
+  menu() {
+    const {
+      navigation,
+    } = this.props;
+    const { navigate } = navigation;
+    return (
+      <View style={[GlobalStyles.menu]}>
+        <TouchableOpacity
+          onPress={() => { this.stopSound(navigate); }}
+        >
+          <CloseIcon />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   render() {
     const { time } = this.state;
     const { navigation } = this.props;
     const { navigate } = navigation;
     return (
-      <View style={{ marginTop: 75 }}>
-        <View style={{ alignItems: 'flex-end', marginRight: 28 }}>
-          <RightIcon onPress={() => {
-            navigation.navigate('Main');
-          }}
-          />
-        </View>
+      <View>
+        <StatusBarBackground />
+        {this.menu()}
         <View style={{ alignItems: 'center', marginTop: 200 }}>
           <Text style={[GlobalStyles.h1, GlobalStyles.margin, { color: Colors.primary }]}>
             {time}

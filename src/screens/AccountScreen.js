@@ -7,10 +7,11 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Image, StyleSheet, ActivityIndicator,
+  View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { StatusBarBackground } from '../components';
 
 import { userSignOut } from '../store/actions/userActions';
 
@@ -37,10 +38,25 @@ class AccountScreen extends Component {
     } return null;
   }
 
+  menu() {
+    const {
+      navigation,
+    } = this.props;
+    const { navigate } = navigation;
+    return (
+      <View style={GlobalStyles.menu}>
+        <TouchableOpacity
+          onPress={() => { navigate('Main'); }}
+        >
+          <CloseIcon />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   render() {
     const { title } = this.state;
     const {
-      navigation,
       signOut, // Redux actions
       firstName, // Redux store
       lastName,
@@ -101,21 +117,21 @@ class AccountScreen extends Component {
         justifyContent: 'space-between',
         borderBottomWidth: 0.5,
         borderBottomColor: Colors.white,
-        marginVertical: 4,
-        height: 40,
+        marginVertical: 8,
+        height: 45,
         width: '90%',
       },
       infoColumn: {
         // flex: 0.5,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        marginVertical: 6,
+        marginBottom: 11,
       },
       dataColumn: {
         // flex: 0.5,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        marginVertical: 6,
+        marginBottom: 11,
       },
       signOutButton: {
         width: '80%',
@@ -127,20 +143,15 @@ class AccountScreen extends Component {
     });
 
     return (
-      <View style={{ justifyContent: 'space-around' }}>
-        <CloseIcon
-          style={{ marginLeft: 28, marginTop: 75 }}
-          onPress={() => {
-            navigation.navigate('Main');
-          }}
-        />
+      <View>
+        <StatusBarBackground />
+        {this.menu()}
         <View style={{ alignItems: 'center' }}>
-          <View style={[styles.titleView]}>
+          <View style={[styles.titleView, { alignItems: 'center' }]}>
             <Text style={[
               GlobalStyles.h2,
               {
                 color: Colors.primary,
-                marginTop: 40,
               },
             ]}
             >

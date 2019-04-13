@@ -10,12 +10,13 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, TextInput, ActivityIndicator, Alert, ScrollView, TouchableOpacity,
+  View, Text, TextInput, ActivityIndicator, Alert, Platform, ScrollView, TouchableOpacity,
 } from 'react-native';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RNPickerSelect from 'react-native-picker-select';
+import { Calendar, Permissions } from 'expo';
 import sounds from '../assets/sounds';
 
 import {
@@ -27,7 +28,7 @@ import {
 } from '../components';
 import { CloseIcon } from '../icons/close';
 import { DropdownIcon } from '../icons/dropdown';
-import { userUpdateAlarm, userDeleteAlarm } from '../store/actions/userActions';
+import { userUpdateAlarm, userDeleteAlarm, userFetch } from '../store/actions/userActions';
 import {
   Colors,
   GlobalStyles,
@@ -159,6 +160,116 @@ class CreateAlarmScreen extends Component {
     );
   }
 
+  onCalendarButton() {
+    Alert.alert(
+      'Import Clalendar?',
+      'By pressing import we will make alarms for the next seven days based on the first events in your calendar.',
+      [
+        { text: 'Go Back', style: 'cancel' },
+        {
+          text: 'Import',
+          style: 'positive',
+          onPress: () => {
+            this.onCreateCalendarAlarms();
+          },
+        },
+      ],
+    );
+  }
+
+  async onCreateCalendarAlarms() {
+    const { fetchData, createAlarm, navigation } = this.props;
+    const { navigate } = navigation;
+    const {
+      days,
+      alarmId,
+    } = this.state;
+    const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    await this.getNextEvents().then((dayArray) => {
+      for (let i = 0; i < 7; i += 1) {
+        // initialize days array to all false
+        for (let j = 0; j < 7; j += 1) {
+          const dayOfWeek = daysOfWeek[j];
+          days[dayOfWeek] = false;
+        }
+        const dayOfWeek = daysOfWeek[i];
+        // eslint-disable-next-line
+        if (dayArray[i] !== undefined) {
+          const { arrivalTime } = dayArray[i];
+          const { destinationLoc } = dayArray[i];
+          days[dayOfWeek] = true;
+          createAlarm({
+            arrivalTime,
+            timeToGetReady: '45',
+            destinationLoc,
+            days,
+            navigate,
+            alarmId,
+            soundIndex: 1,
+          });
+        }
+      }
+      fetchData();
+    });
+  }
+
+  async getStartTimeAndLocation(dayStart, dayEnd) {
+    let destinationLoc = '';
+    let arrivalTime = 0;
+    await Permissions.askAsync('calendar').then((response) => {
+      if (response.status !== 'granted') {
+        Alert.alert('Permission to access calendar was denied.');
+      }
+    });
+    const cals = await Calendar.getCalendarsAsync();
+    // get all device calendar ids
+    const data = cals.filter(item => item).map(({ id }) => ({ id }));
+    // check all events for the following day and return earliest event start time
+    await Calendar.getEventsAsync(data, dayStart, dayEnd).then((response) => {
+      if (response.length > 0) {
+        const { location } = response[0];
+        if (location === '') {
+          destinationLoc = undefined;
+        } else {
+          destinationLoc = location;
+        }
+        arrivalTime = response[0].startDate;
+        arrivalTime = moment(arrivalTime).format('hh:mma');
+      } else {
+        destinationLoc = undefined;
+        arrivalTime = undefined;
+      }
+    });
+    return { destinationLoc, arrivalTime };
+  }
+
+
+  async getNextEvents() {
+    const d = new Date();
+    const currDayOfWeek = d.getDay();
+    const dayArray = [];
+    for (let i = 0; i < 7; i += 1) {
+      const dayStart = new Date();
+      dayStart.setDate(dayStart.getDate() + (i - currDayOfWeek));
+      dayStart.setHours(0, 0, 0, 0);
+      const dayEnd = new Date();
+      dayEnd.setDate(dayEnd.getDate() + (i - currDayOfWeek));
+      dayEnd.setHours(23, 59, 59, 0);
+      // eslint-disable-next-line
+      await this.getStartTimeAndLocation(dayStart, dayEnd).then((response) => {
+        const { destinationLoc } = response;
+        const { arrivalTime } = response;
+        // if no start time or location, set this array index to undefined
+        if ((destinationLoc === undefined) || (arrivalTime === undefined)) {
+          dayArray.push(undefined);
+        } else {
+          dayArray.push({ destinationLoc, arrivalTime });
+        }
+      });
+    }
+    return dayArray;
+  }
+
   noRepeats() {
     const { days } = this.state;
     let noRepeat = true;
@@ -166,6 +277,22 @@ class CreateAlarmScreen extends Component {
       noRepeat = days[day] ? false : noRepeat;
     });
     return noRepeat;
+  }
+
+  calendarButton() {
+    return (Platform.OS === 'ios')
+      ? (
+        <View style={{ alignItems: 'left', justifyContent: 'space-between', marginBottom: 12 }}>
+          <Buttons
+            title="Import Calendar?"
+            backgroundColor={Colors.primary}
+            textColor={Colors.black}
+            onPress={() => { this.onCalendarButton(); }}
+          />
+        </View>
+      ) : (
+        null
+      );
   }
 
   deleteButton() {
@@ -197,13 +324,7 @@ class CreateAlarmScreen extends Component {
     } = this.props;
     const { navigate } = navigation;
     return (
-      <View style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 12,
-      }}
-      >
+      <View style={GlobalStyles.menu}>
         <TouchableOpacity
           onPress={() => { navigate('Main'); }}
         >
@@ -237,13 +358,13 @@ class CreateAlarmScreen extends Component {
               {
                 color: Colors.primary,
                 marginBottom: 48,
-                marginTop: 24,
               },
             ]}
           >
             {pageTitle}
           </Text>
           {this.loader()}
+          { this.calendarButton() }
           <Text style={[GlobalStyles.subtitle, { marginVertical: 0 }]}>Destination</Text>
           <Autocomplete
             onDestChange={this.onDestChange}
@@ -318,6 +439,7 @@ CreateAlarmScreen.propTypes = {
     navigate: PropTypes.func.isRequired,
   }).isRequired,
   // Redux dispatch
+  fetchData: PropTypes.func.isRequired,
   createAlarm: PropTypes.func.isRequired,
   deleteAlarm: PropTypes.func.isRequired,
   // Redux state
@@ -346,6 +468,7 @@ const mapStateToProps = state => ({
  * @eschirtz 03-03-19
  */
 const mapDispatchToProps = dispatch => ({
+  fetchData: () => { dispatch(userFetch()); },
   createAlarm: (payload) => { dispatch(userUpdateAlarm(payload)); },
   deleteAlarm: (alarmId) => { dispatch(userDeleteAlarm(alarmId)); },
 });
