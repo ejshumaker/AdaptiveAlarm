@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Autocomplete tests test autocomplete matches snapshot 1`] = `
+exports['Autocomplete tests test autocomplete matches snapshot 1'] = `
 <Fragment>
   <View
     style={

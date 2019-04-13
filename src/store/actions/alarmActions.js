@@ -16,6 +16,7 @@ export function alarmCalculateTime() {
       timeToGetReady,
       alarmId,
       alarmUTC,
+      soundIndex,
     } = alarm;
     const loopLimit = 4;
     const arrivalTimeBuffer = 6;
@@ -36,6 +37,7 @@ export function alarmCalculateTime() {
           payload: {
             armed: true,
             currentAlarmId: alarmId,
+            soundIndex,
           },
         });
       });
