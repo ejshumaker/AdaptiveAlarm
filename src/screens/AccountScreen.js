@@ -57,7 +57,6 @@ class AccountScreen extends Component {
   render() {
     const { title } = this.state;
     const {
-      navigation,
       signOut, // Redux actions
       firstName, // Redux store
       lastName,
