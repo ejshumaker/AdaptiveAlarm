@@ -34,7 +34,7 @@ class MainScreen extends Component {
           [GlobalStyles.h2, { color: Colors.primary }]
         }
         >
-          {loading ? 'CALCULATING...' : 'PREDICTED:'}
+          {loading ? 'CALCULATING...' : 'GUESSED:'}
         </Text>
         <Text
           style={

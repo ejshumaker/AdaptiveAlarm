@@ -1,5 +1,7 @@
 import { Location, Permissions } from 'expo';
 
+import BackgroundTimer from 'react-native-background-timer';
+
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
 
@@ -119,6 +121,11 @@ let navigateRef; // hacky way to let navigation persist
  * @return {[type]}           [description]
  */
 async function armAlarm(alarmTime) {
+  console.log(BackgroundTimer);
+  BackgroundTimer.runBackgroundTimer(() => {
+    console.log('tick');
+  },
+  3000);
   if (timeoutRef) clearTimeout(timeoutRef);
   const date = new Date();
   const current = date.getTime(); // get current time
