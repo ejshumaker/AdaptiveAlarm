@@ -130,7 +130,8 @@ function stopAlarm() {
 function soundAlarm(soundIndex = 1) {
   const alarmId = store.getState().alarm.currentAlarmId;
   store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId });
-  const audioPath = sounds[soundIndex - 1].path;
+  const index = soundIndex >= 1 ? soundIndex : 1;
+  const audioPath = sounds[index - 1].path;
   console.log(audioPath);
   soundRef = new Sound(audioPath, Sound.MAIN_BUNDLE, (error) => {
     if (error) {
