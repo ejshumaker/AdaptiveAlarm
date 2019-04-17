@@ -21,7 +21,7 @@ function getNextAlarm() {
   let earliestAlarmTime = Number.MAX_SAFE_INTEGER;
   let earliestAlarmId;
   let ids = alarms !== undefined ? Object.keys(alarms) : [];
-  ids = ids.filter(id => alarms[id].isActive);
+  ids = ids.filter(id => alarms[id].isActive && !alarms[id].hasFired);
   for (let i = 0; i < ids.length; i += 1) {
     const alarm = alarms[ids[i]];
     // find next day of week
@@ -53,6 +53,7 @@ function getNextAlarm() {
         nextDayNumber = dayNumber < nextDayNumber ? dayNumber : nextDayNumber;
       });
     const day = moment(alarm.arrivalTime, 'LT');
+    day.subtract(alarm.timeToGetReady, 'minutes');
     day.day(nextDayNumber);
     console.log(`\tAlarm #${i} goes off ${day.format('dddd, MMMM Do, h:mm a')}`);
     const closestSoFar = day.utc() < earliestAlarmTime;

@@ -31,7 +31,7 @@ export function alarmCalculateTime() {
       ),
     })
       .then((resp) => {
-        Alarm.armAlarm(resp.value);
+        Alarm.armAlarm(resp.value, soundIndex);
         dispatch({
           type: 'ALARM_SET_ARMED_STATUS',
           payload: {
@@ -50,13 +50,3 @@ export function alarmCalculateTime() {
     },
   });
 }
-
-// stub
-/*
-export function foo() {
-  return {
-    type: 'FOO',
-    payload: null,
-  };
-}
-*/

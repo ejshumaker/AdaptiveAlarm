@@ -1,6 +1,19 @@
 import { Location, Permissions } from 'expo';
-
+import { Platform } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
+import sounds from '../assets/sounds';
+import store from '../store';
+import { alarmCalculateTime } from '../store/actions/alarmActions';
+
+const Sound = require('react-native-sound');
+
+// Enable playback in silence mode
+Sound.setCategory('Playback');
+
+// Global references
+let navigateRef;
+let soundRef;
+let timerRef;
 
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
@@ -108,27 +121,59 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
   });
 }
 
-function triggerNavigate(navigate) {
-  navigate('Alarm');
+function stopAlarm() {
+  if (soundRef !== undefined) soundRef.stop();
+  store.dispatch(alarmCalculateTime());
+  console.log('stopping');
 }
-let navigateRef; // hacky way to let navigation persist
+
+function soundAlarm(soundIndex = 1) {
+  const alarmId = store.getState().alarm.currentAlarmId;
+  store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId });
+  const audioPath = sounds[soundIndex - 1].path;
+  console.log(audioPath);
+  soundRef = new Sound(audioPath, Sound.MAIN_BUNDLE, (error) => {
+    if (error) {
+      console.log('failed to load the sound', error);
+      return;
+    }
+    // Loop indefinitely until stop() is called
+    soundRef.setNumberOfLoops(-1);
+    soundRef.play();
+  });
+  navigateRef('Alarm');
+  if (Platform.OS === 'android') {
+    BackgroundTimer.clearInterval(timerRef);
+  } else {
+    BackgroundTimer.stopBackgroundTimer();
+  }
+}
+
 /**
  * Given an exact time in UTC, armAlarm sets up
  * the actual alarm/timers required to fire off alarm
  * @param  {Time_UTC} alarmTime
- * @param  {Navigation} navigate
+ * @param  {Integer} soundIndex
  * @return {[type]}           [description]
  */
-function armAlarm(alarmTime) {
+function armAlarm(alarmTime, soundIndex = 1) {
+  console.log('Arming Alarm');
   const date = new Date();
   const current = date.getTime(); // get current time
-  const difference = alarmTime - current;
-  if (difference < 0) console.log('** Alarm fired after desired time **\n** Should still be before arrival time **');
-  BackgroundTimer.runBackgroundTimer(() => {
-    triggerNavigate(navigateRef);
-    console.log('tick');
-  },
-  10 * 1000);
+  let difference = alarmTime - current;
+  if (difference < 0) {
+    difference = 0; // edge case?
+    console.log('** Alarm will fire after desired time **\n** Should still be before arrival time **');
+  }
+  if (Platform.OS === 'android') {
+    timerRef = BackgroundTimer.setInterval(() => {
+      soundAlarm(soundIndex);
+    }, difference);
+  } else {
+    BackgroundTimer.runBackgroundTimer(() => {
+      soundAlarm(soundIndex);
+    }, difference);
+  }
 }
 
 function initArmAlarm(navigate) {
@@ -137,5 +182,5 @@ function initArmAlarm(navigate) {
 
 
 export default {
-  navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime,
+  navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime, stopAlarm,
 };

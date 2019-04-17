@@ -9,24 +9,28 @@ export default [
   {
     label: 'Classic',
     value: '1',
+    path: 'alarm1.mp3',
     color: Colors.darkGray,
     audio: sound1,
   },
   {
     label: 'Amber',
     value: '2',
+    path: 'alarm2.mp3',
     color: Colors.darkGray,
     audio: sound2,
   },
   {
     label: 'Old Town Road',
     value: '3',
+    path: 'alarm3.mp3',
     color: Colors.darkGray,
     audio: sound3,
   },
   {
     label: 'Big Ol\'e Chicken',
     value: '4',
+    path: 'alarm4.mp3',
     color: Colors.darkGray,
     audio: sound4,
   },
