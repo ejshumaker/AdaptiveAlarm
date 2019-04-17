@@ -1,6 +1,8 @@
 /* eslint-disable func-names */
 /* eslint-disable global-require */
 /* eslint-disable no-undef */
+import { NativeModules as RNNativeModules } from 'react-native';
+
 global.fetch = require('jest-fetch-mock');
 require('react-native-mock-render/mock');
 
@@ -47,3 +49,18 @@ global.cancelAnimationFrame = function (id) {
   clearTimeout(id);
 };
 copyProps(window, global);
+RNNativeModules.UIManager = RNNativeModules.UIManager || {};
+RNNativeModules.UIManager.RCTView = RNNativeModules.UIManager.RCTView || {};
+RNNativeModules.RNGestureHandlerModule = RNNativeModules.RNGestureHandlerModule || {
+  State: {
+    BEGAN: 'BEGAN', FAILED: 'FAILED', ACTIVE: 'ACTIVE', END: 'END',
+  },
+  attachGestureHandler: jest.fn(),
+  createGestureHandler: jest.fn(),
+  dropGestureHandler: jest.fn(),
+  updateGestureHandler: jest.fn(),
+
+};
+RNNativeModules.PlatformConstants = RNNativeModules.PlatformConstants || {
+  forceTouchAvailable: false,
+};

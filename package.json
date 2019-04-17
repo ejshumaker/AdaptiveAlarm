@@ -8,6 +8,9 @@
     "test": "node ./node_modules/jest/bin/jest.js --coverage"
   },
   "jest": {
+    "globals": {
+      "__testing__": true
+    },
     "automock": false,
     "setupFiles": [
       "./jestSetup.js"
@@ -48,6 +51,7 @@
     "react-native-ionicons": "^4.5.5",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-maps": "^0.23.0",
+    "react-native-mock": "^0.3.1",
     "react-native-mock-render": "^0.1.2",
     "react-native-picker-select": "^6.1.0",
     "react-navigation": "^3.3.2",

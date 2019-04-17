@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Account Screen test account screen matches snapshot done loading 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "_childrenNavigation": Object {},
+      "actions": Object {},
+      "addListener": [Function],
+      "dangerouslyGetParent": [Function],
+      "dispatch": [Function],
+      "getChildNavigation": [Function],
+      "getScreenProps": [Function],
+      "goBack": [Function],
+      "isFocused": [Function],
+      "navigate": [Function],
+      "router": Object {
+        "childRouters": Object {
+          "App": Object {
+            "childRouters": Object {
+              "Account": null,
+              "Alarm": null,
+              "AlarmList": null,
+              "AutoComplete": null,
+              "Calendar": null,
+              "CreateAlarm": null,
+              "DayPicker": null,
+              "Home": null,
+              "Main": null,
+              "StyleDemo": null,
+            },
+            "getActionCreators": [Function],
+            "getActionForPathAndParams": [Function],
+            "getComponentForRouteName": [Function],
+            "getComponentForState": [Function],
+            "getPathAndParamsForState": [Function],
+            "getScreenOptions": [Function],
+            "getStateForAction": [Function],
+          },
+          "Auth": Object {
+            "childRouters": Object {
+              "SignIn": null,
+              "SignUp": null,
+            },
+            "getActionCreators": [Function],
+            "getActionForPathAndParams": [Function],
+            "getComponentForRouteName": [Function],
+            "getComponentForState": [Function],
+            "getPathAndParamsForState": [Function],
+            "getScreenOptions": [Function],
+            "getStateForAction": [Function],
+          },
+          "AuthLoading": Object {
+            "childRouters": Object {
+              "AuthLoading": null,
+            },
+            "getActionCreators": [Function],
+            "getActionForPathAndParams": [Function],
+            "getComponentForRouteName": [Function],
+            "getComponentForState": [Function],
+            "getPathAndParamsForState": [Function],
+            "getScreenOptions": [Function],
+            "getStateForAction": [Function],
+          },
+        },
+        "getActionCreators": [Function],
+        "getActionForPathAndParams": [Function],
+        "getComponentForRouteName": [Function],
+        "getComponentForState": [Function],
+        "getPathAndParamsForState": [Function],
+        "getScreenOptions": [Function],
+        "getStateForAction": [Function],
+      },
+      "setParams": [Function],
+      "state": Object {
+        "index": 0,
+        "isTransitioning": false,
+        "routes": Array [
+          Object {
+            "index": 0,
+            "isTransitioning": false,
+            "key": "AuthLoading",
+            "params": undefined,
+            "routeName": "AuthLoading",
+            "routes": Array [
+              Object {
+                "key": "id-1555534857573-0",
+                "routeName": "AuthLoading",
+              },
+            ],
+          },
+          Object {
+            "index": 0,
+            "isTransitioning": false,
+            "key": "Auth",
+            "params": undefined,
+            "routeName": "Auth",
+            "routes": Array [
+              Object {
+                "key": "id-1555534857573-1",
+                "routeName": "SignIn",
+              },
+            ],
+          },
+          Object {
+            "index": 0,
+            "isTransitioning": false,
+            "key": "App",
+            "params": undefined,
+            "routeName": "App",
+            "routes": Array [
+              Object {
+                "key": "id-1555534857573-2",
+                "routeName": "Main",
+              },
+            ],
+          },
+        ],
+      },
+    }
+  }
+>
+  <Navigator
+    navigation={
+      Object {
+        "_childrenNavigation": Object {},
+        "actions": Object {},
+        "addListener": [Function],
+        "dangerouslyGetParent": [Function],
+        "dispatch": [Function],
+        "getChildNavigation": [Function],
+        "getScreenProps": [Function],
+        "goBack": [Function],
+        "isFocused": [Function],
+        "navigate": [Function],
+        "router": Object {
+          "childRouters": Object {
+            "App": Object {
+              "childRouters": Object {
+                "Account": null,
+                "Alarm": null,
+                "AlarmList": null,
+                "AutoComplete": null,
+                "Calendar": null,
+                "CreateAlarm": null,
+                "DayPicker": null,
+                "Home": null,
+                "Main": null,
+                "StyleDemo": null,
+              },
+              "getActionCreators": [Function],
+              "getActionForPathAndParams": [Function],
+              "getComponentForRouteName": [Function],
+              "getComponentForState": [Function],
+              "getPathAndParamsForState": [Function],
+              "getScreenOptions": [Function],
+              "getStateForAction": [Function],
+            },
+            "Auth": Object {
+              "childRouters": Object {
+                "SignIn": null,
+                "SignUp": null,
+              },
+              "getActionCreators": [Function],
+              "getActionForPathAndParams": [Function],
+              "getComponentForRouteName": [Function],
+              "getComponentForState": [Function],
+              "getPathAndParamsForState": [Function],
+              "getScreenOptions": [Function],
+              "getStateForAction": [Function],
+            },
+            "AuthLoading": Object {
+              "childRouters": Object {
+                "AuthLoading": null,
+              },
+              "getActionCreators": [Function],
+              "getActionForPathAndParams": [Function],
+              "getComponentForRouteName": [Function],
+              "getComponentForState": [Function],
+              "getPathAndParamsForState": [Function],
+              "getScreenOptions": [Function],
+              "getStateForAction": [Function],
+            },
+          },
+          "getActionCreators": [Function],
+          "getActionForPathAndParams": [Function],
+          "getComponentForRouteName": [Function],
+          "getComponentForState": [Function],
+          "getPathAndParamsForState": [Function],
+          "getScreenOptions": [Function],
+          "getStateForAction": [Function],
+        },
+        "setParams": [Function],
+        "state": Object {
+          "index": 0,
+          "isTransitioning": false,
+          "routes": Array [
+            Object {
+              "index": 0,
+              "isTransitioning": false,
+              "key": "AuthLoading",
+              "params": undefined,
+              "routeName": "AuthLoading",
+              "routes": Array [
+                Object {
+                  "key": "id-1555534857573-0",
+                  "routeName": "AuthLoading",
+                },
+              ],
+            },
+            Object {
+              "index": 0,
+              "isTransitioning": false,
+              "key": "Auth",
+              "params": undefined,
+              "routeName": "Auth",
+              "routes": Array [
+                Object {
+                  "key": "id-1555534857573-1",
+                  "routeName": "SignIn",
+                },
+              ],
+            },
+            Object {
+              "index": 0,
+              "isTransitioning": false,
+              "key": "App",
+              "params": undefined,
+              "routeName": "App",
+              "routes": Array [
+                Object {
+                  "key": "id-1555534857573-2",
+                  "routeName": "Main",
+                },
+              ],
+            },
+          ],
+        },
+      }
+    }
+  />
+</ContextProvider>
+`;
