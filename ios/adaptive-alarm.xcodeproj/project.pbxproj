@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		A9D305ADF9294FF382B94C03 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85EFB2FB79E74C18AA890FD1 /* Ionicons.ttf */; };
 		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
