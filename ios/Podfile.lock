@@ -199,6 +199,10 @@ PODS:
   - lottie-ios (2.5.3)
   - React (0.57.1):
     - React/Core (= 0.57.1)
+  - react-native-background-timer (2.1.1):
+    - React
+  - react-native-maps (0.23.0):
+    - React
   - React/ART (0.57.1):
     - React/Core
   - React/Core (0.57.1):
@@ -288,6 +292,8 @@ DEPENDENCIES:
   - EXTaskManagerInterface (from `../node_modules/expo-task-manager-interface/ios`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - react-native-background-timer (from `../node_modules/react-native-background-timer`)
+  - react-native-maps (from `../node_modules/react-native-maps`)
   - React/ART (from `../node_modules/react-native`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
@@ -411,6 +417,10 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   React:
     :path: "../node_modules/react-native"
+  react-native-background-timer:
+    :path: "../node_modules/react-native-background-timer"
+  react-native-maps:
+    :path: "../node_modules/react-native-maps"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -482,8 +492,10 @@ SPEC CHECKSUMS:
   JKBigInteger2: e91672035c42328c48b7dd015b66812ddf40ca9b
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
+  react-native-background-timer: bb7a98c8e97fc7c290de2d423dd09ddb73dcbcbb
+  react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: f250c628d0930f5e0941caa4ee68a3d7377127a5
+PODFILE CHECKSUM: 324a5a77f3717bb1bc8436c19d10a20b750936ab
 
 COCOAPODS: 1.5.3

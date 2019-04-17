@@ -4,7 +4,7 @@ import BackgroundTimer from 'react-native-background-timer';
 
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
-
+/* eslint-disable no-use-before-define */
 /**
   * Uses Google Maps API to get the duration in traffic from startLoc to
   * destinationLoc.
@@ -76,7 +76,7 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
   const loops = loopLimit;
   const timeRange = timeLimit;
   return new Promise((resolve, reject) => {
-    exportFunctions.getCurrentLocation()
+    getCurrentLocation()
       .then((response) => {
         const startLoc = response;
         getRouteTime(startLoc, destinationLoc, arrivalTime)
@@ -111,7 +111,6 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
 function triggerNavigate(navigate) {
   navigate('Alarm');
 }
-let timeoutRef;
 let navigateRef; // hacky way to let navigation persist
 /**
  * Given an exact time in UTC, armAlarm sets up
@@ -120,27 +119,23 @@ let navigateRef; // hacky way to let navigation persist
  * @param  {Navigation} navigate
  * @return {[type]}           [description]
  */
-async function armAlarm(alarmTime) {
-  console.log(BackgroundTimer);
-  BackgroundTimer.runBackgroundTimer(() => {
-    console.log('tick');
-  },
-  3000);
-  if (timeoutRef) clearTimeout(timeoutRef);
+function armAlarm(alarmTime) {
   const date = new Date();
   const current = date.getTime(); // get current time
   const difference = alarmTime - current;
   if (difference < 0) console.log('** Alarm fired after desired time **\n** Should still be before arrival time **');
-  timeoutRef = setTimeout(() => triggerNavigate(exportFunctions.navigateRef), difference);
+  BackgroundTimer.runBackgroundTimer(() => {
+    triggerNavigate(navigateRef);
+    console.log('tick');
+  },
+  10 * 1000);
 }
 
 function initArmAlarm(navigate) {
-  exportFunctions.navigateRef = navigate;
+  navigateRef = navigate;
 }
 
 
-const exportFunctions = {
+export default {
   navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime,
 };
-
-export default exportFunctions;
