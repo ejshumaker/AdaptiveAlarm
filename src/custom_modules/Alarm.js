@@ -26,7 +26,7 @@ const SECS_PER_MIN = 60;
 /* eslint-disable no-console */
 async function getRouteTime(startLoc, destinationLoc, departureTime) {
   return new Promise((resolve, reject) => {
-    const API_KEY = 'AIzaSyDMsg5GK6Bv8UJF8tMkWI81XoYDZ9vy7R8';
+    const API_KEY = 'AIzaSyDkNRiGpBCZ7z7s6OhMcR7kPoTss8ZADzs';
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLoc}&departure_time=${departureTime}&destinations=${destinationLoc}&key=${API_KEY}`;
     fetch(url)
       .then(response => response.json())
