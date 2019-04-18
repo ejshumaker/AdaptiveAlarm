@@ -1,4 +1,5 @@
 import { Location, Permissions } from 'expo';
+import { DISTANCE_MATRIX_KEY } from '../../keys';
 
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
@@ -11,7 +12,7 @@ const SECS_PER_MIN = 60;
 /* eslint-disable no-console */
 async function getRouteTime(startLoc, destinationLoc, departureTime) {
   return new Promise((resolve, reject) => {
-    const API_KEY = 'AIzaSyDkNRiGpBCZ7z7s6OhMcR7kPoTss8ZADzs';
+    const API_KEY = DISTANCE_MATRIX_KEY;
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLoc}&departure_time=${departureTime}&destinations=${destinationLoc}&key=${API_KEY}`;
     fetch(url)
       .then(response => response.json())
