@@ -75,3 +75,28 @@ Configurations
 
 Custom rules
 - disabled "react/jsx-filename-extension"
+
+## Ejecting
+[Ejecting](https://docs.expo.io/versions/latest/expokit/eject/)
+[Developing](https://docs.expo.io/versions/latest/expokit/expokit/)
+### Caveats and fixes
+### IOS
+If you get a downlaod/git error
+[Thread](https://forums.expo.io/t/pod-install-fail-to-download-expokit-2-9-0/16158)
+```
+brew install git-lfs
+git lfs install
+pod update again
+```
+
+If you get 
+```
+[!] An error occurred while processing the post-install hook of the Podfile.
+undefined method `native_target' for <Pod::PodTarget name=Amplitude-iOS >:Pod::PodTarget
+```
+try
+
+1. ```sudo gem uninstall cocoapods```
+2. say ```Y``` when it asks whether to remove executables
+3. ```sudo gem install cocoapods -v 1.5.3```
+
