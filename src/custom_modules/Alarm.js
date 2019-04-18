@@ -1,10 +1,18 @@
-import { Location, Permissions } from 'expo';
+import { Location, Permissions, Notifications } from 'expo';
 import { Platform } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import sounds from '../assets/sounds';
 import store from '../store';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
 
+if (Platform.OS === 'android') {
+  Notifications.createChannelAndroidAsync('alarm', {
+    name: 'Chat messages',
+    sound: true,
+    priority: 'max',
+    vibrate: true,
+  });
+}
 const Sound = require('react-native-sound');
 
 // Enable playback in silence mode
@@ -128,6 +136,13 @@ function stopAlarm() {
 }
 
 function soundAlarm(soundIndex = 1) {
+  Notifications.presentLocalNotificationAsync({
+    title: 'Eat My Ass',
+    body: 'Please dont actually do that to me.. yuck',
+    android: {
+      channelId: 'alarm',
+    },
+  });
   const alarmId = store.getState().alarm.currentAlarmId;
   store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId });
   const index = soundIndex >= 1 ? soundIndex : 1;
