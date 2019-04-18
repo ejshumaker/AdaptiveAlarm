@@ -108,7 +108,6 @@ apply from: 'expo.gradle'
 // WHEN_PREPARING_SHELL_REMOVE_TO_HERE
 
 dependencies {
-    compile project(':react-native-maps')
     compile project(':react-native-background-timer')
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 

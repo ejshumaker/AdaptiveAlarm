@@ -282,7 +282,7 @@ class CreateAlarmScreen extends Component {
   calendarButton() {
     return (Platform.OS === 'ios')
       ? (
-        <View style={{ alignItems: 'left', justifyContent: 'space-between', marginBottom: 12 }}>
+        <View style={{ alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
           <Buttons
             title="Import Calendar?"
             backgroundColor={Colors.primary}
