@@ -20,7 +20,7 @@ import { CloseIcon } from '../icons/close';
 
 const googleStamp = require('../assets/powered_by_google_on_non_white.png');
 
-const API_KEY = 'AIzaSyBpwrz2oV29sjAAKj2l6BIb6l5luzDIsIw';
+const API_KEY = 'AIzaSyBbxQ3vmgn4eu1nIPT7xXwR7BrL6nvYFJU';
 
 class Autocomplete extends Component {
   static propTypes = {
