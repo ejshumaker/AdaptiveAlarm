@@ -8,3 +8,4 @@ npm-debug.*
 *.mobileprovision
 package-lock.json
 coverage/
+keys.js
