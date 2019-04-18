@@ -89,6 +89,17 @@ git lfs install
 pod update again
 ```
 
+Run on ios: 
+
+1. When you pull, you should see new ios and android folders
+2. Run npm install just in case. 
+3. Go to ios directory, run 'pod install' to link ios and install dependencies
+4. Run 'expo start' from main app directory
+5. Open Xcode to ios directory and press play button in top left. 
+
+
+
+
 If you get 
 ```
 [!] An error occurred while processing the post-install hook of the Podfile.
@@ -99,4 +110,29 @@ try
 1. ```sudo gem uninstall cocoapods```
 2. say ```Y``` when it asks whether to remove executables
 3. ```sudo gem install cocoapods -v 1.5.3```
+
+
+
+XCODE:
+
+To Open Project:
+		-Open adaptive-alarm.xcworkspace , NOT .xcproj
+
+**Apple Mach-O Linker Error**
+		-*Alter Xcode Build Settings*:
+			-File -> Workplace Settings -> Build System
+			-Change to "New Build System"
+		-*Add React to Build Scheme*:
+			-Product -> Scheme -> Edit Scheme -> Build -> '+' in bottom left -> Search for 'React' -> Add
+			-Once you have added, drag and drop this to the top position so that it's above adaptive-alarm
+			-Click "Manage Schemes" in bottom left, and click the checkmarks to "Show" and "Share" 'React'
+
+	
+**Duplicate Symbols for Architecture x86_64**
+	-*Unlink React-Native Maps*: 
+   -(it has been duplicated by react-native link and cocoapods link)
+		 -within project root, run "react-native unlink react-native-maps" 
+		 -run pod install
+
+	
 
