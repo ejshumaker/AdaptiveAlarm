@@ -4,6 +4,7 @@ import BackgroundTimer from 'react-native-background-timer';
 import sounds from '../assets/sounds';
 import store from '../store';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
+import { DISTANCE_MATRIX_KEY } from '../../keys';
 // NOTIFICATION CONFIG //
 if (Platform.OS === 'android') {
   Notifications.createChannelAndroidAsync('alarm-channel', {
@@ -44,7 +45,7 @@ const SECS_PER_MIN = 60;
 async function getRouteTime(startLoc, destinationLoc, departureTime) {
   console.log('here bitch');
   return new Promise((resolve, reject) => {
-    const API_KEY = 'AIzaSyDkNRiGpBCZ7z7s6OhMcR7kPoTss8ZADzs';
+    const API_KEY = DISTANCE_MATRIX_KEY;
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLoc}&departure_time=${departureTime}&destinations=${destinationLoc}&key=${API_KEY}`;
     fetch(url)
       .then(response => response.json())
@@ -104,6 +105,7 @@ async function getCurrentLocation() {
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
 async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit) {
+  console.log('hello');
   const loops = loopLimit;
   const timeRange = timeLimit;
   return new Promise((resolve, reject) => {

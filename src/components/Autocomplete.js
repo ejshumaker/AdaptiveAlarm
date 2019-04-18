@@ -17,10 +17,11 @@ import LocationItem from './LocationItem';
 import { GlobalStyles, Colors } from '../constants';
 import { SearchIcon } from '../icons/search';
 import { CloseIcon } from '../icons/close';
+import { PLACES_KEY } from '../../keys';
 
 const googleStamp = require('../assets/powered_by_google_on_non_white.png');
 
-const API_KEY = 'AIzaSyBbxQ3vmgn4eu1nIPT7xXwR7BrL6nvYFJU';
+const API_KEY = PLACES_KEY;
 
 class Autocomplete extends Component {
   static propTypes = {
