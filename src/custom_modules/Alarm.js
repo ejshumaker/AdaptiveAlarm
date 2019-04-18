@@ -4,17 +4,26 @@ import BackgroundTimer from 'react-native-background-timer';
 import sounds from '../assets/sounds';
 import store from '../store';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
-
+// NOTIFICATION CONFIG //
 if (Platform.OS === 'android') {
-  Notifications.createChannelAndroidAsync('alarm', {
-    name: 'Chat messages',
+  Notifications.createChannelAndroidAsync('alarm-channel', {
+    name: 'Alarm Channel',
     sound: true,
     priority: 'max',
-    vibrate: true,
+    vibrate: [0, 400, 200, 400, 200, 400],
   });
 }
-const Sound = require('react-native-sound');
+Notifications.createCategoryAsync('alarm-category', [
+  'alarm-dismiss',
+  'Dismiss',
+]);
+Notifications.addListener((val) => {
+  console.log('listened');
+  console.log(val);
+});
+// END NOTIFICATION CONFIG //
 
+const Sound = require('react-native-sound');
 // Enable playback in silence mode
 Sound.setCategory('Playback');
 
@@ -137,10 +146,11 @@ function stopAlarm() {
 
 function soundAlarm(soundIndex = 1) {
   Notifications.presentLocalNotificationAsync({
-    title: 'Eat My Ass',
-    body: 'Please dont actually do that to me.. yuck',
+    title: 'Get Up!',
+    body: 'It\'s time to get going kid',
+    categoryId: 'alarm-category',
     android: {
-      channelId: 'alarm',
+      channelId: 'alarm-channel',
     },
   });
   const alarmId = store.getState().alarm.currentAlarmId;
@@ -173,7 +183,6 @@ function soundAlarm(soundIndex = 1) {
  * @return {[type]}           [description]
  */
 function armAlarm(alarmTime, soundIndex = 1) {
-  console.log('Arming Alarm');
   const date = new Date();
   const current = date.getTime(); // get current time
   let difference = alarmTime - current;
@@ -190,6 +199,7 @@ function armAlarm(alarmTime, soundIndex = 1) {
       soundAlarm(soundIndex);
     }, difference);
   }
+  console.log('Armed Alarm');
 }
 
 function initArmAlarm(navigate) {
