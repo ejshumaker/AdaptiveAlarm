@@ -116,7 +116,6 @@ target 'adaptive-alarm' do
 
   pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
 
-  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
   pod 'RNSound', :path => '../node_modules/react-native-sound'
 

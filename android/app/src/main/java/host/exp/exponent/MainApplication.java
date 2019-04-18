@@ -35,7 +35,6 @@ import expolib_v1.okhttp3.OkHttpClient;
 // Needed for `react-native link`
 // import com.facebook.react.ReactApplication;
 import com.zmxv.RNSound.RNSoundPackage;
-import com.airbnb.android.react.maps.MapsPackage;
 import com.ocetnik.timer.BackgroundTimerPackage;
 
 public class MainApplication extends ExpoApplication implements AppLoaderPackagesProviderInterface<ReactPackage> {
@@ -54,7 +53,6 @@ public class MainApplication extends ExpoApplication implements AppLoaderPackage
         // Needed for `react-native link`
         // new MainReactPackage(),
             new RNSoundPackage(),
-            new MapsPackage(),
             new BackgroundTimerPackage()
     );
   }

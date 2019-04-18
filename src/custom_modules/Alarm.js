@@ -13,10 +13,10 @@ if (Platform.OS === 'android') {
     vibrate: [0, 400, 200, 400, 200, 400],
   });
 }
-Notifications.createCategoryAsync('alarm-category', [
-  'alarm-dismiss',
-  'Dismiss',
-]);
+// Notifications.createCategoryAsync('alarm-category', [
+//   'alarm-dismiss',
+//   'Dismiss',
+// ]);
 Notifications.addListener((val) => {
   console.log('listened');
   console.log(val);
@@ -42,6 +42,7 @@ const SECS_PER_MIN = 60;
   */
 /* eslint-disable no-console */
 async function getRouteTime(startLoc, destinationLoc, departureTime) {
+  console.log('here bitch');
   return new Promise((resolve, reject) => {
     const API_KEY = 'AIzaSyDkNRiGpBCZ7z7s6OhMcR7kPoTss8ZADzs';
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLoc}&departure_time=${departureTime}&destinations=${destinationLoc}&key=${API_KEY}`;

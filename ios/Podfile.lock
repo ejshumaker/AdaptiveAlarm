@@ -201,8 +201,6 @@ PODS:
     - React/Core (= 0.57.1)
   - react-native-background-timer (2.1.1):
     - React
-  - react-native-maps (0.23.0):
-    - React
   - React/ART (0.57.1):
     - React/Core
   - React/Core (0.57.1):
@@ -249,6 +247,11 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNSound (0.10.12):
+    - React/Core
+    - RNSound/Core (= 0.10.12)
+  - RNSound/Core (0.10.12):
+    - React/Core
   - yoga (0.57.1.React)
 
 DEPENDENCIES:
@@ -293,7 +296,6 @@ DEPENDENCIES:
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - react-native-background-timer (from `../node_modules/react-native-background-timer`)
-  - react-native-maps (from `../node_modules/react-native-maps`)
   - React/ART (from `../node_modules/react-native`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
@@ -307,6 +309,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNSound (from `../node_modules/react-native-sound`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -419,8 +422,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native"
   react-native-background-timer:
     :path: "../node_modules/react-native-background-timer"
-  react-native-maps:
-    :path: "../node_modules/react-native-maps"
+  RNSound:
+    :path: "../node_modules/react-native-sound"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -493,9 +496,9 @@ SPEC CHECKSUMS:
   lottie-ios: a50d5c0160425cd4b01b852bb9578963e6d92d31
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
   react-native-background-timer: bb7a98c8e97fc7c290de2d423dd09ddb73dcbcbb
-  react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
+  RNSound: b360b3862d3118ed1c74bb9825696b5957686ac4
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: 324a5a77f3717bb1bc8436c19d10a20b750936ab
+PODFILE CHECKSUM: 0b9e4124f71e4782090aaff126780f779b9dcfaf
 
 COCOAPODS: 1.5.3
