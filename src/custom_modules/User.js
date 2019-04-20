@@ -85,6 +85,7 @@ function updateAlarm(payload) {
     days,
     isActive,
     soundIndex,
+    modeIndex,
   } = payload;
   let { alarmId } = payload;
   const { uid } = auth().currentUser;
@@ -99,6 +100,7 @@ function updateAlarm(payload) {
         isActive,
         alarmId,
         soundIndex,
+        modeIndex,
       })
       .then(() => {
         resolve({
@@ -109,6 +111,7 @@ function updateAlarm(payload) {
           isActive,
           alarmId,
           soundIndex,
+          modeIndex,
         });
       })
       .catch(error => reject(error));

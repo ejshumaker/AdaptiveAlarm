@@ -1,5 +1,6 @@
-import { Location, Permissions } from 'expo';
+import { Location, Permissions, Alert } from 'expo';
 import { DISTANCE_MATRIX_KEY } from '../../keys';
+import modes from '../assets/modes';
 
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
@@ -10,10 +11,11 @@ const SECS_PER_MIN = 60;
   * @tsteiner4 3-9-2019
   */
 /* eslint-disable no-console */
-async function getRouteTime(startLoc, destinationLoc, departureTime) {
+async function getRouteTime(startLoc, destinationLoc, departureTime, modeIndex) {
+  const mode = modes[modeIndex - 1].label.toLowerCase();
   return new Promise((resolve, reject) => {
     const API_KEY = DISTANCE_MATRIX_KEY;
-    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLoc}&departure_time=${departureTime}&destinations=${destinationLoc}&key=${API_KEY}`;
+    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLoc}&mode=${mode}&departure_time=${departureTime}&destinations=${destinationLoc}&key=${API_KEY}`;
     fetch(url)
       .then(response => response.json())
       .then((json) => {
@@ -49,7 +51,7 @@ async function getCurrentLocation() {
     Permissions.askAsync(Permissions.LOCATION)
       .then((response) => {
         if (response.status !== 'granted') {
-          console.log('Permission to access location was denied');
+          Alert.alert('Permission to access location was denied');
           reject(Error('Permission to access location was denied'));
         } else {
         // const location = await Location.getCurrentPositionAsync({});
@@ -71,14 +73,14 @@ async function getCurrentLocation() {
 }
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit) {
+async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit, modeIndex) {
   const loops = loopLimit;
   const timeRange = timeLimit;
   return new Promise((resolve, reject) => {
     exportFunctions.getCurrentLocation()
       .then((response) => {
         const startLoc = response;
-        getRouteTime(startLoc, destinationLoc, arrivalTime)
+        getRouteTime(startLoc, destinationLoc, arrivalTime, modeIndex)
           .then(async (re) => {
             let duration = re;
             let departureTime = arrivalTime;
@@ -86,7 +88,7 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
             while (Math.abs(departureTime + (duration * MILS_PER_MIN)
         - arrivalTime) > timeRange * MILS_PER_MIN && i < loops) {
               departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
-              await getRouteTime(startLoc, destinationLoc, departureTime)
+              await getRouteTime(startLoc, destinationLoc, departureTime, modeIndex)
                 .then((resp) => {
                   duration = resp;
                 })

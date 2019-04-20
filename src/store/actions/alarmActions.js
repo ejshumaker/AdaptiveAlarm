@@ -17,6 +17,7 @@ export function alarmCalculateTime() {
       alarmId,
       alarmUTC,
       soundIndex,
+      modeIndex,
     } = alarm;
     const loopLimit = 4;
     const arrivalTimeBuffer = 6;
@@ -28,6 +29,7 @@ export function alarmCalculateTime() {
         alarmUTC,
         loopLimit,
         arrivalTimeBuffer,
+        modeIndex,
       ),
     })
       .then((resp) => {
@@ -38,6 +40,7 @@ export function alarmCalculateTime() {
             armed: true,
             currentAlarmId: alarmId,
             soundIndex,
+            modeIndex,
           },
         });
       });
