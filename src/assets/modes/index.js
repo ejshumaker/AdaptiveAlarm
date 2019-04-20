@@ -16,9 +16,4 @@ export default [
     value: '3',
     color: Colors.darkGray,
   },
-  {
-    label: 'Transit',
-    value: '4',
-    color: Colors.darkGray,
-  },
 ];

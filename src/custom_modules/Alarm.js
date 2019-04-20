@@ -12,8 +12,8 @@ const SECS_PER_MIN = 60;
   */
 /* eslint-disable no-console */
 async function getRouteTime(startLoc, destinationLoc, departureTime, modeIndex) {
-  const mode = modes[modeIndex - 1].label.toLowerCase();
   return new Promise((resolve, reject) => {
+    const mode = modes[modeIndex - 1].label.toLowerCase();
     const API_KEY = DISTANCE_MATRIX_KEY;
     const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLoc}&mode=${mode}&departure_time=${departureTime}&destinations=${destinationLoc}&key=${API_KEY}`;
     fetch(url)
