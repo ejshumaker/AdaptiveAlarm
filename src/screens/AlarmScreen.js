@@ -74,7 +74,7 @@ class AlarmScreen extends Component {
   }
 
   playSound = async () => {
-    const PATTERN = [1000, 2000, 1000];
+    const PATTERN = [10, 2000, 1000, 1000];
     if (this.sound != null) {
       Vibration.vibrate(PATTERN, true);
       await this.sound.setIsLoopingAsync(true);
