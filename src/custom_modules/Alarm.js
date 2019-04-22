@@ -1,10 +1,12 @@
-import { Location, Permissions, Notifications } from 'expo';
+import {
+  Location, Permissions, Notifications, Alert,
+} from 'expo';
 import { Platform } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import sounds from '../assets/sounds';
 import store from '../store';
-import { alarmCalculateTime } from '../store/actions/alarmActions';
 import { DISTANCE_MATRIX_KEY } from '../../keys';
+import modes from '../assets/modes';
 // NOTIFICATION CONFIG //
 if (Platform.OS === 'android') {
   Notifications.createChannelAndroidAsync('alarm-channel', {
@@ -33,6 +35,7 @@ let navigateRef;
 let soundRef;
 let timerRef;
 
+
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
 /* eslint-disable no-use-before-define */
@@ -42,11 +45,11 @@ const SECS_PER_MIN = 60;
   * @tsteiner4 3-9-2019
   */
 /* eslint-disable no-console */
-async function getRouteTime(startLoc, destinationLoc, departureTime) {
-  console.log('here bitch');
+async function getRouteTime(startLoc, destinationLoc, departureTime, modeIndex = 1) {
   return new Promise((resolve, reject) => {
+    const mode = modes[modeIndex - 1].label.toLowerCase();
     const API_KEY = DISTANCE_MATRIX_KEY;
-    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLoc}&departure_time=${departureTime}&destinations=${destinationLoc}&key=${API_KEY}`;
+    const url = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${startLoc}&mode=${mode}&departure_time=${departureTime}&destinations=${destinationLoc}&key=${API_KEY}`;
     fetch(url)
       .then(response => response.json())
       .then((json) => {
@@ -82,7 +85,7 @@ async function getCurrentLocation() {
     Permissions.askAsync(Permissions.LOCATION)
       .then((response) => {
         if (response.status !== 'granted') {
-          console.log('Permission to access location was denied');
+          Alert.alert('Permission to access location was denied');
           reject(Error('Permission to access location was denied'));
         } else {
         // const location = await Location.getCurrentPositionAsync({});
@@ -104,15 +107,21 @@ async function getCurrentLocation() {
 }
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit) {
-  console.log('hello');
+async function getAlarmTime(
+  destinationLoc,
+  timeToGetReady,
+  arrivalTime,
+  loopLimit,
+  timeLimit,
+  modeIndex,
+) {
   const loops = loopLimit;
   const timeRange = timeLimit;
   return new Promise((resolve, reject) => {
     getCurrentLocation()
       .then((response) => {
         const startLoc = response;
-        getRouteTime(startLoc, destinationLoc, arrivalTime)
+        getRouteTime(startLoc, destinationLoc, arrivalTime, modeIndex)
           .then(async (re) => {
             let duration = re;
             let departureTime = arrivalTime;
@@ -120,7 +129,7 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
             while (Math.abs(departureTime + (duration * MILS_PER_MIN)
         - arrivalTime) > timeRange * MILS_PER_MIN && i < loops) {
               departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
-              await getRouteTime(startLoc, destinationLoc, departureTime)
+              await getRouteTime(startLoc, destinationLoc, departureTime, modeIndex)
                 .then((resp) => {
                   duration = resp;
                 })
@@ -143,8 +152,6 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
 
 function stopAlarm() {
   if (soundRef !== undefined) soundRef.stop();
-  store.dispatch(alarmCalculateTime());
-  console.log('stopping');
 }
 
 function soundAlarm(soundIndex = 1) {
@@ -205,11 +212,11 @@ function armAlarm(alarmTime, soundIndex = 1) {
   console.log('Armed Alarm');
 }
 
-function initArmAlarm(navigate) {
+function initAlarm(navigate) {
   navigateRef = navigate;
 }
 
 
 export default {
-  navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime, stopAlarm,
+  navigateRef, getCurrentLocation, initAlarm, getAlarmTime, armAlarm, getRouteTime, stopAlarm,
 };
