@@ -31,7 +31,6 @@ class AlarmScreen extends Component {
   stopSound = (navigate) => {
     Alarm.stopAlarm();
     navigate('Main');
-    console.log('should have navigated');
     store.dispatch(alarmCalculateTime());
   }
 

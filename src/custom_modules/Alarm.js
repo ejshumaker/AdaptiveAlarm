@@ -1,30 +1,13 @@
 import {
   Location, Permissions, Notifications, Alert,
 } from 'expo';
+import moment from 'moment';
 import { Platform } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import sounds from '../assets/sounds';
 import store from '../store';
 import { DISTANCE_MATRIX_KEY } from '../../keys';
 import modes from '../assets/modes';
-// NOTIFICATION CONFIG //
-if (Platform.OS === 'android') {
-  Notifications.createChannelAndroidAsync('alarm-channel', {
-    name: 'Alarm Channel',
-    sound: true,
-    priority: 'max',
-    vibrate: [0, 400, 200, 400, 200, 400],
-  });
-}
-// Notifications.createCategoryAsync('alarm-category', [
-//   'alarm-dismiss',
-//   'Dismiss',
-// ]);
-Notifications.addListener((val) => {
-  console.log('listened');
-  console.log(val);
-});
-// END NOTIFICATION CONFIG //
 
 const Sound = require('react-native-sound');
 // Enable playback in silence mode
@@ -155,16 +138,16 @@ function stopAlarm() {
 }
 
 function soundAlarm(soundIndex = 1) {
+  const { time, currentAlarmId } = store.getState().alarm;
   Notifications.presentLocalNotificationAsync({
-    title: 'Get Up!',
-    body: 'It\'s time to get going kid',
+    title: moment(time).format('hh:mm'),
+    body: 'Time to wake up!',
     categoryId: 'alarm-category',
     android: {
       channelId: 'alarm-channel',
     },
   });
-  const alarmId = store.getState().alarm.currentAlarmId;
-  store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId });
+  store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId: currentAlarmId });
   const index = soundIndex >= 1 ? soundIndex : 1;
   const audioPath = sounds[index - 1].path;
   console.log(audioPath);
@@ -214,6 +197,23 @@ function armAlarm(alarmTime, soundIndex = 1) {
 
 function initAlarm(navigate) {
   navigateRef = navigate;
+  // NOTIFICATION CONFIG //
+  if (Platform.OS === 'android') {
+    Notifications.createChannelAndroidAsync('alarm-channel', {
+      name: 'Alarm Channel',
+      sound: false,
+      priority: 'max',
+    });
+  }
+  Notifications.createCategoryAsync('alarm-category', [
+    {
+      actionId: 'alarm-dismiss',
+      buttonTitle: 'Dismiss',
+    },
+  ]);
+  Notifications.addListener((val) => {
+    if (val.actionId === 'alarm-dismiss') stopAlarm();
+  });
 }
 
 
