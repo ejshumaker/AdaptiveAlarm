@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
+import {
+  View, Text, TouchableOpacity, Vibration,
+} from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Audio } from 'expo';
@@ -58,15 +60,10 @@ class AlarmScreen extends Component {
     const { alarm } = this.props;
     let { soundIndex } = alarm;
     soundIndex = soundIndex || 1; // default on undefined
-    console.log('======================');
-    console.log('soundIndex:', soundIndex);
-    console.log('alarm:', JSON.stringify(alarm));
-
     try {
       if (this.sound == null) this.sound = new Audio.Sound();
 
       if (load === true) {
-        // const soundIndex = 3;
         await this.sound.loadAsync(sounds[soundIndex - 1].audio);
         this.setState({ load: false });
       }
@@ -77,7 +74,9 @@ class AlarmScreen extends Component {
   }
 
   playSound = async () => {
+    const PATTERN = [10, 2000, 1000, 1000];
     if (this.sound != null) {
+      Vibration.vibrate(PATTERN, true);
       await this.sound.setIsLoopingAsync(true);
       await this.sound.playAsync();
     }
@@ -87,6 +86,7 @@ class AlarmScreen extends Component {
   stopSound = async (navigate) => {
     const { load } = this.state;
     if (!load) {
+      Vibration.cancel();
       await this.sound.stopAsync();
       navigate('Main');
     }
