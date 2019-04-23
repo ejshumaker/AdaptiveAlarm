@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		7FBA4318116F83A0B7BA871C /* libPods-adaptive-alarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D2A66F0540DA836D95005FD /* libPods-adaptive-alarm.a */; };
 		A9D305ADF9294FF382B94C03 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85EFB2FB79E74C18AA890FD1 /* Ionicons.ttf */; };

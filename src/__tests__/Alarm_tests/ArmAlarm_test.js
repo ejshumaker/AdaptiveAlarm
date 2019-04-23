@@ -19,7 +19,7 @@ describe('Arm Alarm Tests', () => {
 
 
   beforeEach(() => {
-    Alarm.initArmAlarm(mockNav);
+    Alarm.initAlarm(mockNav);
   });
 
   test('arm alarm with alarmtime', async () => {

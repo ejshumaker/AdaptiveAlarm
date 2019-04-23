@@ -1,4 +1,5 @@
-node_modules/**/*
+node_modules
+
 .expo/*
 npm-debug.*
 *.jks
@@ -36,3 +37,4 @@ Pods/
 .idea
 .gradle
 local.properties
+keys.js
