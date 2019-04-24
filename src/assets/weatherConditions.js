@@ -1,26 +1,26 @@
 export const weatherConditions = {
   Rain: {
-    icon: 'weather-rainy'
+    icon: 'weather-rainy',
   },
   Clear: {
-    icon: 'weather-sunny'
+    icon: 'weather-sunny',
   },
   Thunderstorm: {
-    icon: 'weather-lightning'
+    icon: 'weather-lightning',
   },
   Clouds: {
-    icon: 'weather-cloudy'
+    icon: 'weather-cloudy',
   },
   Snow: {
-    icon: 'weather-snowy'
+    icon: 'weather-snowy',
   },
   Drizzle: {
-    icon: 'weather-hail'
+    icon: 'weather-hail',
   },
   Haze: {
-    icon: 'weather-hail'
+    icon: 'weather-hail',
   },
   Mist: {
-    icon: 'weather-fog'
+    icon: 'weather-fog',
   }
 };

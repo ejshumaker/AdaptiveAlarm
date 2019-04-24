@@ -10,6 +10,7 @@ import AnalogClock from '../components/AnalogClock';
 import { Buttons, StatusBarBackground } from '../components';
 import Alarm from '../custom_modules/Alarm';
 import { WEATHER_KEY } from '../../keys';
+import { weatherConditions } from '../assets/weatherConditions';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
@@ -23,7 +24,7 @@ class MainScreen extends Component {
     super();
     this.state = {
       temperature: 69,
-      weather: '',
+      weather: 'Clear',
       weatherLoading: true,
     };
   }
@@ -70,7 +71,7 @@ class MainScreen extends Component {
         </Text>
         {!weatherLoading ? null : <Text>{temperature}</Text>}
         <Text style={
-          [GlobalStyles.month, { color: Colors.white, marginLeft: 130 }]
+          [GlobalStyles.month, { color: Colors.white, marginLeft: 90 }]
         }
         >
           <Text style={GlobalStyles.date}>
@@ -79,7 +80,11 @@ class MainScreen extends Component {
           <Text>
             {'\u2109   '}
           </Text>
-          <MaterialCommunityIcons size={20} name="weather-cloudy" color={Colors.white} />
+          <MaterialCommunityIcons
+            size={20}
+            name={weatherConditions[weather].icon}
+            color={Colors.white}
+          />
           <Text>
             {'  '}
             {month.toUpperCase()}
@@ -135,8 +140,6 @@ class MainScreen extends Component {
       navigation,
       alarmId,
     } = this.props;
-    const { temperature, weather, weatherLoading } = this.state;
-    const { navigate } = navigation;
     return (
       <View>
         <Buttons
@@ -145,19 +148,13 @@ class MainScreen extends Component {
           textColor={Colors.white}
           onPress={() => dismissAlarm(alarmId)}
         />
-        <Buttons
-          title="Dev Page"
-          backgroundColor={Colors.darkGray}
-          textColor={Colors.white}
-          onPress={() => navigate('Home')}
-        />
         <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
           <Buttons
             title="Get Weather"
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => {
-              this.weatherTest();
+              this.getWeather();
             }}
           />
         </View>
@@ -206,7 +203,7 @@ class MainScreen extends Component {
     );
   }
 
-  async weatherTest() {
+  async getWeather() {
     let temperature = '';
     let weather = '';
     let lat = 0;
@@ -221,7 +218,7 @@ class MainScreen extends Component {
     await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`)
       .then(response => response.json())
       .then((json) => {
-        temperature = json.main.temp;
+        temperature = Math.round(json.main.temp);
         weather = json.weather[0].main;
         this.setState({ temperature, weather, weatherLoading: false });
       });
