@@ -5,7 +5,15 @@ import Alarm from '../../../custom_modules/Alarm';
 const MILS_PER_HOUR = 1000 * 60 * 60;
 
 jest.useFakeTimers();
-
+jest.mock('react-native-background-timer', () => jest.fn());
+jest.mock('../../../assets/sounds/', () => jest.fn());
+jest.mock('react-native-sound', () => ({
+  loadAsync: jest.fn(),
+  setIsLoopingAsync: jest.fn(),
+  playAsync: jest.fn(),
+  setCategory: jest.fn(),
+  MAIN_BUNDLE: jest.fn(),
+}));
 describe('Arm Alarm Tests', () => {
   const RealDate = Date;
   /* eslint no-global-assign:off */

@@ -6,6 +6,16 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { AccountScreen } from '../../screens/AccountScreen';
 
+jest.mock('react-native-background-timer', () => jest.fn());
+jest.mock('../../assets/sounds/', () => jest.fn());
+jest.mock('react-native-sound', () => ({
+  loadAsync: jest.fn(),
+  setIsLoopingAsync: jest.fn(),
+  playAsync: jest.fn(),
+  setCategory: jest.fn(),
+  MAIN_BUNDLE: jest.fn(),
+}));
+
 Enzyme.configure({ adapter: new Adapter() });
 describe('Account Screen', () => {
   let wrapper;

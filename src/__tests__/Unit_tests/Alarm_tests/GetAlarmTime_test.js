@@ -4,6 +4,15 @@
 import Alarm from '../../../custom_modules/Alarm';
 import Mocks from '../../../__mocks__/fetchMock';
 
+jest.mock('react-native-background-timer', () => jest.fn());
+jest.mock('../../../assets/sounds/', () => jest.fn());
+jest.mock('react-native-sound', () => ({
+  loadAsync: jest.fn(),
+  setIsLoopingAsync: jest.fn(),
+  playAsync: jest.fn(),
+  setCategory: jest.fn(),
+  MAIN_BUNDLE: jest.fn(),
+}));
 const MILS_PER_MIN = 1000 * 60;
 
 function expectedAlarmTimeFn(timeArray, arrivalTime, timeToGetReady, loopLimit, timeLimit) {

@@ -12,6 +12,16 @@ import {
 
 import User from '../../custom_modules/User';
 
+jest.mock('react-native-background-timer', () => jest.fn());
+jest.mock('../../assets/sounds/', () => jest.fn());
+jest.mock('react-native-sound', () => ({
+  loadAsync: jest.fn(),
+  setIsLoopingAsync: jest.fn(),
+  playAsync: jest.fn(),
+  setCategory: jest.fn(),
+  MAIN_BUNDLE: jest.fn(),
+}));
+
 const navigationMock = jest.fn();
 
 const spy = jest.spyOn(User, 'signOut');

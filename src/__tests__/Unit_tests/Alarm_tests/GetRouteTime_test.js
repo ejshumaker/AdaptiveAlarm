@@ -4,6 +4,16 @@
 import Alarm from '../../../custom_modules/Alarm';
 import Mocks from '../../../__mocks__/fetchMock';
 
+jest.mock('react-native-background-timer', () => jest.fn());
+jest.mock('../../../assets/sounds/', () => jest.fn());
+jest.mock('react-native-sound', () => ({
+  loadAsync: jest.fn(),
+  setIsLoopingAsync: jest.fn(),
+  playAsync: jest.fn(),
+  setCategory: jest.fn(),
+  MAIN_BUNDLE: jest.fn(),
+}));
+
 jest.setTimeout(10000);
 describe('Route Time tests', () => {
   const departureTime = new Date(2019, 3, 26, 10, 0, 0);

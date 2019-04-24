@@ -10,6 +10,14 @@ import { AlarmScreen } from '../../screens/AlarmScreen';
 Enzyme.configure({ adapter: new Adapter() });
 
 jest.mock('../../assets/sounds/', () => jest.fn());
+jest.mock('react-native-background-timer', () => jest.fn());
+jest.mock('react-native-sound', () => ({
+  loadAsync: jest.fn(),
+  setIsLoopingAsync: jest.fn(),
+  playAsync: jest.fn(),
+  setCategory: jest.fn(),
+  MAIN_BUNDLE: jest.fn(),
+}));
 
 describe('Alarm Screen', () => {
   let wrapper;

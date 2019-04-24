@@ -47,7 +47,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     <View
       style={
         Object {
-          "alignItems": "left",
+          "alignItems": "center",
           "justifyContent": "space-between",
           "marginBottom": 12,
         }
@@ -229,6 +229,86 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
         ]
       }
     >
+      Transportation Mode
+    </Text>
+    <RNPickerSelect
+      Icon={[Function]}
+      disabled={false}
+      doneText="Done"
+      hideDoneBar={false}
+      itemKey={null}
+      items={
+        Array [
+          Object {
+            "color": "#505050",
+            "label": "Driving",
+            "value": "1",
+          },
+          Object {
+            "color": "#505050",
+            "label": "Walking",
+            "value": "2",
+          },
+          Object {
+            "color": "#505050",
+            "label": "Bicycling",
+            "value": "3",
+          },
+        ]
+      }
+      modalProps={Object {}}
+      onClose={null}
+      onDonePress={null}
+      onDownArrow={null}
+      onOpen={null}
+      onUpArrow={null}
+      onValueChange={[Function]}
+      pickerProps={Object {}}
+      placeholder={
+        Object {
+          "color": "#505050",
+          "label": "Select Transportation Mode",
+          "value": null,
+        }
+      }
+      placeholderTextColor="#C7C7CD"
+      style={
+        Object {
+          "iconContainer": Object {
+            "top": 10,
+          },
+        }
+      }
+      textInputProps={
+        Object {
+          "color": "#505050",
+          "style": Object {
+            "borderBottomColor": "#DDDDDD",
+            "borderBottomWidth": 0.5,
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 14,
+            "height": 50,
+            "marginBottom": 24,
+          },
+        }
+      }
+      useNativeAndroidPickerStyle={true}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
       Recurring
     </Text>
     <DayPicker
@@ -319,7 +399,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
     <View
       style={
         Object {
-          "alignItems": "left",
+          "alignItems": "center",
           "justifyContent": "space-between",
           "marginBottom": 12,
         }
@@ -485,6 +565,87 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
       }
       useNativeAndroidPickerStyle={true}
       value={2}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Transportation Mode
+    </Text>
+    <RNPickerSelect
+      Icon={[Function]}
+      disabled={false}
+      doneText="Done"
+      hideDoneBar={false}
+      itemKey={null}
+      items={
+        Array [
+          Object {
+            "color": "#505050",
+            "label": "Driving",
+            "value": "1",
+          },
+          Object {
+            "color": "#505050",
+            "label": "Walking",
+            "value": "2",
+          },
+          Object {
+            "color": "#505050",
+            "label": "Bicycling",
+            "value": "3",
+          },
+        ]
+      }
+      modalProps={Object {}}
+      onClose={null}
+      onDonePress={null}
+      onDownArrow={null}
+      onOpen={null}
+      onUpArrow={null}
+      onValueChange={[Function]}
+      pickerProps={Object {}}
+      placeholder={
+        Object {
+          "color": "#505050",
+          "label": "Select Transportation Mode",
+          "value": null,
+        }
+      }
+      placeholderTextColor="#C7C7CD"
+      style={
+        Object {
+          "iconContainer": Object {
+            "top": 10,
+          },
+        }
+      }
+      textInputProps={
+        Object {
+          "color": "#505050",
+          "style": Object {
+            "borderBottomColor": "#DDDDDD",
+            "borderBottomWidth": 0.5,
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 14,
+            "height": 50,
+            "marginBottom": 24,
+          },
+        }
+      }
+      useNativeAndroidPickerStyle={true}
+      value={1}
     />
     <Text
       style={
@@ -588,7 +749,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
     <View
       style={
         Object {
-          "alignItems": "left",
+          "alignItems": "center",
           "justifyContent": "space-between",
           "marginBottom": 12,
         }
@@ -754,6 +915,87 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
       }
       useNativeAndroidPickerStyle={true}
       value={2}
+    />
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 18,
+          },
+          Object {
+            "marginTop": 0,
+          },
+        ]
+      }
+    >
+      Transportation Mode
+    </Text>
+    <RNPickerSelect
+      Icon={[Function]}
+      disabled={false}
+      doneText="Done"
+      hideDoneBar={false}
+      itemKey={null}
+      items={
+        Array [
+          Object {
+            "color": "#505050",
+            "label": "Driving",
+            "value": "1",
+          },
+          Object {
+            "color": "#505050",
+            "label": "Walking",
+            "value": "2",
+          },
+          Object {
+            "color": "#505050",
+            "label": "Bicycling",
+            "value": "3",
+          },
+        ]
+      }
+      modalProps={Object {}}
+      onClose={null}
+      onDonePress={null}
+      onDownArrow={null}
+      onOpen={null}
+      onUpArrow={null}
+      onValueChange={[Function]}
+      pickerProps={Object {}}
+      placeholder={
+        Object {
+          "color": "#505050",
+          "label": "Select Transportation Mode",
+          "value": null,
+        }
+      }
+      placeholderTextColor="#C7C7CD"
+      style={
+        Object {
+          "iconContainer": Object {
+            "top": 10,
+          },
+        }
+      }
+      textInputProps={
+        Object {
+          "color": "#505050",
+          "style": Object {
+            "borderBottomColor": "#DDDDDD",
+            "borderBottomWidth": 0.5,
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Medium",
+            "fontSize": 14,
+            "height": 50,
+            "marginBottom": 24,
+          },
+        }
+      }
+      useNativeAndroidPickerStyle={true}
+      value={1}
     />
     <Text
       style={
