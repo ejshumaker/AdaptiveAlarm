@@ -101,7 +101,7 @@ async function getAlarmTime(
   const loops = loopLimit;
   const timeRange = timeLimit;
   return new Promise((resolve, reject) => {
-    getCurrentLocation()
+    exportFunctions.getCurrentLocation()
       .then((response) => {
         const startLoc = response;
         getRouteTime(startLoc, destinationLoc, arrivalTime, modeIndex)
@@ -160,7 +160,7 @@ function soundAlarm(soundIndex = 1) {
     soundRef.setNumberOfLoops(-1);
     soundRef.play();
   });
-  navigateRef('Alarm');
+  exportFunctions.navigateRef('Alarm');
   if (Platform.OS === 'android') {
     BackgroundTimer.clearInterval(timerRef);
   } else {
@@ -196,7 +196,7 @@ function armAlarm(alarmTime, soundIndex = 1) {
 }
 
 function initAlarm(navigate) {
-  navigateRef = navigate;
+  exportFunctions.navigateRef = navigate;
   // NOTIFICATION CONFIG //
   if (Platform.OS === 'android') {
     Notifications.createChannelAndroidAsync('alarm-channel', {
@@ -216,7 +216,8 @@ function initAlarm(navigate) {
   });
 }
 
-
-export default {
+const exportFunctions = {
   navigateRef, getCurrentLocation, initAlarm, getAlarmTime, armAlarm, getRouteTime, stopAlarm,
 };
+
+export default exportFunctions;

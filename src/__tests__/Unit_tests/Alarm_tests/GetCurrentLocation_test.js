@@ -14,8 +14,11 @@ jest.mock('expo', () => ({
       },
     }))),
   },
+  Alert: {
+    alert: jest.fn(),
+  },
 }));
-jest.mock('react-native-background-timer', () => jest.fn());
+
 jest.mock('../../../assets/sounds/', () => jest.fn());
 jest.mock('react-native-sound', () => ({
   loadAsync: jest.fn(),

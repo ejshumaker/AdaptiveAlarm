@@ -4,7 +4,6 @@
 import Alarm from '../../../custom_modules/Alarm';
 import Mocks from '../../../__mocks__/fetchMock';
 
-jest.mock('react-native-background-timer', () => jest.fn());
 jest.mock('../../../assets/sounds/', () => jest.fn());
 jest.mock('react-native-sound', () => ({
   loadAsync: jest.fn(),

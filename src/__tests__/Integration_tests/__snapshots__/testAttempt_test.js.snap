@@ -84,7 +84,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             "routeName": "AuthLoading",
             "routes": Array [
               Object {
-                "key": "id-1556116991591-0",
+                "key": "id-1556144897025-0",
                 "routeName": "AuthLoading",
               },
             ],
@@ -97,7 +97,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             "routeName": "Auth",
             "routes": Array [
               Object {
-                "key": "id-1556116991591-1",
+                "key": "id-1556144897025-1",
                 "routeName": "SignIn",
               },
             ],
@@ -110,7 +110,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             "routeName": "App",
             "routes": Array [
               Object {
-                "key": "id-1556116991591-2",
+                "key": "id-1556144897025-2",
                 "routeName": "Main",
               },
             ],
@@ -203,7 +203,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               "routeName": "AuthLoading",
               "routes": Array [
                 Object {
-                  "key": "id-1556116991591-0",
+                  "key": "id-1556144897025-0",
                   "routeName": "AuthLoading",
                 },
               ],
@@ -216,7 +216,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               "routeName": "Auth",
               "routes": Array [
                 Object {
-                  "key": "id-1556116991591-1",
+                  "key": "id-1556144897025-1",
                   "routeName": "SignIn",
                 },
               ],
@@ -229,7 +229,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
               "routeName": "App",
               "routes": Array [
                 Object {
-                  "key": "id-1556116991591-2",
+                  "key": "id-1556144897025-2",
                   "routeName": "Main",
                 },
               ],
