@@ -18,6 +18,7 @@ import PropTypes from 'prop-types';
 import RNPickerSelect from 'react-native-picker-select';
 import { Calendar, Permissions } from 'expo';
 import sounds from '../assets/sounds';
+import modes from '../assets/modes';
 
 import {
   DayPicker,
@@ -41,6 +42,7 @@ class CreateAlarmScreen extends Component {
       readyTime: undefined,
       arrivalTime: undefined,
       soundIndex: 2,
+      modeIndex: 1,
       workAddress: '',
       days: {
         mon: false,
@@ -76,6 +78,7 @@ class CreateAlarmScreen extends Component {
         pageTitle: 'EDIT ALARM:',
         days: alarm.days,
         soundIndex: alarm.soundIndex,
+        modeIndex: alarm.modeIndex,
       });
     }
   }
@@ -88,8 +91,10 @@ class CreateAlarmScreen extends Component {
     } = this.state;
     let {
       soundIndex,
+      modeIndex,
     } = this.state;
     soundIndex = soundIndex || 1; // default
+    modeIndex = modeIndex || 1; // default
     // validate and format
     if (!readyTime || !arrivalTime || !workAddress) {
       Alert.alert('Please make sure you have filled out all fields');
@@ -121,6 +126,7 @@ class CreateAlarmScreen extends Component {
         navigate,
         alarmId,
         soundIndex,
+        modeIndex,
       });
     } catch (error) {
       Alert.alert(error);
@@ -206,6 +212,7 @@ class CreateAlarmScreen extends Component {
             navigate,
             alarmId,
             soundIndex: 1,
+            modeIndex: 1,
           });
         }
       }
@@ -282,7 +289,7 @@ class CreateAlarmScreen extends Component {
   calendarButton() {
     return (Platform.OS === 'ios')
       ? (
-        <View style={{ alignItems: 'left', justifyContent: 'space-between', marginBottom: 12 }}>
+        <View style={{ alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
           <Buttons
             title="Import Calendar?"
             backgroundColor={Colors.primary}
@@ -342,6 +349,7 @@ class CreateAlarmScreen extends Component {
       workAddress,
       days,
       soundIndex,
+      modeIndex,
     } = this.state;
 
     return (
@@ -410,8 +418,24 @@ class CreateAlarmScreen extends Component {
             Icon={() => <DropdownIcon />}
             onValueChange={(itemValue, itemIndex) => {
               this.setState({ soundIndex: String(itemIndex) });
-            }
-        }
+            }}
+          />
+          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Transportation Mode</Text>
+          <RNPickerSelect
+            placeholder={{
+              label: 'Select Transportation Mode',
+              value: null,
+              color: Colors.darkGray,
+            }}
+            items={modes}
+            value={modeIndex}
+            useNativeAndroidPickerStyle
+            style={{ iconContainer: { top: 10 } }}
+            textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
+            Icon={() => <DropdownIcon />}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ modeIndex: String(itemIndex) });
+            }}
           />
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Recurring</Text>
           <DayPicker

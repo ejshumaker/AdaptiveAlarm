@@ -24,6 +24,15 @@ const initialUserState = {
 
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
+    // Mark Alarm For Day
+    case 'USER_ALARM_HAS_FIRED': {
+      const { alarms } = state;
+      const { alarmId } = action;
+      alarms[alarmId].hasFired = true;
+      state = { ...state, alarms };
+      console.log('alarm has fired');
+      break;
+    }
     // CREATE ALARM //
     case 'USER_CREATE_ALARM_PENDING':
       state = { ...state, loading: true };
