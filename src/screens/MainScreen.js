@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity,
+  View, Text, StatusBar, TouchableOpacity, NavigationEvents,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,7 +9,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AnalogClock from '../components/AnalogClock';
 import { Buttons, StatusBarBackground } from '../components';
 import Alarm from '../custom_modules/Alarm';
-import { WEATHER_KEY } from '../../keys';
 import { weatherConditions } from '../assets/weatherConditions';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
@@ -23,14 +22,50 @@ class MainScreen extends Component {
   constructor() {
     super();
     this.state = {
-      temperature: 69,
+      temperature: 0,
       weather: 'Clear',
       weatherLoading: true,
     };
   }
 
-  // didFocus = () => {
-  //   this.weatherTest();
+  didFocus = () => {
+    console.log('============ FOCUSING ============');
+    this.storeWeather();
+  }
+
+  async storeWeather() {
+    await Alarm.getWeather().then((response) => {
+      const temp = response.temperature;
+      const currWeather = response.weather;
+      console.log('TEMP: ', temp);
+      console.log('CURRWEATHER: ', currWeather);
+      this.setState({ temperature: temp, weather: currWeather, weatherLoading: false });
+      console.log('AFTER');
+    });
+  }
+
+  // async getWeather() {
+  //   let temperature = '';
+  //   let weather = '';
+  //   let lat = 0;
+  //   let lon = 0;
+  //   await Alarm.getCurrentLocation()
+  //     .then((response) => {
+  //       const loc = response;
+  //       const locArr = loc.split(', ');
+  //       // eslint-disable-next-line
+  //       lat = locArr[0];
+  //       // eslint-disable-next-line
+  //       lon = locArr[1];
+  //     });
+  //   await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`)
+  //     .then(response => response.json())
+  //     .then((json) => {
+  //       temperature = Math.round(json.main.temp);
+  //       weather = json.weather[0].main;
+  //       // this.setState({ temperature, weather, weatherLoading: false });
+  //     });
+  //   return { temperature, weather };
   // }
 
   hasAlarmView() {
@@ -69,22 +104,23 @@ class MainScreen extends Component {
             {meridian.toUpperCase()}
           </Text>
         </Text>
-        {!weatherLoading ? null : <Text>{temperature}</Text>}
         <Text style={
-          [GlobalStyles.month, { color: Colors.white, marginLeft: 90 }]
+          [GlobalStyles.month, { color: Colors.white, marginLeft: 130 }]
         }
         >
           <Text style={GlobalStyles.date}>
-            {temperature}
+            {weatherLoading ? '' : temperature }
           </Text>
           <Text>
-            {'\u2109   '}
+            {weatherLoading ? '' : '\u2109   ' }
           </Text>
-          <MaterialCommunityIcons
-            size={20}
-            name={weatherConditions[weather].icon}
-            color={Colors.white}
-          />
+          {weatherLoading ? '' : (
+            <MaterialCommunityIcons
+              size={18}
+              name={weatherConditions[weather].icon}
+              color={Colors.white}
+            />
+          )}
           <Text>
             {'  '}
             {month.toUpperCase()}
@@ -153,9 +189,7 @@ class MainScreen extends Component {
             title="Get Weather"
             backgroundColor={Colors.primary}
             textColor={Colors.black}
-            onPress={() => {
-              this.getWeather();
-            }}
+            onPress={() => { this.didFocus(); }}
           />
         </View>
       </View>
@@ -201,31 +235,6 @@ class MainScreen extends Component {
         </TouchableOpacity>
       </View>
     );
-  }
-
-  async getWeather() {
-    let temperature = '';
-    let weather = '';
-    let lat = 0;
-    let lon = 0;
-    await Alarm.getCurrentLocation()
-      .then((response) => {
-        const loc = response;
-        const locArr = loc.split(', ');
-        [lat] = locArr;
-        [lon] = locArr;
-      });
-    await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`)
-      .then(response => response.json())
-      .then((json) => {
-        temperature = Math.round(json.main.temp);
-        weather = json.weather[0].main;
-        this.setState({ temperature, weather, weatherLoading: false });
-      });
-    console.log('==================');
-    console.log(this.state.temperature);
-    console.log(this.state.weather);
-    console.log('==================');
   }
 
   render() {

@@ -1,5 +1,5 @@
 import { Location, Permissions, Alert } from 'expo';
-import { DISTANCE_MATRIX_KEY } from '../../keys';
+import { DISTANCE_MATRIX_KEY, WEATHER_KEY } from '../../keys';
 import modes from '../assets/modes';
 
 const MILS_PER_MIN = 60000;
@@ -134,9 +134,33 @@ function initArmAlarm(navigate) {
   exportFunctions.navigateRef = navigate;
 }
 
+async function getWeather() {
+  let temperature = '';
+  let weather = '';
+  let lat = 0;
+  let lon = 0;
+  await getCurrentLocation()
+    .then((response) => {
+      const loc = response;
+      const locArr = loc.split(', ');
+      // eslint-disable-next-line
+      lat = locArr[0];
+      // eslint-disable-next-line
+      lon = locArr[1];
+    });
+  await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`)
+    .then(response => response.json())
+    .then((json) => {
+      temperature = Math.round(json.main.temp);
+      weather = json.weather[0].main;
+      // this.setState({ temperature, weather, weatherLoading: false });
+    });
+  return { temperature, weather };
+}
+
 
 const exportFunctions = {
-  navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime,
+  navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime, getWeather,
 };
 
 export default exportFunctions;
