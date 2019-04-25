@@ -3,7 +3,6 @@
  * they call the API's and set their up arguments
  * @eschirtz 03-02-19
  */
-import { auth } from 'firebase';
 import User from '../../custom_modules/User';
 import { alarmCalculateTime } from './alarmActions';
 
@@ -22,7 +21,6 @@ export function userUpdateAlarm(payload) {
     }),
   })
     .then(() => {
-      console.log('here');
       dispatch(alarmCalculateTime());
       if (navigate) navigate('Main');
     })

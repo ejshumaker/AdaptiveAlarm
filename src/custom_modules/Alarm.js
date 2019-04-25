@@ -18,7 +18,10 @@ Sound.setCategory('Playback');
 let navigateRef;
 let soundRef;
 let timerRef;
+let ticksSinceLastUpdate = 0; // rolling counter for recurring alarm calculation
 
+const BACKGROUND_INTERVAL = 10 * 1000;
+const RECALCULATE_INTERVAL = 20;
 
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
@@ -145,8 +148,8 @@ function stopAlarm() {
   Notifications.dismissAllNotificationsAsync();
 }
 
-function soundAlarm(soundIndex = 1) {
-  const { time, currentAlarmId } = store.getState().alarm;
+function soundAlarm() {
+  const { time, currentAlarmId, soundIndex } = store.getState().alarm;
   const { alarms } = store.getState().user;
   const { destinationLoc, arrivalTime } = alarms[currentAlarmId];
   Notifications.presentLocalNotificationAsync({
@@ -185,7 +188,7 @@ function soundAlarm(soundIndex = 1) {
  * @param  {Integer} soundIndex
  * @return {[type]}           [description]
  */
-function armAlarm(alarmTime, soundIndex = 1) {
+function armAlarm(alarmTime) {
   const date = new Date();
   const current = date.getTime(); // get current time
   let difference = alarmTime - current;
@@ -193,16 +196,27 @@ function armAlarm(alarmTime, soundIndex = 1) {
     difference = 0; // edge case?
     console.log('** Alarm will fire after desired time **\n** Should still be before arrival time **');
   }
-  if (Platform.OS === 'android') {
-    timerRef = BackgroundTimer.setInterval(() => {
-      soundAlarm(soundIndex);
-    }, difference);
-  } else {
-    BackgroundTimer.runBackgroundTimer(() => {
-      soundAlarm(soundIndex);
-    }, difference);
-  }
   console.log('Armed Alarm');
+}
+
+function checkAlarm() {
+  const { time } = store.getState().alarm;
+  const date = new Date();
+  const current = date.getTime(); // get current time
+  const difference = time - current;
+  if (difference < 0) {
+    soundAlarm();
+    console.log(`Sounded at ${date}`);
+  } else {
+    console.log(`Checked at ${date}`);
+  }
+  // potential recalculation of alarm
+  if (ticksSinceLastUpdate === 0) {
+    console.log('Recalculating...');
+    store.dispatch(alarmCalculateTime());
+  }
+  const ticksTemp = ticksSinceLastUpdate + 1;
+  ticksSinceLastUpdate = ticksTemp % RECALCULATE_INTERVAL;
 }
 
 function initAlarm(navigate) {
@@ -224,6 +238,16 @@ function initAlarm(navigate) {
   Notifications.addListener((val) => {
     if (val.actionId === 'alarm-dismiss') stopAlarm();
   });
+  // Setup background actions
+  if (Platform.OS === 'android') {
+    timerRef = BackgroundTimer.setInterval(() => {
+      checkAlarm();
+    }, BACKGROUND_INTERVAL);
+  } else {
+    BackgroundTimer.runBackgroundTimer(() => {
+      checkAlarm();
+    }, BACKGROUND_INTERVAL);
+  }
 }
 
 

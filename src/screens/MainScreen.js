@@ -106,10 +106,8 @@ class MainScreen extends Component {
     const self = this;
     const {
       dismissAlarm,
-      navigation,
       alarmId,
     } = this.props;
-    const { navigate } = navigation;
     return (
       <View>
         <Buttons
