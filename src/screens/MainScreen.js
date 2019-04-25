@@ -118,31 +118,12 @@ class MainScreen extends Component {
           textColor={Colors.white}
           onPress={() => dismissAlarm(alarmId)}
         />
-        <Buttons
-          title="Dev Page"
-          backgroundColor={Colors.darkGray}
-          textColor={Colors.white}
-          onPress={() => navigate('Home')}
-        />
       </View>
     );
   }
-
+  // eslint-disable-next-line
   hasNoAlarmButtons() {
-    // eslint-disable-next-line no-unused-vars
-    const self = this;
-    const { navigation } = this.props;
-    const { navigate } = navigation;
-    return (
-      <View>
-        <Buttons
-          title="Dev Page"
-          backgroundColor={Colors.darkGray}
-          textColor={Colors.white}
-          onPress={() => navigate('Home')}
-        />
-      </View>
-    );
+    return null;
   }
 
   menu() {

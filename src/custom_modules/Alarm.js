@@ -6,6 +6,7 @@ import { Platform } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import sounds from '../assets/sounds';
 import store from '../store';
+import { alarmCalculateTime } from '../store/actions/alarmActions';
 import { DISTANCE_MATRIX_KEY } from '../../keys';
 import modes from '../assets/modes';
 
@@ -135,13 +136,22 @@ async function getAlarmTime(
 
 function stopAlarm() {
   if (soundRef !== undefined) soundRef.stop();
+  navigateRef('Main');
+  // *** STUPID HACKY FIX *** //
+  setTimeout(() => {
+    store.dispatch(alarmCalculateTime());
+  }, 1); // Without the timeout the navigate call waits for the dispatch...
+  // not sure why, @eschirtz
+  Notifications.dismissAllNotificationsAsync();
 }
 
 function soundAlarm(soundIndex = 1) {
   const { time, currentAlarmId } = store.getState().alarm;
+  const { alarms } = store.getState().user;
+  const { destinationLoc, arrivalTime } = alarms[currentAlarmId];
   Notifications.presentLocalNotificationAsync({
-    title: moment(time).format('hh:mm'),
-    body: 'Time to wake up!',
+    title: moment(time).format('hh:mm a'),
+    body: `Start your routine now to arrive at ${destinationLoc} by ${arrivalTime}`,
     categoryId: 'alarm-category',
     android: {
       channelId: 'alarm-channel',
