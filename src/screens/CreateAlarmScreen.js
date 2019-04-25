@@ -348,23 +348,25 @@ class CreateAlarmScreen extends Component {
       <View>
         <StatusBarBackground />
         {this.menu()}
+
+
+        <Text
+          style={[
+            GlobalStyles.h2,
+            {
+              color: Colors.primary,
+              marginBottom: 48,
+              paddingHorizontal: 48,
+            },
+          ]}
+        >
+          {pageTitle}
+        </Text>
         <ScrollView
           contentContainerStyle={{ paddingHorizontal: 48 }}
         >
-
-          <Text
-            style={[
-              GlobalStyles.h2,
-              {
-                color: Colors.primary,
-                marginBottom: 48,
-              },
-            ]}
-          >
-            {pageTitle}
-          </Text>
           {this.loader()}
-          { this.calendarButton() }
+          {this.calendarButton()}
           <Text style={[GlobalStyles.subtitle, { marginVertical: 0 }]}>Destination</Text>
           <Autocomplete
             onDestChange={this.onDestChange}
@@ -411,14 +413,14 @@ class CreateAlarmScreen extends Component {
             onValueChange={(itemValue, itemIndex) => {
               this.setState({ soundIndex: String(itemIndex) });
             }
-        }
+            }
           />
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Recurring</Text>
           <DayPicker
             onChangeDay={this.onDayChange}
             days={days}
           />
-          <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
+          <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center', marginBottom: 80 }}>
             <Buttons
               title="Save Alarm"
               backgroundColor={Colors.primary}

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity,
+  View, Text, StatusBar, TouchableOpacity
 } from 'react-native';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -22,11 +23,18 @@ class MainScreen extends Component {
       alarmTime,
       loading,
     } = this.props;
-    const hour = !loading ? moment(alarmTime).format('hh') : '0';
+    const hour = !loading ? moment(alarmTime).format('hh') : '00';
     const min = !loading ? moment(alarmTime).format('mm') : '00';
     const meridian = !loading ? moment(alarmTime).format('a') : '- -';
     const month = !loading ? moment(alarmTime).format('MMM') : '';
     const day = !loading ? moment(alarmTime).format('D, dddd') : '';
+
+    const timeNow = new Date().getTime();
+    const r = (alarmTime - timeNow);
+    const remHour = !loading ? moment(r).format('hh') : '00';
+    const remMin = !loading ? moment(r).format('mm') : '00';
+    const remSec = !loading ? moment(r).format('ss') : '00';
+
 
     return (
       <View>
@@ -38,7 +46,7 @@ class MainScreen extends Component {
         </Text>
         <Text
           style={
-            [GlobalStyles.h1, { color: Colors.white, fontSize: 70 }]
+            [GlobalStyles.h1, { alignItems: 'center', color: Colors.white, fontSize: 70 }]
           }
         >
           <Text>
@@ -52,7 +60,7 @@ class MainScreen extends Component {
           </Text>
         </Text>
         <Text style={
-          [GlobalStyles.month, { color: Colors.white, marginLeft: 130 }]
+          [GlobalStyles.month, { color: Colors.white, textAlign: 'right' }]
         }
         >
           <Text>
@@ -62,6 +70,13 @@ class MainScreen extends Component {
           <Text style={[GlobalStyles.date]}>
             {day}
           </Text>
+        </Text>
+        <Text style={GlobalStyles.date}>
+          {remHour}
+          {':'}
+          {remMin}
+          {':'}
+          {remSec}
         </Text>
       </View>
     );
@@ -86,7 +101,7 @@ class MainScreen extends Component {
     // eslint-disable-next-line no-unused-vars
     const self = this;
     return (
-      <View style={{ marginVertical: '10%' }}>
+      <View style={{ paddingVertical: '7%', alignItems: 'center' }}>
         <StatusBar barStyle="light-content" />
         <AnalogClock
           minuteHandLength={105}
@@ -98,6 +113,7 @@ class MainScreen extends Component {
           hourHandWidth={6}
         />
       </View>
+
     );
   }
 

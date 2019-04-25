@@ -117,28 +117,26 @@ class AccountScreen extends Component {
         justifyContent: 'space-between',
         borderBottomWidth: 0.5,
         borderBottomColor: Colors.white,
-        marginVertical: 8,
-        height: 45,
+        marginVertical: 3,
+        height: 50,
         width: '90%',
       },
       infoColumn: {
         // flex: 0.5,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        marginBottom: 11,
+        marginBottom: 7,
       },
       dataColumn: {
         // flex: 0.5,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        marginBottom: 11,
+        marginBottom: 7,
       },
       signOutButton: {
         width: '80%',
         justifyContent: 'space-around',
-        height: 80,
-        marginBottom: 50,
-        marginTop: 40,
+        marginTop: '15%',
       },
     });
 

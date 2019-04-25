@@ -5,10 +5,12 @@
 /* eslint-disable camelcase */
 import React, { Component } from 'react';
 import {
-  View, Text, TouchableOpacity, Switch, StyleSheet,
+  View, Text, TouchableOpacity, StyleSheet,
 } from 'react-native';
+import Switch from 'react-native-customisable-switch';
 import PropTypes from 'prop-types';
 import { GlobalStyles, Colors } from '../constants';
+
 
 const styles = StyleSheet.create({
   alarmRow: {
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
   },
   switchColumn: {
     margin: 0,
-    justifyContent: 'space-around',
+    marginTop: 18,
   },
 });
 
@@ -86,8 +88,7 @@ class AlarmItem extends Component {
         >
           <View style={styles.alarmInfoColumn}>
             <Text
-              style={[GlobalStyles.list,
-                { color: alarm.isActive ? Colors.white : Colors.darkGray }]}
+              style={[GlobalStyles.list, { color: alarm.isActive ? Colors.white : Colors.darkGray }]}
             >
               {alarm.arrivalTime}
             </Text>
@@ -102,9 +103,19 @@ class AlarmItem extends Component {
           </View>
           <View style={styles.switchColumn}>
             <Switch
-              onValueChange={this.handleAlarmToggle}
+              onChangeValue={this.handleAlarmToggle}
               value={alarm.isActive}
               style={styles.switchRow}
+              switchWidth={72}
+              switchHeight={40}
+              switchBorderRadius={8}
+              activeBackgroundColor={Colors.darkGray}
+              inactiveBackgroundColor={Colors.darkGray}
+              activeButtonBackgroundColor={Colors.primary}
+              inactiveButtonBackgroundColor={Colors.white}
+              buttonWidth={36}
+              buttonHeight={40}
+              buttonBorderRadius={8}
             />
           </View>
 

@@ -29,8 +29,9 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 24,
-    marginBottom: 24,
+    paddingHorizontal: 24,
+    paddingTop: '10%',
+    marginBottom: '5%',
   },
   centerChildrenXY: {
     flex: 1,

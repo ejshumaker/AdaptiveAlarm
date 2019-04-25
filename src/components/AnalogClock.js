@@ -183,7 +183,22 @@ export default class AnalogClock extends Component {
               },
             ]}
           />
-
+          <View
+            style={[
+              this.hourHandStyles(),
+              {
+                transform: [
+                  { rotate: this.state.hour + 'deg' },
+                  {
+                    translateX: -(
+                      this.props.hourHandOffset
+                      + this.props.hourHandLength / 2
+                    ),
+                  },
+                ],
+              },
+            ]}
+          />
           {/* <View style={[this.secondHandStyles(),
             { transform: [{ rotate: this.state.sec + 'deg' },
               { translateY: -(this.props.secondHandOffset
