@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity, NavigationEvents,
+  View, Text, StatusBar, TouchableOpacity,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -28,8 +28,18 @@ class MainScreen extends Component {
     };
   }
 
+  componentDidMount() {
+    const { navigation } = this.props;
+    this.focusListener = navigation.addListener('didFocus', () => {
+      this.didFocus();
+    });
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+  }
+
   didFocus = () => {
-    console.log('============ FOCUSING ============');
     this.storeWeather();
   }
 
@@ -37,36 +47,9 @@ class MainScreen extends Component {
     await Alarm.getWeather().then((response) => {
       const temp = response.temperature;
       const currWeather = response.weather;
-      console.log('TEMP: ', temp);
-      console.log('CURRWEATHER: ', currWeather);
       this.setState({ temperature: temp, weather: currWeather, weatherLoading: false });
-      console.log('AFTER');
     });
   }
-
-  // async getWeather() {
-  //   let temperature = '';
-  //   let weather = '';
-  //   let lat = 0;
-  //   let lon = 0;
-  //   await Alarm.getCurrentLocation()
-  //     .then((response) => {
-  //       const loc = response;
-  //       const locArr = loc.split(', ');
-  //       // eslint-disable-next-line
-  //       lat = locArr[0];
-  //       // eslint-disable-next-line
-  //       lon = locArr[1];
-  //     });
-  //   await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`)
-  //     .then(response => response.json())
-  //     .then((json) => {
-  //       temperature = Math.round(json.main.temp);
-  //       weather = json.weather[0].main;
-  //       // this.setState({ temperature, weather, weatherLoading: false });
-  //     });
-  //   return { temperature, weather };
-  // }
 
   hasAlarmView() {
     const {
@@ -176,6 +159,7 @@ class MainScreen extends Component {
       navigation,
       alarmId,
     } = this.props;
+    const { navigate } = navigation;
     return (
       <View>
         <Buttons
@@ -184,14 +168,12 @@ class MainScreen extends Component {
           textColor={Colors.white}
           onPress={() => dismissAlarm(alarmId)}
         />
-        <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
-          <Buttons
-            title="Get Weather"
-            backgroundColor={Colors.primary}
-            textColor={Colors.black}
-            onPress={() => { this.didFocus(); }}
-          />
-        </View>
+        <Buttons
+          title="Dev Page"
+          backgroundColor={Colors.darkGray}
+          textColor={Colors.white}
+          onPress={() => navigate('Home')}
+        />
       </View>
     );
   }

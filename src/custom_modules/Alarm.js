@@ -71,8 +71,67 @@ async function getCurrentLocation() {
       });
   });
 }
+
+async function getWeather() {
+  let temperature = '';
+  let weather = '';
+  let lat = 0;
+  let lon = 0;
+  await getCurrentLocation()
+    .then((response) => {
+      const loc = response;
+      const locArr = loc.split(', ');
+      // eslint-disable-next-line
+      lat = locArr[0];
+      // eslint-disable-next-line
+      lon = locArr[1];
+    });
+  await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`)
+    .then(response => response.json())
+    .then((json) => {
+      temperature = Math.round(json.main.temp);
+      weather = json.weather[0].main;
+    });
+  return { temperature, weather };
+}
+
+async function getWeatherDelay(travelTime) {
+  let weatherTime = travelTime;
+  await getWeather().then((resp) => {
+    const temp = resp.temperature;
+    const currWeather = resp.weather;
+    switch (currWeather) {
+      // multiply travel time by 1.05 for rain
+      case 'Rain':
+        weatherTime *= 1.05;
+        break;
+
+      // multiply travel time by 1.3 for snow
+      case 'Snow':
+        weatherTime *= 1.3;
+        break;
+
+      // multiply travel time by 1.1 for thunderstorm
+      case 'Thunderstorm':
+        weatherTime *= 1.1;
+        break;
+
+      default:
+        break;
+    }
+    // Add delay to scrape car if below freezing outside
+    if (temp < 32) {
+      weatherTime += 5;
+    }
+  });
+  // return the difference in the new and old travel times
+  const delay = weatherTime - travelTime;
+  return { delay };
+}
+
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
+// eslint-disable-next-line
 async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit, modeIndex) {
   const loops = loopLimit;
   const timeRange = timeLimit;
@@ -97,7 +156,11 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
                 });
               i += 1;
             }
-            resolve(departureTime - timeToGetReady * MILS_PER_MIN);
+            const travelTime = arrivalTime - departureTime;
+            await getWeatherDelay(travelTime).then((res) => {
+              const { delay } = res;
+              resolve(departureTime - delay - (timeToGetReady * MILS_PER_MIN));
+            });
           })
           .catch((e) => {
             reject(e);
@@ -133,31 +196,6 @@ async function armAlarm(alarmTime) {
 function initArmAlarm(navigate) {
   exportFunctions.navigateRef = navigate;
 }
-
-async function getWeather() {
-  let temperature = '';
-  let weather = '';
-  let lat = 0;
-  let lon = 0;
-  await getCurrentLocation()
-    .then((response) => {
-      const loc = response;
-      const locArr = loc.split(', ');
-      // eslint-disable-next-line
-      lat = locArr[0];
-      // eslint-disable-next-line
-      lon = locArr[1];
-    });
-  await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`)
-    .then(response => response.json())
-    .then((json) => {
-      temperature = Math.round(json.main.temp);
-      weather = json.weather[0].main;
-      // this.setState({ temperature, weather, weatherLoading: false });
-    });
-  return { temperature, weather };
-}
-
 
 const exportFunctions = {
   navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime, getWeather,

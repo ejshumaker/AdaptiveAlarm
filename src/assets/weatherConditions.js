@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 export const weatherConditions = {
   Rain: {
     icon: 'weather-rainy',
@@ -22,5 +23,5 @@ export const weatherConditions = {
   },
   Mist: {
     icon: 'weather-fog',
-  }
+  },
 };
