@@ -181,24 +181,6 @@ function soundAlarm() {
   }
 }
 
-/**
- * Given an exact time in UTC, armAlarm sets up
- * the actual alarm/timers required to fire off alarm
- * @param  {Time_UTC} alarmTime
- * @param  {Integer} soundIndex
- * @return {[type]}           [description]
- */
-function armAlarm(alarmTime) {
-  const date = new Date();
-  const current = date.getTime(); // get current time
-  let difference = alarmTime - current;
-  if (difference < 0) {
-    difference = 0; // edge case?
-    console.log('** Alarm will fire after desired time **\n** Should still be before arrival time **');
-  }
-  console.log('Armed Alarm');
-}
-
 function checkAlarm() {
   const { time } = store.getState().alarm;
   const date = new Date();
@@ -252,5 +234,5 @@ function initAlarm(navigate) {
 
 
 export default {
-  navigateRef, getCurrentLocation, initAlarm, getAlarmTime, armAlarm, getRouteTime, stopAlarm,
+  navigateRef, getCurrentLocation, initAlarm, getAlarmTime, getRouteTime, stopAlarm,
 };
