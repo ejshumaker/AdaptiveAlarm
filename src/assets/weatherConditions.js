@@ -24,4 +24,22 @@ export const weatherConditions = {
   Mist: {
     icon: 'weather-fog',
   },
+  Smoke: {
+    icon: 'exit-run',
+  },
+  Dust: {
+    icon: 'exit-run',
+  },
+  Fog: {
+    icon: 'weather-fog',
+  },
+  Ash: {
+    icon: 'exit-run',
+  },
+  Squall: {
+    icon: 'weather-windy',
+  },
+  Tornado: {
+    icon: 'weather-hurricane',
+  },
 };
