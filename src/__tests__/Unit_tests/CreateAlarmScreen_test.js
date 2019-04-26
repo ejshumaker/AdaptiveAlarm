@@ -5,6 +5,7 @@ import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { Alert } from 'react-native';
+import store from '../../store';
 
 import { CreateAlarmScreen } from '../../screens/CreateAlarmScreen';
 
@@ -32,6 +33,7 @@ describe('CreateAlarm Screen', () => {
   // our mock login function to replace the one provided by mapDispatchToProps
   const mockcreateAlarmfn = jest.fn();
   const deleteAlarmMock = jest.fn();
+  const fetchDataMock = jest.fn();
   const getParamMock = jest.fn();
   const navigation = { navigate: jest.fn(), getParam: getParamMock };
   let days = {
@@ -72,6 +74,7 @@ describe('CreateAlarm Screen', () => {
       loading={false}
       deleteAlarm={deleteAlarmMock}
       alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
     />);
     expect(wrapper).toMatchSnapshot();
   });
@@ -83,6 +86,7 @@ describe('CreateAlarm Screen', () => {
       createAlarm={mockcreateAlarmfn}
       loading={false}
       deleteAlarm={deleteAlarmMock}
+      fetchData={fetchDataMock}
     />);
     expect(wrapper).toMatchSnapshot();
   });
@@ -94,6 +98,7 @@ describe('CreateAlarm Screen', () => {
       createAlarm={mockcreateAlarmfn}
       loading
       deleteAlarm={deleteAlarmMock}
+      fetchData={fetchDataMock}
     />);
     expect(wrapper).toMatchSnapshot();
   });
@@ -106,6 +111,7 @@ describe('CreateAlarm Screen', () => {
       loading={false}
       deleteAlarm={deleteAlarmMock}
       alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
     />);
 
     wrapper.find('[title="Save Alarm"]').simulate(
@@ -128,6 +134,7 @@ describe('CreateAlarm Screen', () => {
       loading={false}
       deleteAlarm={deleteAlarmMock}
       alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
     />);
     wrapper.find('[title="Save Alarm"]').simulate(
       'press',
@@ -150,6 +157,7 @@ describe('CreateAlarm Screen', () => {
       loading={false}
       deleteAlarm={deleteAlarmMock}
       alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
     />);
     wrapper.find('[title="Save Alarm"]').simulate(
       'press',
@@ -181,6 +189,7 @@ describe('CreateAlarm Screen', () => {
       loading={false}
       deleteAlarm={deleteAlarmMock}
       alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
     />);
     wrapper.find('[title="Save Alarm"]').simulate(
       'press',
@@ -213,6 +222,7 @@ describe('CreateAlarm Screen', () => {
       loading={false}
       deleteAlarm={deleteAlarmMock}
       alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
     />);
 
     wrapper.find('TextInput').at(0).simulate('ChangeText', '123');
@@ -243,6 +253,7 @@ describe('CreateAlarm Screen', () => {
       loading={false}
       deleteAlarm={deleteAlarmMock}
       alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
     />);
 
     wrapper.find('TextInput').at(1).simulate('ChangeText', 'test');
@@ -273,6 +284,7 @@ describe('CreateAlarm Screen', () => {
       loading={false}
       deleteAlarm={deleteAlarmMock}
       alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
     />);
     wrapper.find('[title="Delete Alarm"]').simulate(
       'press',

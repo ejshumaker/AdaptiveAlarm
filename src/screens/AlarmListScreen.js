@@ -127,6 +127,8 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+export { AlarmListScreen };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
