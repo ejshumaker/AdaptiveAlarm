@@ -15,8 +15,16 @@ import { GlobalStyles, Colors } from '../constants';
 import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
+import { ClockIcon } from '../icons/clock';
 
 class MainScreen extends Component {
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({
+      });
+    }, 1000);
+  }
+
   hasAlarmView() {
     const {
       // values
@@ -31,9 +39,7 @@ class MainScreen extends Component {
 
     const timeNow = new Date().getTime();
     const r = (alarmTime - timeNow);
-    const remHour = !loading ? moment(r).format('hh') : '00';
-    const remMin = !loading ? moment(r).format('mm') : '00';
-    const remSec = !loading ? moment(r).format('ss') : '00';
+    const remaining = moment(r).format('hh:mm:ss');
 
 
     return (
@@ -71,13 +77,7 @@ class MainScreen extends Component {
             {day}
           </Text>
         </Text>
-        <Text style={GlobalStyles.date}>
-          {remHour}
-          {':'}
-          {remMin}
-          {':'}
-          {remSec}
-        </Text>
+
       </View>
     );
   }
@@ -100,6 +100,7 @@ class MainScreen extends Component {
   clockView() {
     // eslint-disable-next-line no-unused-vars
     const self = this;
+
     return (
       <View style={{ paddingVertical: '7%', alignItems: 'center' }}>
         <StatusBar barStyle="light-content" />
@@ -112,6 +113,7 @@ class MainScreen extends Component {
           hourHandCurved={false}
           hourHandWidth={6}
         />
+
       </View>
 
     );
@@ -188,8 +190,14 @@ class MainScreen extends Component {
   render() {
     const {
       alarmId,
+      alarmTime,
       loading,
     } = this.props;
+
+    const timeNow = new Date().getTime();
+    const r = (alarmTime - timeNow);
+    const remaining = moment(r).format('hh:mm:ss');
+
     if (alarmId !== undefined || loading) {
       return (
         <View>
@@ -198,6 +206,12 @@ class MainScreen extends Component {
           <View style={{ alignItems: 'center', width: '100%' }}>
             {this.hasAlarmView()}
             {this.clockView()}
+            <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 25 }}>
+              <ClockIcon style={{ marginTop: 2.5, paddingHorizontal: 17 }} />
+              <Text style={[GlobalStyles.h3, { textAlign: 'center' }]}>
+                {remaining}
+              </Text>
+            </View>
             {this.hasAlarmButtons()}
           </View>
         </View>

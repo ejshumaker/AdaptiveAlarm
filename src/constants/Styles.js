@@ -53,7 +53,7 @@ export default StyleSheet.create({
   h3: {
     color: Colors.white,
     fontSize: 24,
-    fontWeight: '500',
+    fontFamily: 'RNSMiles-Bold',
   },
   h4: {
     color: Colors.white,

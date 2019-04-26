@@ -16,6 +16,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RNPickerSelect from 'react-native-picker-select';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Calendar, Permissions } from 'expo';
 import sounds from '../assets/sounds';
 
@@ -284,7 +285,7 @@ class CreateAlarmScreen extends Component {
       ? (
         <View style={{ alignItems: 'left', justifyContent: 'space-between', marginBottom: 12 }}>
           <Buttons
-            title="Import Calendar?"
+            title="Import Calendar"
             backgroundColor={Colors.primary}
             textColor={Colors.black}
             onPress={() => { this.onCalendarButton(); }}
@@ -334,6 +335,22 @@ class CreateAlarmScreen extends Component {
     );
   }
 
+  showTimePicker = () => {
+    this.setState({ isTimePickerVisible: true });
+  };
+
+  hideTimePicker = () => {
+    this.setState({ isTimePickerVisible: false });
+  };
+
+  handleTimePicked = (arrivalTime) => {
+    this.setState({
+      isTimePickerVisible: false,
+      arrivalTime: moment(arrivalTime).format('hh:mm a'),
+    });
+  };
+
+
   render() {
     const {
       readyTime,
@@ -375,6 +392,8 @@ class CreateAlarmScreen extends Component {
           <Text style={[GlobalStyles.subtitle, { marginTop: 8 }]}>Routine Time</Text>
           <TextInput
             keyboardAppearance="dark"
+            display="flex"
+            flexDirection="row"
             style={GlobalStyles.input}
             returnKeyType="next"
             keyboardType="numeric"
@@ -385,18 +404,25 @@ class CreateAlarmScreen extends Component {
             placeholderTextColor={Colors.darkGray}
             value={readyTime}
           />
-          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Arrival Time</Text>
+          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text onPress={this.showTimePicker} style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Arrival Time</Text>
+            <DropdownIcon onPress={this.showTimePicker} style={{ alignItems: 'right' }} />
+          </View>
+          <DateTimePicker
+            mode="time"
+            isVisible={this.state.isTimePickerVisible}
+            onConfirm={this.handleTimePicked}
+            onCancel={this.hideTimePicker}
+            titleIOS="Select Arrival Time"
+          />
           <TextInput
-            keyboardAppearance="dark"
-            style={GlobalStyles.input}
-            returnKeyType="next"
-            ref={(input) => { this.arrivalTimeInput = input; }}
-            onSubmitEditing={() => null}
-            onChangeText={text => this.setState({ arrivalTime: text })}
-            placeholder="(8:00 AM)"
+            editable={false}
+            placeholder="Select Arrival Time"
             placeholderTextColor={Colors.darkGray}
             value={arrivalTime}
-          />
+            style={[GlobalStyles.input, { color: Colors.darkGray, borderBottomWidth: 0.5, borderColor: Colors.white }]}>
+            {this.state.chosenTime}
+          </TextInput>
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Alarm Sound</Text>
           <RNPickerSelect
             placeholder={{
@@ -410,7 +436,7 @@ class CreateAlarmScreen extends Component {
             style={{ iconContainer: { top: 10 } }}
             textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
             Icon={() => <DropdownIcon />}
-            onValueChange={(itemValue, itemIndex) => {
+            onValueChange={(itemIndex) => {
               this.setState({ soundIndex: String(itemIndex) });
             }
             }
@@ -431,7 +457,7 @@ class CreateAlarmScreen extends Component {
           </View>
           <BottomBarBackground />
         </ScrollView>
-      </View>
+      </View >
     );
   }
 }
