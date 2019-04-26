@@ -1,0 +1,297 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alarm Item alarm list matches snapshot alarm is loading 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <StatusBarBackground />
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 24,
+        "padding": 24,
+      }
+    }
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <CloseIcon />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": undefined,
+          "flex": 1,
+          "height": "95%",
+        },
+        Object {
+          "paddingHorizontal": 48,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Black",
+            "fontSize": 30,
+          },
+          Object {
+            "color": "#E4F96A",
+            "marginBottom": 48,
+          },
+        ]
+      }
+    >
+      ALL ALARMS:
+    </Text>
+    <ActivityIndicator
+      color="#E4F96A"
+      size="large"
+    />
+    <FlatList
+      data={
+        Array [
+          Object {
+            "alarmId": Object {
+              "alarmId": "1",
+            },
+            "arrivalTime": "8:00 AM",
+            "days": Object {
+              "fri": true,
+              "mon": false,
+              "sat": false,
+              "sun": true,
+              "thu": false,
+              "tue": true,
+              "wed": true,
+            },
+            "isActive": true,
+          },
+        ]
+      }
+      keyExtractor={[Function]}
+      renderItem={[Function]}
+      renderScrollComponent={[Function]}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+    />
+  </View>
+</View>
+`;
+
+exports[`Alarm Item alarm list matches snapshot alarm not loading 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <StatusBarBackground />
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 24,
+        "padding": 24,
+      }
+    }
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <CloseIcon />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": undefined,
+          "flex": 1,
+          "height": "95%",
+        },
+        Object {
+          "paddingHorizontal": 48,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Black",
+            "fontSize": 30,
+          },
+          Object {
+            "color": "#E4F96A",
+            "marginBottom": 48,
+          },
+        ]
+      }
+    >
+      ALL ALARMS:
+    </Text>
+    <FlatList
+      data={
+        Array [
+          Object {
+            "alarmId": Object {
+              "alarmId": "1",
+            },
+            "arrivalTime": "8:00 AM",
+            "days": Object {
+              "fri": true,
+              "mon": false,
+              "sat": false,
+              "sun": true,
+              "thu": false,
+              "tue": true,
+              "wed": true,
+            },
+            "isActive": true,
+          },
+        ]
+      }
+      keyExtractor={[Function]}
+      renderItem={[Function]}
+      renderScrollComponent={[Function]}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+    />
+  </View>
+</View>
+`;
+
+exports[`Alarm Item alarm list matches snapshot multiple alarms 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <StatusBarBackground />
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 24,
+        "padding": 24,
+      }
+    }
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <CloseIcon />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": undefined,
+          "flex": 1,
+          "height": "95%",
+        },
+        Object {
+          "paddingHorizontal": 48,
+        },
+      ]
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Black",
+            "fontSize": 30,
+          },
+          Object {
+            "color": "#E4F96A",
+            "marginBottom": 48,
+          },
+        ]
+      }
+    >
+      ALL ALARMS:
+    </Text>
+    <FlatList
+      data={
+        Array [
+          Object {
+            "alarmId": "2",
+            "arrivalTime": "10:00 AM",
+            "days": Object {
+              "fri": false,
+              "mon": false,
+              "sat": false,
+              "sun": true,
+              "thu": false,
+              "tue": true,
+              "wed": false,
+            },
+            "isActive": false,
+          },
+          Object {
+            "alarmId": "3",
+            "arrivalTime": "10:00 PM",
+            "days": Object {
+              "fri": false,
+              "mon": false,
+              "sat": true,
+              "sun": true,
+              "thu": false,
+              "tue": true,
+              "wed": false,
+            },
+            "isActive": true,
+          },
+          Object {
+            "alarmId": Object {
+              "alarmId": "1",
+            },
+            "arrivalTime": "8:00 AM",
+            "days": Object {
+              "fri": true,
+              "mon": false,
+              "sat": false,
+              "sun": true,
+              "thu": false,
+              "tue": true,
+              "wed": true,
+            },
+            "isActive": true,
+          },
+        ]
+      }
+      keyExtractor={[Function]}
+      renderItem={[Function]}
+      renderScrollComponent={[Function]}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+    />
+  </View>
+</View>
+`;
