@@ -37,11 +37,6 @@ class MainScreen extends Component {
     const month = !loading ? moment(alarmTime).format('MMM') : '';
     const day = !loading ? moment(alarmTime).format('D, dddd') : '';
 
-    const timeNow = new Date().getTime();
-    const r = (alarmTime - timeNow);
-    const remaining = moment(r).format('hh:mm:ss');
-
-
     return (
       <View>
         <Text style={
@@ -195,8 +190,14 @@ class MainScreen extends Component {
     } = this.props;
 
     const timeNow = new Date().getTime();
-    const r = (alarmTime - timeNow);
-    const remaining = moment(r).format('hh:mm:ss');
+
+    const now = moment.utc(timeNow).format('DD/MM/YYYY HH:mm:ss');
+    const alarm = moment.utc(alarmTime).format('DD/MM/YYYY HH:mm:ss');
+
+    const ms = moment(alarm, 'DD/MM/YYYY HH:mm:ss').diff(moment(now, 'DD/MM/YYYY HH:mm:ss'));
+    const d = moment.duration(ms);
+    const rem = Math.floor(d.asHours()) + moment.utc(ms).format(':mm:ss');
+    const remaining = !loading ? rem : '--:--:--';
 
     if (alarmId !== undefined || loading) {
       return (
