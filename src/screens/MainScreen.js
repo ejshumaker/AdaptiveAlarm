@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import AnalogClock from '../components/AnalogClock';
+import OfflineNotice from '../components/OfflineNotice';
 import { Buttons, StatusBarBackground } from '../components';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
@@ -177,6 +178,7 @@ class MainScreen extends Component {
     if (alarmId !== undefined || loading) {
       return (
         <View>
+          <OfflineNotice />
           <StatusBarBackground />
           {this.menu()}
           <View style={{ alignItems: 'center', width: '100%' }}>
@@ -189,6 +191,7 @@ class MainScreen extends Component {
     }
     return (
       <View>
+        <OfflineNotice />
         <StatusBarBackground />
         {this.menu()}
         <View style={{ alignItems: 'center', width: '100%' }}>
