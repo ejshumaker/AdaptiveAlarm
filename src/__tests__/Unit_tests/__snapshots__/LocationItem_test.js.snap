@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Location Item tests test LocationItem matches snapshot 1`] = `
+exports[`Location Item tests LocationItem matches snapshot 1`] = `
 <TouchableOpacity
   onPress={[Function]}
 >

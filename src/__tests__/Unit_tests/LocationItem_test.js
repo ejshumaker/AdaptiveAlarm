@@ -13,21 +13,29 @@ Enzyme.configure({ adapter: new Adapter() });
 
 jest.setTimeout(10000);
 let wrapper = null;
-const fetchMock = jest.fn().mockImplementation(() => {
-  console.log('in');
-  return new Promise((resolve) => {
-    const obj = ({ geometry: { location: 'location' }, formatted_address: 'address' });
-    console.log(obj);
-    resolve(obj);
+const fetchMock = jest.fn().mockImplementation(() => new Promise((resolve) => {
+  const obj = ({
+    geometry: {
+      location: {
+        lat: 'lat', lng: 'lng',
+      },
+    },
+    formatted_address: 'address',
   });
-});
-const updateDest = jest.fn();
-const resetSearch = jest.fn();
+  resolve(obj);
+}));
+
 const onAutoMock = jest.fn();
+const resetSearch = jest.fn();
+const updateDest = jest.fn();
 
 
 describe('Location Item tests', () => {
   beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('LocationItem matches snapshot', () => {
     wrapper = shallow(<LocationItem
       description="desc"
       fetchDetails={fetchMock}
@@ -36,10 +44,22 @@ describe('Location Item tests', () => {
       place_id="12"
       onAutoCompleteInput={onAutoMock}
     />);
-    jest.clearAllMocks();
+    expect(wrapper).toMatchSnapshot();
   });
 
-  it('test LocationItem matches snapshot', () => {
-    expect(wrapper).toMatchSnapshot();
+  it('LocationItem press', async () => {
+    wrapper = shallow(<LocationItem
+      description="desc"
+      fetchDetails={fetchMock}
+      updateDest={updateDest}
+      resetSearch={resetSearch}
+      place_id="12"
+      onAutoCompleteInput={onAutoMock}
+    />);
+    await wrapper.simulate('press',
+      { preventDefault() {} });
+    expect(onAutoMock.mock.calls.length).toBe(1);
+    expect(updateDest.mock.calls.length).toBe(3);
+    expect(resetSearch.mock.calls.length).toBe(1);
   });
 });
