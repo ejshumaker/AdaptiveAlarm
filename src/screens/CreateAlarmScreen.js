@@ -361,6 +361,8 @@ class CreateAlarmScreen extends Component {
       soundIndex,
     } = this.state;
 
+    const momentString = moment(arrivalTime, 'LT');
+    const arrivalTimeDate = new Date(momentString);
     return (
       <View>
         <StatusBarBackground />
@@ -409,6 +411,9 @@ class CreateAlarmScreen extends Component {
             <DropdownIcon onPress={this.showTimePicker} style={{ alignItems: 'right' }} />
           </View>
           <DateTimePicker
+            date={arrivalTimeDate}
+            is24Hour={false}
+            timePickerModeAndroid="spinner"
             mode="time"
             isVisible={this.state.isTimePickerVisible}
             onConfirm={this.handleTimePicked}
