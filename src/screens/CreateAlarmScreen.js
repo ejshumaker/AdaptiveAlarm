@@ -271,6 +271,21 @@ class CreateAlarmScreen extends Component {
     return dayArray;
   }
 
+  showTimePicker = () => {
+    this.setState({ isTimePickerVisible: true });
+  };
+
+  hideTimePicker = () => {
+    this.setState({ isTimePickerVisible: false });
+  };
+
+  handleTimePicked = (arrivalTime) => {
+    this.setState({
+      isTimePickerVisible: false,
+      arrivalTime: moment(arrivalTime).format('hh:mm a'),
+    });
+  };
+
   noRepeats() {
     const { days } = this.state;
     let noRepeat = true;
@@ -335,22 +350,6 @@ class CreateAlarmScreen extends Component {
     );
   }
 
-  showTimePicker = () => {
-    this.setState({ isTimePickerVisible: true });
-  };
-
-  hideTimePicker = () => {
-    this.setState({ isTimePickerVisible: false });
-  };
-
-  handleTimePicked = (arrivalTime) => {
-    this.setState({
-      isTimePickerVisible: false,
-      arrivalTime: moment(arrivalTime).format('hh:mm a'),
-    });
-  };
-
-
   render() {
     const {
       readyTime,
@@ -361,13 +360,18 @@ class CreateAlarmScreen extends Component {
       soundIndex,
     } = this.state;
 
-    const momentString = moment(arrivalTime, 'LT');
-    const arrivalTimeDate = new Date(momentString);
+    let arrivalTimeDate;
+    if (arrivalTimeDate) {
+      const momentString = moment(arrivalTime, 'LT');
+      arrivalTimeDate = new Date(momentString);
+    } else {
+      arrivalTimeDate = new Date();
+    }
+
     return (
       <View>
         <StatusBarBackground />
         {this.menu()}
-
 
         <Text
           style={[
@@ -407,7 +411,7 @@ class CreateAlarmScreen extends Component {
             value={readyTime}
           />
           <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text onPress={this.showTimePicker} style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Arrival Time</Text>
+            <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Arrival Time</Text>
             <DropdownIcon onPress={this.showTimePicker} style={{ alignItems: 'right' }} />
           </View>
           <DateTimePicker
@@ -421,6 +425,7 @@ class CreateAlarmScreen extends Component {
             titleIOS="Select Arrival Time"
           />
           <TextInput
+            onTouchStart={this.showTimePicker}
             editable={false}
             placeholder="Select Arrival Time"
             placeholderTextColor={Colors.darkGray}
