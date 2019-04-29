@@ -21,7 +21,7 @@ let alarmIsPlaying = false;
 let ticksSinceLastUpdate = 0; // rolling counter for recurring alarm calculation
 
 const BACKGROUND_INTERVAL = 10 * 1000;
-const RECALCULATE_INTERVAL = 20;
+const RECALCULATE_INTERVAL = 5;
 
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
@@ -184,7 +184,7 @@ function soundAlarm() {
 function checkAlarm() {
   const { time, currentAlarmId } = store.getState().alarm;
   const { alarms } = store.getState().user || [];
-  const { hasFired } = alarms[currentAlarmId];
+  const { hasFired } = alarms[currentAlarmId] || [];
   if (alarmIsPlaying || currentAlarmId === undefined || hasFired) {
     console.log(`alarm is playing: ${alarmIsPlaying}`);
     console.log(`alarm id: ${currentAlarmId}`);
