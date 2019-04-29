@@ -17,7 +17,7 @@ Sound.setCategory('Playback');
 // Global references
 let navigateRef;
 let soundRef;
-let timerRef;
+let alarmIsPlaying = false;
 let ticksSinceLastUpdate = 0; // rolling counter for recurring alarm calculation
 
 const BACKGROUND_INTERVAL = 10 * 1000;
@@ -138,6 +138,7 @@ async function getAlarmTime(
 }
 
 function stopAlarm() {
+  alarmIsPlaying = false;
   if (soundRef !== undefined) soundRef.stop();
   navigateRef('Main');
   // *** STUPID HACKY FIX *** //
@@ -146,9 +147,11 @@ function stopAlarm() {
   }, 1); // Without the timeout the navigate call waits for the dispatch...
   // not sure why, @eschirtz
   Notifications.dismissAllNotificationsAsync();
+  console.log('-- Stopped Alarm --');
 }
 
 function soundAlarm() {
+  alarmIsPlaying = true;
   const { time, currentAlarmId, soundIndex } = store.getState().alarm;
   const { alarms } = store.getState().user;
   const { destinationLoc, arrivalTime } = alarms[currentAlarmId];
@@ -163,7 +166,6 @@ function soundAlarm() {
   store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId: currentAlarmId });
   const index = soundIndex >= 1 ? soundIndex : 1;
   const audioPath = sounds[index - 1].path;
-  console.log(audioPath);
   soundRef = new Sound(audioPath, Sound.MAIN_BUNDLE, (error) => {
     if (error) {
       console.log('failed to load the sound', error);
@@ -174,27 +176,23 @@ function soundAlarm() {
     soundRef.play();
   });
   navigateRef('Alarm');
-  if (Platform.OS === 'android') {
-    BackgroundTimer.clearInterval(timerRef);
-  } else {
-    BackgroundTimer.stopBackgroundTimer();
-  }
 }
 
 function checkAlarm() {
-  const { time } = store.getState().alarm;
+  const { time, currentAlarmId } = store.getState().alarm;
+  if (alarmIsPlaying || currentAlarmId === undefined) return;
   const date = new Date();
   const current = date.getTime(); // get current time
   const difference = time - current;
   if (difference < 0) {
+    console.log(`-- Sounded at ${moment().format('hh:mm a')} --`);
     soundAlarm();
-    console.log(`Sounded at ${date}`);
   } else {
-    console.log(`Checked at ${date}`);
+    console.log(`-- Checked at ${moment().format('hh:mm:ss a')} --`);
   }
   // potential recalculation of alarm
   if (ticksSinceLastUpdate === 0) {
-    console.log('Recalculating...');
+    console.log('-- Recalculating Alarm Time --');
     store.dispatch(alarmCalculateTime());
   }
   const ticksTemp = ticksSinceLastUpdate + 1;
@@ -203,26 +201,20 @@ function checkAlarm() {
 
 function initAlarm(navigate) {
   navigateRef = navigate;
-  // NOTIFICATION CONFIG //
+  // Configure notifications
   if (Platform.OS === 'android') {
-    Notifications.createChannelAndroidAsync('alarm-channel', {
-      name: 'Alarm Channel',
-      sound: false,
-      priority: 'max',
-    });
+    Notifications.createChannelAndroidAsync('alarm-channel',
+      { name: 'Alarm Channel', sound: false, priority: 'max' });
   }
   Notifications.createCategoryAsync('alarm-category', [
-    {
-      actionId: 'alarm-dismiss',
-      buttonTitle: 'Dismiss',
-    },
+    { actionId: 'alarm-dismiss', buttonTitle: 'Dismiss' },
   ]);
   Notifications.addListener((val) => {
     if (val.actionId === 'alarm-dismiss') stopAlarm();
   });
   // Setup background actions
   if (Platform.OS === 'android') {
-    timerRef = BackgroundTimer.setInterval(() => {
+    BackgroundTimer.setInterval(() => {
       checkAlarm();
     }, BACKGROUND_INTERVAL);
   } else {
