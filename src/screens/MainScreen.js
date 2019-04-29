@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity,
+  View, Text, StatusBar, TouchableOpacity, YellowBox,
 } from 'react-native';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -14,6 +15,9 @@ import { GlobalStyles, Colors } from '../constants';
 import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
+
+YellowBox.ignoreWarnings(['Class RCTCxxModule']);
+
 
 class MainScreen extends Component {
   hasAlarmView() {
