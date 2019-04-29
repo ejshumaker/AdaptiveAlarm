@@ -430,7 +430,7 @@ class CreateAlarmScreen extends Component {
             placeholder="Select Arrival Time"
             placeholderTextColor={Colors.darkGray}
             value={arrivalTime}
-            style={[GlobalStyles.input, { color: Colors.darkGray, borderBottomWidth: 0.5, borderColor: Colors.white }]}>
+            style={[GlobalStyles.input, { color: (arrivalTime !== undefined) ? Colors.gray : Colors.darkGray }]}>
             {this.state.chosenTime}
           </TextInput>
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Alarm Sound</Text>
