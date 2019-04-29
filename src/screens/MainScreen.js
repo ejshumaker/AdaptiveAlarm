@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity,
+  View, Text, StatusBar, TouchableOpacity, Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -44,12 +44,37 @@ class MainScreen extends Component {
   }
 
   async storeWeather() {
-    await Alarm.getWeather().then((response) => {
+    try {
+      const response = await Alarm.getWeather();
+      if ((response.temperature === '') || (response.currWeather === '')) {
+        throw Error('getWeather() did not return any data.');
+      }
       const temp = response.temperature;
       const currWeather = response.weather;
       this.setState({ temperature: temp, weather: currWeather, weatherLoading: false });
-    });
+    } catch {
+      Alert.alert('Error retrieving local weather.');
+      // eslint-disable-next-line
+      console.log(error);
+    }
   }
+
+  // async storeWeather() {
+  //   Alarm.getWeather().then((response) => {
+  //     console.log('====== response ======', response);
+  //     if ((response.temperature === '') || (response.currWeather === '')) {
+  //       throw Error('getWeather() did not return any data.');
+  //     }
+  //     const temp = response.temperature;
+  //     const currWeather = response.weather;
+  //     this.setState({ temperature: temp, weather: currWeather, weatherLoading: false });
+  //   })
+  //     .catch((error) => {
+  //       Alert.alert('Error retrieving local weather.');
+  //       // eslint-disable-next-line
+  //       console.log(error);
+  //     });
+  // }
 
   hasAlarmView() {
     const {

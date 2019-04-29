@@ -77,27 +77,38 @@ async function getWeather() {
   let weather = '';
   let lat = 0;
   let lon = 0;
-  await getCurrentLocation()
-    .then((response) => {
-      const loc = response;
-      const locArr = loc.split(', ');
-      // eslint-disable-next-line
+  try {
+    const response = await getCurrentLocation();
+    if (response === undefined) {
+      throw Error('Could not retrieve current location.');
+    }
+    const loc = response;
+    const locArr = loc.split(', ');
+    // eslint-disable-next-line
       lat = locArr[0];
-      // eslint-disable-next-line
+    // eslint-disable-next-line
       lon = locArr[1];
-    });
-  await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`)
-    .then(response => response.json())
-    .then((json) => {
-      temperature = Math.round(json.main.temp);
-      weather = json.weather[0].main;
-    });
+  } catch (error) {
+    Alert.alert(error);
+  }
+  const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`;
+  try {
+    const response = await fetch(url);
+    const json = await response.json();
+    temperature = Math.round(json.main.temp);
+    weather = json.weather[0].main;
+  } catch (error) {
+    Alert.alert('Unable to retrieve weather information.');
+    console.log(error);
+  }
   return { temperature, weather };
 }
 
 async function getWeatherDelay(travelTime) {
   let weatherTime = travelTime;
-  await getWeather().then((resp) => {
+  let delay = 0;
+  try {
+    const resp = await getWeather();
     const temp = resp.temperature;
     const currWeather = resp.weather;
     switch (currWeather) {
@@ -123,9 +134,12 @@ async function getWeatherDelay(travelTime) {
     if (temp < 32) {
       weatherTime += 5;
     }
-  });
-  // return the difference in the new and old travel times
-  const delay = weatherTime - travelTime;
+    // return the difference in the new and old travel times
+    delay = weatherTime - travelTime;
+  } catch (error) {
+    console.log(error);
+    console.log('Unable to calculate weather time delay.');
+  }
   return { delay };
 }
 
@@ -157,10 +171,12 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
               i += 1;
             }
             const travelTime = arrivalTime - departureTime;
-            await getWeatherDelay(travelTime).then((res) => {
-              const { delay } = res;
+            try {
+              const { delay } = await getWeatherDelay(travelTime);
               resolve(departureTime - delay - (timeToGetReady * MILS_PER_MIN));
-            });
+            } catch (error) {
+              console.log(error);
+            }
           })
           .catch((e) => {
             reject(e);
