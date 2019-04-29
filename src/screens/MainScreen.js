@@ -22,11 +22,11 @@ class MainScreen extends Component {
       alarmTime,
       loading,
     } = this.props;
-    const hour = !loading ? moment(alarmTime).format('hh') : '0';
-    const min = !loading ? moment(alarmTime).format('mm') : '00';
-    const meridian = !loading ? moment(alarmTime).format('a') : '- -';
-    const month = !loading ? moment(alarmTime).format('MMM') : '';
-    const day = !loading ? moment(alarmTime).format('D, dddd') : '';
+    const hour = alarmTime ? moment(alarmTime).format('hh') : '0';
+    const min = alarmTime ? moment(alarmTime).format('mm') : '00';
+    const meridian = alarmTime ? moment(alarmTime).format('a') : '- -';
+    const month = alarmTime ? moment(alarmTime).format('MMM') : '';
+    const day = alarmTime ? moment(alarmTime).format('D, dddd') : '';
 
     return (
       <View>
@@ -106,10 +106,8 @@ class MainScreen extends Component {
     const self = this;
     const {
       dismissAlarm,
-      navigation,
       alarmId,
     } = this.props;
-    const { navigate } = navigation;
     return (
       <View>
         <Buttons
@@ -118,31 +116,12 @@ class MainScreen extends Component {
           textColor={Colors.white}
           onPress={() => dismissAlarm(alarmId)}
         />
-        <Buttons
-          title="Dev Page"
-          backgroundColor={Colors.darkGray}
-          textColor={Colors.white}
-          onPress={() => navigate('Home')}
-        />
       </View>
     );
   }
-
+  // eslint-disable-next-line
   hasNoAlarmButtons() {
-    // eslint-disable-next-line no-unused-vars
-    const self = this;
-    const { navigation } = this.props;
-    const { navigate } = navigation;
-    return (
-      <View>
-        <Buttons
-          title="Dev Page"
-          backgroundColor={Colors.darkGray}
-          textColor={Colors.white}
-          onPress={() => navigate('Home')}
-        />
-      </View>
-    );
+    return null;
   }
 
   menu() {

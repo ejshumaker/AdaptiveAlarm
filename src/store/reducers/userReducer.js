@@ -30,7 +30,6 @@ const userReducer = (state = initialUserState, action) => {
       const { alarmId } = action;
       alarms[alarmId].hasFired = true;
       state = { ...state, alarms };
-      console.log('alarm has fired');
       break;
     }
     // CREATE ALARM //

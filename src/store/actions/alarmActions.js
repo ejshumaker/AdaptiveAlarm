@@ -32,8 +32,7 @@ export function alarmCalculateTime() {
         modeIndex,
       ),
     })
-      .then((resp) => {
-        Alarm.armAlarm(resp.value, soundIndex);
+      .then(() => {
         dispatch({
           type: 'ALARM_SET_ARMED_STATUS',
           payload: {
