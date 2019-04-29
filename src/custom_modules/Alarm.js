@@ -180,7 +180,14 @@ function soundAlarm() {
 
 function checkAlarm() {
   const { time, currentAlarmId } = store.getState().alarm;
-  if (alarmIsPlaying || currentAlarmId === undefined) return;
+  const { alarms } = store.getState().user || [];
+  const { hasFired } = alarms[currentAlarmId];
+  if (alarmIsPlaying || currentAlarmId === undefined || hasFired) {
+    console.log(`alarm is playing: ${alarmIsPlaying}`);
+    console.log(`alarm id: ${currentAlarmId}`);
+    console.log(`has fired: ${hasFired}`);
+    return;
+  }
   const date = new Date();
   const current = date.getTime(); // get current time
   const difference = time - current;
@@ -188,7 +195,13 @@ function checkAlarm() {
     console.log(`-- Sounded at ${moment().format('hh:mm a')} --`);
     soundAlarm();
   } else {
-    console.log(`-- Checked at ${moment().format('hh:mm:ss a')} --`);
+    const timeFromNow = moment(time).from(new Date());
+    const secondsFromNow = moment(time).diff(new Date(), 'seconds');
+    if (secondsFromNow >= 60) {
+      console.log(`-- Checked: Alarm will sound ${timeFromNow} --`);
+    } else {
+      console.log(`-- Checked: Alarm will sound in ${secondsFromNow} seconds --`);
+    }
   }
   // potential recalculation of alarm
   if (ticksSinceLastUpdate === 0) {

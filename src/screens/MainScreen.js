@@ -22,11 +22,11 @@ class MainScreen extends Component {
       alarmTime,
       loading,
     } = this.props;
-    const hour = !loading ? moment(alarmTime).format('hh') : '0';
-    const min = !loading ? moment(alarmTime).format('mm') : '00';
-    const meridian = !loading ? moment(alarmTime).format('a') : '- -';
-    const month = !loading ? moment(alarmTime).format('MMM') : '';
-    const day = !loading ? moment(alarmTime).format('D, dddd') : '';
+    const hour = alarmTime ? moment(alarmTime).format('hh') : '0';
+    const min = alarmTime ? moment(alarmTime).format('mm') : '00';
+    const meridian = alarmTime ? moment(alarmTime).format('a') : '- -';
+    const month = alarmTime ? moment(alarmTime).format('MMM') : '';
+    const day = alarmTime ? moment(alarmTime).format('D, dddd') : '';
 
     return (
       <View>
