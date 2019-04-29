@@ -2,7 +2,7 @@ import {
   Location, Permissions, Notifications, Alert,
 } from 'expo';
 import moment from 'moment';
-import { Platform } from 'react-native';
+import { Platform, Vibration } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import sounds from '../assets/sounds';
 import store from '../store';
@@ -147,6 +147,7 @@ function stopAlarm() {
   }, 1); // Without the timeout the navigate call waits for the dispatch...
   // not sure why, @eschirtz
   Notifications.dismissAllNotificationsAsync();
+  Vibration.cancel();
   console.log('-- Stopped Alarm --');
 }
 
@@ -166,6 +167,7 @@ function soundAlarm() {
   store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId: currentAlarmId });
   const index = soundIndex >= 1 ? soundIndex : 1;
   const audioPath = sounds[index - 1].path;
+  // Real output
   soundRef = new Sound(audioPath, Sound.MAIN_BUNDLE, (error) => {
     if (error) {
       console.log('failed to load the sound', error);
@@ -175,6 +177,7 @@ function soundAlarm() {
     soundRef.setNumberOfLoops(-1);
     soundRef.play();
   });
+  Vibration.vibrate([100, 500, 100], true);
   navigateRef('Alarm');
 }
 
@@ -217,7 +220,11 @@ function initAlarm(navigate) {
   // Configure notifications
   if (Platform.OS === 'android') {
     Notifications.createChannelAndroidAsync('alarm-channel',
-      { name: 'Alarm Channel', sound: false, priority: 'max' });
+      {
+        name: 'Alarm Channel',
+        sound: false,
+        priority: 'max',
+      });
   }
   Notifications.createCategoryAsync('alarm-category', [
     { actionId: 'alarm-dismiss', buttonTitle: 'Dismiss' },
