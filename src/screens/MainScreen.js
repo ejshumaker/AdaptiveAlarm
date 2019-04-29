@@ -30,9 +30,9 @@ class MainScreen extends Component {
 
   componentDidMount() {
     const { navigation } = this.props;
-    this.focusListener = navigation.addListener('didFocus', () => {
-      this.didFocus();
-    });
+    // this.focusListener = navigation.addListener('didFocus', () => {
+    this.didFocus();
+    // });
   }
 
   componentWillUnmount() {

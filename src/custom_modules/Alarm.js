@@ -1,6 +1,7 @@
 import { Location, Permissions, Alert } from 'expo';
 import { DISTANCE_MATRIX_KEY, WEATHER_KEY } from '../../keys';
 import modes from '../assets/modes';
+import store from '../store';
 
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
@@ -189,6 +190,8 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
 }
 
 function triggerNavigate(navigate) {
+  const { currentAlarmId } = store.getState().alarm;
+  store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId: currentAlarmId });
   navigate('Alarm');
 }
 let timeoutRef;
