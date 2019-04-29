@@ -5,8 +5,11 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AnalogClock from '../components/AnalogClock';
 import { Buttons, StatusBarBackground } from '../components';
+import Alarm from '../custom_modules/Alarm';
+import { weatherConditions } from '../assets/weatherConditions';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
@@ -16,12 +19,45 @@ import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
+  constructor() {
+    super();
+    this.state = {
+      temperature: 0,
+      weather: 'Clear',
+      weatherLoading: true,
+    };
+  }
+
+  componentDidMount() {
+    const { navigation } = this.props;
+    this.focusListener = navigation.addListener('didFocus', () => {
+      this.didFocus();
+    });
+  }
+
+  componentWillUnmount() {
+    this.focusListener.remove();
+  }
+
+  didFocus = () => {
+    this.storeWeather();
+  }
+
+  async storeWeather() {
+    await Alarm.getWeather().then((response) => {
+      const temp = response.temperature;
+      const currWeather = response.weather;
+      this.setState({ temperature: temp, weather: currWeather, weatherLoading: false });
+    });
+  }
+
   hasAlarmView() {
     const {
       // values
       alarmTime,
       loading,
     } = this.props;
+    const { weatherLoading, temperature, weather } = this.state;
     const hour = !loading ? moment(alarmTime).format('hh') : '0';
     const min = !loading ? moment(alarmTime).format('mm') : '00';
     const meridian = !loading ? moment(alarmTime).format('a') : '- -';
@@ -55,7 +91,21 @@ class MainScreen extends Component {
           [GlobalStyles.month, { color: Colors.white, marginLeft: 130 }]
         }
         >
+          <Text style={GlobalStyles.date}>
+            {weatherLoading ? '' : temperature }
+          </Text>
           <Text>
+            {weatherLoading ? '' : '\u2109   ' }
+          </Text>
+          {weatherLoading ? '' : (
+            <MaterialCommunityIcons
+              size={18}
+              name={weatherConditions[weather].icon}
+              color={Colors.white}
+            />
+          )}
+          <Text>
+            {'  '}
             {month.toUpperCase()}
             {' '}
           </Text>

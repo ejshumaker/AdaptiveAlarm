@@ -41,8 +41,8 @@ class CreateAlarmScreen extends Component {
     this.state = {
       readyTime: undefined,
       arrivalTime: undefined,
-      soundIndex: 2,
-      modeIndex: 1,
+      soundIndex: 0,
+      modeIndex: 0,
       workAddress: '',
       days: {
         mon: false,
@@ -414,7 +414,10 @@ class CreateAlarmScreen extends Component {
             value={soundIndex}
             useNativeAndroidPickerStyle
             style={{ iconContainer: { top: 10 } }}
-            textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
+            textInputProps={{
+              color: (soundIndex > 0) ? Colors.gray : Colors.darkGray,
+              style: GlobalStyles.input,
+            }}
             Icon={() => <DropdownIcon />}
             onValueChange={(itemValue, itemIndex) => {
               this.setState({ soundIndex: String(itemIndex) });
@@ -431,7 +434,10 @@ class CreateAlarmScreen extends Component {
             value={modeIndex}
             useNativeAndroidPickerStyle
             style={{ iconContainer: { top: 10 } }}
-            textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
+            textInputProps={{
+              color: (modeIndex > 0) ? Colors.gray : Colors.darkGray,
+              style: GlobalStyles.input,
+            }}
             Icon={() => <DropdownIcon />}
             onValueChange={(itemValue, itemIndex) => {
               this.setState({ modeIndex: String(itemIndex) });
