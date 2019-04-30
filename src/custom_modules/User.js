@@ -21,7 +21,7 @@ function getNextAlarm() {
   let earliestAlarmTime = Number.MAX_SAFE_INTEGER;
   let earliestAlarmId;
   let ids = alarms !== undefined ? Object.keys(alarms) : [];
-  ids = ids.filter(id => alarms[id].isActive);
+  ids = ids.filter(id => alarms[id].isActive && !alarms[id].hasFired);
   for (let i = 0; i < ids.length; i += 1) {
     const alarm = alarms[ids[i]];
     // find next day of week
