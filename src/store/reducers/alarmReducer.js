@@ -11,9 +11,18 @@ const initialAlarmState = {
   currentAlarmId: undefined,
   armed: false,
   loading: false,
+  temperature: 0,
+  weather: '',
 };
 const alarmReducer = (state = initialAlarmState, action) => {
   switch (action.type) {
+    case 'ALARM_SET_WEATHER':
+      state = {
+        ...state,
+        temperature: action.payload.temperature,
+        weather: action.payload.weather,
+      };
+      break;
     case 'ALARM_SET_TIME_PENDING':
       state = {
         ...state,
