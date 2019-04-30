@@ -101,7 +101,7 @@ class CreateAlarmScreen extends Component {
       return;
     }
     if (!Number(readyTime)) {
-      Alert.alert('Time to get ready must be a number!');
+      Alert.alert('Time to get ready must be a positive number!');
       return;
     }
     if (this.noRepeats()) {
