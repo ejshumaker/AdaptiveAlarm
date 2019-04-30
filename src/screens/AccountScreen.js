@@ -7,7 +7,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity,
+  View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity, YellowBox,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -22,6 +22,8 @@ import {
 
 import { CloseIcon } from '../icons/close';
 import Buttons from '../components/Buttons';
+
+YellowBox.ignoreWarnings(['Class RCTCxxModule']);
 
 class AccountScreen extends Component {
   constructor() {

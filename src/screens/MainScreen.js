@@ -16,7 +16,10 @@ import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
-YellowBox.ignoreWarnings(['Class RCTCxxModule']);
+// ios warning boxes for meaningless errors
+YellowBox.ignoreWarnings(['Class EX']); // expo did not export module (xcode ?)
+YellowBox.ignoreWarnings(['Possible Unhandled Promise Rejection']); // no issue, POSSIBLE.
+YellowBox.ignoreWarnings(['Module AudioRecorderManager']); // comes from using react-native-audio
 
 
 class MainScreen extends Component {

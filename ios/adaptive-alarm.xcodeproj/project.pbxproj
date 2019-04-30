@@ -5,7 +5,12 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
+		6FB966D52277F01E00577A38 /* alarm1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FB966D12277F01D00577A38 /* alarm1.mp3 */; };
+		6FB966D62277F01E00577A38 /* alarm2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FB966D22277F01D00577A38 /* alarm2.mp3 */; };
+		6FB966D72277F01E00577A38 /* alarm4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FB966D32277F01D00577A38 /* alarm4.mp3 */; };
+		6FB966D82277F01E00577A38 /* alarm3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FB966D42277F01E00577A38 /* alarm3.mp3 */; };
 		7FBA4318116F83A0B7BA871C /* libPods-adaptive-alarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D2A66F0540DA836D95005FD /* libPods-adaptive-alarm.a */; };
 		A9D305ADF9294FF382B94C03 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85EFB2FB79E74C18AA890FD1 /* Ionicons.ttf */; };
 		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
@@ -23,6 +28,11 @@
 
 /* Begin PBXFileReference section */
 		5D2A66F0540DA836D95005FD /* libPods-adaptive-alarm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-adaptive-alarm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F1CB3A52278DEE600631CD3 /* adaptive-alarm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "adaptive-alarm.entitlements"; sourceTree = "<group>"; };
+		6FB966D12277F01D00577A38 /* alarm1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = alarm1.mp3; path = ../src/assets/sounds/alarm1.mp3; sourceTree = "<group>"; };
+		6FB966D22277F01D00577A38 /* alarm2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = alarm2.mp3; path = ../src/assets/sounds/alarm2.mp3; sourceTree = "<group>"; };
+		6FB966D32277F01D00577A38 /* alarm4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = alarm4.mp3; path = ../src/assets/sounds/alarm4.mp3; sourceTree = "<group>"; };
+		6FB966D42277F01E00577A38 /* alarm3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = alarm3.mp3; path = ../src/assets/sounds/alarm3.mp3; sourceTree = "<group>"; };
 		85EFB2FB79E74C18AA890FD1 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		B086D8466D746373FBD897FF /* Pods-adaptive-alarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adaptive-alarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-adaptive-alarm/Pods-adaptive-alarm.release.xcconfig"; sourceTree = "<group>"; };
 		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
@@ -82,6 +92,10 @@
 		B56386381DB9693800A0598C = {
 			isa = PBXGroup;
 			children = (
+				6FB966D12277F01D00577A38 /* alarm1.mp3 */,
+				6FB966D22277F01D00577A38 /* alarm2.mp3 */,
+				6FB966D42277F01E00577A38 /* alarm3.mp3 */,
+				6FB966D32277F01D00577A38 /* alarm4.mp3 */,
 				B56386431DB9693800A0598C /* adaptive-alarm */,
 				B56386421DB9693800A0598C /* Products */,
 				03C8F809D04244A98DFE95A0 /* Resources */,
@@ -101,6 +115,7 @@
 		B56386431DB9693800A0598C /* adaptive-alarm */ = {
 			isa = PBXGroup;
 			children = (
+				6F1CB3A52278DEE600631CD3 /* adaptive-alarm.entitlements */,
 				B56386471DB9693800A0598C /* AppDelegate.h */,
 				B56386481DB9693800A0598C /* AppDelegate.m */,
 				B56386501DB9693800A0598C /* Assets.xcassets */,
@@ -161,17 +176,27 @@
 				TargetAttributes = {
 					B56386401DB9693800A0598C = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = G6TSQJ6DQ5;
+						DevelopmentTeam = LW93SEL84Z;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 0;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
 			buildConfigurationList = B563863C1DB9693800A0598C /* Build configuration list for PBXProject "adaptive-alarm" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -192,11 +217,15 @@
 			files = (
 				B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */,
 				B501732B1DC01252003445D9 /* EXShell.plist in Resources */,
+				6FB966D62277F01E00577A38 /* alarm2.mp3 in Resources */,
 				B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */,
 				B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */,
+				6FB966D52277F01E00577A38 /* alarm1.mp3 in Resources */,
 				B5693E921FABD46800307FA4 /* launch_icon.png in Resources */,
+				6FB966D82277F01E00577A38 /* alarm3.mp3 in Resources */,
 				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
 				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
+				6FB966D72277F01E00577A38 /* alarm4.mp3 in Resources */,
 				B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */,
 				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
 				A9D305ADF9294FF382B94C03 /* Ionicons.ttf in Resources */,
@@ -352,6 +381,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -404,6 +434,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
@@ -420,12 +451,13 @@
 			baseConfigurationReference = D553BCEEF8F39872D16C7F00 /* Pods-adaptive-alarm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "adaptive-alarm/adaptive-alarm.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G6TSQJ6DQ5;
+				DEVELOPMENT_TEAM = LW93SEL84Z;
 				INFOPLIST_FILE = "$(SRCROOT)/adaptive-alarm/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.eschirtz.adaptive_alarm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eschirtz.adaptivealarm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -437,12 +469,13 @@
 			baseConfigurationReference = B086D8466D746373FBD897FF /* Pods-adaptive-alarm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "adaptive-alarm/adaptive-alarm.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G6TSQJ6DQ5;
+				DEVELOPMENT_TEAM = LW93SEL84Z;
 				INFOPLIST_FILE = "$(SRCROOT)/adaptive-alarm/Supporting/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.eschirtz.adaptive_alarm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eschirtz.adaptivealarm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -45,6 +45,7 @@
     "prop-types": "^15.7.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-audio": "^4.3.0",
     "react-native-background-timer": "^2.1.1",
     "react-native-google-autocomplete": "^0.1.5",
     "react-native-ionicons": "^4.5.5",

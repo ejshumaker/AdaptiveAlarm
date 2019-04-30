@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  View, Text, FlatList, ActivityIndicator, TouchableOpacity,
+  View, Text, FlatList, ActivityIndicator, TouchableOpacity, YellowBox,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -11,6 +11,8 @@ import { AlarmItem, StatusBarBackground } from '../components';
 import { CloseIcon } from '../icons/close';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
+
+YellowBox.ignoreWarnings(['Class RCTCxxModule']);
 
 
 class AlarmListScreen extends Component {

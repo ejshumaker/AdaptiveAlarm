@@ -4,6 +4,7 @@ import {
 import moment from 'moment';
 import { Platform, Vibration } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
+import { AudioUtils } from 'react-native-audio'; // AudioRecorder
 import sounds from '../assets/sounds';
 import store from '../store';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
@@ -11,6 +12,7 @@ import { DISTANCE_MATRIX_KEY } from '../../keys';
 import modes from '../assets/modes';
 
 const Sound = require('react-native-sound');
+
 // Enable playback in silence mode
 Sound.setCategory('Playback');
 
@@ -167,19 +169,33 @@ function soundAlarm() {
   store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId: currentAlarmId });
   const index = soundIndex >= 1 ? soundIndex : 1;
   const audioPath = sounds[index - 1].path;
-  // Real output
-  soundRef = new Sound(audioPath, Sound.MAIN_BUNDLE, (error) => {
-    if (error) {
-      console.log('failed to load the sound', error);
-      return;
-    }
-    // Loop indefinitely until stop() is called
-    soundRef.setNumberOfLoops(-1);
-    soundRef.play();
-  });
-  Vibration.vibrate([100, 500, 100], true);
+  console.log(`audioPath: ${audioPath}`);
+  // These timeouts are a hacky workaround for some issues with react-native-sound.
+  // See https://github.com/zmxv/react-native-sound/issues/89.
+  setTimeout(() => {
+    // var sound = new Sound(this.state.audioPath, '', (error) => {
+    const initialPath = (Platform.OS === 'ios') ? AudioUtils.MainBundlePath : AudioUtils.DocumentDirectoryPath;
+    console.log(`${initialPath}/${audioPath}`);
+    soundRef = new Sound(`${initialPath}/${audioPath}`, '', (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+      } else {
+        soundRef.setNumberOfLoops(-1);
+        soundRef.play((success) => {
+          if (success) {
+            console.log('successfully finished playing');
+          } else {
+            console.log('playback failed due to audio decoding errors');
+          }
+        });
+        Vibration.vibrate([100, 500, 100], true);
+      }
+    });
+  }, 100);
+  // navigate to alarm sounding page.
   navigateRef('Alarm');
 }
+
 
 function checkAlarm() {
   const { time, currentAlarmId } = store.getState().alarm;
