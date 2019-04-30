@@ -241,29 +241,37 @@ function soundAlarm() {
   store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId: currentAlarmId });
   const index = soundIndex >= 1 ? soundIndex : 1;
   const audioPath = sounds[index - 1].path;
-  console.log(`audioPath: ${audioPath}`);
+  if (Platform.OS === 'ios') {
   // These timeouts are a hacky workaround for some issues with react-native-sound.
-  // See https://github.com/zmxv/react-native-sound/issues/89.
-  setTimeout(() => {
-    // var sound = new Sound(this.state.audioPath, '', (error) => {
-    const initialPath = (Platform.OS === 'ios') ? AudioUtils.MainBundlePath : AudioUtils.DocumentDirectoryPath;
-    console.log(`${initialPath}/${audioPath}`);
-    soundRef = new Sound(`${initialPath}/${audioPath}`, '', (error) => {
+    // See https://github.com/zmxv/react-native-sound/issues/89.
+    setTimeout(() => {
+      const initialPath = AudioUtils.MainBundlePath;
+      soundRef = new Sound(`${initialPath}/${audioPath}`, '', (error) => {
+        if (error) {
+          console.log('failed to load the sound', error);
+        } else {
+          soundRef.setNumberOfLoops(-1);
+          soundRef.play((success) => {
+            if (success) {
+              console.log('successfully finished playing');
+            } else {
+              console.log('playback failed due to audio decoding errors');
+            }
+          });
+        }
+      });
+    }, 100);
+  } else {
+    soundRef = new Sound(audioPath, '', (error) => {
       if (error) {
         console.log('failed to load the sound', error);
       } else {
         soundRef.setNumberOfLoops(-1);
-        soundRef.play((success) => {
-          if (success) {
-            console.log('successfully finished playing');
-          } else {
-            console.log('playback failed due to audio decoding errors');
-          }
-        });
-        Vibration.vibrate([1000, 1000, 1000], true);
+        soundRef.play();
       }
     });
-  }, 100);
+  }
+  Vibration.vibrate([1000, 1000, 1000], true);
   // navigate to alarm sounding page.
   navigateRef('Alarm');
 }
