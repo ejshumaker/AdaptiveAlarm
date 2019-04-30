@@ -186,9 +186,10 @@ function checkAlarm() {
   const { alarms } = store.getState().user || [];
   const { hasFired } = alarms[currentAlarmId] || [];
   if (alarmIsPlaying || currentAlarmId === undefined || hasFired) {
-    console.log(`alarm is playing: ${alarmIsPlaying}`);
-    console.log(`alarm id: ${currentAlarmId}`);
-    console.log(`has fired: ${hasFired}`);
+    console.log('-- Handling edge case --');
+    console.log(`\talarm is playing: ${alarmIsPlaying}`);
+    console.log(`\talarm id: ${currentAlarmId}`);
+    console.log(`\thas fired: ${hasFired}`);
     return;
   }
   const date = new Date();
