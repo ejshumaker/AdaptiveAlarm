@@ -1,12 +1,13 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable react/prefer-stateless-function */
 import React, { PureComponent } from 'react';
 import {
   View,
   Text,
-  NetInfo,
   Dimensions,
   StyleSheet,
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { Colors } from '../constants';
 
 const { width } = Dimensions.get('window');
@@ -20,36 +21,44 @@ function MiniOfflineSign() {
 }
 
 class OfflineNotice extends PureComponent {
-  state = {
-    isConnected: true,
-  };
+  // state = {
+  //   isConnected: true,
+  // };
 
-  componentDidMount() {
-    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
-  }
+  // componentDidMount() {
+  //   NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+  // }
 
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
-  }
+  // componentWillUnmount() {
+  //   NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+  // }
 
-  handleConnectivityChange = (isConnected) => {
-    if (isConnected) {
-      this.setState({ isConnected: true });
-    } else {
-      this.setState({ isConnected: false });
-    }
-  };
+  // handleConnectivityChange = (isConnected) => {
+  //   if (isConnected) {
+  //     this.setState({ isConnected: true });
+  //   } else {
+  //     this.setState({ isConnected: false });
+  //   }
+  // };
 
   render() {
     const {
       isConnected,
-    } = this.state;
-    if (!isConnected) {
+    } = this.props;
+    if (isConnected === false) {
       return <MiniOfflineSign />;
     }
     return null;
   }
 }
+
+OfflineNotice.propTypes = {
+  isConnected: PropTypes.bool,
+};
+
+OfflineNotice.defaultProps = {
+  isConnected: true,
+};
 
 const styles = StyleSheet.create({
   offlineContainer: {

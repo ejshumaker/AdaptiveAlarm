@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity,
+  View, Text, StatusBar, TouchableOpacity, NetInfo,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -17,6 +17,26 @@ import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
+  state = {
+    appConnected: true,
+  };
+
+  componentDidMount() {
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  handleConnectivityChange = (appConnected) => {
+    if (appConnected) {
+      this.setState({ appConnected: true });
+    } else {
+      this.setState({ appConnected: false });
+    }
+  };
+
   hasAlarmView() {
     const {
       // values
@@ -175,10 +195,15 @@ class MainScreen extends Component {
       alarmId,
       loading,
     } = this.props;
+    const {
+      appConnected,
+    } = this.state;
     if (alarmId !== undefined || loading) {
       return (
         <View>
-          <OfflineNotice />
+          <OfflineNotice
+            isConnected={appConnected}
+          />
           <StatusBarBackground />
           {this.menu()}
           <View style={{ alignItems: 'center', width: '100%' }}>
