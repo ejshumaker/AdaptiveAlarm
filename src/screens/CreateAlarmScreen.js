@@ -291,32 +291,6 @@ class CreateAlarmScreen extends Component {
     return dayArray;
   }
 
-  // async getNextEvents() {
-  //   const d = new Date();
-  //   const currDayOfWeek = d.getDay();
-  //   const dayArray = [];
-  //   for (let i = 0; i < 7; i += 1) {
-  //     const dayStart = new Date();
-  //     dayStart.setDate(dayStart.getDate() + (i - currDayOfWeek));
-  //     dayStart.setHours(0, 0, 0, 0);
-  //     const dayEnd = new Date();
-  //     dayEnd.setDate(dayEnd.getDate() + (i - currDayOfWeek));
-  //     dayEnd.setHours(23, 59, 59, 0);
-  //     // eslint-disable-next-line
-  //     await this.getStartTimeAndLocation(dayStart, dayEnd).then((response) => {
-  //       const { destinationLoc } = response;
-  //       const { arrivalTime } = response;
-  //       // if no start time or location, set this array index to undefined
-  //       if ((destinationLoc === undefined) || (arrivalTime === undefined)) {
-  //         dayArray.push(undefined);
-  //       } else {
-  //         dayArray.push({ destinationLoc, arrivalTime });
-  //       }
-  //     });
-  //   }
-  //   return dayArray;
-  // }
-
   noRepeats() {
     const { days } = this.state;
     let noRepeat = true;
