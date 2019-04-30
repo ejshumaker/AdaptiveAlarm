@@ -1,6 +1,7 @@
 import { Location, Permissions, Alert } from 'expo';
-import { DISTANCE_MATRIX_KEY } from '../../keys';
+import { DISTANCE_MATRIX_KEY, WEATHER_KEY } from '../../keys';
 import modes from '../assets/modes';
+import store from '../store';
 
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
@@ -71,8 +72,81 @@ async function getCurrentLocation() {
       });
   });
 }
+
+async function getWeather() {
+  let temperature = '';
+  let weather = '';
+  let lat = 0;
+  let lon = 0;
+  try {
+    const response = await getCurrentLocation();
+    if (response === undefined) {
+      throw Error('Could not retrieve current location.');
+    }
+    const loc = response;
+    const locArr = loc.split(', ');
+    // eslint-disable-next-line
+      lat = locArr[0];
+    // eslint-disable-next-line
+      lon = locArr[1];
+  } catch (error) {
+    Alert.alert(error);
+  }
+  const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`;
+  try {
+    const response = await fetch(url);
+    const json = await response.json();
+    temperature = Math.round(json.main.temp);
+    weather = json.weather[0].main;
+  } catch (error) {
+    Alert.alert('Unable to retrieve weather information.');
+    console.log(error);
+  }
+  return { temperature, weather };
+}
+
+async function getWeatherDelay(travelTime) {
+  let weatherTime = travelTime;
+  let delay = 0;
+  try {
+    const resp = await getWeather();
+    const temp = resp.temperature;
+    const currWeather = resp.weather;
+    switch (currWeather) {
+      // multiply travel time by 1.05 for rain
+      case 'Rain':
+        weatherTime *= 1.05;
+        break;
+
+      // multiply travel time by 1.3 for snow
+      case 'Snow':
+        weatherTime *= 1.3;
+        break;
+
+      // multiply travel time by 1.1 for thunderstorm
+      case 'Thunderstorm':
+        weatherTime *= 1.1;
+        break;
+
+      default:
+        break;
+    }
+    // Add delay to scrape car if below freezing outside
+    if (temp < 32) {
+      weatherTime += 5;
+    }
+    // return the difference in the new and old travel times
+    delay = weatherTime - travelTime;
+  } catch (error) {
+    console.log(error);
+    console.log('Unable to calculate weather time delay.');
+  }
+  return { delay };
+}
+
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
+// eslint-disable-next-line
 async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit, modeIndex) {
   const loops = loopLimit;
   const timeRange = timeLimit;
@@ -97,7 +171,13 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
                 });
               i += 1;
             }
-            resolve(departureTime - timeToGetReady * MILS_PER_MIN);
+            const travelTime = arrivalTime - departureTime;
+            try {
+              const { delay } = await getWeatherDelay(travelTime);
+              resolve(departureTime - delay - (timeToGetReady * MILS_PER_MIN));
+            } catch (error) {
+              console.log(error);
+            }
           })
           .catch((e) => {
             reject(e);
@@ -110,6 +190,8 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
 }
 
 function triggerNavigate(navigate) {
+  const { currentAlarmId } = store.getState().alarm;
+  store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId: currentAlarmId });
   navigate('Alarm');
 }
 let timeoutRef;
@@ -134,9 +216,8 @@ function initArmAlarm(navigate) {
   exportFunctions.navigateRef = navigate;
 }
 
-
 const exportFunctions = {
-  navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime,
+  navigateRef, getCurrentLocation, initArmAlarm, getAlarmTime, armAlarm, getRouteTime, getWeather,
 };
 
 export default exportFunctions;

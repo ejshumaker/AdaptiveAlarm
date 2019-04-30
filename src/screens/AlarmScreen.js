@@ -13,6 +13,9 @@ import { GlobalStyles, Colors } from '../constants';
 import { Buttons, StatusBarBackground } from '../components';
 import { CloseIcon } from '../icons/close';
 
+import store from '../store';
+import { alarmCalculateTime } from '../store/actions/alarmActions';
+
 class AlarmScreen extends Component {
   constructor() {
     super();
@@ -88,6 +91,7 @@ class AlarmScreen extends Component {
     if (!load) {
       Vibration.cancel();
       await this.sound.stopAsync();
+      store.dispatch(alarmCalculateTime());
       navigate('Main');
     }
   }

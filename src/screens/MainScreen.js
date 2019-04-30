@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import {
+<<<<<<< HEAD
   View, Text, StatusBar, TouchableOpacity, NetInfo,
+=======
+  View, Text, StatusBar, TouchableOpacity, Alert,
+>>>>>>> dev
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AnalogClock from '../components/AnalogClock';
 import OfflineNotice from '../components/OfflineNotice';
 import { Buttons, StatusBarBackground } from '../components';
+import Alarm from '../custom_modules/Alarm';
+import { weatherConditions } from '../assets/weatherConditions';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
@@ -17,16 +24,32 @@ import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
-  state = {
-    appConnected: true,
-  };
+
+  constructor() {
+    super();
+    this.state = {
+      temperature: 0,
+      weather: 'Clear',
+      weatherLoading: true,
+      appConnected: true,
+    };
+  }
 
   componentDidMount() {
+    const { navigation } = this.props;
+    // this.focusListener = navigation.addListener('didFocus', () => {
+    this.didFocus();
+    // });
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
   }
 
   componentWillUnmount() {
+    this.focusListener.remove();
     NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  didFocus = () => {
+    this.storeWeather();
   }
 
   handleConnectivityChange = (appConnected) => {
@@ -37,12 +60,29 @@ class MainScreen extends Component {
     }
   };
 
+  async storeWeather() {
+    try {
+      const response = await Alarm.getWeather();
+      if ((response.temperature === '') || (response.currWeather === '')) {
+        throw Error('getWeather() did not return any data.');
+      }
+      const temp = response.temperature;
+      const currWeather = response.weather;
+      this.setState({ temperature: temp, weather: currWeather, weatherLoading: false });
+    } catch {
+      Alert.alert('Error retrieving local weather.');
+      // eslint-disable-next-line
+      console.log(error);
+    }
+  }
+
   hasAlarmView() {
     const {
       // values
       alarmTime,
       loading,
     } = this.props;
+    const { weatherLoading, temperature, weather } = this.state;
     const hour = !loading ? moment(alarmTime).format('hh') : '0';
     const min = !loading ? moment(alarmTime).format('mm') : '00';
     const meridian = !loading ? moment(alarmTime).format('a') : '- -';
@@ -76,7 +116,21 @@ class MainScreen extends Component {
           [GlobalStyles.month, { color: Colors.white, marginLeft: 130 }]
         }
         >
+          <Text style={GlobalStyles.date}>
+            {weatherLoading ? '' : temperature }
+          </Text>
           <Text>
+            {weatherLoading ? '' : '\u2109   ' }
+          </Text>
+          {weatherLoading ? '' : (
+            <MaterialCommunityIcons
+              size={18}
+              name={weatherConditions[weather].icon}
+              color={Colors.white}
+            />
+          )}
+          <Text>
+            {'  '}
             {month.toUpperCase()}
             {' '}
           </Text>
