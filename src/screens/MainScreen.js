@@ -29,6 +29,11 @@ class MainScreen extends Component {
   }
 
   componentDidMount() {
+    this.didFocus();
+  }
+
+
+  didFocus = () => {
     this.storeWeather();
   }
 
