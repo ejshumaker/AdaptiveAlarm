@@ -35,25 +35,15 @@ class MainScreen extends Component {
     // this.focusListener = navigation.addListener('didFocus', () => {
     this.didFocus();
     // });
-    // NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
   }
 
   componentWillUnmount() {
     this.focusListener.remove();
-    // NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
 
   didFocus = () => {
     this.storeWeather();
   }
-
-  // handleConnectivityChange = (appConnected) => {
-  //   if (appConnected) {
-  //     this.setState({ appConnected: true });
-  //   } else {
-  //     this.setState({ appConnected: false });
-  //   }
-  // };
 
   async storeWeather() {
     try {

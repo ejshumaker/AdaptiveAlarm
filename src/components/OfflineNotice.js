@@ -27,6 +27,13 @@ class OfflineNotice extends PureComponent {
     isConnected: true,
   };
 
+  // componentDidMount() {
+  //   const { navigation } = this.props;
+  //   this.focusListener = navigation.addListener('didFocus', () => {
+  //     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+  //   });
+  // }
+
   componentWillMount() {
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
   }
@@ -55,7 +62,9 @@ class OfflineNotice extends PureComponent {
 }
 
 // OfflineNotice.propTypes = {
-//   isConnected: PropTypes.bool,
+//   navigation: PropTypes.shape({
+//     navigate: PropTypes.func.isRequired,
+//   }).isRequired,
 // };
 
 // OfflineNotice.defaultProps = {
