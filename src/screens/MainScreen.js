@@ -20,7 +20,6 @@ import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
-
   constructor() {
     super();
     this.state = {
