@@ -5,8 +5,6 @@ import {
 } from 'react-native';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import store from '../store';
-import { alarmCalculateTime } from '../store/actions/alarmActions';
 
 import { GlobalStyles, Colors } from '../constants';
 import { Buttons, StatusBarBackground } from '../components';
@@ -28,10 +26,8 @@ class AlarmScreen extends Component {
     });
   }
 
-  stopSound = (navigate) => {
+  stopSound = () => {
     Alarm.stopAlarm();
-    navigate('Main');
-    store.dispatch(alarmCalculateTime());
   }
 
   menu() {

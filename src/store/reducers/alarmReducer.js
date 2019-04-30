@@ -10,7 +10,8 @@ const initialAlarmState = {
   time: undefined,
   currentAlarmId: undefined,
   armed: false,
-  loading: false,
+  loading: true,
+  soundIndex: 1,
 };
 const alarmReducer = (state = initialAlarmState, action) => {
   switch (action.type) {
@@ -38,7 +39,7 @@ const alarmReducer = (state = initialAlarmState, action) => {
       state = {
         ...state,
         armed: action.payload.armed,
-        soundIndex: action.payload.soundIndex,
+        soundIndex: action.payload.soundIndex || 1,
         modeIndex: action.payload.modeIndex,
         currentAlarmId: action.payload.currentAlarmId,
       };

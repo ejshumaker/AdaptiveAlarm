@@ -2,11 +2,12 @@ import {
   Location, Permissions, Notifications, Alert,
 } from 'expo';
 import moment from 'moment';
-import { Platform } from 'react-native';
+import { Platform, Vibration } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import sounds from '../assets/sounds';
 import store from '../store';
-import { DISTANCE_MATRIX_KEY } from '../../keys';
+import { alarmCalculateTime } from '../store/actions/alarmActions';
+import { DISTANCE_MATRIX_KEY, WEATHER_KEY } from '../../keys';
 import modes from '../assets/modes';
 
 const Sound = require('react-native-sound');
@@ -16,8 +17,11 @@ Sound.setCategory('Playback');
 // Global references
 let navigateRef;
 let soundRef;
-let timerRef;
+let alarmIsPlaying = false;
+let ticksSinceLastUpdate = 0; // rolling counter for recurring alarm calculation
 
+const BACKGROUND_INTERVAL = 10 * 1000;
+const RECALCULATE_INTERVAL = 5;
 
 const MILS_PER_MIN = 60000;
 const SECS_PER_MIN = 60;
@@ -88,16 +92,82 @@ async function getCurrentLocation() {
       });
   });
 }
+
+async function getWeather() {
+  let temperature = '';
+  let weather = '';
+  let lat = 0;
+  let lon = 0;
+  try {
+    const response = await getCurrentLocation();
+    if (response === undefined) {
+      throw Error('Could not retrieve current location.');
+    }
+    const loc = response;
+    const locArr = loc.split(', ');
+    // eslint-disable-next-line
+      lat = locArr[0];
+    // eslint-disable-next-line
+      lon = locArr[1];
+  } catch (error) {
+    Alert.alert(error);
+  }
+  const url = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&APPID=${WEATHER_KEY}`;
+  try {
+    const response = await fetch(url);
+    const json = await response.json();
+    temperature = Math.round(json.main.temp);
+    weather = json.weather[0].main;
+  } catch (error) {
+    Alert.alert('Unable to retrieve weather information.');
+    console.log(error);
+  }
+  return { temperature, weather };
+}
+
+async function getWeatherDelay(travelTime) {
+  let weatherTime = travelTime;
+  let delay = 0;
+  try {
+    const resp = await getWeather();
+    const temp = resp.temperature;
+    const currWeather = resp.weather;
+    switch (currWeather) {
+      // multiply travel time by 1.05 for rain
+      case 'Rain':
+        weatherTime *= 1.05;
+        break;
+
+      // multiply travel time by 1.3 for snow
+      case 'Snow':
+        weatherTime *= 1.3;
+        break;
+
+      // multiply travel time by 1.1 for thunderstorm
+      case 'Thunderstorm':
+        weatherTime *= 1.1;
+        break;
+
+      default:
+        break;
+    }
+    // Add delay to scrape car if below freezing outside
+    if (temp < 32) {
+      weatherTime += 5;
+    }
+    // return the difference in the new and old travel times
+    delay = weatherTime - travelTime;
+  } catch (error) {
+    console.log(error);
+    console.log('Unable to calculate weather time delay.');
+  }
+  return { delay };
+}
+
 /* eslint-disable no-loop-func */
 /* eslint-disable no-await-in-loop */
-async function getAlarmTime(
-  destinationLoc,
-  timeToGetReady,
-  arrivalTime,
-  loopLimit,
-  timeLimit,
-  modeIndex,
-) {
+// eslint-disable-next-line
+async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLimit, timeLimit, modeIndex) {
   const loops = loopLimit;
   const timeRange = timeLimit;
   return new Promise((resolve, reject) => {
@@ -121,7 +191,13 @@ async function getAlarmTime(
                 });
               i += 1;
             }
-            resolve(departureTime - timeToGetReady * MILS_PER_MIN);
+            const travelTime = arrivalTime - departureTime;
+            try {
+              const { delay } = await getWeatherDelay(travelTime);
+              resolve(departureTime - delay - (timeToGetReady * MILS_PER_MIN));
+            } catch (error) {
+              console.log(error);
+            }
           })
           .catch((e) => {
             reject(e);
@@ -134,14 +210,27 @@ async function getAlarmTime(
 }
 
 function stopAlarm() {
+  alarmIsPlaying = false;
   if (soundRef !== undefined) soundRef.stop();
+  exportFunctions.navigateRef('Main');
+  // *** STUPID HACKY FIX *** //
+  setTimeout(() => {
+    store.dispatch(alarmCalculateTime());
+  }, 1); // Without the timeout the navigate call waits for the dispatch...
+  // not sure why, @eschirtz
+  Notifications.dismissAllNotificationsAsync();
+  Vibration.cancel();
+  console.log('-- Stopped Alarm --');
 }
 
-function soundAlarm(soundIndex = 1) {
-  const { time, currentAlarmId } = store.getState().alarm;
+function soundAlarm() {
+  alarmIsPlaying = true;
+  const { time, currentAlarmId, soundIndex } = store.getState().alarm;
+  const { alarms } = store.getState().user;
+  const { destinationLoc, arrivalTime } = alarms[currentAlarmId];
   Notifications.presentLocalNotificationAsync({
-    title: moment(time).format('hh:mm'),
-    body: 'Time to wake up!',
+    title: moment(time).format('hh:mm a'),
+    body: `Start your routine now to arrive at ${destinationLoc} by ${arrivalTime}`,
     categoryId: 'alarm-category',
     android: {
       channelId: 'alarm-channel',
@@ -150,7 +239,7 @@ function soundAlarm(soundIndex = 1) {
   store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId: currentAlarmId });
   const index = soundIndex >= 1 ? soundIndex : 1;
   const audioPath = sounds[index - 1].path;
-  console.log(audioPath);
+  // Real output
   soundRef = new Sound(audioPath, Sound.MAIN_BUNDLE, (error) => {
     if (error) {
       console.log('failed to load the sound', error);
@@ -160,64 +249,77 @@ function soundAlarm(soundIndex = 1) {
     soundRef.setNumberOfLoops(-1);
     soundRef.play();
   });
+  Vibration.vibrate([1000, 1000, 1000], true);
   exportFunctions.navigateRef('Alarm');
-  if (Platform.OS === 'android') {
-    BackgroundTimer.clearInterval(timerRef);
-  } else {
-    BackgroundTimer.stopBackgroundTimer();
-  }
 }
 
-/**
- * Given an exact time in UTC, armAlarm sets up
- * the actual alarm/timers required to fire off alarm
- * @param  {Time_UTC} alarmTime
- * @param  {Integer} soundIndex
- * @return {[type]}           [description]
- */
-function armAlarm(alarmTime, soundIndex = 1) {
+function checkAlarm() {
+  const { time, currentAlarmId } = store.getState().alarm;
+  let { alarms } = store.getState().user;
+  alarms = alarms !== undefined ? alarms : [];
+  const { hasFired } = alarms[currentAlarmId] || [];
+  if (alarmIsPlaying || currentAlarmId === undefined || hasFired) {
+    console.log('-- Handling edge case --');
+    console.log(`\talarm is playing: ${alarmIsPlaying}`);
+    console.log(`\talarm id: ${currentAlarmId}`);
+    console.log(`\thas fired: ${hasFired}`);
+    return;
+  }
   const date = new Date();
   const current = date.getTime(); // get current time
-  let difference = alarmTime - current;
+  const difference = time - current;
   if (difference < 0) {
-    difference = 0; // edge case?
-    console.log('** Alarm will fire after desired time **\n** Should still be before arrival time **');
-  }
-  if (Platform.OS === 'android') {
-    timerRef = BackgroundTimer.setInterval(() => {
-      soundAlarm(soundIndex);
-    }, difference);
+    console.log(`-- Sounded at ${moment().format('hh:mm a')} --`);
+    soundAlarm();
   } else {
-    BackgroundTimer.runBackgroundTimer(() => {
-      soundAlarm(soundIndex);
-    }, difference);
+    const timeFromNow = moment(time).from(new Date());
+    const secondsFromNow = moment(time).diff(new Date(), 'seconds');
+    if (secondsFromNow >= 60) {
+      console.log(`-- Checked: Alarm will sound ${timeFromNow} --`);
+    } else {
+      console.log(`-- Checked: Alarm will sound in ${secondsFromNow} seconds --`);
+    }
   }
-  console.log('Armed Alarm');
+  // potential recalculation of alarm
+  if (ticksSinceLastUpdate === 0) {
+    console.log('-- Recalculating Alarm Time --');
+    store.dispatch(alarmCalculateTime());
+  }
+  const ticksTemp = ticksSinceLastUpdate + 1;
+  ticksSinceLastUpdate = ticksTemp % RECALCULATE_INTERVAL;
 }
 
 function initAlarm(navigate) {
   exportFunctions.navigateRef = navigate;
   // NOTIFICATION CONFIG //
   if (Platform.OS === 'android') {
-    Notifications.createChannelAndroidAsync('alarm-channel', {
-      name: 'Alarm Channel',
-      sound: false,
-      priority: 'max',
-    });
+    Notifications.createChannelAndroidAsync('alarm-channel',
+      {
+        name: 'Alarm Channel',
+        sound: false,
+        priority: 'max',
+      });
   }
   Notifications.createCategoryAsync('alarm-category', [
-    {
-      actionId: 'alarm-dismiss',
-      buttonTitle: 'Dismiss',
-    },
+    { actionId: 'alarm-dismiss', buttonTitle: 'Dismiss' },
   ]);
   Notifications.addListener((val) => {
     if (val.actionId === 'alarm-dismiss') stopAlarm();
   });
+  // Setup background actions
+  if (Platform.OS === 'android') {
+    BackgroundTimer.setInterval(() => {
+      checkAlarm();
+    }, BACKGROUND_INTERVAL);
+  } else {
+    BackgroundTimer.runBackgroundTimer(() => {
+      checkAlarm();
+    }, BACKGROUND_INTERVAL);
+  }
 }
 
 const exportFunctions = {
-  navigateRef, getCurrentLocation, initAlarm, getAlarmTime, armAlarm, getRouteTime, stopAlarm,
+  navigateRef, getCurrentLocation, initAlarm, getAlarmTime, getRouteTime, stopAlarm,
 };
 
 export default exportFunctions;
