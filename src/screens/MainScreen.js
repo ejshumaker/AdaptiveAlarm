@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {
-<<<<<<< HEAD
-  View, Text, StatusBar, TouchableOpacity, NetInfo,
-=======
-  View, Text, StatusBar, TouchableOpacity, Alert,
->>>>>>> dev
+  View, Text, StatusBar, TouchableOpacity, NetInfo, Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
