@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity,
+  View, Text, StatusBar, TouchableOpacity, Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AnalogClock from '../components/AnalogClock';
 import { Buttons, StatusBarBackground } from '../components';
+import Alarm from '../custom_modules/Alarm';
+import { weatherConditions } from '../assets/weatherConditions';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
@@ -16,17 +19,47 @@ import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
 class MainScreen extends Component {
+  constructor() {
+    super();
+    this.state = {
+      temperature: 0,
+      weather: 'Clear',
+      weatherLoading: true,
+    };
+  }
+
+  componentDidMount() {
+    this.storeWeather();
+  }
+
+  async storeWeather() {
+    try {
+      const response = await Alarm.getWeather();
+      if ((response.temperature === '') || (response.currWeather === '')) {
+        throw Error('getWeather() did not return any data.');
+      }
+      const temp = response.temperature;
+      const currWeather = response.weather;
+      this.setState({ temperature: temp, weather: currWeather, weatherLoading: false });
+    } catch {
+      Alert.alert('Error retrieving local weather.');
+      // eslint-disable-next-line
+      console.log(error);
+    }
+  }
+
   hasAlarmView() {
     const {
       // values
       alarmTime,
       loading,
     } = this.props;
-    const hour = alarmTime ? moment(alarmTime).format('hh') : '0';
-    const min = alarmTime ? moment(alarmTime).format('mm') : '00';
-    const meridian = alarmTime ? moment(alarmTime).format('a') : '- -';
-    const month = alarmTime ? moment(alarmTime).format('MMM') : '';
-    const day = alarmTime ? moment(alarmTime).format('D, dddd') : '';
+    const { weatherLoading, temperature, weather } = this.state;
+    const hour = alarmTime !== -1 ? moment(alarmTime).format('hh') : '0';
+    const min = alarmTime !== -1 ? moment(alarmTime).format('mm') : '00';
+    const meridian = alarmTime !== -1 ? moment(alarmTime).format('a') : '- -';
+    const month = alarmTime !== -1 ? moment(alarmTime).format('MMM') : '';
+    const day = alarmTime !== -1 ? moment(alarmTime).format('D, dddd') : '';
 
     return (
       <View>
@@ -55,7 +88,21 @@ class MainScreen extends Component {
           [GlobalStyles.month, { color: Colors.white, marginLeft: 130 }]
         }
         >
+          <Text style={GlobalStyles.date}>
+            {weatherLoading ? '' : temperature }
+          </Text>
           <Text>
+            {weatherLoading ? '' : '\u2109   ' }
+          </Text>
+          {weatherLoading ? '' : (
+            <MaterialCommunityIcons
+              size={18}
+              name={weatherConditions[weather].icon}
+              color={Colors.white}
+            />
+          )}
+          <Text>
+            {'  '}
             {month.toUpperCase()}
             {' '}
           </Text>
