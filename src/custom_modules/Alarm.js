@@ -159,8 +159,10 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
             let duration = re;
             let departureTime = arrivalTime;
             let i = 0;
+            let looped = false; // flag to check if loop is executed
             while (Math.abs(departureTime + (duration * MILS_PER_MIN)
         - arrivalTime) > timeRange * MILS_PER_MIN && i < loops) {
+              looped = true;
               departureTime = arrivalTime - Math.floor(duration * MILS_PER_MIN);
               await getRouteTime(startLoc, destinationLoc, departureTime, modeIndex)
                 .then((resp) => {
@@ -170,6 +172,10 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
                   reject(e);
                 });
               i += 1;
+            }
+            if (!looped) {
+              // if loop did not execute, departureTime is just arrivalTime - duration
+              departureTime = arrivalTime - (duration * MILS_PER_MIN);
             }
             const travelTime = arrivalTime - departureTime;
             try {
