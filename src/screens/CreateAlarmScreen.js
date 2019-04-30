@@ -191,7 +191,8 @@ class CreateAlarmScreen extends Component {
       alarmId,
     } = this.state;
     const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-    await this.getNextEvents().then((dayArray) => {
+    try {
+      const dayArray = await this.getNextEvents();
       for (let i = 0; i < 7; i += 1) {
         // initialize days array to all false
         for (let j = 0; j < 7; j += 1) {
@@ -217,7 +218,11 @@ class CreateAlarmScreen extends Component {
         }
       }
       fetchData();
-    });
+    } catch (error) {
+      // eslint-disable-next-line
+      console.log(error);
+      Alert.alert('Unable to import calendar events.');
+    }
   }
 
   async getStartTimeAndLocation(dayStart, dayEnd) {
@@ -228,11 +233,12 @@ class CreateAlarmScreen extends Component {
         Alert.alert('Permission to access calendar was denied.');
       }
     });
-    const cals = await Calendar.getCalendarsAsync();
-    // get all device calendar ids
-    const data = cals.filter(item => item).map(({ id }) => ({ id }));
-    // check all events for the following day and return earliest event start time
-    await Calendar.getEventsAsync(data, dayStart, dayEnd).then((response) => {
+    try {
+      const cals = await Calendar.getCalendarsAsync();
+      // get all device calendar ids
+      const data = cals.filter(item => item).map(({ id }) => ({ id }));
+      // check all events for the following day and return earliest event start time
+      const response = await Calendar.getEventsAsync(data, dayStart, dayEnd);
       if (response.length > 0) {
         const { location } = response[0];
         if (location === '') {
@@ -246,10 +252,13 @@ class CreateAlarmScreen extends Component {
         destinationLoc = undefined;
         arrivalTime = undefined;
       }
-    });
+    } catch (error) {
+      // eslint-disable-next-line
+      console.log(error);
+      Alert.alert('Unable to import calendar events.');
+    }
     return { destinationLoc, arrivalTime };
   }
-
 
   async getNextEvents() {
     const d = new Date();
@@ -262,8 +271,9 @@ class CreateAlarmScreen extends Component {
       const dayEnd = new Date();
       dayEnd.setDate(dayEnd.getDate() + (i - currDayOfWeek));
       dayEnd.setHours(23, 59, 59, 0);
-      // eslint-disable-next-line
-      await this.getStartTimeAndLocation(dayStart, dayEnd).then((response) => {
+      try {
+        // eslint-disable-next-line
+        const response = await this.getStartTimeAndLocation(dayStart, dayEnd);
         const { destinationLoc } = response;
         const { arrivalTime } = response;
         // if no start time or location, set this array index to undefined
@@ -272,10 +282,40 @@ class CreateAlarmScreen extends Component {
         } else {
           dayArray.push({ destinationLoc, arrivalTime });
         }
-      });
+      } catch (error) {
+        // eslint-disable-next-line
+        console.log(error);
+        Alert.alert('Unable to import calendar events.');
+      }
     }
     return dayArray;
   }
+
+  // async getNextEvents() {
+  //   const d = new Date();
+  //   const currDayOfWeek = d.getDay();
+  //   const dayArray = [];
+  //   for (let i = 0; i < 7; i += 1) {
+  //     const dayStart = new Date();
+  //     dayStart.setDate(dayStart.getDate() + (i - currDayOfWeek));
+  //     dayStart.setHours(0, 0, 0, 0);
+  //     const dayEnd = new Date();
+  //     dayEnd.setDate(dayEnd.getDate() + (i - currDayOfWeek));
+  //     dayEnd.setHours(23, 59, 59, 0);
+  //     // eslint-disable-next-line
+  //     await this.getStartTimeAndLocation(dayStart, dayEnd).then((response) => {
+  //       const { destinationLoc } = response;
+  //       const { arrivalTime } = response;
+  //       // if no start time or location, set this array index to undefined
+  //       if ((destinationLoc === undefined) || (arrivalTime === undefined)) {
+  //         dayArray.push(undefined);
+  //       } else {
+  //         dayArray.push({ destinationLoc, arrivalTime });
+  //       }
+  //     });
+  //   }
+  //   return dayArray;
+  // }
 
   noRepeats() {
     const { days } = this.state;
