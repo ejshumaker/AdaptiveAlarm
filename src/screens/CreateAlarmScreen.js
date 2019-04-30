@@ -17,6 +17,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RNPickerSelect from 'react-native-picker-select';
 import { Calendar, Permissions } from 'expo';
+import OfflineNotice from '../components/OfflineNotice';
 import sounds from '../assets/sounds';
 import modes from '../assets/modes';
 

@@ -6,9 +6,11 @@ import {
   Text,
   Dimensions,
   StyleSheet,
+  NetInfo,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Colors } from '../constants';
+
 
 const { width } = Dimensions.get('window');
 
@@ -21,30 +23,30 @@ function MiniOfflineSign() {
 }
 
 class OfflineNotice extends PureComponent {
-  // state = {
-  //   isConnected: true,
-  // };
+  state = {
+    isConnected: true,
+  };
 
-  // componentDidMount() {
-  //   NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
-  // }
+  componentWillMount() {
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+  }
 
-  // componentWillUnmount() {
-  //   NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
-  // }
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+  }
 
-  // handleConnectivityChange = (isConnected) => {
-  //   if (isConnected) {
-  //     this.setState({ isConnected: true });
-  //   } else {
-  //     this.setState({ isConnected: false });
-  //   }
-  // };
+  handleConnectivityChange = (isConnected) => {
+    if (isConnected) {
+      this.setState({ isConnected: true });
+    } else {
+      this.setState({ isConnected: false });
+    }
+  };
 
   render() {
     const {
       isConnected,
-    } = this.props;
+    } = this.state;
     if (isConnected === false) {
       return <MiniOfflineSign />;
     }
@@ -52,13 +54,13 @@ class OfflineNotice extends PureComponent {
   }
 }
 
-OfflineNotice.propTypes = {
-  isConnected: PropTypes.bool,
-};
+// OfflineNotice.propTypes = {
+//   isConnected: PropTypes.bool,
+// };
 
-OfflineNotice.defaultProps = {
-  isConnected: true,
-};
+// OfflineNotice.defaultProps = {
+//   isConnected: true,
+// };
 
 const styles = StyleSheet.create({
   offlineContainer: {

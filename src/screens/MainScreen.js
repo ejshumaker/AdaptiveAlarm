@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity, NetInfo, Alert,
+  View, Text, StatusBar, TouchableOpacity, Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -26,7 +26,7 @@ class MainScreen extends Component {
       temperature: 0,
       weather: 'Clear',
       weatherLoading: true,
-      appConnected: true,
+      // appConnected: true,
     };
   }
 
@@ -35,25 +35,25 @@ class MainScreen extends Component {
     // this.focusListener = navigation.addListener('didFocus', () => {
     this.didFocus();
     // });
-    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+    // NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
   }
 
   componentWillUnmount() {
     this.focusListener.remove();
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+    // NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
   }
 
   didFocus = () => {
     this.storeWeather();
   }
 
-  handleConnectivityChange = (appConnected) => {
-    if (appConnected) {
-      this.setState({ appConnected: true });
-    } else {
-      this.setState({ appConnected: false });
-    }
-  };
+  // handleConnectivityChange = (appConnected) => {
+  //   if (appConnected) {
+  //     this.setState({ appConnected: true });
+  //   } else {
+  //     this.setState({ appConnected: false });
+  //   }
+  // };
 
   async storeWeather() {
     try {
@@ -244,15 +244,9 @@ class MainScreen extends Component {
       alarmId,
       loading,
     } = this.props;
-    const {
-      appConnected,
-    } = this.state;
     if (alarmId !== undefined || loading) {
       return (
         <View>
-          <OfflineNotice
-            isConnected={appConnected}
-          />
           <StatusBarBackground />
           {this.menu()}
           <View style={{ alignItems: 'center', width: '100%' }}>
@@ -265,7 +259,6 @@ class MainScreen extends Component {
     }
     return (
       <View>
-        <OfflineNotice />
         <StatusBarBackground />
         {this.menu()}
         <View style={{ alignItems: 'center', width: '100%' }}>
