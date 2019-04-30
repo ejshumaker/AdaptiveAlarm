@@ -116,7 +116,7 @@ class DayPicker extends PureComponent {
     } = this.state;
     return (
       <View style={[styles.container, {
-        height: 60, alignItems: 'center', justifyContent: 'space-around', marginVertical: 24,
+        height: 60, alignItems: 'center', justifyContent: 'space-around', marginVertical: 8,
       }]}
       >
         <TouchableOpacity onPress={() => this.updateOnPress('S')}>

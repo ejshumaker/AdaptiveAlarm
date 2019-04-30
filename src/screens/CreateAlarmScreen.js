@@ -365,7 +365,7 @@ class CreateAlarmScreen extends Component {
               GlobalStyles.h2,
               {
                 color: Colors.primary,
-                marginBottom: 48,
+                marginBottom: 20,
               },
             ]}
           >
@@ -378,75 +378,95 @@ class CreateAlarmScreen extends Component {
             onDestChange={this.onDestChange}
             autoCompleteValue={workAddress}
           />
-          <Text style={[GlobalStyles.subtitle, { marginTop: 8 }]}>Routine Time</Text>
-          <TextInput
-            keyboardAppearance="dark"
-            style={GlobalStyles.input}
-            returnKeyType="next"
-            keyboardType="numeric"
-            ref={(input) => { this.readyTimeInput = input; }}
-            onSubmitEditing={() => this.arrivalTimeInput.focus()}
-            onChangeText={text => this.setState({ readyTime: text })}
-            placeholder="(30 min)"
-            placeholderTextColor={Colors.darkGray}
-            value={readyTime}
-          />
-          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Arrival Time</Text>
-          <TextInput
-            keyboardAppearance="dark"
-            style={GlobalStyles.input}
-            returnKeyType="next"
-            ref={(input) => { this.arrivalTimeInput = input; }}
-            onSubmitEditing={() => null}
-            onChangeText={text => this.setState({ arrivalTime: text })}
-            placeholder="(8:00 AM)"
-            placeholderTextColor={Colors.darkGray}
-            value={arrivalTime}
-          />
-          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Alarm Sound</Text>
-          <RNPickerSelect
-            placeholder={{
-              label: 'Select Alarm Sound',
-              value: null,
-              color: Colors.darkGray,
-            }}
-            items={sounds}
-            value={soundIndex}
-            useNativeAndroidPickerStyle
-            style={{ iconContainer: { top: 10 } }}
-            textInputProps={{
-              color: (soundIndex > 0) ? Colors.gray : Colors.darkGray,
-              style: GlobalStyles.input,
-            }}
-            Icon={() => <DropdownIcon />}
-            onValueChange={(itemValue, itemIndex) => {
-              this.setState({ soundIndex: String(itemIndex) });
-            }}
-          />
-          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Transportation Mode</Text>
-          <RNPickerSelect
-            placeholder={{
-              label: 'Select Transportation Mode',
-              value: null,
-              color: Colors.darkGray,
-            }}
-            items={modes}
-            value={modeIndex}
-            useNativeAndroidPickerStyle
-            style={{ iconContainer: { top: 10 } }}
-            textInputProps={{
-              color: (modeIndex > 0) ? Colors.gray : Colors.darkGray,
-              style: GlobalStyles.input,
-            }}
-            Icon={() => <DropdownIcon />}
-            onValueChange={(itemValue, itemIndex) => {
-              this.setState({ modeIndex: String(itemIndex) });
-            }}
-          />
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={[GlobalStyles.subtitle, {
+              marginTop: 0, marginBottom: 0, flexDirection: 'column', justifyContent: 'flex-start',
+            }]}
+            >
+            Routine Time
+            </Text>
+            <Text style={[GlobalStyles.subtitle, {
+              marginTop: 0, marginBottom: 0, flexDirection: 'column', justifyContent: 'flex-end',
+            }]}
+            >
+            Arrival Time
+            </Text>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <TextInput
+              keyboardAppearance="dark"
+              style={[GlobalStyles.input, { width: '30%', flexDirection: 'column', justifyContent: 'flex-end' }]}
+              returnKeyType="next"
+              keyboardType="numeric"
+              ref={(input) => { this.readyTimeInput = input; }}
+              onSubmitEditing={() => this.arrivalTimeInput.focus()}
+              onChangeText={text => this.setState({ readyTime: text })}
+              placeholder="(30 min)"
+              placeholderTextColor={Colors.darkGray}
+              value={readyTime}
+            />
+            <TextInput
+              keyboardAppearance="dark"
+              style={[GlobalStyles.input, { width: '30%', flexDirection: 'column', justifyContent: 'flex-end' }]}
+              returnKeyType="next"
+              ref={(input) => { this.arrivalTimeInput = input; }}
+              onSubmitEditing={() => null}
+              onChangeText={text => this.setState({ arrivalTime: text })}
+              placeholder="(8:00 AM)"
+              placeholderTextColor={Colors.darkGray}
+              value={arrivalTime}
+            />
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Alarm Sound</Text>
+            <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Transportation</Text>
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+            <RNPickerSelect
+              placeholder={{
+                label: 'Select Sound\t\t',
+                value: null,
+                color: Colors.darkGray,
+              }}
+              items={sounds}
+              value={soundIndex}
+              useNativeAndroidPickerStyle
+              style={{ iconContainer: { top: 10 }, width: '40%' }}
+              textInputProps={{
+                color: (soundIndex > 0) ? Colors.gray : Colors.darkGray,
+                style: GlobalStyles.input,
+              }}
+              Icon={() => <DropdownIcon />}
+              onValueChange={(itemValue, itemIndex) => {
+                this.setState({ soundIndex: String(itemIndex) });
+              }}
+            />
+
+            <RNPickerSelect
+              placeholder={{
+                label: 'Select Mode\t\t',
+                value: null,
+                color: Colors.darkGray,
+              }}
+              items={modes}
+              value={modeIndex}
+              useNativeAndroidPickerStyle
+              style={{ iconContainer: { top: 10 }, width: '40%' }}
+              textInputProps={{
+                color: (modeIndex > 0) ? Colors.gray : Colors.darkGray,
+                style: GlobalStyles.input,
+              }}
+              Icon={() => <DropdownIcon />}
+              onValueChange={(itemValue, itemIndex) => {
+                this.setState({ modeIndex: String(itemIndex) });
+              }}
+            />
+          </View>
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Recurring</Text>
           <DayPicker
             onChangeDay={this.onDayChange}
             days={days}
+            style={{ marginTop: 0 }}
           />
           <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
             <Buttons
