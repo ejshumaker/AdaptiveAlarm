@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity, Alert, YellowBox,
+  View, Text, StatusBar, TouchableOpacity, YellowBox,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AnalogClock from '../components/AnalogClock';
-import OfflineNotice from '../components/OfflineNotice';
 import { Buttons, StatusBarBackground } from '../components';
 import { weatherConditions } from '../assets/weatherConditions';
 
@@ -34,11 +33,11 @@ class MainScreen extends Component {
       weather,
       temperature,
     } = this.props;
-    const hour = !loading ? moment(alarmTime).format('hh') : '0';
-    const min = !loading ? moment(alarmTime).format('mm') : '00';
-    const meridian = !loading ? moment(alarmTime).format('a') : '- -';
-    const month = !loading ? moment(alarmTime).format('MMM') : '';
-    const day = !loading ? moment(alarmTime).format('D, dddd') : '';
+    const hour = alarmTime !== -1 ? moment(alarmTime).format('hh') : '0';
+    const min = alarmTime !== -1 ? moment(alarmTime).format('mm') : '00';
+    const meridian = alarmTime !== -1 ? moment(alarmTime).format('a') : '- -';
+    const month = alarmTime !== -1 ? moment(alarmTime).format('MMM') : '';
+    const day = alarmTime !== -1 ? moment(alarmTime).format('D, dddd') : '';
 
     return (
       <View>

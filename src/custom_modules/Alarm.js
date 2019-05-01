@@ -160,6 +160,7 @@ async function getWeatherDelay(travelTime) {
     }
     // return the difference in the new and old travel times
     delay = weatherTime - travelTime;
+    console.log(`\t+ delay due to ${currWeather}: ${delay / 60000} mins`);
   } catch (error) {
     console.log(error);
     console.log('Unable to calculate weather time delay.');
@@ -201,6 +202,8 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
               departureTime = arrivalTime - (duration * MILS_PER_MIN);
             }
             const travelTime = arrivalTime - departureTime;
+            console.log(`\t+ mode of transportation: ${modes[modeIndex - 1].label.toLowerCase()}`);
+            console.log(`\t+ travel time: ${travelTime / 60000} mins`);
             try {
               const { delay } = await getWeatherDelay(travelTime);
               resolve(departureTime - delay - (timeToGetReady * MILS_PER_MIN));

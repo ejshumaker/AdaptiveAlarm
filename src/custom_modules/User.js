@@ -56,6 +56,8 @@ function getNextAlarm() {
   const earliestAlarm = alarms[earliestAlarmId];
 
   if (earliestAlarmId !== undefined) {
+    console.log(`\tArrival Time: ${earliestAlarm.arrivalTime}`);
+    console.log(`\tDestination: ${earliestAlarm.destinationLoc}`);
     return {
       ...earliestAlarm,
       alarmId: earliestAlarmId,
