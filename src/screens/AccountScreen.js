@@ -103,10 +103,10 @@ class AccountScreen extends Component {
         justifyContent: 'center',
       },
       usericon: {
-        width: 150,
-        height: 150,
-        borderRadius: 75,
-        margin: 20,
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+        margin: 16,
       },
       userinfopane: {
         width: '95%',
@@ -154,6 +154,7 @@ class AccountScreen extends Component {
               GlobalStyles.h2,
               {
                 color: Colors.primary,
+                marginTop: 0,
               },
             ]}
             >
@@ -222,7 +223,7 @@ class AccountScreen extends Component {
               </View>
             </View>
           </View>
-          <View style={[styles.signOutButton, { alignItems: 'center' }]}>
+          <View style={[styles.signOutButton, { alignItems: 'center', marginBottom: 24 }]}>
             <Buttons
               title="Sign Out"
               backgroundColor={Colors.darkGray}
