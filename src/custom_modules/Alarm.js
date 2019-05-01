@@ -102,6 +102,7 @@ async function getWeather() {
     Alert.alert('Unable to retrieve weather information.');
     console.log(error);
   }
+  store.dispatch({ type: 'ALARM_SET_WEATHER', payload: { temperature, weather } });
   return { temperature, weather };
 }
 
