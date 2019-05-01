@@ -290,10 +290,6 @@ function checkAlarm() {
   alarms = alarms !== undefined ? alarms : [];
   const { hasFired } = alarms[currentAlarmId] || [];
   if (alarmIsPlaying || currentAlarmId === undefined || hasFired) {
-    console.log('-- Handling edge case --');
-    console.log(`\talarm is playing: ${alarmIsPlaying}`);
-    console.log(`\talarm id: ${currentAlarmId}`);
-    console.log(`\thas fired: ${hasFired}`);
     return;
   }
   const date = new Date();
