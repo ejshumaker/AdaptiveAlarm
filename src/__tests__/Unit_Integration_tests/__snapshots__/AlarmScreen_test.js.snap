@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alarm Screen test Alarm screen matches snapshot time 1 1`] = `
+<View>
+  <StatusBarBackground />
+  <View
+    style={
+      Array [
+        Object {
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 24,
+          "padding": 24,
+        },
+      ]
+    }
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <CloseIcon />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginTop": 200,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Black",
+            "fontSize": 70,
+          },
+          Object {
+            "margin": 8,
+          },
+          Object {
+            "color": "#E4F96A",
+          },
+        ]
+      }
+    >
+      6:00 PM
+    </Text>
+    <View
+      style={
+        Object {
+          "height": 8,
+          "width": 8,
+        }
+      }
+    />
+    <Buttons
+      backgroundColor="#505050"
+      onPress={[Function]}
+      textColor="#DDDDDD"
+      title="STOP"
+    />
+  </View>
+</View>
+`;
+
+exports[`Alarm Screen test Alarm screen matches snapshot time 2 1`] = `
+<View>
+  <StatusBarBackground />
+  <View
+    style={
+      Array [
+        Object {
+          "display": "flex",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginBottom": 24,
+          "padding": 24,
+        },
+      ]
+    }
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <CloseIcon />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginTop": 200,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#DDDDDD",
+            "fontFamily": "RNSMiles-Black",
+            "fontSize": 70,
+          },
+          Object {
+            "margin": 8,
+          },
+          Object {
+            "color": "#E4F96A",
+          },
+        ]
+      }
+    >
+      12:00 AM
+    </Text>
+    <View
+      style={
+        Object {
+          "height": 8,
+          "width": 8,
+        }
+      }
+    />
+    <Buttons
+      backgroundColor="#505050"
+      onPress={[Function]}
+      textColor="#DDDDDD"
+      title="STOP"
+    />
+  </View>
+</View>
+`;
