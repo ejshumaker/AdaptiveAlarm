@@ -443,9 +443,10 @@ class CreateAlarmScreen extends Component {
             onCancel={this.hideTimePicker}
             titleIOS="Select Arrival Time"
           />
-          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <TouchableOpacity style={{ flex: 1 }} onPress={this.showTimePicker}>
+          <TouchableOpacity style={{ flex: 1 }} onPress={this.showTimePicker}>
+            <View>
               <TextInput
+                onTouchStart={this.showTimePicker}
                 editable={false}
                 placeholder="Select Arrival Time"
                 placeholderTextColor={Colors.darkGray}
@@ -453,8 +454,8 @@ class CreateAlarmScreen extends Component {
                 style={[GlobalStyles.input,
                   { color: (arrivalTime !== undefined) ? Colors.gray : Colors.darkGray }]}
               />
-            </TouchableOpacity>
-          </View>
+            </View>
+          </TouchableOpacity>
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Alarm Sound</Text>
           <RNPickerSelect
             placeholder={{
