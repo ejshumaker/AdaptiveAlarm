@@ -11,8 +11,8 @@ const initialAlarmState = {
   currentAlarmId: undefined,
   armed: false,
   loading: false,
-  temperature: 0,
-  weather: '',
+  temperature: 44,
+  weather: 'cloudy',
 };
 const alarmReducer = (state = initialAlarmState, action) => {
   switch (action.type) {

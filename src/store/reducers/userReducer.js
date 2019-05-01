@@ -24,6 +24,9 @@ const initialUserState = {
 
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
+    case 'USER_CLEAR_ERRORS':
+      state = { ...state, error: false, errorMessage: undefined };
+      break;
     // CREATE ALARM //
     case 'USER_CREATE_ALARM_PENDING':
       state = { ...state, loading: true };

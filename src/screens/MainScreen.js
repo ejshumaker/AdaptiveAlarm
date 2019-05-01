@@ -235,7 +235,7 @@ MainScreen.defaultProps = {
   alarmTime: -1,
   alarmId: undefined,
   loading: true,
-  temperature: 0,
+  temperature: 44,
   weather: 'Clear',
 };
 
