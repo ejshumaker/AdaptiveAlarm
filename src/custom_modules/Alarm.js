@@ -342,7 +342,16 @@ function initAlarm(navigate) {
 }
 
 const exportFunctions = {
-  navigateRef, getCurrentLocation, initAlarm, getAlarmTime, getRouteTime, stopAlarm,
+  navigateRef,
+  getCurrentLocation,
+  initAlarm,
+  getAlarmTime,
+  getRouteTime,
+  stopAlarm,
+  getWeather,
+  checkAlarm,
+  soundAlarm,
+  getWeatherDelay,
 };
 
 export default exportFunctions;

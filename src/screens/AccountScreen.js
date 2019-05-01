@@ -23,7 +23,9 @@ import {
 import { CloseIcon } from '../icons/close';
 import Buttons from '../components/Buttons';
 
-YellowBox.ignoreWarnings(['Class RCTCxxModule']);
+if (!__testing__) { // eslint-disable-line
+  YellowBox.ignoreWarnings(['Class RCTCxxModule']);
+}
 
 class AccountScreen extends Component {
   constructor() {

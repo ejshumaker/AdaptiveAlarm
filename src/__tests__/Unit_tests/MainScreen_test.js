@@ -4,6 +4,8 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { Alert } from 'react-native';
+import Alarm from '../../custom_modules/Alarm';
 
 import { MainScreen } from '../../screens/MainScreen';
 
@@ -22,6 +24,9 @@ jest.mock('react-native-sound', () => ({
   MAIN_BUNDLE: jest.fn(),
 }));
 
+const spy = jest.spyOn(Alarm, 'getWeather');
+
+jest.mock('@expo/vector-icons', () => 'Button');
 Enzyme.configure({ adapter: new Adapter() });
 
 
@@ -102,6 +107,23 @@ describe('Main Screen', () => {
     expect(mockDismissAlarmfn.mock.calls.length).toBe(1);
   });
 
+  it('Alarm List icon pressed', () => {
+    wrapper = shallow(<MainScreen
+      navigation={navigation}
+      dismissAlarm={mockDismissAlarmfn}
+      alarmTime={time.getTime()}
+      alarmActive
+      loading={false}
+      alarmId="1"
+    />);
+    wrapper.find('TouchableOpacity').at(0).simulate(
+      'press',
+      { preventDefault() {} },
+    );
+    expect(navigation.navigate.mock.calls.length).toBe(1);
+    expect(navigation.navigate.mock.calls[0][0]).toEqual('AlarmList');
+  });
+
   it('User icon pressed', () => {
     wrapper = shallow(<MainScreen
       navigation={navigation}
@@ -136,8 +158,7 @@ describe('Main Screen', () => {
     expect(navigation.navigate.mock.calls[0][0]).toEqual('CreateAlarm');
   });
 
-
-  it('Dev page pressed with alarms', () => {
+  it('Add icon pressed', () => {
     wrapper = shallow(<MainScreen
       navigation={navigation}
       dismissAlarm={mockDismissAlarmfn}
@@ -146,15 +167,17 @@ describe('Main Screen', () => {
       loading={false}
       alarmId="1"
     />);
-    wrapper.find('[title="Dev Page"]').simulate(
+    wrapper.find('TouchableOpacity').at(2).simulate(
       'press',
       { preventDefault() {} },
     );
     expect(navigation.navigate.mock.calls.length).toBe(1);
-    expect(navigation.navigate.mock.calls[0][0]).toEqual('Home');
+    expect(navigation.navigate.mock.calls[0][0]).toEqual('CreateAlarm');
   });
 
-  it('Dev page pressed with no alarms', () => {
+  it('test Main screen matches snapshot with weather', () => {
+    spy.mockImplementation(() => new Promise(resolve({ temperature: 'temp', weather: 'weather' })));
+    // pass the mock function as the login prop
     wrapper = shallow(<MainScreen
       navigation={navigation}
       dismissAlarm={mockDismissAlarmfn}
@@ -162,11 +185,20 @@ describe('Main Screen', () => {
       alarmActive
       loading={false}
     />);
-    wrapper.find('[title="Dev Page"]').simulate(
-      'press',
-      { preventDefault() {} },
-    );
-    expect(navigation.navigate.mock.calls.length).toBe(1);
-    expect(navigation.navigate.mock.calls[0][0]).toEqual('Home');
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('Main screen alert when weather fails', () => {
+    spy.mockImplementation(() => new Promise(reject({ temperature: 'temp', weather: 'weather' })));
+    Alert.alert = jest.fn();
+    // pass the mock function as the login prop
+    wrapper = shallow(<MainScreen
+      navigation={navigation}
+      dismissAlarm={mockDismissAlarmfn}
+      alarmTime={time.getTime()}
+      alarmActive
+      loading={false}
+    />);
+    expect(Alert.alert).toHaveBeenCalledTimes(1);
   });
 });

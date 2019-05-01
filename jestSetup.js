@@ -86,3 +86,7 @@ jest.mock('react-native-background-timer', () => ({
   setInterval: jest.fn(),
   runBackgroundTimer: jest.fn(),
 }));
+
+jest.mock('react-native-audio', () => ({
+  MainBundlePath: jest.fn(),
+}));

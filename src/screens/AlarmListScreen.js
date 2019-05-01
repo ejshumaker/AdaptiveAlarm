@@ -12,8 +12,10 @@ import { CloseIcon } from '../icons/close';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
 
-YellowBox.ignoreWarnings(['Class RCTCxxModule']);
 
+if (!__testing__) { // eslint-disable-line
+  YellowBox.ignoreWarnings(['Class RCTCxxModule']);
+}
 
 class AlarmListScreen extends Component {
   constructor() {

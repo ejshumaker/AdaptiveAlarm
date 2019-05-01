@@ -6,7 +6,8 @@ const initialAlarmState = {
   time: undefined,
   currentAlarmId: undefined,
   armed: false,
-  loading: false,
+  loading: true,
+  soundIndex: 1,
 };
 
 jest.setTimeout(10000);
@@ -22,11 +23,11 @@ describe('alarm Reducer tests', () => {
 
   test('set time rejected action', async () => {
     const result = alarmReducer(initialAlarmState, { type: 'ALARM_SET_TIME_REJECTED' });
-    expect(result).toEqual({ ...initialAlarmState, time: -1 });
+    expect(result).toEqual({ ...initialAlarmState, loading: false, time: -1 });
   });
   test('set time fulfilled action', async () => {
     const result = alarmReducer(initialAlarmState, { type: 'ALARM_SET_TIME_FULFILLED', payload: 1234 });
-    expect(result).toEqual({ ...initialAlarmState, time: 1234 });
+    expect(result).toEqual({ ...initialAlarmState, loading: false, time: 1234 });
   });
 
   test('set time pending action', async () => {

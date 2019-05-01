@@ -20,9 +20,11 @@ import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
 // ios warning boxes for meaningless errors
-YellowBox.ignoreWarnings(['Class EX']); // expo did not export module (xcode ?)
-YellowBox.ignoreWarnings(['Possible Unhandled Promise Rejection']); // no issue, POSSIBLE.
-YellowBox.ignoreWarnings(['Module AudioRecorderManager']); // comes from using react-native-audio
+if (!__testing__) { // eslint-disable-line
+  YellowBox.ignoreWarnings(['Class EX']); // expo did not export module (xcode ?)
+  YellowBox.ignoreWarnings(['Possible Unhandled Promise Rejection']); // no issue, POSSIBLE.
+  YellowBox.ignoreWarnings(['Module AudioRecorderManager']); // comes from using react-native-audio
+}
 
 
 class MainScreen extends Component {
