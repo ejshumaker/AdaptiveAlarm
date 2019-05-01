@@ -132,7 +132,7 @@ async function getWeatherDelay(travelTime) {
   let weatherTime = travelTime;
   let delay = 0;
   try {
-    const resp = await getWeather();
+    const resp = await exportFunctions.getWeather();
     const temp = resp.temperature;
     const currWeather = resp.weather;
     switch (currWeather) {
@@ -202,7 +202,7 @@ async function getAlarmTime(destinationLoc, timeToGetReady, arrivalTime, loopLim
             }
             const travelTime = arrivalTime - departureTime;
             try {
-              const { delay } = await getWeatherDelay(travelTime);
+              const { delay } = await exportFunctions.getWeatherDelay(travelTime);
               resolve(departureTime - delay - (timeToGetReady * MILS_PER_MIN));
             } catch (error) {
               console.log(error);

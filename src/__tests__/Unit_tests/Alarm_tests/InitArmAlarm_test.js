@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable import/first */
+import BackgroundTimer from 'react-native-background-timer';
 import Alarm from '../../../custom_modules/Alarm';
 
 jest.mock('react-native-background-timer', () => jest.fn());
@@ -11,9 +12,13 @@ jest.mock('react-native-sound', () => ({
   setCategory: jest.fn(),
   MAIN_BUNDLE: jest.fn(),
 }));
+jest.useFakeTimers();
+
 describe('Init Arm Alarm Tests', () => {
   beforeEach(() => {
-
+    jest.clearAllMocks();
+    BackgroundTimer.runBackgroundTimer = setTimeout;
+    BackgroundTimer.setInterval = setTimeout;
   });
 
   test('init arm alarm sets navigation reference', async () => {
@@ -21,5 +26,14 @@ describe('Init Arm Alarm Tests', () => {
     Alarm.initAlarm(mockNav);
     Alarm.navigateRef();
     expect(mockNav).toHaveBeenCalledTimes(1);
+    expect(BackgroundTimer.runBackgroundTimer).toHaveBeenCalledTimes(1);
+  });
+
+
+  test('calls check alarm after timeout', async () => {
+    const mockNav = jest.fn(() => 2);
+    Alarm.initAlarm(mockNav);
+    jest.runAllTimers(10);
+    expect(BackgroundTimer.runBackgroundTimer).toHaveBeenCalledTimes(1);
   });
 });

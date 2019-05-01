@@ -46,7 +46,7 @@ describe('CreateAlarm Screen', () => {
     sat: false,
   };
   let alarm = {
-    arrivalTime: '8:00 AM',
+    arrivalTime: '9:00 AM',
     timeToGetReady: '30',
     destinationLoc: 'Middleton, WI',
     isActive: true,
@@ -59,6 +59,14 @@ describe('CreateAlarm Screen', () => {
   jest.spyOn(Alert, 'alert');
 
   beforeAll(() => {
+    const RealDate = Date;
+    /* eslint no-global-assign:off */
+    const constantDate = new Date(2020, 3, 26, 10, 0, 0);
+    global.Date = class extends global.Date {
+      constructor() {
+        return constantDate;
+      }
+    };
     Alert.alert = jest.fn();
   });
   beforeEach(() => {
@@ -229,38 +237,6 @@ describe('CreateAlarm Screen', () => {
     expect(wrapper.state('readyTime')).toEqual('123');
   });
 
-  it('text input new arrival time', () => {
-    getParamMock.mockImplementation(() => 1);
-    days = {
-      sun: true,
-      mon: false,
-      tue: true,
-      wed: true,
-      thu: false,
-      fri: true,
-      sat: false,
-    };
-    alarm = {
-      arrivalTime: '8:00 AM',
-      timeToGetReady: '30',
-      destinationLoc: 'Middleton, WI',
-      isActive: true,
-      days,
-    };
-    wrapper = shallow(<CreateAlarmScreen
-      navigation={navigation}
-      createAlarm={mockcreateAlarmfn}
-      loading={false}
-      deleteAlarm={deleteAlarmMock}
-      alarms={{ 1: alarm }}
-      fetchData={fetchDataMock}
-    />);
-
-    wrapper.find('TextInput').at(1).simulate('ChangeText', 'test');
-    expect(wrapper.state('arrivalTime')).toEqual('test');
-    wrapper.find('TextInput').at(1).simulate('SubmitEditing', { preventDefault() {} });
-  });
-
   it('check delete alarm is called', () => {
     days = {
       sun: false,
@@ -291,5 +267,9 @@ describe('CreateAlarm Screen', () => {
       { preventDefault() {} },
     );
     expect(Alert.alert).toHaveBeenCalledTimes(1);
+  });
+
+  afterAll(() => {
+    global.Date = RealDate;
   });
 });

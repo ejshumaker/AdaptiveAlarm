@@ -6,14 +6,26 @@ const initialAlarmState = {
   time: undefined,
   currentAlarmId: undefined,
   armed: false,
-  loading: true,
-  soundIndex: 1,
+  loading: false,
+  temperature: 44,
+  weather: 'cloudy',
 };
 
 jest.setTimeout(10000);
 describe('alarm Reducer tests', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  test('set alarm weather', () => {
+    const result = alarmReducer(initialAlarmState, {
+      type: 'ALARM_SET_WEATHER',
+      payload: {
+        temperature: 44,
+        weather: 'cloudy',
+      },
+    });
+    expect(result).toEqual({ ...initialAlarmState, temperature: 44, weather: 'cloudy' });
   });
 
   test('set time pending action', async () => {
@@ -30,12 +42,16 @@ describe('alarm Reducer tests', () => {
     expect(result).toEqual({ ...initialAlarmState, loading: false, time: 1234 });
   });
 
-  test('set time pending action', async () => {
+  test('set armed status action', async () => {
     const result = alarmReducer(initialAlarmState, {
       type: 'ALARM_SET_ARMED_STATUS',
-      payload: { armed: true, currentAlarmId: '1' },
+      payload: {
+        armed: true, currentAlarmId: '1',
+      },
     });
-    expect(result).toEqual({ ...initialAlarmState, armed: true, currentAlarmId: '1' });
+    expect(result).toEqual({
+      ...initialAlarmState, armed: true, currentAlarmId: '1', modeIndex: undefined, soundIndex: 1,
+    });
   });
   test('default case', async () => {
     const result = alarmReducer(undefined,

@@ -74,7 +74,7 @@ class AlarmItem extends Component {
     if (dayString === '') dayString = ' None';
 
     // remove last comma from string if not empty
-    if (dayString !== '') {
+    if (dayString !== ' None') {
       dayString = dayString.slice(0, -1);
     }
 

@@ -84,9 +84,11 @@ jest.mock('react-native-background-timer', () => ({
   clearInterval: jest.fn(),
   stopBackgroundTimer: jest.fn(),
   setInterval: jest.fn(),
-  runBackgroundTimer: jest.fn(),
+  runBackgroundTimer: jest.fn(() => 1),
 }));
 
 jest.mock('react-native-audio', () => ({
   MainBundlePath: jest.fn(),
 }));
+
+jest.mock('react-native-modal-datetime-picker', () => 'Button');

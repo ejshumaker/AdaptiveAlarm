@@ -4,6 +4,7 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import Alarm from '../../custom_modules/Alarm';
 
 import { AuthLoadingScreen } from '../../screens/AuthLoadingScreen';
 
@@ -33,6 +34,7 @@ describe('AuthLoading Screen', () => {
   const navigation = { navigate: jest.fn() };
 
   beforeEach(() => {
+    Alarm.initAlarm = jest.fn();
     // pass the mock function as the login prop
     wrapper = shallow(<AuthLoadingScreen
       fetchUser={mockfetchUserfn}

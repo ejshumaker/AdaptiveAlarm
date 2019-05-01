@@ -176,7 +176,7 @@ describe('Main Screen', () => {
   });
 
   it('test Main screen matches snapshot with weather', () => {
-    spy.mockImplementation(() => new Promise(resolve({ temperature: 'temp', weather: 'weather' })));
+    spy.mockImplementation(() => new Promise(resolve({ temperature: 44, weather: 'cloudy' })));
     // pass the mock function as the login prop
     wrapper = shallow(<MainScreen
       navigation={navigation}
@@ -189,7 +189,7 @@ describe('Main Screen', () => {
   });
 
   it('Main screen alert when weather fails', () => {
-    spy.mockImplementation(() => new Promise(reject({ temperature: 'temp', weather: 'weather' })));
+    spy.mockImplementation(() => new Promise(reject({ temperature: 44, weather: 'cloudy' })));
     Alert.alert = jest.fn();
     // pass the mock function as the login prop
     wrapper = shallow(<MainScreen

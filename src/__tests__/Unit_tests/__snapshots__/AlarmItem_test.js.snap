@@ -183,7 +183,7 @@ exports[`Alarm Item test alarm item matches snapshot alarm is active 1`] = `
             ]
           }
         >
-           S, T, W, F,
+           S, T, W, F
         </Text>
       </View>
     </View>
@@ -285,7 +285,7 @@ exports[`Alarm Item test alarm item matches snapshot alarm is inactive 1`] = `
             ]
           }
         >
-           S, T, W, F,
+           S, T, W, F
         </Text>
       </View>
     </View>

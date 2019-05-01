@@ -27,6 +27,18 @@ jest.mock('react-native-sound', () => ({
   MAIN_BUNDLE: jest.fn(),
 }));
 
+const mockAuth = ({
+  currentUser: ({
+    email: 'test@gmail.com',
+    password: 'pass',
+    uid: 1234,
+  }),
+});
+
+jest.mock('firebase', () => ({
+  auth: jest.fn(() => mockAuth),
+}));
+
 const navigationMock = jest.fn();
 
 const spy = jest.spyOn(User, 'signOut');
@@ -42,7 +54,7 @@ describe('User Actions tests', () => {
     await store.dispatch(userUpdateAlarm(navigationMock));
     const actions = store.getActions();
     expect(actions[0]).toEqual({
-      type: 'ALARM_SET_TIME_PENDING',
+      type: 'USER_CREATE_ALARM_PENDING',
     });
   });
 

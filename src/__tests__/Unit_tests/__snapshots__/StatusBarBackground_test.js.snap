@@ -7,18 +7,23 @@ exports[`Status Bar tests test StatusBarBackground matches snapshot 1`] = `
   textColor="b"
   title="test"
 >
-  <View
-    style={
-      Array [
-        Object {
-          "backgroundColor": "rgba(255,255,255,0)",
-          "height": 18,
-        },
-        Object {},
-      ]
-    }
-  >
-    <react-native-mock />
+  <View>
+    <react-native-mock>
+      <OfflineNotice />
+      <View
+        style={
+          Array [
+            Object {
+              "backgroundColor": "rgba(255,255,255,0)",
+              "height": 18,
+            },
+            Object {},
+          ]
+        }
+      >
+        <react-native-mock />
+      </View>
+    </react-native-mock>
   </View>
 </StatusBarBackground>
 `;

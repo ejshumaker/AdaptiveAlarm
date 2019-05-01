@@ -133,26 +133,50 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
     >
       Arrival Time
     </Text>
-    <TextInput
-      keyboardAppearance="dark"
-      onChangeText={[Function]}
-      onSubmitEditing={[Function]}
-      placeholder="(8:00 AM)"
-      placeholderTextColor="#505050"
-      returnKeyType="next"
+    <Button
+      date={2020-04-26T15:00:00.000Z}
+      is24Hour={false}
+      isVisible={false}
+      mode="time"
+      onCancel={[Function]}
+      onConfirm={[Function]}
+      timePickerModeAndroid="spinner"
+      titleIOS="Select Arrival Time"
+    />
+    <TouchableOpacity
+      onPress={[Function]}
       style={
         Object {
-          "borderBottomColor": "#DDDDDD",
-          "borderBottomWidth": 0.5,
-          "color": "#DDDDDD",
-          "fontFamily": "RNSMiles-Medium",
-          "fontSize": 14,
-          "height": 50,
-          "marginBottom": 24,
+          "flex": 1,
         }
       }
-      value="8:00 AM"
-    />
+    >
+      <View>
+        <TextInput
+          editable={false}
+          onTouchStart={[Function]}
+          placeholder="Select Arrival Time"
+          placeholderTextColor="#505050"
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "#DDDDDD",
+                "borderBottomWidth": 0.5,
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Medium",
+                "fontSize": 14,
+                "height": 50,
+                "marginBottom": 24,
+              },
+              Object {
+                "color": "#AAAAAA",
+              },
+            ]
+          }
+          value="9:00 AM"
+        />
+      </View>
+    </TouchableOpacity>
     <Text
       style={
         Array [
@@ -484,25 +508,49 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
     >
       Arrival Time
     </Text>
-    <TextInput
-      keyboardAppearance="dark"
-      onChangeText={[Function]}
-      onSubmitEditing={[Function]}
-      placeholder="(8:00 AM)"
-      placeholderTextColor="#505050"
-      returnKeyType="next"
+    <Button
+      date={2020-04-26T15:00:00.000Z}
+      is24Hour={false}
+      isVisible={false}
+      mode="time"
+      onCancel={[Function]}
+      onConfirm={[Function]}
+      timePickerModeAndroid="spinner"
+      titleIOS="Select Arrival Time"
+    />
+    <TouchableOpacity
+      onPress={[Function]}
       style={
         Object {
-          "borderBottomColor": "#DDDDDD",
-          "borderBottomWidth": 0.5,
-          "color": "#DDDDDD",
-          "fontFamily": "RNSMiles-Medium",
-          "fontSize": 14,
-          "height": 50,
-          "marginBottom": 24,
+          "flex": 1,
         }
       }
-    />
+    >
+      <View>
+        <TextInput
+          editable={false}
+          onTouchStart={[Function]}
+          placeholder="Select Arrival Time"
+          placeholderTextColor="#505050"
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "#DDDDDD",
+                "borderBottomWidth": 0.5,
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Medium",
+                "fontSize": 14,
+                "height": 50,
+                "marginBottom": 24,
+              },
+              Object {
+                "color": "#505050",
+              },
+            ]
+          }
+        />
+      </View>
+    </TouchableOpacity>
     <Text
       style={
         Array [
@@ -564,7 +612,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
         }
       }
       useNativeAndroidPickerStyle={true}
-      value={2}
+      value={0}
     />
     <Text
       style={
@@ -645,7 +693,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
         }
       }
       useNativeAndroidPickerStyle={true}
-      value={1}
+      value={0}
     />
     <Text
       style={
@@ -834,25 +882,49 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
     >
       Arrival Time
     </Text>
-    <TextInput
-      keyboardAppearance="dark"
-      onChangeText={[Function]}
-      onSubmitEditing={[Function]}
-      placeholder="(8:00 AM)"
-      placeholderTextColor="#505050"
-      returnKeyType="next"
+    <Button
+      date={2020-04-26T15:00:00.000Z}
+      is24Hour={false}
+      isVisible={false}
+      mode="time"
+      onCancel={[Function]}
+      onConfirm={[Function]}
+      timePickerModeAndroid="spinner"
+      titleIOS="Select Arrival Time"
+    />
+    <TouchableOpacity
+      onPress={[Function]}
       style={
         Object {
-          "borderBottomColor": "#DDDDDD",
-          "borderBottomWidth": 0.5,
-          "color": "#DDDDDD",
-          "fontFamily": "RNSMiles-Medium",
-          "fontSize": 14,
-          "height": 50,
-          "marginBottom": 24,
+          "flex": 1,
         }
       }
-    />
+    >
+      <View>
+        <TextInput
+          editable={false}
+          onTouchStart={[Function]}
+          placeholder="Select Arrival Time"
+          placeholderTextColor="#505050"
+          style={
+            Array [
+              Object {
+                "borderBottomColor": "#DDDDDD",
+                "borderBottomWidth": 0.5,
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Medium",
+                "fontSize": 14,
+                "height": 50,
+                "marginBottom": 24,
+              },
+              Object {
+                "color": "#505050",
+              },
+            ]
+          }
+        />
+      </View>
+    </TouchableOpacity>
     <Text
       style={
         Array [
@@ -914,7 +986,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
         }
       }
       useNativeAndroidPickerStyle={true}
-      value={2}
+      value={0}
     />
     <Text
       style={
@@ -995,7 +1067,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
         }
       }
       useNativeAndroidPickerStyle={true}
-      value={1}
+      value={0}
     />
     <Text
       style={
