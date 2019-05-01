@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AnalogClock from '../components/AnalogClock';
+import OfflineNotice from '../components/OfflineNotice';
 import { Buttons, StatusBarBackground } from '../components';
 import { weatherConditions } from '../assets/weatherConditions';
 

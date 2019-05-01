@@ -18,6 +18,7 @@ import PropTypes from 'prop-types';
 import RNPickerSelect from 'react-native-picker-select';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Calendar, Permissions } from 'expo';
+import OfflineNotice from '../components/OfflineNotice';
 import sounds from '../assets/sounds';
 import modes from '../assets/modes';
 
