@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import store from '../store';
 
 import { userSignIn } from '../store/actions/userActions';
 import { Colors, GlobalStyles } from '../constants';
@@ -112,6 +113,7 @@ class SignInScreen extends React.Component {
             backgroundColor={Colors.darkGray}
             textColor={Colors.white}
             onPress={() => {
+              store.dispatch({ type: 'USER_CLEAR_ERRORS' });
               navigation.navigate('SignUp');
             }}
           />
