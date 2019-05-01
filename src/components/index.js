@@ -5,3 +5,4 @@ export { default as AnalogClock } from './AnalogClock';
 export { default as AlarmItem } from './AlarmItem';
 export { default as StatusBarBackground } from './StatusBarBackground';
 export { default as BottomBarBackground } from './BottomBarBackground';
+export { default as OfflineNotice } from './OfflineNotice';

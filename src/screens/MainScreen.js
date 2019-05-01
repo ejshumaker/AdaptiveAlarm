@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AnalogClock from '../components/AnalogClock';
+import OfflineNotice from '../components/OfflineNotice';
 import { Buttons, StatusBarBackground } from '../components';
-import Alarm from '../custom_modules/Alarm';
 import { weatherConditions } from '../assets/weatherConditions';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
@@ -26,52 +26,19 @@ YellowBox.ignoreWarnings(['Module AudioRecorderManager']); // comes from using r
 
 
 class MainScreen extends Component {
-  constructor() {
-    super();
-    this.state = {
-      temperature: 0,
-      weather: 'Clear',
-      weatherLoading: true,
-    };
-  }
-
-  componentDidMount() {
-    this.didFocus();
-  }
-
-
-  didFocus = () => {
-    this.storeWeather();
-  }
-
-  async storeWeather() {
-    try {
-      const response = await Alarm.getWeather();
-      if ((response.temperature === '') || (response.currWeather === '')) {
-        throw Error('getWeather() did not return any data.');
-      }
-      const temp = response.temperature;
-      const currWeather = response.weather;
-      this.setState({ temperature: temp, weather: currWeather, weatherLoading: false });
-    } catch {
-      Alert.alert('Error retrieving local weather.');
-      // eslint-disable-next-line
-      console.log(error);
-    }
-  }
-
   hasAlarmView() {
     const {
       // values
       alarmTime,
       loading,
+      weather,
+      temperature,
     } = this.props;
-    const { weatherLoading, temperature, weather } = this.state;
-    const hour = alarmTime !== -1 ? moment(alarmTime).format('hh') : '0';
-    const min = alarmTime !== -1 ? moment(alarmTime).format('mm') : '00';
-    const meridian = alarmTime !== -1 ? moment(alarmTime).format('a') : '- -';
-    const month = alarmTime !== -1 ? moment(alarmTime).format('MMM') : '';
-    const day = alarmTime !== -1 ? moment(alarmTime).format('D, dddd') : '';
+    const hour = !loading ? moment(alarmTime).format('hh') : '0';
+    const min = !loading ? moment(alarmTime).format('mm') : '00';
+    const meridian = !loading ? moment(alarmTime).format('a') : '- -';
+    const month = !loading ? moment(alarmTime).format('MMM') : '';
+    const day = !loading ? moment(alarmTime).format('D, dddd') : '';
 
     return (
       <View>
@@ -101,12 +68,12 @@ class MainScreen extends Component {
         }
         >
           <Text style={GlobalStyles.date}>
-            {weatherLoading ? '' : temperature }
+            {loading ? '' : temperature }
           </Text>
           <Text>
-            {weatherLoading ? '' : '\u2109   ' }
+            {loading ? '' : '\u2109   ' }
           </Text>
-          {weatherLoading ? '' : (
+          {loading ? '' : (
             <MaterialCommunityIcons
               size={18}
               name={weatherConditions[weather].icon}
@@ -247,12 +214,16 @@ MainScreen.propTypes = {
   alarmTime: PropTypes.number,
   alarmId: PropTypes.string,
   loading: PropTypes.bool,
+  weather: PropTypes.string,
+  temperature: PropTypes.number,
 };
 
 MainScreen.defaultProps = {
   alarmTime: -1,
   alarmId: undefined,
   loading: true,
+  temperature: 44,
+  weather: 'Clear',
 };
 
 const mapStateToProps = state => ({
@@ -260,6 +231,8 @@ const mapStateToProps = state => ({
   alarmId: state.alarm.currentAlarmId,
   loading: state.alarm.loading,
   armed: state.alarm.armed,
+  weather: state.alarm.weather,
+  temperature: state.alarm.temperature,
 });
 
 const mapDispatchToProps = dispatch => ({
