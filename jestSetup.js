@@ -11,9 +11,10 @@ const { JSDOM } = require('jsdom');
 
 jest.mock('expo', () => ({
   Permissions: {
-    askAsync: jest.fn(() => new Promise(resolve => resolve())),
+    askAsync: jest.fn(() => new Promise(resolve => resolve({ status: 'granted' }))),
     LOCATION: '',
   },
+
   Location: {
     getCurrentPositionAsync: jest.fn(() => new Promise(resolve => resolve({
       coords: {

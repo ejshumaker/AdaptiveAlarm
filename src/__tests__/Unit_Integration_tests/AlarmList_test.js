@@ -105,4 +105,20 @@ describe('Alarm Item', () => {
     />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('press close', () => {
+    alarms[alarm.alarmId] = alarm;
+    wrapper = shallow(<AlarmListScreen
+      toggleAlarm={toggleAlarmMock}
+      navigation={navigation}
+      alarms={alarms}
+      loading={false}
+    />);
+    wrapper.find('TouchableOpacity').at(0).simulate(
+      'press',
+      { preventDefault() {} },
+    );
+
+    expect(navigation.navigate).toHaveBeenCalledTimes(1);
+  });
 });

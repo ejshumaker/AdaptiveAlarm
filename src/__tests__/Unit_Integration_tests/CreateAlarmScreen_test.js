@@ -269,6 +269,136 @@ describe('CreateAlarm Screen', () => {
     expect(Alert.alert).toHaveBeenCalledTimes(1);
   });
 
+  it('check import calendar error', () => {
+    console.log = jest.fn();
+    days = {
+      sun: false,
+      mon: false,
+      tue: false,
+      wed: false,
+      thu: false,
+      fri: false,
+      sat: false,
+    };
+    alarm = {
+      arrivalTime: '8:00 AM',
+      destinationLoc: 'Middleton, WI',
+      timeToGetReady: '30',
+      isActive: true,
+      days,
+    };
+    wrapper = shallow(<CreateAlarmScreen
+      navigation={navigation}
+      createAlarm={mockcreateAlarmfn}
+      loading={false}
+      deleteAlarm={deleteAlarmMock}
+      alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
+    />);
+    wrapper.find('[title="Import Calendar?"]').simulate(
+      'press',
+      { preventDefault() {} },
+    );
+    expect(Alert.alert).toHaveBeenCalledTimes(1);
+    Alert.alert.mock.calls[0][2][1].onPress();
+  });
+
+  it('check press close icon', () => {
+    alarm = {
+      arrivalTime: '8:00 AM',
+      destinationLoc: 'Middleton, WI',
+      timeToGetReady: 'BCD',
+      isActive: true,
+      days,
+    };
+    wrapper = shallow(<CreateAlarmScreen
+      navigation={navigation}
+      createAlarm={mockcreateAlarmfn}
+      loading={false}
+      deleteAlarm={deleteAlarmMock}
+      alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
+    />);
+    wrapper.find('TouchableOpacity').at(0).simulate(
+      'press',
+      { preventDefault() {} },
+    );
+
+    expect(navigation.navigate).toHaveBeenCalledTimes(1);
+  });
+
+  it('check press arrival time', () => {
+    alarm = {
+      arrivalTime: '8:00 AM',
+      destinationLoc: 'Middleton, WI',
+      timeToGetReady: 'BCD',
+      isActive: true,
+      days,
+    };
+    wrapper = shallow(<CreateAlarmScreen
+      navigation={navigation}
+      createAlarm={mockcreateAlarmfn}
+      loading={false}
+      deleteAlarm={deleteAlarmMock}
+      alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
+    />);
+    wrapper.find('TouchableOpacity').at(1).simulate(
+      'press',
+      { preventDefault() {} },
+    );
+
+    expect(wrapper.state('isTimePickerVisible')).toEqual(true);
+  });
+
+  it('check press picker', () => {
+    alarm = {
+      arrivalTime: '8:00 AM',
+      destinationLoc: 'Middleton, WI',
+      timeToGetReady: 'BCD',
+      isActive: true,
+      days,
+    };
+    wrapper = shallow(<CreateAlarmScreen
+      navigation={navigation}
+      createAlarm={mockcreateAlarmfn}
+      loading={false}
+      deleteAlarm={deleteAlarmMock}
+      alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
+    />);
+    wrapper.find('RNPickerSelect').at(0).simulate(
+      'valueChange',
+      ('test', 1),
+    );
+
+    expect(navigation.navigate).toHaveBeenCalledTimes(0);
+  });
+
+  it('check Transportation picker', () => {
+    alarm = {
+      arrivalTime: '8:00 AM',
+      destinationLoc: 'Middleton, WI',
+      timeToGetReady: 'BCD',
+      isActive: true,
+      days,
+    };
+    wrapper = shallow(<CreateAlarmScreen
+      navigation={navigation}
+      createAlarm={mockcreateAlarmfn}
+      loading={false}
+      deleteAlarm={deleteAlarmMock}
+      alarms={{ 1: alarm }}
+      fetchData={fetchDataMock}
+    />);
+    wrapper.find('RNPickerSelect').at(1).simulate(
+      'valueChange',
+      ('test', 1),
+    );
+
+    expect(navigation.navigate).toHaveBeenCalledTimes(0);
+  });
+
   afterAll(() => {
     global.Date = RealDate;
   });

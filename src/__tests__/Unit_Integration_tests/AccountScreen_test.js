@@ -56,4 +56,13 @@ describe('Account Screen', () => {
     );
     expect(mockSignOutfn.mock.calls.length).toBe(1);
   });
+
+  it('press close', () => {
+    wrapper.find('TouchableOpacity').at(0).simulate(
+      'press',
+      { preventDefault() {} },
+    );
+
+    expect(navigation.navigate).toHaveBeenCalledTimes(1);
+  });
 });

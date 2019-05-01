@@ -31,6 +31,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 
 describe('Main Screen', () => {
+  console.log = jest.fn();
   let wrapper;
   // our mock login function to replace the one provided by mapDispatchToProps
   const mockDismissAlarmfn = jest.fn();
