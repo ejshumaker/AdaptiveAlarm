@@ -4,6 +4,7 @@ import {
 import moment from 'moment';
 import { Platform, Vibration } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
+import { AudioUtils } from 'react-native-audio'; // AudioRecorder
 import sounds from '../assets/sounds';
 import store from '../store';
 import { alarmCalculateTime } from '../store/actions/alarmActions';
@@ -11,6 +12,7 @@ import { DISTANCE_MATRIX_KEY, WEATHER_KEY } from '../../keys';
 import modes from '../assets/modes';
 
 const Sound = require('react-native-sound');
+
 // Enable playback in silence mode
 Sound.setCategory('Playback');
 
@@ -239,19 +241,40 @@ function soundAlarm() {
   store.dispatch({ type: 'USER_ALARM_HAS_FIRED', alarmId: currentAlarmId });
   const index = soundIndex >= 1 ? soundIndex : 1;
   const audioPath = sounds[index - 1].path;
-  // Real output
-  soundRef = new Sound(audioPath, Sound.MAIN_BUNDLE, (error) => {
-    if (error) {
-      console.log('failed to load the sound', error);
-      return;
-    }
-    // Loop indefinitely until stop() is called
-    soundRef.setNumberOfLoops(-1);
-    soundRef.play();
-  });
+  if (Platform.OS === 'ios') {
+  // These timeouts are a hacky workaround for some issues with react-native-sound.
+    // See https://github.com/zmxv/react-native-sound/issues/89.
+    setTimeout(() => {
+      const initialPath = AudioUtils.MainBundlePath;
+      soundRef = new Sound(`${initialPath}/${audioPath}`, '', (error) => {
+        if (error) {
+          console.log('failed to load the sound', error);
+        } else {
+          soundRef.setNumberOfLoops(-1);
+          soundRef.play((success) => {
+            if (success) {
+              console.log('successfully finished playing');
+            } else {
+              console.log('playback failed due to audio decoding errors');
+            }
+          });
+        }
+      });
+    }, 100);
+  } else {
+    soundRef = new Sound(audioPath, '', (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+      } else {
+        soundRef.setNumberOfLoops(-1);
+        soundRef.play();
+      }
+    });
+  }
   Vibration.vibrate([1000, 1000, 1000], true);
   exportFunctions.navigateRef('Alarm');
 }
+
 
 function checkAlarm() {
   const { time, currentAlarmId } = store.getState().alarm;

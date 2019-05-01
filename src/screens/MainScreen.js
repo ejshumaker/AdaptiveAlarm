@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity, Alert,
+  View, Text, StatusBar, TouchableOpacity, Alert, YellowBox,
 } from 'react-native';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -17,6 +18,12 @@ import { GlobalStyles, Colors } from '../constants';
 import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
+
+// ios warning boxes for meaningless errors
+YellowBox.ignoreWarnings(['Class EX']); // expo did not export module (xcode ?)
+YellowBox.ignoreWarnings(['Possible Unhandled Promise Rejection']); // no issue, POSSIBLE.
+YellowBox.ignoreWarnings(['Module AudioRecorderManager']); // comes from using react-native-audio
+
 
 class MainScreen extends Component {
   constructor() {

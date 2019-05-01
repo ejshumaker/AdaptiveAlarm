@@ -110,6 +110,7 @@ apply from: 'expo.gradle'
 // WHEN_PREPARING_SHELL_REMOVE_TO_HERE
 
 dependencies {
+    compile project(':react-native-audio')
     compile project(':react-native-sound')
     compile project(':react-native-background-timer')
   implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -189,16 +190,16 @@ dependencies {
   testImplementation 'com.android.support.test:runner:1.0.2-alpha1'
   testImplementation 'com.android.support.test:rules:1.0.2-alpha1'
 
-  
+
   implementation('host.exp.exponent:expoview:32.0.0@aar') {
     transitive = true
     exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     exclude group: 'com.squareup.okhttp3', module: 'okhttp-urlconnection'
   }
-  
 
 
-  
+
+
   api 'com.facebook.react:react-native:32.0.0'
   api 'host.exp.exponent:expo-app-loader-provider:1.0.0'
   api 'host.exp.exponent:expo-core:2.0.0'
@@ -240,7 +241,7 @@ dependencies {
   api 'host.exp.exponent:expo-sms:2.0.0'
   api 'host.exp.exponent:expo-background-fetch:1.0.0'
 
-  
+
 }
 
 // This has to be down here for some reason
