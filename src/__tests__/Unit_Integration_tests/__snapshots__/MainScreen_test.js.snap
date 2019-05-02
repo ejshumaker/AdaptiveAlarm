@@ -205,8 +205,17 @@ exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = 
               "fontSize": 18,
             }
           }
+        >
+          44
+        </Text>
+        <Text>
+          ℉   
+        </Text>
+        <Component
+          color="#DDDDDD"
+          name="weather-sunny"
+          size={18}
         />
-        <Text />
         <Text>
             
           MAY

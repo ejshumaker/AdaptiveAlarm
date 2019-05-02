@@ -14,7 +14,7 @@ exports[`DayPicker tests no days 1`] = `
         "alignItems": "center",
         "height": 60,
         "justifyContent": "space-around",
-        "marginVertical": 24,
+        "marginVertical": 8,
       },
     ]
   }
@@ -225,7 +225,7 @@ exports[`DayPicker tests test daypicker matches snapshot 1`] = `
         "alignItems": "center",
         "height": 60,
         "justifyContent": "space-around",
-        "marginVertical": 24,
+        "marginVertical": 8,
       },
     ]
   }

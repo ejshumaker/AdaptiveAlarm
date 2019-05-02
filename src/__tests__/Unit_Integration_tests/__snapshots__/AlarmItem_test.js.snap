@@ -95,7 +95,7 @@ exports[`Alarm Item should contain None as no days are active 1`] = `
     >
       <Switch
         onValueChange={[Function]}
-        value={true}
+        value={false}
       />
     </View>
   </View>
@@ -197,7 +197,7 @@ exports[`Alarm Item test alarm item matches snapshot alarm is active 1`] = `
     >
       <Switch
         onValueChange={[Function]}
-        value={true}
+        value={false}
       />
     </View>
   </View>
@@ -299,7 +299,7 @@ exports[`Alarm Item test alarm item matches snapshot alarm is inactive 1`] = `
     >
       <Switch
         onValueChange={[Function]}
-        value={false}
+        value={true}
       />
     </View>
   </View>

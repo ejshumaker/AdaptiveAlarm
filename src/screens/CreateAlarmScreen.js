@@ -407,7 +407,7 @@ class CreateAlarmScreen extends Component {
               GlobalStyles.h2,
               {
                 color: Colors.primary,
-                marginBottom: 48,
+                marginBottom: 20,
               },
             ]}
           >
@@ -501,6 +501,7 @@ class CreateAlarmScreen extends Component {
           <DayPicker
             onChangeDay={this.onDayChange}
             days={days}
+            style={{ marginTop: 0 }}
           />
           <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
             <Buttons

@@ -34,6 +34,7 @@ jest.setTimeout(10000);
 describe('Alarm Calculation tests', () => {
   const arrivalTime = new Date(2019, 3, 26, 10, 0, 0);
   beforeEach(() => {
+    console.log = jest.fn();
     Alarm.getWeather = jest.fn(() => new Promise(resolve => resolve({ temperature: 44, weather: 'cloudy' })));
     fetch.resetMocks();
     Alarm.getCurrentLocation = jest.fn().mockImplementation(() => new Promise(resolve => resolve('Madison, WI')));

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity, Alert, YellowBox,
+  View, Text, StatusBar, TouchableOpacity, YellowBox,
 } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -9,7 +9,6 @@ import moment from 'moment';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AnalogClock from '../components/AnalogClock';
 import { Buttons, StatusBarBackground } from '../components';
-import Alarm from '../custom_modules/Alarm';
 import { weatherConditions } from '../assets/weatherConditions';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
@@ -20,55 +19,22 @@ import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
 // ios warning boxes for meaningless errors
-if (!__testing__) { // eslint-disable-line
+/* eslint-disable no-undef */
+if (!__testing__) {
   YellowBox.ignoreWarnings(['Class EX']); // expo did not export module (xcode ?)
   YellowBox.ignoreWarnings(['Possible Unhandled Promise Rejection']); // no issue, POSSIBLE.
   YellowBox.ignoreWarnings(['Module AudioRecorderManager']); // comes from using react-native-audio
 }
 
-
 class MainScreen extends Component {
-  constructor() {
-    super();
-    this.state = {
-      temperature: 0,
-      weather: 'Clear',
-      weatherLoading: true,
-    };
-  }
-
-  componentDidMount() {
-    this.didFocus();
-  }
-
-
-  didFocus = () => {
-    this.storeWeather();
-  }
-
-  async storeWeather() {
-    try {
-      const response = await Alarm.getWeather();
-      if ((response.temperature === '') || (response.currWeather === '')) {
-        throw Error('getWeather() did not return any data.');
-      }
-      const temp = response.temperature;
-      const currWeather = response.weather;
-      this.setState({ temperature: temp, weather: currWeather, weatherLoading: false });
-    } catch {
-      Alert.alert('Error retrieving local weather.');
-      // eslint-disable-next-line
-      console.log(error);
-    }
-  }
-
   hasAlarmView() {
     const {
       // values
       alarmTime,
       loading,
+      weather,
+      temperature,
     } = this.props;
-    const { weatherLoading, temperature, weather } = this.state;
     const hour = alarmTime !== -1 ? moment(alarmTime).format('hh') : '0';
     const min = alarmTime !== -1 ? moment(alarmTime).format('mm') : '00';
     const meridian = alarmTime !== -1 ? moment(alarmTime).format('a') : '- -';
@@ -103,12 +69,12 @@ class MainScreen extends Component {
         }
         >
           <Text style={GlobalStyles.date}>
-            {weatherLoading ? '' : temperature }
+            {loading ? '' : temperature }
           </Text>
           <Text>
-            {weatherLoading ? '' : '\u2109   ' }
+            {loading ? '' : '\u2109   ' }
           </Text>
-          {weatherLoading ? '' : (
+          {loading ? '' : (
             <MaterialCommunityIcons
               size={18}
               name={weatherConditions[weather].icon}
@@ -249,12 +215,16 @@ MainScreen.propTypes = {
   alarmTime: PropTypes.number,
   alarmId: PropTypes.string,
   loading: PropTypes.bool,
+  weather: PropTypes.string,
+  temperature: PropTypes.number,
 };
 
 MainScreen.defaultProps = {
   alarmTime: -1,
   alarmId: undefined,
   loading: true,
+  temperature: 44,
+  weather: 'Clear',
 };
 
 const mapStateToProps = state => ({
@@ -262,6 +232,8 @@ const mapStateToProps = state => ({
   alarmId: state.alarm.currentAlarmId,
   loading: state.alarm.loading,
   armed: state.alarm.armed,
+  weather: state.alarm.weather,
+  temperature: state.alarm.temperature,
 });
 
 const mapDispatchToProps = dispatch => ({

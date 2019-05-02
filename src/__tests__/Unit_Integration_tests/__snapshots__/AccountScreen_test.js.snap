@@ -49,6 +49,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
             },
             Object {
               "color": "#E4F96A",
+              "marginTop": 0,
             },
           ]
         }
@@ -75,10 +76,10 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
           }
           style={
             Object {
-              "borderRadius": 75,
-              "height": 150,
-              "margin": 20,
-              "width": 150,
+              "borderRadius": 60,
+              "height": 120,
+              "margin": 16,
+              "width": 120,
             }
           }
         />
@@ -321,6 +322,7 @@ exports[`Account Screen test account screen matches snapshot done loading 1`] = 
           },
           Object {
             "alignItems": "center",
+            "marginBottom": 24,
           },
         ]
       }
@@ -385,6 +387,7 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
             },
             Object {
               "color": "#E4F96A",
+              "marginTop": 0,
             },
           ]
         }
@@ -411,10 +414,10 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
           }
           style={
             Object {
-              "borderRadius": 75,
-              "height": 150,
-              "margin": 20,
-              "width": 150,
+              "borderRadius": 60,
+              "height": 120,
+              "margin": 16,
+              "width": 120,
             }
           }
         />
@@ -661,6 +664,7 @@ exports[`Account Screen test account screen matches snapshot not done loading 1`
           },
           Object {
             "alignItems": "center",
+            "marginBottom": 24,
           },
         ]
       }

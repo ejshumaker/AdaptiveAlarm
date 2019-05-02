@@ -37,7 +37,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
           },
           Object {
             "color": "#E4F96A",
-            "marginBottom": 48,
+            "marginBottom": 20,
           },
         ]
       }
@@ -111,7 +111,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
           "color": "#DDDDDD",
           "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
-          "height": 50,
+          "height": 40,
           "marginBottom": 24,
         }
       }
@@ -165,7 +165,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
                 "color": "#DDDDDD",
                 "fontFamily": "RNSMiles-Medium",
                 "fontSize": 14,
-                "height": 50,
+                "height": 40,
                 "marginBottom": 24,
               },
               Object {
@@ -232,7 +232,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
             "color": "#DDDDDD",
             "fontFamily": "RNSMiles-Medium",
             "fontSize": 14,
-            "height": 50,
+            "height": 40,
             "marginBottom": 24,
           },
         }
@@ -312,7 +312,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
             "color": "#DDDDDD",
             "fontFamily": "RNSMiles-Medium",
             "fontSize": 14,
-            "height": 50,
+            "height": 40,
             "marginBottom": 24,
           },
         }
@@ -348,6 +348,11 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot 1`] = `
         }
       }
       onChangeDay={[Function]}
+      style={
+        Object {
+          "marginTop": 0,
+        }
+      }
     />
     <View
       style={
@@ -413,7 +418,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
           },
           Object {
             "color": "#E4F96A",
-            "marginBottom": 48,
+            "marginBottom": 20,
           },
         ]
       }
@@ -487,7 +492,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
           "color": "#DDDDDD",
           "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
-          "height": 50,
+          "height": 40,
           "marginBottom": 24,
         }
       }
@@ -540,7 +545,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
                 "color": "#DDDDDD",
                 "fontFamily": "RNSMiles-Medium",
                 "fontSize": 14,
-                "height": 50,
+                "height": 40,
                 "marginBottom": 24,
               },
               Object {
@@ -606,7 +611,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
             "color": "#DDDDDD",
             "fontFamily": "RNSMiles-Medium",
             "fontSize": 14,
-            "height": 50,
+            "height": 40,
             "marginBottom": 24,
           },
         }
@@ -687,7 +692,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
             "color": "#DDDDDD",
             "fontFamily": "RNSMiles-Medium",
             "fontSize": 14,
-            "height": 50,
+            "height": 40,
             "marginBottom": 24,
           },
         }
@@ -724,6 +729,11 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot no alarmid 
         }
       }
       onChangeDay={[Function]}
+      style={
+        Object {
+          "marginTop": 0,
+        }
+      }
     />
     <View
       style={
@@ -783,7 +793,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
           },
           Object {
             "color": "#E4F96A",
-            "marginBottom": 48,
+            "marginBottom": 20,
           },
         ]
       }
@@ -861,7 +871,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
           "color": "#DDDDDD",
           "fontFamily": "RNSMiles-Medium",
           "fontSize": 14,
-          "height": 50,
+          "height": 40,
           "marginBottom": 24,
         }
       }
@@ -914,7 +924,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
                 "color": "#DDDDDD",
                 "fontFamily": "RNSMiles-Medium",
                 "fontSize": 14,
-                "height": 50,
+                "height": 40,
                 "marginBottom": 24,
               },
               Object {
@@ -980,7 +990,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
             "color": "#DDDDDD",
             "fontFamily": "RNSMiles-Medium",
             "fontSize": 14,
-            "height": 50,
+            "height": 40,
             "marginBottom": 24,
           },
         }
@@ -1061,7 +1071,7 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
             "color": "#DDDDDD",
             "fontFamily": "RNSMiles-Medium",
             "fontSize": 14,
-            "height": 50,
+            "height": 40,
             "marginBottom": 24,
           },
         }
@@ -1098,6 +1108,11 @@ exports[`CreateAlarm Screen test CreateAlarm screen matches snapshot when loadin
         }
       }
       onChangeDay={[Function]}
+      style={
+        Object {
+          "marginTop": 0,
+        }
+      }
     />
     <View
       style={

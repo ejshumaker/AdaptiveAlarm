@@ -188,18 +188,4 @@ describe('Main Screen', () => {
     />);
     expect(wrapper).toMatchSnapshot();
   });
-
-  it('Main screen alert when weather fails', () => {
-    spy.mockImplementation(() => new Promise(reject({ temperature: 44, weather: 'cloudy' })));
-    Alert.alert = jest.fn();
-    // pass the mock function as the login prop
-    wrapper = shallow(<MainScreen
-      navigation={navigation}
-      dismissAlarm={mockDismissAlarmfn}
-      alarmTime={time.getTime()}
-      alarmActive
-      loading={false}
-    />);
-    expect(Alert.alert).toHaveBeenCalledTimes(1);
-  });
 });
