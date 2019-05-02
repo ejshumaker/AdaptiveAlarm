@@ -16,8 +16,11 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RNPickerSelect from 'react-native-picker-select';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 import { Calendar, Permissions } from 'expo';
+import OfflineNotice from '../components/OfflineNotice';
 import sounds from '../assets/sounds';
+import modes from '../assets/modes';
 
 import {
   DayPicker,
@@ -40,8 +43,10 @@ class CreateAlarmScreen extends Component {
     this.state = {
       readyTime: undefined,
       arrivalTime: undefined,
-      soundIndex: 2,
+      soundIndex: 0,
+      modeIndex: 0,
       workAddress: '',
+      isTimePickerVisible: false,
       days: {
         mon: false,
         tue: false,
@@ -76,6 +81,7 @@ class CreateAlarmScreen extends Component {
         pageTitle: 'EDIT ALARM:',
         days: alarm.days,
         soundIndex: alarm.soundIndex,
+        modeIndex: alarm.modeIndex,
       });
     }
   }
@@ -88,15 +94,17 @@ class CreateAlarmScreen extends Component {
     } = this.state;
     let {
       soundIndex,
+      modeIndex,
     } = this.state;
     soundIndex = soundIndex || 1; // default
+    modeIndex = modeIndex || 1; // default
     // validate and format
     if (!readyTime || !arrivalTime || !workAddress) {
       Alert.alert('Please make sure you have filled out all fields');
       return;
     }
     if (!Number(readyTime)) {
-      Alert.alert('Time to get ready must be a number!');
+      Alert.alert('Time to get ready must be a positive number!');
       return;
     }
     if (this.noRepeats()) {
@@ -121,6 +129,7 @@ class CreateAlarmScreen extends Component {
         navigate,
         alarmId,
         soundIndex,
+        modeIndex,
       });
     } catch (error) {
       Alert.alert(error);
@@ -185,7 +194,8 @@ class CreateAlarmScreen extends Component {
       alarmId,
     } = this.state;
     const daysOfWeek = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
-    await this.getNextEvents().then((dayArray) => {
+    try {
+      const dayArray = await this.getNextEvents();
       for (let i = 0; i < 7; i += 1) {
         // initialize days array to all false
         for (let j = 0; j < 7; j += 1) {
@@ -206,11 +216,16 @@ class CreateAlarmScreen extends Component {
             navigate,
             alarmId,
             soundIndex: 1,
+            modeIndex: 1,
           });
         }
       }
       fetchData();
-    });
+    } catch (error) {
+      // eslint-disable-next-line
+      console.log(error);
+      Alert.alert('Unable to import calendar events.');
+    }
   }
 
   async getStartTimeAndLocation(dayStart, dayEnd) {
@@ -221,11 +236,12 @@ class CreateAlarmScreen extends Component {
         Alert.alert('Permission to access calendar was denied.');
       }
     });
-    const cals = await Calendar.getCalendarsAsync();
-    // get all device calendar ids
-    const data = cals.filter(item => item).map(({ id }) => ({ id }));
-    // check all events for the following day and return earliest event start time
-    await Calendar.getEventsAsync(data, dayStart, dayEnd).then((response) => {
+    try {
+      const cals = await Calendar.getCalendarsAsync();
+      // get all device calendar ids
+      const data = cals.filter(item => item).map(({ id }) => ({ id }));
+      // check all events for the following day and return earliest event start time
+      const response = await Calendar.getEventsAsync(data, dayStart, dayEnd);
       if (response.length > 0) {
         const { location } = response[0];
         if (location === '') {
@@ -239,10 +255,13 @@ class CreateAlarmScreen extends Component {
         destinationLoc = undefined;
         arrivalTime = undefined;
       }
-    });
+    } catch (error) {
+      // eslint-disable-next-line
+      console.log(error);
+      Alert.alert('Unable to import calendar events.');
+    }
     return { destinationLoc, arrivalTime };
   }
-
 
   async getNextEvents() {
     const d = new Date();
@@ -255,8 +274,9 @@ class CreateAlarmScreen extends Component {
       const dayEnd = new Date();
       dayEnd.setDate(dayEnd.getDate() + (i - currDayOfWeek));
       dayEnd.setHours(23, 59, 59, 0);
-      // eslint-disable-next-line
-      await this.getStartTimeAndLocation(dayStart, dayEnd).then((response) => {
+      try {
+        // eslint-disable-next-line
+        const response = await this.getStartTimeAndLocation(dayStart, dayEnd);
         const { destinationLoc } = response;
         const { arrivalTime } = response;
         // if no start time or location, set this array index to undefined
@@ -265,10 +285,29 @@ class CreateAlarmScreen extends Component {
         } else {
           dayArray.push({ destinationLoc, arrivalTime });
         }
-      });
+      } catch (error) {
+        // eslint-disable-next-line
+        console.log(error);
+        Alert.alert('Unable to import calendar events.');
+      }
     }
     return dayArray;
   }
+
+  showTimePicker = () => {
+    this.setState({ isTimePickerVisible: true });
+  };
+
+  hideTimePicker = () => {
+    this.setState({ isTimePickerVisible: false });
+  };
+
+  handleTimePicked = (arrivalTime) => {
+    this.setState({
+      isTimePickerVisible: false,
+      arrivalTime: moment(arrivalTime).format('hh:mm a'),
+    });
+  };
 
   noRepeats() {
     const { days } = this.state;
@@ -282,7 +321,7 @@ class CreateAlarmScreen extends Component {
   calendarButton() {
     return (Platform.OS === 'ios')
       ? (
-        <View style={{ alignItems: 'left', justifyContent: 'space-between', marginBottom: 12 }}>
+        <View style={{ alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
           <Buttons
             title="Import Calendar?"
             backgroundColor={Colors.primary}
@@ -342,7 +381,18 @@ class CreateAlarmScreen extends Component {
       workAddress,
       days,
       soundIndex,
+      modeIndex,
+      isTimePickerVisible,
     } = this.state;
+
+
+    let arrivalTimeDate;
+    if (arrivalTime) {
+      const momentString = moment(arrivalTime, 'LT');
+      arrivalTimeDate = new Date(momentString);
+    } else {
+      arrivalTimeDate = new Date();
+    }
 
     return (
       <View>
@@ -357,7 +407,7 @@ class CreateAlarmScreen extends Component {
               GlobalStyles.h2,
               {
                 color: Colors.primary,
-                marginBottom: 48,
+                marginBottom: 20,
               },
             ]}
           >
@@ -384,17 +434,29 @@ class CreateAlarmScreen extends Component {
             value={readyTime}
           />
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Arrival Time</Text>
-          <TextInput
-            keyboardAppearance="dark"
-            style={GlobalStyles.input}
-            returnKeyType="next"
-            ref={(input) => { this.arrivalTimeInput = input; }}
-            onSubmitEditing={() => null}
-            onChangeText={text => this.setState({ arrivalTime: text })}
-            placeholder="(8:00 AM)"
-            placeholderTextColor={Colors.darkGray}
-            value={arrivalTime}
+          <DateTimePicker
+            date={arrivalTimeDate}
+            is24Hour={false}
+            timePickerModeAndroid="spinner"
+            mode="time"
+            isVisible={isTimePickerVisible}
+            onConfirm={this.handleTimePicked}
+            onCancel={this.hideTimePicker}
+            titleIOS="Select Arrival Time"
           />
+          <TouchableOpacity style={{ flex: 1 }} onPress={this.showTimePicker}>
+            <View>
+              <TextInput
+                onTouchStart={this.showTimePicker}
+                editable={false}
+                placeholder="Select Arrival Time"
+                placeholderTextColor={Colors.darkGray}
+                value={arrivalTime}
+                style={[GlobalStyles.input,
+                  { color: (arrivalTime !== undefined) ? Colors.gray : Colors.darkGray }]}
+              />
+            </View>
+          </TouchableOpacity>
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Alarm Sound</Text>
           <RNPickerSelect
             placeholder={{
@@ -406,17 +468,40 @@ class CreateAlarmScreen extends Component {
             value={soundIndex}
             useNativeAndroidPickerStyle
             style={{ iconContainer: { top: 10 } }}
-            textInputProps={{ color: Colors.darkGray, style: GlobalStyles.input }}
+            textInputProps={{
+              color: (soundIndex > 0) ? Colors.gray : Colors.darkGray,
+              style: GlobalStyles.input,
+            }}
             Icon={() => <DropdownIcon />}
             onValueChange={(itemValue, itemIndex) => {
               this.setState({ soundIndex: String(itemIndex) });
-            }
-        }
+            }}
+          />
+          <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Transportation Mode</Text>
+          <RNPickerSelect
+            placeholder={{
+              label: 'Select Transportation Mode',
+              value: null,
+              color: Colors.darkGray,
+            }}
+            items={modes}
+            value={modeIndex}
+            useNativeAndroidPickerStyle
+            style={{ iconContainer: { top: 10 } }}
+            textInputProps={{
+              color: (modeIndex > 0) ? Colors.gray : Colors.darkGray,
+              style: GlobalStyles.input,
+            }}
+            Icon={() => <DropdownIcon />}
+            onValueChange={(itemValue, itemIndex) => {
+              this.setState({ modeIndex: String(itemIndex) });
+            }}
           />
           <Text style={[GlobalStyles.subtitle, { marginTop: 0 }]}>Recurring</Text>
           <DayPicker
             onChangeDay={this.onDayChange}
             days={days}
+            style={{ marginTop: 0 }}
           />
           <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
             <Buttons

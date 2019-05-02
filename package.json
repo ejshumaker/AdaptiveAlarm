@@ -8,6 +8,9 @@
     "test": "node ./node_modules/jest/bin/jest.js --coverage"
   },
   "jest": {
+    "globals": {
+      "__testing__": true
+    },
     "automock": false,
     "setupFiles": [
       "./jestSetup.js"
@@ -33,7 +36,9 @@
     }
   },
   "dependencies": {
+    "@expo/vector-icons": "^10.0.1",
     "expo": "^32.0.0",
+    "expokit": "^32.1.1",
     "firebase": "^5.9.2",
     "jest": "^24.1.0",
     "jest-expo": "^32.0.0",
@@ -44,16 +49,20 @@
     "prop-types": "^15.7.2",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-native-audio": "^4.3.0",
+    "react-native-background-timer": "^2.1.1",
     "react-native-google-autocomplete": "^0.1.5",
     "react-native-ionicons": "^4.5.5",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-maps": "^0.23.0",
+    "react-native-mock": "^0.3.1",
     "react-native-mock-render": "^0.1.2",
+    "react-native-modal-datetime-picker": "^7.2.0",
     "react-native-picker-select": "^6.1.0",
+    "react-native-sound": "^0.10.12",
     "react-navigation": "^3.3.2",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
-    "redux-mock-store": "^1.5.3",
     "redux-promise-middleware": "^6.1.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.2.0"
@@ -72,7 +81,8 @@
     "jest-serializer-enzyme": "^1.0.0",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.8.6",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "redux-mock-store": "^1.5.3"
   },
   "private": true,
   "rnpm": {

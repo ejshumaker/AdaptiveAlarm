@@ -1,6 +1,8 @@
 /* eslint-disable func-names */
 /* eslint-disable global-require */
 /* eslint-disable no-undef */
+import { NativeModules as RNNativeModules } from 'react-native';
+
 global.fetch = require('jest-fetch-mock');
 require('react-native-mock-render/mock');
 
@@ -9,10 +11,27 @@ const { JSDOM } = require('jsdom');
 
 jest.mock('expo', () => ({
   Permissions: {
-    askAsync: jest.fn(() => console.log('askAsync')),
+    askAsync: jest.fn(() => new Promise(resolve => resolve({ status: 'granted' }))),
+    LOCATION: '',
   },
+
   Location: {
-    getCurrentPositionAsync: jest.fn(),
+    getCurrentPositionAsync: jest.fn(() => new Promise(resolve => resolve({
+      coords: {
+        latitude: 1234,
+        longitude: 5678,
+      },
+    }))),
+  },
+  Alert: {
+    alert: jest.fn(),
+  },
+  Notifications: {
+    presentLocalNotificationAsync: jest.fn(),
+    createChannelAndroidAsync: jest.fn(),
+    createCategoryAsync: jest.fn(),
+    addListener: jest.fn(),
+
   },
   Audio: {
     setIsEnabledAsync: jest.fn(),
@@ -47,3 +66,30 @@ global.cancelAnimationFrame = function (id) {
   clearTimeout(id);
 };
 copyProps(window, global);
+RNNativeModules.UIManager = RNNativeModules.UIManager || {};
+RNNativeModules.UIManager.RCTView = RNNativeModules.UIManager.RCTView || {};
+RNNativeModules.RNGestureHandlerModule = RNNativeModules.RNGestureHandlerModule || {
+  State: {
+    BEGAN: 'BEGAN', FAILED: 'FAILED', ACTIVE: 'ACTIVE', END: 'END',
+  },
+  attachGestureHandler: jest.fn(),
+  createGestureHandler: jest.fn(),
+  dropGestureHandler: jest.fn(),
+  updateGestureHandler: jest.fn(),
+
+};
+RNNativeModules.PlatformConstants = RNNativeModules.PlatformConstants || {
+  forceTouchAvailable: false,
+};
+jest.mock('react-native-background-timer', () => ({
+  clearInterval: jest.fn(),
+  stopBackgroundTimer: jest.fn(),
+  setInterval: jest.fn(),
+  runBackgroundTimer: jest.fn(() => 1),
+}));
+
+jest.mock('react-native-audio', () => ({
+  MainBundlePath: jest.fn(),
+}));
+
+jest.mock('react-native-modal-datetime-picker', () => 'Button');

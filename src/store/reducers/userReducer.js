@@ -24,6 +24,9 @@ const initialUserState = {
 
 const userReducer = (state = initialUserState, action) => {
   switch (action.type) {
+    case 'USER_CLEAR_ERRORS':
+      state = { ...state, error: false, errorMessage: undefined };
+      break;
     // CREATE ALARM //
     case 'USER_CREATE_ALARM_PENDING':
       state = { ...state, loading: true };
@@ -37,6 +40,13 @@ const userReducer = (state = initialUserState, action) => {
         loading: false,
       };
       break;
+    case 'USER_ALARM_HAS_FIRED': {
+      const { alarms } = state;
+      const { alarmId } = action;
+      alarms[alarmId].hasFired = true;
+      state = { ...state, alarms };
+      break;
+    }
     case 'USER_CREATE_ALARM_FULFILLED': {
       // Push new alarm into alarms array
       let { alarms } = state;

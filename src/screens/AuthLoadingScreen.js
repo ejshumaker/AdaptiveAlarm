@@ -21,7 +21,7 @@ class AuthLoadingScreen extends React.Component {
   bootstrapAsync = async () => {
     const { navigation, fetchUser } = this.props;
     // TODO: REMOVE THIS HACK!!! @eschirtz
-    Alarm.initArmAlarm(navigation.navigate);
+    Alarm.initAlarm(navigation.navigate);
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     auth().onAuthStateChanged((user) => {

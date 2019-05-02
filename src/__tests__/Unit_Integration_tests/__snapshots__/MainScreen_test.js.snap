@@ -1,0 +1,550 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main Screen test Main screen matches snapshot 1`] = `
+<View>
+  <StatusBarBackground />
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 24,
+        "padding": 24,
+      }
+    }
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <MenuIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <UserIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <AddIcon />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 30,
+            },
+            Object {
+              "color": "#E4F96A",
+              "marginVertical": 48,
+            },
+          ]
+        }
+      >
+        NO ALARMS SET
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "marginVertical": "10%",
+        }
+      }
+    >
+      <StatusBar
+        barStyle="light-content"
+      />
+      <AnalogClock
+        backgroundImage="./img/clockBack.png"
+        clockBorderWidth={7}
+        clockSize={270}
+        hourHandColor="#E4F96A"
+        hourHandCurved={false}
+        hourHandLength={70}
+        hourHandOffset={0}
+        hourHandWidth={6}
+        minuteHandColor="#DDDDDD"
+        minuteHandCurved={false}
+        minuteHandLength={105}
+        minuteHandOffset={0}
+        minuteHandWidth={2}
+        secondHandColor="black"
+        secondHandCurved={false}
+        secondHandLength={120}
+        secondHandOffset={0}
+        secondHandWidth={2}
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Main Screen test Main screen matches snapshot when alarm defined 1`] = `
+<View>
+  <StatusBarBackground />
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 24,
+        "padding": 24,
+      }
+    }
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <MenuIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <UserIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <AddIcon />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 30,
+            },
+            Object {
+              "color": "#E4F96A",
+            },
+          ]
+        }
+      >
+        PREDICTED:
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 70,
+            },
+            Object {
+              "color": "#DDDDDD",
+              "fontSize": 70,
+            },
+          ]
+        }
+      >
+        <Text>
+          10
+          :
+          00
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Bold",
+                "fontSize": 36,
+              },
+            ]
+          }
+        >
+           
+          AM
+        </Text>
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 18,
+            },
+            Object {
+              "color": "#DDDDDD",
+              "marginLeft": 130,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Regular",
+              "fontSize": 18,
+            }
+          }
+        >
+          44
+        </Text>
+        <Text>
+          ℉   
+        </Text>
+        <Component
+          color="#DDDDDD"
+          name="weather-sunny"
+          size={18}
+        />
+        <Text>
+            
+          MAY
+           
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Regular",
+                "fontSize": 18,
+              },
+            ]
+          }
+        >
+          26, Sunday
+        </Text>
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "marginVertical": "10%",
+        }
+      }
+    >
+      <StatusBar
+        barStyle="light-content"
+      />
+      <AnalogClock
+        backgroundImage="./img/clockBack.png"
+        clockBorderWidth={7}
+        clockSize={270}
+        hourHandColor="#E4F96A"
+        hourHandCurved={false}
+        hourHandLength={70}
+        hourHandOffset={0}
+        hourHandWidth={6}
+        minuteHandColor="#DDDDDD"
+        minuteHandCurved={false}
+        minuteHandLength={105}
+        minuteHandOffset={0}
+        minuteHandWidth={2}
+        secondHandColor="black"
+        secondHandCurved={false}
+        secondHandLength={120}
+        secondHandOffset={0}
+        secondHandWidth={2}
+      />
+    </View>
+    <View>
+      <Buttons
+        backgroundColor="#505050"
+        onPress={[Function]}
+        textColor="#DDDDDD"
+        title="DISMISS"
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Main Screen test Main screen matches snapshot when loading 1`] = `
+<View>
+  <StatusBarBackground />
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 24,
+        "padding": 24,
+      }
+    }
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <MenuIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <UserIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <AddIcon />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 30,
+            },
+            Object {
+              "color": "#E4F96A",
+            },
+          ]
+        }
+      >
+        CALCULATING...
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 70,
+            },
+            Object {
+              "color": "#DDDDDD",
+              "fontSize": 70,
+            },
+          ]
+        }
+      >
+        <Text>
+          10
+          :
+          00
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Bold",
+                "fontSize": 36,
+              },
+            ]
+          }
+        >
+           
+          AM
+        </Text>
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 18,
+            },
+            Object {
+              "color": "#DDDDDD",
+              "marginLeft": 130,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Regular",
+              "fontSize": 18,
+            }
+          }
+        />
+        <Text />
+        <Text>
+            
+          MAY
+           
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Regular",
+                "fontSize": 18,
+              },
+            ]
+          }
+        >
+          26, Sunday
+        </Text>
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "marginVertical": "10%",
+        }
+      }
+    >
+      <StatusBar
+        barStyle="light-content"
+      />
+      <AnalogClock
+        backgroundImage="./img/clockBack.png"
+        clockBorderWidth={7}
+        clockSize={270}
+        hourHandColor="#E4F96A"
+        hourHandCurved={false}
+        hourHandLength={70}
+        hourHandOffset={0}
+        hourHandWidth={6}
+        minuteHandColor="#DDDDDD"
+        minuteHandCurved={false}
+        minuteHandLength={105}
+        minuteHandOffset={0}
+        minuteHandWidth={2}
+        secondHandColor="black"
+        secondHandCurved={false}
+        secondHandLength={120}
+        secondHandOffset={0}
+        secondHandWidth={2}
+      />
+    </View>
+    <View>
+      <Buttons
+        backgroundColor="#505050"
+        onPress={[Function]}
+        textColor="#DDDDDD"
+        title="DISMISS"
+      />
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Main Screen test Main screen matches snapshot with weather 1`] = `
+<View>
+  <StatusBarBackground />
+  <View
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginBottom": 24,
+        "padding": 24,
+      }
+    }
+  >
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <MenuIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <UserIcon />
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={[Function]}
+    >
+      <AddIcon />
+    </TouchableOpacity>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Black",
+              "fontSize": 30,
+            },
+            Object {
+              "color": "#E4F96A",
+              "marginVertical": 48,
+            },
+          ]
+        }
+      >
+        NO ALARMS SET
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "marginVertical": "10%",
+        }
+      }
+    >
+      <StatusBar
+        barStyle="light-content"
+      />
+      <AnalogClock
+        backgroundImage="./img/clockBack.png"
+        clockBorderWidth={7}
+        clockSize={270}
+        hourHandColor="#E4F96A"
+        hourHandCurved={false}
+        hourHandLength={70}
+        hourHandOffset={0}
+        hourHandWidth={6}
+        minuteHandColor="#DDDDDD"
+        minuteHandCurved={false}
+        minuteHandLength={105}
+        minuteHandOffset={0}
+        minuteHandWidth={2}
+        secondHandColor="black"
+        secondHandCurved={false}
+        secondHandLength={120}
+        secondHandOffset={0}
+        secondHandWidth={2}
+      />
+    </View>
+  </View>
+</View>
+`;

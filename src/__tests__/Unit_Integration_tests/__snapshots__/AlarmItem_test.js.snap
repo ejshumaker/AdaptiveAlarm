@@ -1,0 +1,307 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alarm Item should contain None as no days are active 1`] = `
+<TouchableOpacity
+  onPress={[Function]}
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginVertical": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+          "marginBottom": 20,
+          "marginVertical": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Bold",
+              "fontSize": 48,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        8:00 AM
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginTop": 5,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Medium",
+                "fontSize": 18,
+              },
+              Object {
+                "color": "#DDDDDD",
+                "justifyContent": "flex-start",
+              },
+            ]
+          }
+        >
+          Repeat:
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Medium",
+                "fontSize": 18,
+              },
+              Object {
+                "color": "#E4F96A",
+                "fontFamily": "RNSMiles-XBold",
+                "justifyContent": "flex-end",
+              },
+            ]
+          }
+        >
+           None
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "justifyContent": "space-around",
+          "margin": 0,
+        }
+      }
+    >
+      <Switch
+        onValueChange={[Function]}
+        value={false}
+      />
+    </View>
+  </View>
+</TouchableOpacity>
+`;
+
+exports[`Alarm Item test alarm item matches snapshot alarm is active 1`] = `
+<TouchableOpacity
+  onPress={[Function]}
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginVertical": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+          "marginBottom": 20,
+          "marginVertical": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Bold",
+              "fontSize": 48,
+            },
+            Object {
+              "color": "#DDDDDD",
+            },
+          ]
+        }
+      >
+        8:00 AM
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginTop": 5,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Medium",
+                "fontSize": 18,
+              },
+              Object {
+                "color": "#DDDDDD",
+                "justifyContent": "flex-start",
+              },
+            ]
+          }
+        >
+          Repeat:
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Medium",
+                "fontSize": 18,
+              },
+              Object {
+                "color": "#E4F96A",
+                "fontFamily": "RNSMiles-XBold",
+                "justifyContent": "flex-end",
+              },
+            ]
+          }
+        >
+           S, T, W, F
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "justifyContent": "space-around",
+          "margin": 0,
+        }
+      }
+    >
+      <Switch
+        onValueChange={[Function]}
+        value={false}
+      />
+    </View>
+  </View>
+</TouchableOpacity>
+`;
+
+exports[`Alarm Item test alarm item matches snapshot alarm is inactive 1`] = `
+<TouchableOpacity
+  onPress={[Function]}
+>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginVertical": 0,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+          "marginBottom": 20,
+          "marginVertical": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#DDDDDD",
+              "fontFamily": "RNSMiles-Bold",
+              "fontSize": 48,
+            },
+            Object {
+              "color": "#505050",
+            },
+          ]
+        }
+      >
+        8:00 AM
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "marginTop": 5,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Medium",
+                "fontSize": 18,
+              },
+              Object {
+                "color": "#505050",
+                "justifyContent": "flex-start",
+              },
+            ]
+          }
+        >
+          Repeat:
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#DDDDDD",
+                "fontFamily": "RNSMiles-Medium",
+                "fontSize": 18,
+              },
+              Object {
+                "color": "#505050",
+                "fontFamily": "RNSMiles-XBold",
+                "justifyContent": "flex-end",
+              },
+            ]
+          }
+        >
+           S, T, W, F
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "justifyContent": "space-around",
+          "margin": 0,
+        }
+      }
+    >
+      <Switch
+        onValueChange={[Function]}
+        value={true}
+      />
+    </View>
+  </View>
+</TouchableOpacity>
+`;

@@ -1,0 +1,509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6FB966D52277F01E00577A38 /* alarm1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FB966D12277F01D00577A38 /* alarm1.mp3 */; };
+		6FB966D62277F01E00577A38 /* alarm2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FB966D22277F01D00577A38 /* alarm2.mp3 */; };
+		6FB966D72277F01E00577A38 /* alarm4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FB966D32277F01D00577A38 /* alarm4.mp3 */; };
+		6FB966D82277F01E00577A38 /* alarm3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6FB966D42277F01E00577A38 /* alarm3.mp3 */; };
+		749BEACDA92A518F8E7EDAAC /* libPods-adaptive-alarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D2A66F0540DA836D95005FD /* libPods-adaptive-alarm.a */; };
+		A9D305ADF9294FF382B94C03 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85EFB2FB79E74C18AA890FD1 /* Ionicons.ttf */; };
+		B501732B1DC01252003445D9 /* EXShell.plist in Resources */ = {isa = PBXBuildFile; fileRef = B501732A1DC01252003445D9 /* EXShell.plist */; };
+		B56386491DB9693800A0598C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B56386481DB9693800A0598C /* AppDelegate.m */; };
+		B56386511DB9693800A0598C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56386501DB9693800A0598C /* Assets.xcassets */; };
+		B56386611DB96A5E00A0598C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B563865E1DB96A5E00A0598C /* main.m */; };
+		B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */ = {isa = PBXBuildFile; fileRef = B56386661DB9994300A0598C /* EXSDKVersions.plist */; };
+		B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */; };
+		B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E8F1FABD46800307FA4 /* launch_background_image.png */; };
+		B5693E921FABD46800307FA4 /* launch_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5693E901FABD46800307FA4 /* launch_icon.png */; };
+		B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */; };
+		B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047E1F3A684600E91581 /* shell-app-manifest.json */; };
+		B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B5DB047F1F3A684600E91581 /* shell-app.bundle */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5D2A66F0540DA836D95005FD /* libPods-adaptive-alarm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-adaptive-alarm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F1CB3A52278DEE600631CD3 /* adaptive-alarm.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "adaptive-alarm.entitlements"; sourceTree = "<group>"; };
+		6FB966D12277F01D00577A38 /* alarm1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = alarm1.mp3; path = ../src/assets/sounds/alarm1.mp3; sourceTree = "<group>"; };
+		6FB966D22277F01D00577A38 /* alarm2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = alarm2.mp3; path = ../src/assets/sounds/alarm2.mp3; sourceTree = "<group>"; };
+		6FB966D32277F01D00577A38 /* alarm4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = alarm4.mp3; path = ../src/assets/sounds/alarm4.mp3; sourceTree = "<group>"; };
+		6FB966D42277F01E00577A38 /* alarm3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = alarm3.mp3; path = ../src/assets/sounds/alarm3.mp3; sourceTree = "<group>"; };
+		85EFB2FB79E74C18AA890FD1 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-ionicons/fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		B086D8466D746373FBD897FF /* Pods-adaptive-alarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adaptive-alarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-adaptive-alarm/Pods-adaptive-alarm.release.xcconfig"; sourceTree = "<group>"; };
+		B501732A1DC01252003445D9 /* EXShell.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXShell.plist; sourceTree = "<group>"; };
+		B56386411DB9693800A0598C /* adaptive-alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "adaptive-alarm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B56386471DB9693800A0598C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B56386481DB9693800A0598C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B56386501DB9693800A0598C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B563865C1DB96A5E00A0598C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B563865E1DB96A5E00A0598C /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B56386661DB9994300A0598C /* EXSDKVersions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXSDKVersions.plist; sourceTree = "<group>"; };
+		B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		B5693E8F1FABD46800307FA4 /* launch_background_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_background_image.png; sourceTree = "<group>"; };
+		B5693E901FABD46800307FA4 /* launch_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_icon.png; sourceTree = "<group>"; };
+		B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EXBuildConstants.plist; sourceTree = "<group>"; };
+		B5DB047E1F3A684600E91581 /* shell-app-manifest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "shell-app-manifest.json"; sourceTree = "<group>"; };
+		B5DB047F1F3A684600E91581 /* shell-app.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "shell-app.bundle"; sourceTree = "<group>"; };
+		D553BCEEF8F39872D16C7F00 /* Pods-adaptive-alarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-adaptive-alarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-adaptive-alarm/Pods-adaptive-alarm.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B563863E1DB9693800A0598C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				749BEACDA92A518F8E7EDAAC /* libPods-adaptive-alarm.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		03C8F809D04244A98DFE95A0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				85EFB2FB79E74C18AA890FD1 /* Ionicons.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		256B140CA7642356B79DE69C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5D2A66F0540DA836D95005FD /* libPods-adaptive-alarm.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9715781D006EDECA8AA0CE66 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D553BCEEF8F39872D16C7F00 /* Pods-adaptive-alarm.debug.xcconfig */,
+				B086D8466D746373FBD897FF /* Pods-adaptive-alarm.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B56386381DB9693800A0598C = {
+			isa = PBXGroup;
+			children = (
+				6FB966D12277F01D00577A38 /* alarm1.mp3 */,
+				6FB966D22277F01D00577A38 /* alarm2.mp3 */,
+				6FB966D42277F01E00577A38 /* alarm3.mp3 */,
+				6FB966D32277F01D00577A38 /* alarm4.mp3 */,
+				B56386431DB9693800A0598C /* adaptive-alarm */,
+				B56386421DB9693800A0598C /* Products */,
+				03C8F809D04244A98DFE95A0 /* Resources */,
+				9715781D006EDECA8AA0CE66 /* Pods */,
+				256B140CA7642356B79DE69C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B56386421DB9693800A0598C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B56386411DB9693800A0598C /* adaptive-alarm.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B56386431DB9693800A0598C /* adaptive-alarm */ = {
+			isa = PBXGroup;
+			children = (
+				6F1CB3A52278DEE600631CD3 /* adaptive-alarm.entitlements */,
+				B56386471DB9693800A0598C /* AppDelegate.h */,
+				B56386481DB9693800A0598C /* AppDelegate.m */,
+				B56386501DB9693800A0598C /* Assets.xcassets */,
+				B563865B1DB96A5E00A0598C /* Supporting */,
+			);
+			path = "adaptive-alarm";
+			sourceTree = "<group>";
+		};
+		B563865B1DB96A5E00A0598C /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				B5693E8F1FABD46800307FA4 /* launch_background_image.png */,
+				B5693E901FABD46800307FA4 /* launch_icon.png */,
+				B5693E8D1FABD16A00307FA4 /* LaunchScreen.xib */,
+				B5DB047E1F3A684600E91581 /* shell-app-manifest.json */,
+				B5DB047F1F3A684600E91581 /* shell-app.bundle */,
+				B5CFBF4E1EDE419400B4BE24 /* EXBuildConstants.plist */,
+				B501732A1DC01252003445D9 /* EXShell.plist */,
+				B56386661DB9994300A0598C /* EXSDKVersions.plist */,
+				B563865C1DB96A5E00A0598C /* Info.plist */,
+				B563865E1DB96A5E00A0598C /* main.m */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B56386401DB9693800A0598C /* adaptive-alarm */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B56386581DB9693800A0598C /* Build configuration list for PBXNativeTarget "adaptive-alarm" */;
+			buildPhases = (
+				70BDCB7D4514CF8EBA153B97 /* [CP] Check Pods Manifest.lock */,
+				B5722AD01DFB7E3F0084848F /* Prepare Expo */,
+				B563863D1DB9693800A0598C /* Sources */,
+				B563863E1DB9693800A0598C /* Frameworks */,
+				B563863F1DB9693800A0598C /* Resources */,
+				19D233B7204FDD7D0087ED51 /* Bundle Expo Assets */,
+				F81582D08A87FFC54DDAE0FA /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "adaptive-alarm";
+			productName = "adaptive-alarm";
+			productReference = B56386411DB9693800A0598C /* adaptive-alarm.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B56386391DB9693800A0598C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "650 Industries, Inc.";
+				TargetAttributes = {
+					B56386401DB9693800A0598C = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = LW93SEL84Z;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 0;
+							};
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = B563863C1DB9693800A0598C /* Build configuration list for PBXProject "adaptive-alarm" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B56386381DB9693800A0598C;
+			productRefGroup = B56386421DB9693800A0598C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B56386401DB9693800A0598C /* adaptive-alarm */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B563863F1DB9693800A0598C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5693E911FABD46800307FA4 /* launch_background_image.png in Resources */,
+				B501732B1DC01252003445D9 /* EXShell.plist in Resources */,
+				6FB966D62277F01E00577A38 /* alarm2.mp3 in Resources */,
+				B5CFBF4F1EDE419400B4BE24 /* EXBuildConstants.plist in Resources */,
+				B56386671DB9994300A0598C /* EXSDKVersions.plist in Resources */,
+				6FB966D52277F01E00577A38 /* alarm1.mp3 in Resources */,
+				B5693E921FABD46800307FA4 /* launch_icon.png in Resources */,
+				6FB966D82277F01E00577A38 /* alarm3.mp3 in Resources */,
+				B5693E8E1FABD16A00307FA4 /* LaunchScreen.xib in Resources */,
+				B5DB04801F3A684600E91581 /* shell-app-manifest.json in Resources */,
+				6FB966D72277F01E00577A38 /* alarm4.mp3 in Resources */,
+				B5DB04811F3A684600E91581 /* shell-app.bundle in Resources */,
+				B56386511DB9693800A0598C /* Assets.xcassets in Resources */,
+				A9D305ADF9294FF382B94C03 /* Ionicons.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19D233B7204FDD7D0087ED51 /* Bundle Expo Assets */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle Expo Assets";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eo pipefail\n\nif [ \"$CONFIGURATION\" == \"Debug\" ]; then\n  echo \"Skipping asset bundling in debug mode.\"\n  exit 0\nfi\n\npushd \"${SRCROOT}/..\"\nexport PATH=\"$(if [ -f ~/.expo/PATH ]; then echo $PATH:$(cat ~/.expo/PATH); else echo $PATH; fi)\"\ndest=\"$CONFIGURATION_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nexpo bundle-assets --platform ios --dest \"$dest\"\npopd\n";
+		};
+		70BDCB7D4514CF8EBA153B97 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-adaptive-alarm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B5722AD01DFB7E3F0084848F /* Prepare Expo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare Expo";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "set -eo pipefail\n\npushd \"${SRCROOT}/..\"\nexport PATH=\"$(if [ -f ~/.expo/PATH ]; then echo $PATH:$(cat ~/.expo/PATH); else echo $PATH; fi)\"\nexpo prepare-detached-build --platform ios\npopd\n";
+		};
+		F81582D08A87FFC54DDAE0FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-adaptive-alarm/Pods-adaptive-alarm-resources.sh",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/api.amplitude.com.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoCaLimitedRsaCertificationAuthority.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaCA.der",
+				"${PODS_ROOT}/Amplitude-iOS/Amplitude/ComodoRsaDomainValidationCA.der",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/api.amplitude.com.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoCaLimitedRsaCertificationAuthority.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaCA.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ComodoRsaDomainValidationCA.der",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-adaptive-alarm/Pods-adaptive-alarm-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B563863D1DB9693800A0598C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B56386611DB96A5E00A0598C /* main.m in Sources */,
+				B56386491DB9693800A0598C /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B56386561DB9693800A0598C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Adam Weintraut (E7269UN4T2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		B56386571DB9693800A0598C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Adam Weintraut (E7269UN4T2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B56386591DB9693800A0598C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D553BCEEF8F39872D16C7F00 /* Pods-adaptive-alarm.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "adaptive-alarm/adaptive-alarm.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LW93SEL84Z;
+				INFOPLIST_FILE = "$(SRCROOT)/adaptive-alarm/Supporting/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eschirtz.adaptivealarm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B563865A1DB9693800A0598C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B086D8466D746373FBD897FF /* Pods-adaptive-alarm.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "adaptive-alarm/adaptive-alarm.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LW93SEL84Z;
+				INFOPLIST_FILE = "$(SRCROOT)/adaptive-alarm/Supporting/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eschirtz.adaptivealarm;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B563863C1DB9693800A0598C /* Build configuration list for PBXProject "adaptive-alarm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B56386561DB9693800A0598C /* Debug */,
+				B56386571DB9693800A0598C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B56386581DB9693800A0598C /* Build configuration list for PBXNativeTarget "adaptive-alarm" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B56386591DB9693800A0598C /* Debug */,
+				B563865A1DB9693800A0598C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B56386391DB9693800A0598C /* Project object */;
+}

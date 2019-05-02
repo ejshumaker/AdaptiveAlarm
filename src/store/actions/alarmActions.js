@@ -17,6 +17,7 @@ export function alarmCalculateTime() {
       alarmId,
       alarmUTC,
       soundIndex,
+      modeIndex,
     } = alarm;
     const loopLimit = 4;
     const arrivalTimeBuffer = 6;
@@ -28,16 +29,17 @@ export function alarmCalculateTime() {
         alarmUTC,
         loopLimit,
         arrivalTimeBuffer,
+        modeIndex,
       ),
     })
-      .then((resp) => {
-        Alarm.armAlarm(resp.value);
+      .then(() => {
         dispatch({
           type: 'ALARM_SET_ARMED_STATUS',
           payload: {
             armed: true,
             currentAlarmId: alarmId,
             soundIndex,
+            modeIndex,
           },
         });
       });
@@ -50,13 +52,3 @@ export function alarmCalculateTime() {
     },
   });
 }
-
-// stub
-/*
-export function foo() {
-  return {
-    type: 'FOO',
-    payload: null,
-  };
-}
-*/

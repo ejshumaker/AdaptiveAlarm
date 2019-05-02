@@ -13,7 +13,11 @@ import { GlobalStyles } from './src/constants';
  * Ignore React-Native timer warnings caused by Firebase
  * https://github.com/facebook/react-native/issues/12981
  */
-YellowBox.ignoreWarnings(['Setting a timer']);
+
+// this line is to allow tests to run
+if (!__testing__) { // eslint-disable-line
+  YellowBox.ignoreWarnings(['Setting a timer']);
+}
 /* eslint-disable */
 const _console = _.clone(console);
 console.warn = (message) => {

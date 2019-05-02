@@ -32,6 +32,14 @@ const styles = StyleSheet.create({
 });
 
 class AlarmItem extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loading: false,
+    };
+  }
+
+
   // on press we should call the navigator to go to the edit alarm page.
   handlePress = async () => {
     const {
@@ -46,6 +54,7 @@ class AlarmItem extends Component {
   // on toggle of a specific alarm we should call the alarm set status prop function
   // TODO: HANDLE THE ALARM FIRING RIGHT AFTER WE TURN IT ON IF IT IS IN THE PAST
   handleAlarmToggle = async () => {
+    this.setState({ loading: true });
     const {
       alarmId, toggleAlarm, alarm,
     } = this.props;
@@ -54,6 +63,7 @@ class AlarmItem extends Component {
     // TODO: get this to update correctly.
     const toggleVal = !alarm.isActive;
     await toggleAlarm(alarmId, toggleVal);
+    this.setState({ loading: false });
     this.render();
   }
 
@@ -73,11 +83,17 @@ class AlarmItem extends Component {
 
     if (dayString === '') dayString = ' None';
 
+    // remove last comma from string if not empty
+    if (dayString !== ' None') {
+      dayString = dayString.slice(0, -1);
+    }
+
     return dayString;
   }
 
   render() {
     const { alarm } = this.props;
+    const { loading } = this.state;
     if (alarm === undefined) return null;
     return (
       <TouchableOpacity onPress={this.handlePress}>
@@ -103,7 +119,7 @@ class AlarmItem extends Component {
           <View style={styles.switchColumn}>
             <Switch
               onValueChange={this.handleAlarmToggle}
-              value={alarm.isActive}
+              value={loading ? alarm.isActive : !alarm.isActive}
               style={styles.switchRow}
             />
           </View>

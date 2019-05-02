@@ -2,6 +2,7 @@ import React from 'react';
 import {
   View, StyleSheet, Platform, NativeModules,
 } from 'react-native';
+import OfflineNotice from './OfflineNotice';
 
 const { StatusBarManager } = NativeModules;
 
@@ -16,7 +17,10 @@ const StatusBarBackground = (props) => {
   // eslint-disable-next-line
   const { style } = props;
   return (
-    <View style={[styles.statusBarBackground, style || {}]} />
+    <View>
+      <OfflineNotice />
+      <View style={[styles.statusBarBackground, style || {}]} />
+    </View>
   );
 };
 

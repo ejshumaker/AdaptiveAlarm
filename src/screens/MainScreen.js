@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import {
-  View, Text, StatusBar, TouchableOpacity,
+  View, Text, StatusBar, TouchableOpacity, YellowBox,
 } from 'react-native';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import AnalogClock from '../components/AnalogClock';
 import { Buttons, StatusBarBackground } from '../components';
+import { weatherConditions } from '../assets/weatherConditions';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
 import { GlobalStyles, Colors } from '../constants';
@@ -15,18 +18,28 @@ import { AddIcon } from '../icons/add';
 import { UserIcon } from '../icons/user';
 import { MenuIcon } from '../icons/menu';
 
+// ios warning boxes for meaningless errors
+/* eslint-disable no-undef */
+if (!__testing__) {
+  YellowBox.ignoreWarnings(['Class EX']); // expo did not export module (xcode ?)
+  YellowBox.ignoreWarnings(['Possible Unhandled Promise Rejection']); // no issue, POSSIBLE.
+  YellowBox.ignoreWarnings(['Module AudioRecorderManager']); // comes from using react-native-audio
+}
+
 class MainScreen extends Component {
   hasAlarmView() {
     const {
       // values
       alarmTime,
       loading,
+      weather,
+      temperature,
     } = this.props;
-    const hour = !loading ? moment(alarmTime).format('hh') : '0';
-    const min = !loading ? moment(alarmTime).format('mm') : '00';
-    const meridian = !loading ? moment(alarmTime).format('a') : '- -';
-    const month = !loading ? moment(alarmTime).format('MMM') : '';
-    const day = !loading ? moment(alarmTime).format('D, dddd') : '';
+    const hour = alarmTime !== -1 ? moment(alarmTime).format('hh') : '0';
+    const min = alarmTime !== -1 ? moment(alarmTime).format('mm') : '00';
+    const meridian = alarmTime !== -1 ? moment(alarmTime).format('a') : '- -';
+    const month = alarmTime !== -1 ? moment(alarmTime).format('MMM') : '';
+    const day = alarmTime !== -1 ? moment(alarmTime).format('D, dddd') : '';
 
     return (
       <View>
@@ -55,7 +68,21 @@ class MainScreen extends Component {
           [GlobalStyles.month, { color: Colors.white, marginLeft: 130 }]
         }
         >
+          <Text style={GlobalStyles.date}>
+            {loading ? '' : temperature }
+          </Text>
           <Text>
+            {loading ? '' : '\u2109   ' }
+          </Text>
+          {loading ? '' : (
+            <MaterialCommunityIcons
+              size={18}
+              name={weatherConditions[weather].icon}
+              color={Colors.white}
+            />
+          )}
+          <Text>
+            {'  '}
             {month.toUpperCase()}
             {' '}
           </Text>
@@ -106,10 +133,8 @@ class MainScreen extends Component {
     const self = this;
     const {
       dismissAlarm,
-      navigation,
       alarmId,
     } = this.props;
-    const { navigate } = navigation;
     return (
       <View>
         <Buttons
@@ -118,31 +143,12 @@ class MainScreen extends Component {
           textColor={Colors.white}
           onPress={() => dismissAlarm(alarmId)}
         />
-        <Buttons
-          title="Dev Page"
-          backgroundColor={Colors.darkGray}
-          textColor={Colors.white}
-          onPress={() => navigate('Home')}
-        />
       </View>
     );
   }
-
+  // eslint-disable-next-line
   hasNoAlarmButtons() {
-    // eslint-disable-next-line no-unused-vars
-    const self = this;
-    const { navigation } = this.props;
-    const { navigate } = navigation;
-    return (
-      <View>
-        <Buttons
-          title="Dev Page"
-          backgroundColor={Colors.darkGray}
-          textColor={Colors.white}
-          onPress={() => navigate('Home')}
-        />
-      </View>
-    );
+    return null;
   }
 
   menu() {
@@ -209,12 +215,16 @@ MainScreen.propTypes = {
   alarmTime: PropTypes.number,
   alarmId: PropTypes.string,
   loading: PropTypes.bool,
+  weather: PropTypes.string,
+  temperature: PropTypes.number,
 };
 
 MainScreen.defaultProps = {
   alarmTime: -1,
   alarmId: undefined,
   loading: true,
+  temperature: 44,
+  weather: 'Clear',
 };
 
 const mapStateToProps = state => ({
@@ -222,6 +232,8 @@ const mapStateToProps = state => ({
   alarmId: state.alarm.currentAlarmId,
   loading: state.alarm.loading,
   armed: state.alarm.armed,
+  weather: state.alarm.weather,
+  temperature: state.alarm.temperature,
 });
 
 const mapDispatchToProps = dispatch => ({

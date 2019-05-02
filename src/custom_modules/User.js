@@ -17,11 +17,10 @@ function getNextAlarm() {
   if (alarms === undefined) return undefined;
   const currentDay = moment().days();
   console.log('-- Getting Next Alarm --');
-  console.log(`\tToday is ${moment().day(currentDay).format('dddd, MMMM Do, h:mm a')}`);
   let earliestAlarmTime = Number.MAX_SAFE_INTEGER;
   let earliestAlarmId;
   let ids = alarms !== undefined ? Object.keys(alarms) : [];
-  ids = ids.filter(id => alarms[id].isActive);
+  ids = ids.filter(id => alarms[id].isActive && !alarms[id].hasFired);
   for (let i = 0; i < ids.length; i += 1) {
     const alarm = alarms[ids[i]];
     // find next day of week
@@ -39,22 +38,17 @@ function getNextAlarm() {
           const alarmMoment = moment(alarm.arrivalTime, 'LT');
           const currentMoment = moment();
           const isBefore = alarmMoment.isBefore(currentMoment);
-          console.log(alarmMoment.format('\tdddd, MMMM Do, h:mm a'));
           if (isBefore) {
-            console.log('\tis before');
             dayNumber += 7; // add a week if alarm has already passed
-          } else {
-            console.log('\tis after');
           }
-          console.log(currentMoment.format('\tdddd, MMMM Do, h:mm a'));
         }
 
         // Find the nearest day, ie the lowest number
         nextDayNumber = dayNumber < nextDayNumber ? dayNumber : nextDayNumber;
       });
     const day = moment(alarm.arrivalTime, 'LT');
+    day.subtract(alarm.timeToGetReady, 'minutes');
     day.day(nextDayNumber);
-    console.log(`\tAlarm #${i} goes off ${day.format('dddd, MMMM Do, h:mm a')}`);
     const closestSoFar = day.utc() < earliestAlarmTime;
     earliestAlarmTime = closestSoFar ? day.utc() : earliestAlarmTime;
     earliestAlarmId = closestSoFar ? ids[i] : earliestAlarmId;
@@ -62,6 +56,8 @@ function getNextAlarm() {
   const earliestAlarm = alarms[earliestAlarmId];
 
   if (earliestAlarmId !== undefined) {
+    console.log(`\tArrival Time: ${earliestAlarm.arrivalTime}`);
+    console.log(`\tDestination: ${earliestAlarm.destinationLoc}`);
     return {
       ...earliestAlarm,
       alarmId: earliestAlarmId,
@@ -85,6 +81,7 @@ function updateAlarm(payload) {
     days,
     isActive,
     soundIndex,
+    modeIndex,
   } = payload;
   let { alarmId } = payload;
   const { uid } = auth().currentUser;
@@ -99,6 +96,7 @@ function updateAlarm(payload) {
         isActive,
         alarmId,
         soundIndex,
+        modeIndex,
       })
       .then(() => {
         resolve({
@@ -109,6 +107,7 @@ function updateAlarm(payload) {
           isActive,
           alarmId,
           soundIndex,
+          modeIndex,
         });
       })
       .catch(error => reject(error));

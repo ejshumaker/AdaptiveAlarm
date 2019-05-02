@@ -100,7 +100,7 @@ export default StyleSheet.create({
   },
   /* Text input styling */
   input: {
-    height: 50,
+    height: 40,
     fontSize: 14,
     fontFamily: 'RNSMiles-Medium',
     borderBottomWidth: 0.5,

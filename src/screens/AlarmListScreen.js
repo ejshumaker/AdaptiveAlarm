@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  View, Text, FlatList, ActivityIndicator, TouchableOpacity,
+  View, Text, FlatList, ActivityIndicator, TouchableOpacity, YellowBox,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -12,6 +12,10 @@ import { CloseIcon } from '../icons/close';
 
 import { userSetAlarmStatus } from '../store/actions/userActions';
 
+
+if (!__testing__) { // eslint-disable-line
+  YellowBox.ignoreWarnings(['Class RCTCxxModule']);
+}
 
 class AlarmListScreen extends Component {
   constructor() {
@@ -126,6 +130,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(userSetAlarmStatus(alarmid, status));
   },
 });
+
+export { AlarmListScreen };
 
 export default connect(
   mapStateToProps,

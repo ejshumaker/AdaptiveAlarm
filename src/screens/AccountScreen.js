@@ -7,7 +7,7 @@
  */
 import React, { Component } from 'react';
 import {
-  View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity,
+  View, Text, Image, StyleSheet, ActivityIndicator, TouchableOpacity, YellowBox,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -22,6 +22,10 @@ import {
 
 import { CloseIcon } from '../icons/close';
 import Buttons from '../components/Buttons';
+
+if (!__testing__) { // eslint-disable-line
+  YellowBox.ignoreWarnings(['Class RCTCxxModule']);
+}
 
 class AccountScreen extends Component {
   constructor() {
@@ -101,10 +105,10 @@ class AccountScreen extends Component {
         justifyContent: 'center',
       },
       usericon: {
-        width: 150,
-        height: 150,
-        borderRadius: 75,
-        margin: 20,
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+        margin: 16,
       },
       userinfopane: {
         width: '95%',
@@ -152,6 +156,7 @@ class AccountScreen extends Component {
               GlobalStyles.h2,
               {
                 color: Colors.primary,
+                marginTop: 0,
               },
             ]}
             >
@@ -220,7 +225,7 @@ class AccountScreen extends Component {
               </View>
             </View>
           </View>
-          <View style={[styles.signOutButton, { alignItems: 'center' }]}>
+          <View style={[styles.signOutButton, { alignItems: 'center', marginBottom: 24 }]}>
             <Buttons
               title="Sign Out"
               backgroundColor={Colors.darkGray}
